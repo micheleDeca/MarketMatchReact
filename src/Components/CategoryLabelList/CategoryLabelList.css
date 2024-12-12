@@ -5,3 +5,10 @@
     max-width: 450px;
   }
   
+  @media (max-width: 950px) {
+    .badge-container {
+      gap: 1px; /* Spaziatura tra i badge */
+      max-width: 450px;
+    }
+
+  }

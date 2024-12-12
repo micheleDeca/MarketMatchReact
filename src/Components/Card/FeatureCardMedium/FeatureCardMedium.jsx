@@ -1,23 +1,28 @@
-import React from 'react'
-import './FeatureCardMedium.css'
+import React from 'react';
+import './FeatureCardMedium.css';
 
 const FeatureCardMedium = () => {
-    return (
-        <div class="small-card">
-          <img 
-            src="https://static.vecteezy.com/system/resources/previews/049/114/401/non_2x/sliced-salami-with-fresh-tomatoes-and-herbs-png.png" 
-            alt="Prodotto 1" 
-            class="featured-image-small" 
-          />
-          <div class="content">
-            <h4 class="featured-title-medium">Prodotto 1</h4>
-            <p class="featured-description-medium">ssss</p>
-            <p class="featured-price-medium">€20.00</p>
-            <button class="featured-button">Prenota</button>
-          </div>
-        </div>
-      )
+  return (
+    <div className="card-medium">
+      <div className="card-img-holder">
+        <img
+          src="https://images.unsplash.com/photo-1640102953836-5651f5d6b240?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1024&q=80"
+         />
+      </div>
+      <h3 className="blog-title">Learn Microinteraction</h3>
+      {false && <span className="blog-time">Monday Jan 20, 2020</span>} 
+      <p className="description">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam sagittis viverra turpis, non cursus ex accumsan at.
+      </p>
+      <div className="options">
+        <span className="read-more">Read Full Blog</span>
+        <button className="btn">Blog</button>
+      </div>
       
-}
+    </div>
 
-export default FeatureCardMedium
+    
+  );
+};
+
+export default FeatureCardMedium;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef} from 'react';
+import React, { useState, useEffect} from 'react';
 
 import ProductCard from '../ProductCard/ProductCard';
 import { Swiper, SwiperSlide } from 'swiper/react'; // Import Swiper components
@@ -6,28 +6,37 @@ import '../../../node_modules/swiper/swiper-bundle.min.css';
 import '../../../node_modules/swiper/modules/pagination.min.css'; // Importa i CSS per la paginazione
 import './ProductList.css';
 
-
+/**
+ * 
+ * @prop {string} title - Il titolo della sezione dei prodotti. (es. "I nostri prodotti")
+ * @prop {Array<Object>} products - Un array di oggetti rappresentanti i prodotti. Ogni prodotto deve avere:
+ *    - {number|string} id - Identificatore unico del prodotto. (es. 1 o "1")
+ *    - {string} name - Nome del prodotto. (es. "Prodotto 1")
+ *    - {string} price - Prezzo del prodotto in formato stringa. (es. "10")
+ *    - {string} image - URL dell'immagine del prodotto. (es. "https://example.com/prodotto.jpg")
+ *    - {string} detail - Descrizione del prodotto. (es. "Descrizione prodotto")
+ * 
+ * Comportamento:
+ * - Utilizza lo stato `isMobile` per determinare il layout (Swiper per dispositivi mobili o lista per desktop).
+ * - Se `isMobile` è `true`, i prodotti vengono mostrati tramite uno slider con supporto per la paginazione.
+ * - Se `isMobile` è `false`, i prodotti vengono mostrati in una lista.
+ * 
+ * Esempio di utilizzo:
+ * const products = [
+ *   { id: 1, name: "Prodotto 1", price: "10", image: "https://example.com/prodotto1.jpg", detail: "Descrizione prodotto 1" },
+ *   { id: 2, name: "Prodotto 2", price: "20", image: "https://example.com/prodotto2.jpg", detail: "Descrizione prodotto 2" }
+ * ];
+ * 
+ * <ProductList title="I nostri prodotti" products={products} />
+ */
 
 import { Pagination } from 'swiper/modules'; // Importa il modulo Pagination
 
 const ProductList = (props) => {
-    const products = [
-        { id: 1, name: "Prodotto 1", price: "10", image: "https://app.naturasi.it/media/catalog/product/cache/852x852/_/1/_1725943432_000100022410_1.jpg" },
-        { id: 2, name: "Prodotto 2", price: "20", image: "https://app.naturasi.it/media/catalog/product/cache/264x264/_/1/_1641649427_000100023810_1.jpg" },
-        { id: 3, name: "Prodotto 3", price: "30", image: "https://app.naturasi.it/media/catalog/product/cache/264x264/_/1/_1641812603_000100023921_1.jpg" },
-        { id: 1, name: "Prodotto 1", price: "10", image: "https://app.naturasi.it/media/catalog/product/cache/264x264/_/1/_1672720840_000100068965_1.jpg" },
-        { id: 2, name: "Prodotto 2", price: "20", image: "https://app.naturasi.it/media/catalog/product/cache/264x264/_/1/_1692786758_000100023101_1.jpg" },
-        { id: 3, name: "Prodotto 3", price: "30", image: "https://app.naturasi.it/media/catalog/product/cache/264x264/_/1/_1641783795_000100023617_1.jpg" },
-        { id: 1, name: "Prodotto 1", price: "10", image: "https://app.naturasi.it/media/catalog/product/cache/264x264/_/1/_1705579086_000100022608_1.jpg" },
-        { id: 2, name: "Prodotto 2", price: "20", image: "https://app.naturasi.it/media/catalog/product/cache/264x264/_/1/_1711003172_000100023121_1.jpg" },
-        { id: 3, name: "Prodotto 3", price: "30", image: "https://app.naturasi.it/media/catalog/product/cache/264x264/_/1/_1641640213_000100023796_1.jpg" },
-        { id: 1, name: "Prodotto 1", price: "10", image: "https://app.naturasi.it/media/catalog/product/cache/264x264/_/1/_1705579086_000100022608_1.jpg" },
-
-    ];
+    
 
     const mobileSize = 1000;
     const [isMobile, setIsMobile] = useState(window.innerWidth <= mobileSize); // Imposta lo stato iniziale in base alla larghezza attuale
-    const swiperRef = useRef(null);
 
 
     useEffect(() => {       //consente di eseguire del codice aggiuntivo dopo che il componente è stato montato nel DOM.
@@ -59,19 +68,19 @@ const ProductList = (props) => {
                 <Swiper
                     modules={[Pagination]} // Attiva il modulo Pagination
                     spaceBetween={15}
-                    slidesPerView={1.8}
+                    slidesPerView={2}
                     pagination={{
                         clickable: true, // Attiva i pallini
                                 dynamicBullets: true, // Mostra solo alcuni pallini dinamicamente
 
                     }}
                     breakpoints={{
-                        450: { slidesPerView: 1.2 },
-                        768: { slidesPerView: 2 },
+                        650: { slidesPerView: 3 },
                         900: { slidesPerView: 4 },
-                    }}
+                      }}
+                     
                 >
-                    {products.map((product) => (
+                    {props.products.map((product) => (
                         <SwiperSlide key={product.id}>
                             <ProductCard
                                 straight="true"
@@ -86,7 +95,7 @@ const ProductList = (props) => {
                 </Swiper>
             ) : (
                 <div className="product-list">
-                    {products.map((product) => (
+                    {props.products.map((product) => (
                         <ProductCard
                             straight="false"   /*false impaginato in riga */
                             name={product.name}

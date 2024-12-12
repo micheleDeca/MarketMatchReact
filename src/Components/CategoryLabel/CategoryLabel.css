@@ -1,7 +1,7 @@
 .badge {
     color: white;
     font-family: "Roboto", serif;
-    font-size: 1vw;
+    font-size: 18px;
     font-weight: bold;
     padding: 5px 15px;
     border-radius: 20px;
@@ -11,9 +11,21 @@
     margin: 5px;
   }
   
-  @media (max-width: 800px){
+  @media (max-width: 950px){
     .badge {
-        font-size: 2vw;
+        font-size: 14px;
+        padding: 3px 10px;
+        margin: 3px;
+
+    }
+
+  }
+
+  @media (max-width: 450px){
+    .badge {
+        font-size: 10px;
+        padding: 3px 8px;
+        margin: 3px;
 
     }
 

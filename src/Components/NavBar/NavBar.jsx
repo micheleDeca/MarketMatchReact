@@ -1,17 +1,36 @@
 import React, { useState } from 'react';
 import './NavBar.css';
 import navLogo from "../../assets/logo.png";
+import { useUserContext } from '../../Context/UserContext'; 
+
+
+/**
+ * 
+ * @prop {string} userType - Il tipo di utente che determina la visibilità dei link nel menu. Possibili valori:
+ *    - "NoAccesso" (utente non loggato)
+ *    - "ConA" (consumatore)
+ *    - "AmmA" (amministratore)
+ *    - "NegA" (negoziante)
+ * 
+ * @prop {string} navColor - Colore personalizzato per i link di navigazione. (es. "#FF0000") Base nero
+ * 
+ * @prop {number} cartItems - Numero di articoli presenti nel carrello. (es. 5)
+ * 
+ * Esempio di utilizzo:
+ * <NavBar userType="ConA" navColor="#4CAF50" cartItems={3} />
+ */
 
 const NavBar = (props) => {
     // Stato per gestire l'apertura/chiusura della sidebar
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const [cartItems, setCartItems] = useState(5);  // Esempio di stato per il numero di articoli nel carrello
+    const { userType } = useUserContext();
 
     // Funzione per toggle della sidebar
     const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
 
     // Funzione per determinare se mostrare un link o una funzione basata sul tipo di utente
-    const isVisibleForUserType = (types) => types.includes(props.userType);
+    const isVisibleForUserType = (types) => types.includes(userType);
 
      return (
         <nav className="flex-div">
@@ -36,7 +55,7 @@ const NavBar = (props) => {
                 {isVisibleForUserType(["AmmA"]) && <a href="#pagamenti" id="pagamentiNav" style ={{color: props.navColor ? props.navColor : ""}}>Pagamenti</a>}
                 {isVisibleForUserType(["NoAccesso"]) && <a href="#accedi" id="accediNav" style ={{color: props.navColor ? props.navColor : ""}}>Accedi</a>}
                 <div className="cart-container">
-                {isVisibleForUserType(["ConA"]) &&<a href="#carrello" id="carrelloNav">
+                {isVisibleForUserType(["ConA"]) &&<a href="#carrello" id="carrelloNav"  style ={{color: props.navColor ? props.navColor : ""}} > 
                         Carrello
                         {cartItems > 0 && (
                             <span className="cart-quantity">({cartItems})</span>

@@ -1,60 +1,53 @@
-.large-featured-card {
-    
-    border-radius: 25px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 15px;
-    text-align: center;
-    max-width: 500px;
-    font-family: "Roboto", serif;
-    padding-top: 30px;
-  }
-  
-  .featured-image-large {
-    width: 90%;
-    height: auto;
-    border-radius: 15px;
-    margin-bottom: 10px;
-    background-color: #EBEBEB;
-    
-  }
+.banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  color: #333;
+  text-align: left;
+  gap: 1.5rem;
+}
 
-   
-  .featured-title-large {
-    font-size: 50px;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  
-  .featured-description-large {
-    font-size: 20px;
-    color: #555;
-    margin-bottom: 10px;
-  }
-  
-  .featured-price-large {
-    font-size: 50px;
-    font-weight: bold;
-    color: #000000;
-    margin-bottom: 15px;
-  }
-  
-  
-  .featured-button {
-    display: inline-block;
-    padding: 7px 20px;
-    margin-top: 10px;
-    font-size: 20px;
-    font-weight: bold;
-    color: #ffffff;
-    border: 0.5px solid #333; /* Solo bordo */
-    background-color: #03684D; /* Sfondo trasparente */
-    border-radius: 15px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    
-  }
-  
-  .featured-button:hover {
-    background-color: #052C35; /* Sfondo scuro al passaggio del mouse */
-    color: #fff; /* Testo bianco */
-  }
+.banner-text {
+  max-width: 50%;
+}
+
+.banner-text h1 {
+  margin: 0.5rem 0;
+  color: #2c3e50;
+  font-size: 2rem;
+}
+
+.banner-text h3 {
+  margin: 0.5rem 0;
+  color: #7f8c8d;
+  font-size: 1.5rem;
+}
+
+.banner-text p {
+  margin: 1rem 0;
+  line-height: 1.5;
+  font-size: 1rem;
+}
+
+.banner-button {
+  padding: 0.5rem 1rem;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.banner-button:hover {
+  background-color: #2980b9;
+}
+
+.banner-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}

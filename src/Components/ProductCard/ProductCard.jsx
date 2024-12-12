@@ -1,6 +1,26 @@
 import React from 'react'
 import './ProductCard.css'
 
+/**
+ * 
+ * @prop {string} image - L'URL dell'immagine del prodotto. (es. "https://example.com/prodotto.jpg")
+ * @prop {string} name - Il nome del prodotto. (es. "Pane Integrale")
+ * @prop {string} detail - Una descrizione dettagliata del prodotto. (es. "Pane integrale fatto con grano biologico")
+ * @prop {number} price - Il prezzo del prodotto. (es. 4.50)
+ * @prop {string} button - Il testo del pulsante associato al prodotto. (es. "Aggiungi al carrello")
+ * @prop {boolean|string} straight - Se `true`, il layout è in modalità colonna (verticale). Se "false" o assente, il layout è orizzontale.
+ * 
+ * Esempio di utilizzo:
+ * <ProductCard 
+ *   image="https://example.com/prodotto.jpg" 
+ *   name="Pane Integrale" 
+ *   detail="Pane integrale fatto con grano biologico" 
+ *   price={4.50} 
+ *   button="Aggiungi al carrello" 
+ *   straight={true} 
+ * />
+ */
+
 const ProductCard = (props) => {
 
     const straightContent = props.straight === true;    

@@ -1,0 +1,71 @@
+.reservation-long {
+    display: flex; /* Posiziona gli elementi in riga */
+    align-items: center; /* Centra verticalmente */
+    justify-content: space-between; /* Spaziatura tra i contenuti */
+    padding: 10px 20px; /* Spaziatura interna */
+    border-bottom: 1px solid #ddd; /* Linea di separazione */
+    font-family: "Roboto", serif;
+    font-size: 14px; /* Dimensione del testo */
+    color: #333; /* Colore principale del testo */
+}
+
+.reservation-icon-long {
+    width: 20px; /* Dimensione dell'icona */
+    height: 20px;
+    margin-right: 10px; /* Spazio tra icona e testo */
+}
+
+.reservation-info-long {
+    display: flex;
+    flex-direction: column; /* Posiziona i contenuti verticalmente */
+    flex: 1; /* Occupa lo spazio disponibile */
+    margin-left: 10px; /* Spazio tra icona e informazioni */
+}
+
+.reservation-name-date-long {
+    display: flex; /* Posiziona gli elementi in linea */
+    align-items: center; /* Allinea verticalmente al centro */
+    gap: 5px; /* Spazio tra gli elementi */
+}
+
+.reservation-name-long {
+    font-weight: bold; /* Nome evidenziato */
+    font-size: 16px;
+}
+
+.reservation-date-long {
+    font-weight: 500;  
+    font-size: 15px;
+}
+
+.reservation-state-date-long {
+    display: flex;
+    align-items: center; /* Allinea verticalmente al centro */    
+    gap: 5px; /* Spazio tra gli elementi */
+
+}
+.reservation-bigInfo-long {
+    display: flex;
+    align-items: center; /* Allinea verticalmente al centro */    
+    gap: 5px; /* Spazio tra gli elementi */
+
+}
+.reservation-bigInfo-uno-long {
+    font-weight: bold; /* Prezzo in evidenza */
+    color: #111;
+    font-size: 18px;
+    margin-top: 5px;
+}
+
+.reservation-bigInfo-due-long {
+    font-weight: bold; /* Prezzo in evidenza */
+    color: #111;
+    font-size: 18px;
+    margin-top: 5px;
+}
+
+/* Icona freccia */
+.reservation-arrow {
+    font-size: 18px; /* Dimensione della freccia */
+    color: #333; /* Colore della freccia */
+}
