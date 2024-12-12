@@ -1,0 +1,7 @@
+.badge-container {
+    display: flex;
+    flex-wrap: wrap; /* Disposizione flessibile in caso di troppi badge */
+    gap: 5px; /* Spaziatura tra i badge */
+    max-width: 450px;
+  }
+  

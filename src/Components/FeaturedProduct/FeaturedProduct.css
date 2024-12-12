@@ -1,0 +1,60 @@
+/* Stile per la sezione generale */
+.featured-section {
+    padding: 60px 50px; /* Margine interno responsivo */
+    background-color: #f9f9f9; /* Sfondo chiaro */
+    font-family: "Roboto", sans-serif; /* Font principale */
+  }
+  
+  /* Titolo della sezione */
+  .section-title {
+    font-size: 32px; /* Dimensione grande per schermi desktop */
+    font-weight: bold;
+    margin-bottom: 30px;
+  }
+  
+  /* Contenitore principale */
+  .featured-container {
+    display: grid;
+    grid-template-columns: 2fr 3fr; /* Card grande a sinistra, piccole a destra */
+    gap: 20px; /* Spazio tra i due blocchi */
+    align-items: start; /* Allinea gli elementi verticalmente */
+  }
+  
+  /* Stile per le card piccole */
+  .small-featured-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 colonne per le card piccole */
+    gap: 15px; /* Spazio tra le card */
+  }
+  
+  /* Stile responsivo per dispositivi con larghezza massima di 800px */
+  @media (max-width: 800px) {
+    .featured-container {
+      grid-template-columns: 1fr; /* Una sola colonna: card grande sopra, piccole sotto */
+      gap: 20px; /* Spazio maggiore tra i due blocchi */
+    }
+  
+    .small-featured-cards {
+      grid-template-columns: 1fr; /* Una sola colonna per le card piccole */
+    }
+  
+    .section-title {
+      font-size: 28px; /* Riduci leggermente la dimensione del titolo */
+    }
+  }
+  
+  /* Stile responsivo per dispositivi molto piccoli (es. max 500px) */
+  @media (max-width: 500px) {
+    .featured-section {
+      padding: 40px 10px; /* Margine più ridotto */
+    }
+  
+    .section-title {
+      font-size: 24px; /* Titolo più piccolo */
+    }
+  
+    .small-featured-cards {
+      gap: 10px; /* Spazio più ridotto tra le card */
+    }
+  }
+  

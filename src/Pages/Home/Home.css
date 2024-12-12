@@ -1,0 +1,34 @@
+.background {
+    width: 100%;
+    height: 80vh; /* Occupa l'intero viewport */
+    background-image: url('../../assets/Wallpaper1.png'); /* Immagine per desktop */
+    background-size: cover; /* Riempie lo schermo mantenendo proporzioni */
+    background-position: center; /* Centra l'immagine */
+    background-repeat: no-repeat; /* Evita la ripetizione */
+    margin-top: 0; /* Niente margine sopra */
+ }
+
+@media (max-width: 768px) {
+    .background {
+        width: 100%;
+         background-image: url('../../assets/WallpaperMOBILE.png'); /* Immagine mobile */
+         background-size: cover; /* Riempie lo schermo mantenendo proporzioni */
+         background-position: center; /* Centra l'immagine */
+         background-repeat: no-repeat; /* Evita la ripetizione */
+         margin-top: 0; /* Niente margine sopra */
+    }
+}
+
+
+@media (max-width: 500px) {
+    .background {
+        width: 100%;
+         background-image: url('../../assets/WallpaperMobile4.png'); /* Immagine mobile */
+         background-size: cover; /* Riempie lo schermo mantenendo proporzioni */
+         background-position: center; /* Centra l'immagine */
+         background-repeat: no-repeat; /* Evita la ripetizione */
+         margin-top: 0; /* Niente margine sopra */
+    }
+}
+
+ 

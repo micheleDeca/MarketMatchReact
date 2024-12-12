@@ -1,0 +1,94 @@
+.site-footer {
+  background-color: #092731;
+  color: #fff;
+  padding: 2rem 0.5rem;
+  font-family: "Roboto", serif;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-section {
+  flex: 1 1 calc(25% - 1rem);
+  min-width: 150px;
+}
+
+.footer-section h4 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: #f3f3f3;
+}
+
+.footer-section p,
+.footer-section ul {
+  font-size: 0.75rem;
+  /* Font più piccolo */
+  line-height: 1.4;
+  /* Line-height compatto */
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-section li {
+  margin-bottom: 0.3rem;
+}
+
+.footer-section a {
+  color: #05654F;
+  text-decoration: none;
+}
+
+.footer-section a:hover {
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.7rem;
+  color: #ccc;
+  border-top: 1px solid #444;
+  padding-top: 0.5rem;
+}
+
+.footer-section a {
+  font-size: 1.0rem;
+  /* Riduce il font dei link */
+
+}
+
+
+@media (max-width: 450px) {
+  .footer-section a {
+    font-size: 0.5rem;
+    /* Riduce il font dei link */
+
+  }
+
+  .footer-section h4 {
+    font-size: 0.5rem;
+    margin-bottom: 0.1rem;
+  }
+
+  .footer-bottom {
+    text-align: center;
+    margin-top: 0.7rem;
+    font-size: 0.6rem;
+  }
+
+  .footer-section p,
+  .footer-section ul {
+    font-size: 0.55rem;
+    line-height: 1.0;
+  }
+}

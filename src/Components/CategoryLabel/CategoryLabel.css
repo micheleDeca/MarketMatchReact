@@ -1,0 +1,20 @@
+.badge {
+    color: white;
+    font-family: "Roboto", serif;
+    font-size: 1vw;
+    font-weight: bold;
+    padding: 5px 15px;
+    border-radius: 20px;
+    display: inline-block;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    margin: 5px;
+  }
+  
+  @media (max-width: 800px){
+    .badge {
+        font-size: 2vw;
+
+    }
+
+  }

@@ -1,0 +1,105 @@
+.home-section {
+     padding: 20px 30px;
+     box-sizing: border-box; /* Per calcoli corretti di larghezza */
+     
+
+ }
+
+.section-title-product {
+    font-family: "Roboto", serif;
+    font-size: 30px;
+    font-weight: bolder;
+    color: #333;
+    margin-bottom: 2px;
+}
+
+.section-title-product:hover {
+    color: #05664E; /* Cambia colore quando il mouse è sopra */
+  }
+
+.svg-divider {
+    margin-left: -10px;
+    margin-bottom: 20px;
+    display: block; /* Rimuove eventuali spazi indesiderati sotto l'SVG */
+
+  }
+
+ 
+
+/* Stile della lista dei prodotti */
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    border-radius: 8px;
+    /* border: 1px solid #ddd; /* Bordo leggero */
+    padding-top: 5px;
+ 
+
+         
+}
+@media (max-width: 450px) {
+    .product-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Colonne dinamiche */
+
+    }
+
+    .section-title-product {
+        font-size: 25px;
+    }
+}
+
+/* SwiperJS styles override */
+.swiper {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+}
+
+@media (max-width: 450px) {
+    .product-list {
+        display: none; /* Nascondi la lista normale su mobile */
+    }
+
+    .section-title-product {
+        font-size: 20px;
+    }
+}
+
+ 
+/* Definizione dell'animazione */
+@keyframes swipeHint {
+    0% {
+        transform: translateX(-30px);
+    }
+    50% {
+        transform: translateX(-120px);
+    }
+    100% {
+        transform: translateX(-30px);
+    }
+}
+
+/* Applica l'animazione a tutti gli SwiperSlide */
+.swiper-slide {
+    /* animation: swipeHint 8s ease-in-out infinite; */
+}
+
+
+ 
+.swiper-pagination-bullet {
+    background-color: #05664E; /* Colore dei pallini */
+    opacity: 0.8;
+}
+
+.swiper-pagination-bullet-active {
+    background-color: #333; /* Colore del pallino attivo */
+    opacity: 1;
+}

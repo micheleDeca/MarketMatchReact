@@ -1,0 +1,99 @@
+.category-section {
+    padding: 15px;
+    background-color: #ffffff;
+    padding-bottom: 40px;
+   }
+  
+   .section-title-category {
+    font-family: "Roboto", serif;
+    font-size: 30px;
+    font-weight: bolder;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.section-title-category:hover {
+  color: #05664E; /* Cambia colore quando il mouse è sopra */
+}
+
+.category-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Colonne dinamiche */
+    gap: 5vw; /* Gap proporzionale alla larghezza dello schermo */
+    justify-items: center; /* Centra ogni card in ogni colonna */
+    margin: 0 1vw; /* Aggiunge margine laterale per mantenere un gap uguale su entrambi i lati */
+}
+  
+  /*Quando si utilizza gap: 5vw;, il valore del gap tra le card è proporzionale alla larghezza dello schermo (viewport). In altre parole, il 5vw significa che la distanza tra gli elementi (in questo caso, le card) sarà uguale al 5% della larghezza della finestra del browser.
+
+Esempio:
+Se la larghezza dello schermo è di 1000px, il gap sarà di 50px (5% di 1000px).
+Se la larghezza dello schermo è di 500px, il gap sarà di 25px (5% di 500px).
+Questo rende il gap dinamico e si adatta automaticamente alle dimensioni del dispositivo o alla finestra del browser. Il valore di vw (viewport width) varia in base alla larghezza visibile della pagina, quindi se ingrandisci o riduci la finestra del browser, il gap tra le card cambia proporzionalmente.*/
+  
+.category-card {
+  width: 110px; /* Larghezza fissa per tutte le card */
+  height: 200px; /* Altezza fissa per tutte le card */
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-family: "Roboto", serif;
+  display: flex; /* Per centrare verticalmente il contenuto */
+  flex-direction: column; /* Disposizione verticale del contenuto */
+  justify-content: center; /* Centra verticalmente il contenuto */
+  align-items: center; /* Centra orizzontalmente il contenuto */
+}
+  
+  
+  
+  .category-logo {
+    font-size: 3rem;
+    margin-bottom: 10px;
+  }
+  
+  .category-name {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .category-button {
+    font-family: "Roboto", serif;
+    font-size: 20px;
+    color: #046750;
+    background-color: transparent;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .category-button:hover {
+    color: #062D35;
+
+  }
+  
+  @media (max-width: 450px) {
+    
+
+    .section-title-category {
+        font-size: 20px;
+    }
+
+    .category-button {
+      font-size: 15px;
+    }
+
+    .category-name {
+      font-size: 18px;
+    }
+
+    .category-card {
+      width: 100px; /* Larghezza fissa per tutte le card */
+      height: 170px; /* Altezza fissa per tutte le card */
+    }
+    
+}
