@@ -1,0 +1,268 @@
+.slider-container {
+  width: 100%;
+  font-family: "Roboto", serif;
+
+}
+
+.horizontal-slider {
+  height: 10px;
+  background: #eee;
+  border-radius: 5px;
+}
+
+.track-horizontal {
+  height: 10px;
+  background: #eee;
+}
+
+.track-horizontal.filled {
+  background: #ccc;
+
+}
+
+.track-horizontal.filled-0 {
+  background: #F3D700;
+  /* Colore predefinito */
+}
+
+.track-horizontal.filled-1 {
+  background: #2196F3;
+  /* Colore per lo stato 1 */
+}
+
+.track-horizontal.filled-2 {
+  background: #FF9800;
+  /* Colore per lo stato 2 */
+}
+
+.track-horizontal.filled-3 {
+  background: #4CAF50;
+  /* Colore per lo stato 3 */
+}
+
+.track-horizontal.filled-4 {
+  background: #F44336;
+  /* Colore per lo stato 4 */
+}
+
+.track-horizontal.filled-5 {
+  background: #8000af;
+  /* Colore per lo stato 5 */
+}
+
+.thumb-horizontal {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  border: 1px solid #dddddd;
+  cursor: pointer;
+  margin-top: -6px;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+
+}
+
+.thumb-0 {
+  background-color: #F3D700;
+  /* Colore per il valore 0 */
+}
+
+.thumb-1 {
+  background-color: #2196F3;
+  /* Colore per il valore 1 */
+}
+
+.thumb-2 {
+  background-color: #FF9800;
+  /* Colore per il valore 2 */
+}
+
+.thumb-3 {
+  background-color: #4CAF50;
+  /* Colore per il valore 3 */
+
+}
+
+.thumb-4 {
+  background-color: #F44336;
+  /* Colore per il valore 3 */
+
+}
+
+.thumb-5 {
+  background: #8000af;
+  /* Colore per lo stato 5 */
+
+}
+
+
+.labels-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+
+.label {
+  display: flex;
+  flex-direction: column;
+  color: #444;
+  font-size: 14px;
+  align-items: center;
+}
+
+.label-0 {
+  margin-left: -40px;
+}
+
+.label-1 {
+  transform: translateX(-10px);
+  /* Sposta tutti i label più a sinistra */
+
+}
+
+.label-2 {
+  transform: translateX(0px);
+  /* Sposta tutti i label più a sinistra */
+
+}
+
+
+
+.label-3 {
+  transform: translateX(+35px);
+  /* Sposta tutti i label più a sinistra */
+
+}
+
+.label-3.active {
+  transform: translateX(+40px);
+  /* Sposta tutti i label più a sinistra */
+
+}
+
+.label-4 {
+  transform: translateX(+45px);
+  /* Sposta tutti i label più a sinistra */
+
+}
+
+.label.active {
+  font-weight: bold;
+  color: #000;
+  align-items: center;
+}
+
+.label .date {
+  font-size: 12px;
+  color: #777;
+  margin-top: 5px;
+
+}
+
+
+@media (max-width: 768px) {
+  .horizontal-slider {
+    height: 8px;
+     border-radius: 5px;
+  }
+
+  .track-horizontal {
+    height: 8px;
+   }
+
+   .thumb-horizontal {
+    height: 18px;
+    width: 18px;
+    margin-top: -5px;
+  }
+
+  .label {
+    font-size: 12px;
+  }
+
+  .label .date {
+    font-size: 9px;
+  }
+
+  .label-0 {
+    margin-left: -25px;
+  }
+
+  .label-1 {
+    transform: translateX(-7px);
+  }
+
+  .label-2 {
+    transform: translateX(+5px);
+  }
+
+  .label-3.active {
+    transform: translateX(30px);
+  }
+
+  .label-3 {
+    transform: translateX(30px);
+  }
+
+  .label-4.active {
+    transform: translateX(30px);
+  }
+  
+  .label-4 {
+    transform: translateX(30px);
+  }
+}
+
+
+
+@media (max-width: 480px) {
+  .horizontal-slider {
+    height: 5px;
+    border-radius: 5px;
+  }
+
+  .track-horizontal {
+    height: 5px;
+   }
+   
+   .thumb-horizontal {
+    height: 14px;
+    width: 14px;
+    margin-top: -5px;
+  }
+
+  .label {
+    font-size: 10px;
+  }
+
+  .label .date {
+    font-size: 6px;
+  }
+
+  .label-0 {
+    margin-left: -20px;
+  }
+
+  .label-1 {
+    transform: translateX(5px);
+  }
+
+  .label-2 {
+    transform: translateX(+7px);
+  }
+
+  .label-3.active {
+    transform: translateX(20px);
+  }
+
+  .label-3 {
+    transform: translateX(20px);
+  }
+
+  .label-4.active {
+    transform: translateX(20px);
+  }
+  .label-4 {
+    transform: translateX(20px);
+  }
+}

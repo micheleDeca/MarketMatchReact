@@ -1,0 +1,31 @@
+/* Wrapper per il posizionamento al centro */
+.slider-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    /* Occupa l'intera larghezza della pagina */
+    box-sizing: border-box;
+}
+
+/* Stile per il contenitore principale dello slider */
+.slider-container {
+    width: 80%;
+    padding-top: 150px;
+    padding-bottom: 150px;
+}
+
+/* Media queries per dispositivi piccoli */
+@media (max-width: 768px) {
+    .slider-container {
+        width: 70%;
+        /* Larghezza maggiore per dispositivi piccoli */
+     }
+}
+
+@media (max-width: 480px) {
+    .slider-container {
+        width: 65%;
+        /* Quasi l'intera larghezza per schermi molto piccoli */
+     }
+}
