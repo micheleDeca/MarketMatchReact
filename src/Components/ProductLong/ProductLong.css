@@ -1,30 +1,29 @@
 .card-long {
     display: flex;      /* Posiziona immagine e informazioni fianco a fianco */
-    align-items: center; /* Centra verticalmente */
+    align-items: center; /* Allinea gli elementi all'inizio */
     padding-right: 35px;
     padding-left: 35px;
-    margin: 10px 0;
-    border-radius: 8px;
+     border-radius: 8px;
     /*box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.2), 0 6px 15px 0 rgba(0, 0, 0, 0.19); */
-    max-width: 800px; /* Larghezza massima */
-    font-family: "Roboto", serif;
-    padding-bottom: 25px;
+     font-family: "Roboto", serif;
+    padding-bottom: 15px;
+    width: 100%;
     
 
   }
   
   .card-image-long {
-    width: 100px; /* Larghezza immagine */
-    height: 100px; /* Altezza immagine */
+    display: flex; /* Disposizione orizzontale */
+    align-items: stretch; /* Allinea tutti gli elementi alla stessa altezza */
     object-fit: contain; /* Taglia immagine mantenendo proporzioni */
     border-radius: 15px; /* Angoli arrotondati */
     margin-right: 15px; /* Spazio tra immagine e informazioni */
     padding: 5px;
     background-color: #e0e0e0a1;
   }
-  
+
   .card-info-long {
-    flex: 1;
+    flex: 1; /* Permette a questo contenitore di occupare tutto lo spazio disponibile */
     display: flex;
     flex-direction: column; /* Disposizione verticale */
     justify-content: space-between; /* Spaziatura tra elementi */
@@ -44,17 +43,34 @@
     overflow-wrap: break-word; /* Compatibile con browser moderni */
 }
   
-  .card-price-long {
-    font-size: 30px;
-    font-weight: bold;
-    color: #333;
-    margin: 0; /* Nessun margine */
-  }
+.price-container-long {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.current-price-long {
+  color: red;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.original-price-long {
+  color: gray;
+  text-decoration: line-through;
+  font-size: 18px;
+}
+
+.normal-price-long {
+  color: black;
+  font-size: 25px;
+  font-weight: bold;
+}
    
-  .card-name-category-long {
+.card-name-category-long {
     display: flex;
-    align-items: center; /* Per allineare verticalmente gli elementi */
-    gap: 10px; /* Aggiunge uno spazio tra i figli, opzionale */
+    align-items: center;  
+    gap: 10px;  
 }
   
  
@@ -62,17 +78,12 @@
   @media (max-width: 950px) {
     .card-long {
         flex-direction: row; /* Mantiene immagine a sinistra */
-        align-items: flex-start; /* Allinea gli elementi all'inizio */
         text-align: left; /* Testo allineato a sinistra */
         padding-right: 10px;
-        padding-left: 10px;
-        max-width: 100%; /* Permette al contenitore di adattarsi */
-    }
+        padding-left: 5px;
+     }
 
-    .card-image-long {
-        width: 80px; /* Riduce la larghezza dell'immagine */
-        height: 80px; /* Riduce l'altezza dell'immagine */
-    }
+    
 
     .card-info-long {
         margin-left: 10px; /* Aggiunge un po' di spazio rispetto all'immagine */
@@ -84,24 +95,52 @@
 
     .card-detail-long {
         font-size: 14px; /* Riduce la dimensione del dettaglio */
-        max-width: 250px; /* Limita la larghezza massima a 100px */
-
+ 
     }
 
-    .card-price-long {
-        font-size: 20px; /* Riduce la dimensione del prezzo */
+    .current-price-long {
+      font-size: 23px;
     }
+    
+    .original-price-long {
+      font-size: 16px;
+    }
+    
+    .normal-price-long {
+      font-size: 23px;       
+    }
+      
 
   
 }
+@media (max-width: 600px) {
+  .card-name-category-long{
+    display: inline;
+  }
+
+  .card-image-long {
+    margin-right: 4px; /* Spazio tra immagine e informazioni */ 
+  }
+
+  .current-price-long {
+    font-size: 21px;
+  }
+  
+  .original-price-long {
+    font-size: 15px;
+  }
+  
+  .normal-price-long {
+    font-size: 21px;       
+  }
+}
 
 @media (max-width: 400px) {
-
+     
     .card-image-long {
-        margin-right: 4px; /* Spazio tra immagine e informazioni */
-
+      margin-right: 4px; /* Spazio tra immagine e informazioni */ 
     }
-
+    
     .card-info-long {
         margin-left: 4px; /* Aggiunge un po' di spazio rispetto all'immagine */
     }
@@ -109,14 +148,24 @@
     .card-name-long {
         font-size: 15px; /* Riduce la dimensione del titolo */
     }
-    .card-price-long {
-        font-size: 18px; /* Riduce la dimensione del prezzo */
-    }
 
     .card-detail-long {
-        font-size: 12px; /* Riduce la dimensione del dettaglio */
-        max-width: 210px; /* Limita la larghezza massima a 100px */
+        font-size: 10px; /* Riduce la dimensione del dettaglio */
 
+    }
+
+    .current-price-long {
+      font-size: 17px;
+    }
+    
+    .original-price-long {
+      font-size: 13px;
+    }
+    
+    .normal-price-long {
+      font-size: 17px;       
     }
 
 }
+
+

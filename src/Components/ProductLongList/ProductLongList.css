@@ -1,0 +1,41 @@
+/* Lista dei prodotti */
+ 
+
+/* Contenitore principale */
+.product-long-list-container {
+     width: 90%;
+     margin-left: 15px;
+}
+
+
+.product-list-long {
+    display: flex;
+    flex-direction: column; /* Disposizione verticale */
+    width: 100%; /* Si adatta alla larghezza del contenitore */
+    margin-left: 10px;
+
+}
+
+
+/* Titolo */
+.product-long-list-title {
+    font-family: "Roboto", serif;
+    font-size: 30px;
+    font-weight: bold;
+    color: #333; /* Colore del testo */
+    margin-bottom: 20px;
+}
+
+@media (max-width: 950px) {
+    .product-long-list-title {
+        font-size: 25px;
+        margin-bottom: 10px;
+   }
+}
+
+@media (max-width: 400px){
+    .product-long-list-title {
+         font-size: 20px;
+         margin-bottom: 10px;
+    }
+}

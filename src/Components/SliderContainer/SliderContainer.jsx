@@ -3,6 +3,47 @@ import Slider from './Slider/Slider';
 import './SliderContainer.css';
 import Popup from '../Popup/Popup';
 
+/**
+ * Componente SliderContainer:
+ * 
+ * Descrizione:
+ * SliderContainer gestisce uno slider che rappresenta lo stato di una prenotazione e include funzionalità per accettare o rifiutare la prenotazione.
+ * Utilizza un componente `Slider` per il controllo dello stato e un componente `Popup` per confermare azioni importanti.
+ * 
+ * Stato locale (useState):
+ * - `mainValue` {number}: Valore attuale dello slider (indice dello stato selezionato). (es. 0)
+ * - `mainStates` {Array<Object>}: Array di stati della prenotazione. Ogni oggetto contiene:
+ *   - {string} key: Identificatore unico dello stato. (es. "prenotato", "accettato")
+ *   - {string} label: Etichetta descrittiva dello stato. (es. "Prenotato", "Accettato")
+ *   - {string|null} date: Data associata allo stato (null se non definita).
+ * - `showPopupReject` {boolean}: Controlla la visibilità del popup per rifiutare la prenotazione.
+ * - `response` {boolean|null}: Risultato dell'azione di rifiuto (true per confermare, false/null per annullare).
+ * - `buttonVisibility` {boolean}: Controlla la visibilità del pulsante "Rifiuta prenotazione".
+ * - `showPopupAccept` {boolean}: Controlla la visibilità del popup per accettare la prenotazione.
+ * - `responseAccept` {boolean|null}: Risultato dell'azione di accettazione (true per confermare, false/null per annullare).
+ * 
+ * Funzioni:
+ * - `handlePopupClose(result)`: Gestisce la chiusura del popup di rifiuto e salva il risultato.
+ * - `handlePopupAcceptClose(result)`: Gestisce la chiusura del popup di accettazione e salva il risultato.
+ * - `handleReject()`: Aggiorna gli stati per impostare lo stato "Rifiutato".
+ * - `handleCancel()`: Aggiunge lo stato "Cancellato" agli stati esistenti e aggiorna lo slider.
+ * 
+ * useEffect:
+ * - Gestisce la visibilità del pulsante "Rifiuta prenotazione" in base a `mainValue`.
+ * 
+ * Componenti utilizzati:
+ * - `Slider`: Componente personalizzato per lo slider.
+ * - `Popup`: Componente personalizzato per la conferma di azioni.
+ * 
+ * Comportamento:
+ * - Lo slider consente di cambiare lo stato selezionato.
+ * - Il pulsante "Rifiuta prenotazione" consente di rifiutare la prenotazione se visibile.
+ * - I popup vengono mostrati per confermare azioni di accettazione o rifiuto.
+ * 
+ * Esempio di utilizzo:
+ * <SliderContainer />
+ */
+
 const SliderContainer = () => {
 
     const [mainValue, setMainValue] = useState(0);

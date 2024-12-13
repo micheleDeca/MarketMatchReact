@@ -17,7 +17,7 @@ const ProductLong = (props) => {
     const [isMobile, setIsMobile] = useState(window.innerWidth <= mobileSize);
     const maxLength = 130;
     const maxLengthMobile = 50;
- 
+
 
     // Funzione per troncare il testo
     const truncateText = (text) => {
@@ -55,12 +55,21 @@ const ProductLong = (props) => {
                     <h3 className="card-name-long">
                         {props.quantity} x {props.productName}
                     </h3>
-                    <CategoryLabelList badges={badges}/>
+                    <CategoryLabelList badges={props.badges} />
                 </div>
                 <p className="card-detail-long">
                     {truncateText(props.detail)}
                 </p>
-                <p className="card-price-long">€{props.price}</p>
+                <div className="price-container-long">
+                    {props.originalPrice ? (
+                        <>
+                            <span className="current-price-long">{props.currentPrice}</span>
+                            <span className="original-price-long">{props.originalPrice}</span>
+                        </>
+                    ) : (
+                        <span className="normal-price-long">{props.currentPrice}</span>
+                    )}
+                </div>
             </div>
         </div>
     );

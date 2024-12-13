@@ -2,6 +2,54 @@ import React, { useState, useEffect } from 'react';
 import ReactSlider from 'react-slider';
 import './Slider.css';
 
+/**
+ * Props da passare al componente Slider per richiamarlo correttamente:
+ * 
+ * @prop {number} mainValue - Il valore attuale dello slider, che rappresenta l'indice dello stato selezionato. (es. 0)
+ * @prop {Array<Object>} mainStates - L'elenco degli stati iniziali da visualizzare nello slider. Ogni oggetto deve contenere:
+ *    - {string|number} key - Chiave univoca per identificare lo stato. (es. "prenotato", 1)
+ *    - {string} label - Etichetta descrittiva per lo stato. (es. "Prenotato", "Accettato")
+ *    - {string|null} date - Data associata allo stato. Se `null`, nessuna data è associata. (es. "12/12/2024, 10:00")
+ * 
+ * @prop {boolean} canGoBack - Indica se è possibile tornare indietro nello slider. Se `false`, impedisce di selezionare uno stato precedente al valore attuale. (es. true/false)
+ * @prop {number} maxValueGoBack - Valore massimo consentito per tornare indietro nello slider. (es. 1)
+ * 
+ * @prop {function} showPopupReject - Funzione chiamata per mostrare il popup di rifiuto. (es. `showPopupReject(true)`)
+ * @prop {function} showPopupAccept - Funzione chiamata per mostrare il popup di accettazione. (es. `showPopupAccept(true)`)
+ * @prop {function} onValueChange - Funzione per aggiornare il valore dello slider. Riceve il nuovo valore come parametro. (es. `(val) => setValue(val)`)
+ * @prop {function} onStateChange - Funzione per aggiornare gli stati dello slider. Riceve un callback con lo stato precedente come parametro. (es. `(callback) => setStates(callback)`)
+ * 
+ * @prop {boolean|null} popUpResponseReject - Risposta dell'utente al popup di rifiuto. `true` per accettare, `false` per annullare. (es. true/false/null)
+ * @prop {boolean|null} popUpResponseAccept - Risposta dell'utente al popup di accettazione. `true` per accettare, `false` per annullare. (es. true/false/null)
+ * 
+ * Comportamento:
+ * - Lo slider consente di cambiare stato selezionando un valore da `0` a `mainStates.length - 1`.
+ * - Impedisce di saltare stati o tornare indietro se le condizioni non sono soddisfatte.
+ * - Mostra popup per confermare le azioni di rifiuto o accettazione.
+ * - Aggiorna la data associata a uno stato quando viene selezionato.
+ * 
+ * Esempio di utilizzo:
+ * const mainStates = [
+ *   { key: 'prenotato', label: 'Prenotato', date: "10/12/2024" },
+ *   { key: 'accettato', label: 'Accettato', date: null },
+ *   { key: 'da_ritirare', label: 'Da ritirare', date: null },
+ *   { key: 'ritirato', label: 'Ritirato', date: null },
+ * ];
+ * 
+ * <Slider
+*    mainValue={mainValue}
+*    mainStates={mainStates}
+*    onValueChange={setMainValue}
+*    onStateChange={setMainStates}
+*    showPopupReject={setshowPopupReject}
+*    popUpResponseReject={response}
+*    showPopupAccept={setshowPopupAccept}
+*    popUpResponseAccept={responseAccept}
+*    canGoBack={false}
+*    maxValueGoBack={1}
+*  />
+ */
+
 const Slider = (props) => {
 
     const mainValue = props.mainValue;

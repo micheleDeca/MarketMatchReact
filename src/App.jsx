@@ -6,6 +6,7 @@ import Home from './Pages/Home/Home';
 import Footer from './Components/Footer/Footer';
 import { useUserContext } from './Context/UserContext';
 import SliderContainer from './Components/SliderContainer/SliderContainer';
+import Reservation from './Pages/Reservation/Reservation';
 
 /*
 *    - "NoAccesso" (utente non loggato)
@@ -33,7 +34,7 @@ const App = () => {
       <NavBar navColor={navColorState} />
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/prenotazione' element={<SliderContainer />} />
+        <Route path='/prenotazione' element={<Reservation/>} />
       </Routes>
       <Footer />
     </div>
