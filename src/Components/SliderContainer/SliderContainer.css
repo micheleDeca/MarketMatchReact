@@ -1,31 +1,86 @@
+ 
 /* Wrapper per il posizionamento al centro */
 .slider-wrapper {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
-    /* Occupa l'intera larghezza della pagina */
-    box-sizing: border-box;
-}
+    padding-top: 100px;
+    padding-bottom: 100px;
+    font-family: "Roboto", sans-serif; /* Font principale */
 
-/* Stile per il contenitore principale dello slider */
+}
 .slider-container {
-    width: 80%;
-    padding-top: 150px;
-    padding-bottom: 150px;
+    width: 50%;
+     
 }
 
-/* Media queries per dispositivi piccoli */
+/* Titolo */
+.slider-text {
+    font-size: 30px;
+    font-weight: bold;
+     color: #333;
+}
+
+.slider-text {
+    width: 95%;
+}
+
+
+.slider-button {
+    display: flex;
+    justify-content: flex-end; /* Allinea il pulsante a destra */
+    width: 90%; /* Occupa tutta la larghezza disponibile */
+    padding-top: 20px;
+}
+
+ 
+
+/* Stile per il pulsante */
+.refuse-button {
+    background-color: #d32f2f;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-size: 18px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.refuse-button:hover {
+    background-color: #b71c1c;
+    transform: scale(1.05);
+}
+
+.slider-popup{
+    width: 100%;
+}
+
+/* Media queries per dispositivi più piccoli */
 @media (max-width: 768px) {
     .slider-container {
-        width: 70%;
-        /* Larghezza maggiore per dispositivi piccoli */
-     }
+        width: 80%;
+    }
+
+    .slider-text {
+        font-size: 20px;
+    }
 }
 
 @media (max-width: 480px) {
     .slider-container {
-        width: 65%;
-        /* Quasi l'intera larghezza per schermi molto piccoli */
-     }
+        width: 80%;
+    }
+
+    .refuse-button {
+        font-size: 12px;
+        padding: 6px 16px;
+    }
+
+    .slider-text {
+        font-size: 15px;
+    }
 }

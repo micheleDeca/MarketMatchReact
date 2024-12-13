@@ -44,12 +44,9 @@ import './Slider.css';
 
 
 const Slider = (props) => {
-    // State per il valore corrente dello slider
-    const [mainValue, setMainValue] = useState(props.initialValue);
 
-    // State per gestire lo stato principale con valori iniziali passati come props
-    const [mainStates, setMainStates] = useState(props.initialState);
-
+    const mainValue = props.mainValue;
+    const mainStates = props.mainStates;
     /**
      * Funzione chiamata quando il valore dello slider cambia
      * @param {number} val - Nuovo valore dello slider
@@ -62,10 +59,10 @@ const Slider = (props) => {
         }
 
         // Aggiorna il valore dello slider
-        setMainValue(val);
+        props.onValueChange(val);
 
         // Aggiorna lo stato corrispondente con la data corrente
-        setMainStates((prevStates) =>
+        props.onStateChange((prevStates) =>
             prevStates.map((state, idx) => {
                 // Aggiorna solo lo stato corrispondente all'indice attuale dello slider
                 if (idx === val) {
@@ -92,7 +89,7 @@ const Slider = (props) => {
 
     return (
         <div className="slider-container">
-             <br></br><br></br><br></br>
+            <br></br><br></br><br></br>
 
 
 

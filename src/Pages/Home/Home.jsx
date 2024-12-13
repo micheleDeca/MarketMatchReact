@@ -46,7 +46,7 @@ const Home = (props) => {
         });
     }, []); */
 
-  props.setNavColor("white");
+  
   console.log(userType);
   return (
     <>

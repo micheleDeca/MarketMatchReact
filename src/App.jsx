@@ -32,7 +32,7 @@ const App = () => {
     <div>
       <NavBar navColor={navColorState} />
       <Routes>
-        <Route path='/' element={<Home setNavColor={setNavColor} />} />
+        <Route path='/' element={<Home />} />
         <Route path='/test' element={<SliderContainer />} />
       </Routes>
       <Footer />
