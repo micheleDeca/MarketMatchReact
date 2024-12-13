@@ -1,0 +1,18 @@
+.PrenotationSearchBox {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  flex-direction: row;
+  width: 100%;
+}
+
+.PrenotationSearchSpan {
+  width: 2%;
+}
+
+@media (orientation: portrait){
+  .PrenotationSearchBox{
+    align-items: center;
+    flex-direction: column;
+  }
+}
