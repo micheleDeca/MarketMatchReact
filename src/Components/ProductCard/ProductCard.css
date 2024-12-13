@@ -46,6 +46,8 @@
 }
 
 .card-detail {
+    font-family: "Roboto", serif;
+
   font-size: 18px;
   color: #555;
   margin-bottom: 5px;

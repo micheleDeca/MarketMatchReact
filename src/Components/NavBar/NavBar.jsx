@@ -56,7 +56,7 @@ const NavBar = () => {
                         </Link>
                     )}                </div>
                 <div className="nav-left flex-div">
-                    {isVisibleForUserType(["NoAccesso", "ConA", "AmmA", "NegA"]) && <a href="#prodotti" id="prodottiNav" style={{ color: navColor }} >Prodotti</a>}
+                    {isVisibleForUserType(["NoAccesso", "ConA", "AmmA", "NegA"]) && <Link to="/prodotti" id="prodottiNav" style={{ color: navColor }} >Prodotti</Link>}
                     {isVisibleForUserType(["ConA", "AmmA"]) && <a href="#negozi" id="negoziNav" style={{ color: navColor }}>Negozi</a>}
                     {isVisibleForUserType(["NegA"]) && <a href="#negozio" id="negozioNav" style={{ color: navColor }}>Negozio</a>}
                     {isVisibleForUserType(["ConA", "AmmA"]) && <a href="#ricette" id="ricetteNav" style={{ color: navColor }}>Ricette</a>}
