@@ -7,6 +7,8 @@ import Footer from './Components/Footer/Footer';
 import { useUserContext } from './Context/UserContext';
 import SliderContainer from './Components/SliderContainer/SliderContainer';
 import Reservation from './Pages/Reservation/Reservation';
+import TestAntonio from './Pages/Test/TestAntonio/TestAntonio';
+import TestMichele from './Pages/Test/TestMichele/TestMichele';
 
 /*
 *    - "NoAccesso" (utente non loggato)
@@ -35,6 +37,8 @@ const App = () => {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/prenotazioni' element={<Reservation/>} />
+        <Route path='/antonio' element={<TestAntonio /> } />
+        <Route path='/michele' element={<TestMichele /> } />
       </Routes>
       <Footer />
     </div>
