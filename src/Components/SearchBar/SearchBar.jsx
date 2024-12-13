@@ -1,6 +1,6 @@
 import "./SearchBar.css";
-import SearchIcon from '../img/search.svg';
-import MenuIcon from '../img/menu.svg';
+import SearchIcon from './search.svg';
+import MenuIcon from './menu.svg';
 
 /**
  * A component that displays a search bar with a menu icon and a search icon.

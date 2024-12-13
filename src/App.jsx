@@ -35,7 +35,7 @@ const App = () => {
 
   return (
     <div>
-      <NavBar navColor={navColorState} />
+      {/*<NavBar navColor={navColorState} />*/}
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/prenotazioni' element={<Reservation/>} />
@@ -44,7 +44,7 @@ const App = () => {
         <Route path='/isabella' element={<TestIsa /> } />
         <Route path='*' element={<PageNotFound /> }/>
       </Routes>
-      <Footer />
+      {/*<Footer />*/}
     </div>
   )
 }
