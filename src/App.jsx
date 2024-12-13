@@ -34,7 +34,7 @@ const App = () => {
       <NavBar navColor={navColorState} />
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/prenotazione' element={<Reservation/>} />
+        <Route path='/prenotazioni' element={<Reservation/>} />
       </Routes>
       <Footer />
     </div>
