@@ -1,0 +1,43 @@
+.PrenStatusFilterBox{
+    width: 100%;
+    display: flex;
+    justify-content:space-around;
+    flex-direction: row;
+    align-items: center;
+    background-color: #f1f1f1;
+    border-radius: 20px;
+    aspect-ratio: 17 / 1;
+}
+
+.PrenStatusFilterP{
+    color: darkslateblue;
+    text-align: center;
+    font-size: medium;
+}
+
+.PrenStatusFilterSpan:hover{
+    border-bottom: 3px solid darkslateblue;
+    cursor: pointer;
+}
+
+@media (orientation: portrait){
+
+    .PrenStatusFilterBox{
+       margin-bottom: 4%;
+    }
+
+}
+
+@media (orientation: portrait) and (max-width: 480px) {
+
+    .PrenStatusFilterP{
+        font-size:small;
+    }
+}
+
+@media (orientation: portrait) and (max-width: 834px) and (min-width: 481px) {
+
+    .PrenStatusFilterP{
+        font-size:medium;
+    }
+}
