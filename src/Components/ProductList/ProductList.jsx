@@ -85,10 +85,11 @@ const ProductList = (props) => {
                             <ProductCard
                                 straight="true"
                                 name={product.name}
-                                detail="descrizione prodotto"
-                                price={product.price}
+                                detail={product.detail}
+                                currentPrice={product.currentPrice}
+                                originalPrice={product.originalPrice}
                                 image={product.image}
-                                button="Modifica"
+                                button={props.buttonName}
                             />
                         </SwiperSlide>
                     ))}
@@ -99,11 +100,12 @@ const ProductList = (props) => {
                         <ProductCard
                             straight="false"   /*false impaginato in riga */
                             name={product.name}
-                            detail="descriziosssssssne prodotto"
-                            price={product.price}
+                            detail={product.detail}
+                            currentPrice={product.currentPrice}
+                            originalPrice={product.originalPrice}
                             image={product.image}
-                            button="Modifica"
-                        />
+                            button={props.buttonName}
+                            />
                     ))}
                 </div>
             )}

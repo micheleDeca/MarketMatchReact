@@ -3,15 +3,43 @@ import './ProductLong.css';
 import CategoryLabelList from '../CategoryLabelList/CategoryLabelList';
 
 /**
+ * Componente ProductLong
  * 
- * @prop {string} image - L'URL dell'immagine del prodotto. (es. "https://example.com/prodotto.jpg")
- * @prop {number} quantity - La quantità del prodotto acquistata
- * @prop {string} productName - Il nome del prodotto
- * @prop {string} detail - Una descrizione del prodotto
- * @prop {number} price - Il prezzo del prodotto
- * @prop {Array<string>} badges - Un array di etichette o categorie associate al prodotto. (es. { text: "Bio", backgroundColor: "#4caf50" })
+ * Descrizione:
+ * ProductLong è un componente che rappresenta un prodotto in formato dettagliato, mostrando immagine, nome, descrizione, prezzo e badge associati.
+ * 
+ * Props:
+ * - `image` {string}: L'URL dell'immagine del prodotto. (es. "https://example.com/prodotto.jpg")
+ * - `quantity` {number|null}: La quantità del prodotto acquistata. Se presente, viene mostrata accanto al nome del prodotto. (es. 2)
+ * - `productName` {string}: Il nome del prodotto. (es. "Mela Bio")
+ * - `detail` {string}: Una descrizione dettagliata del prodotto. (es. "Una mela biologica proveniente da coltivazioni sostenibili.")
+ * - `price` {number}: Il prezzo attuale del prodotto. (es. 5.99)
+ * - `originalPrice` {number|null}: Il prezzo originale del prodotto. Se presente, viene mostrato accanto al prezzo scontato. (es. 7.99)
+ * - `badges` {Array<Object>}: Un array di oggetti rappresentanti i badge associati al prodotto. Ogni oggetto deve contenere:
+ *   - `text` {string}: Il testo del badge. (es. "Bio")
+ *   - `backgroundColor` {string}: Il colore di sfondo del badge. (es. "#4CAF50")
+ * 
+ * Comportamento:
+ * - Adatta il layout per dispositivi mobili e desktop, utilizzando lo stato `isMobile`.
+ * - Trunca la descrizione del prodotto in base alla larghezza del dispositivo.
+ * - Mostra il prezzo corrente e, se presente, il prezzo originale come prezzo scontato.
+ * 
+ * Esempio di utilizzo:
+ * const badges = [
+ *   { text: "Bio", backgroundColor: "#4CAF50" },
+ *   { text: "Vegano", backgroundColor: "#FFC107" }
+ * ];
+ * 
+ * <ProductLong 
+ *   image="https://example.com/prodotto.jpg" 
+ *   quantity={2} (non inserire quantità per NON vedere "x")
+ *   productName="Mela Bio" 
+ *   detail="Una mela biologica proveniente da coltivazioni sostenibili."
+ *   currentPrice={5.99}
+ *   originalPrice={7.99}
+ *   badges={badges} 
+ * />
  */
-
 const ProductLong = (props) => {
     const mobileSize = 1000;
     const [isMobile, setIsMobile] = useState(window.innerWidth <= mobileSize);
@@ -53,7 +81,7 @@ const ProductLong = (props) => {
             <div className="card-info-long">
                 <div className="card-name-category-long">
                     <h3 className="card-name-long">
-                        {props.quantity} x {props.productName}
+                        {props.quantity ? `${props.quantity} x ` : ''}{props.productName}
                     </h3>
                     <CategoryLabelList badges={props.badges} />
                 </div>
