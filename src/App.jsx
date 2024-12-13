@@ -11,6 +11,7 @@ import TestAntonio from './Pages/Test/TestAntonio/TestAntonio';
 import TestMichele from './Pages/Test/TestMichele/TestMichele';
 import TestIsa from './Pages/Test/TestIsa/TestIsa';
 import PageNotFound from './Pages/PageNotFound/PageNotFound';
+import Product from './Pages/Product/Product';
 
 /*
 *    - "NoAccesso" (utente non loggato)
@@ -39,8 +40,9 @@ const App = () => {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/prenotazioni' element={<Reservation/>} />
+        <Route path='/prodotti' element={<Product />} />
         <Route path='/antonio' element={<TestAntonio /> } />
-        <Route path='/michele' element={<TestMichele /> } />
+        <Route path='/michele' element={<Product/> } />
         <Route path='/isabella' element={<TestIsa /> } />
         <Route path='*' element={<PageNotFound /> }/>
       </Routes>
