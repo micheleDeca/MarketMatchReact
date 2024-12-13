@@ -18,10 +18,12 @@ const BadgeContainer = (props) => {
     // Aggiungi altri badge qui...
   ]; */
 
+  const badges = props.badges || []; // Usa un array vuoto se props.badges è null o undefined
+
 
   return (
     <div className="badge-container">
-      {props.badges.map((badge, index) => (
+      {badges.map((badge, index) => (
         <Label key={index} category={badge.text} color={badge.backgroundColor} />
           //Key necessaria per aiutare react a renderizzare liste di elementi, ottimizzando il processo di aggiornametno del dom
       ))}
