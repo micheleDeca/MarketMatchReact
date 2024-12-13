@@ -1,4 +1,4 @@
-import React, { useState, useEffect  } from 'react';
+import React, { useState, useEffect } from 'react';
 import Slider from './Slider/Slider';
 import './SliderContainer.css';
 import Popup from '../Popup/Popup';
@@ -7,30 +7,50 @@ const SliderContainer = () => {
 
     const [mainValue, setMainValue] = useState(0);
     const [mainStates, setMainStates] = useState([
-        { key: 'prenotato', label: 'Prenotato', date: "12/12/2024, 11:36" },
-        { key: 'accettato', label: 'Accettato', date: "12/12/2024, 11:36" },
+        { key: 'prenotato', label: 'Prenotato', date: "12/11/2024, 11:36" },
+        { key: 'accettato', label: 'Accettato', date: null },
         { key: 'da_ritirare', label: 'Da ritirare', date: null },
         { key: 'ritirato', label: 'Ritirato', date: null },
     ]);
 
-    const [showPopup, setShowPopupRefuse] = useState(false);
+    const [showPopupReject, setshowPopupReject] = useState(false);
     const [response, setResponse] = useState(null);
     const [buttonVisibility, setbuttonVisibility] = useState(true);
+
+    const [showPopupAccept, setshowPopupAccept] = useState(false);
+    const [responseAccept, setResponseAccept] = useState(null);
 
 
     const handlePopupClose = (result) => {
         setResponse(result);
-        setShowPopupRefuse(false);
+        setshowPopupReject(false);
+    };
+
+    const handlePopupAcceptClose = (result) => {
+        setResponseAccept(result);
+        setshowPopupAccept(false);
     };
 
     // Funzione per gestire il rifiuto
     const handleReject = () => {
-        setMainStates([
-            { key: 'prenotato', label: 'Prenotato', date: "12/12/2024, 11:36" },
-            { key: 'rifiutato', label: 'Rifiutato', date: null },
+        setMainStates((prevStates) => [
+            prevStates[0], // Mantiene solo il primo record
+            { key: 'rifiutato', label: 'Rifiutato', date: null } // Aggiunge il nuovo record
         ]);
-        setMainValue(0); // Imposta lo slider sullo stato "Rifiutato"
     };
+
+    // Funzione per gestire annulla (sistema)
+    const handleCancel = () => {
+        setMainStates((prevStates) => [
+            ...prevStates.slice(0, 3), // Mantiene i primi tre step
+            { key: 'cancellato', label: 'Cancellato', date: null } // Aggiunge il nuovo record
+        ]);
+        setMainValue(3);
+    };
+    
+    
+
+     
 
     // useEffect per reagire ai cambiamenti di mainValue e settare la visilità del tasto rifiuta
     useEffect(() => {
@@ -39,12 +59,6 @@ const SliderContainer = () => {
         }
     }, [mainValue]); // Osserva il valore di mainValue
 
-    // useEffect per reagire ai cambiamenti di response e settare i MainValue
-    useEffect(() => {
-        if (response === true) {
-            handleReject();
-        }
-    }, [response]); // Osserva il valore di response
 
 
     return (
@@ -55,20 +69,35 @@ const SliderContainer = () => {
                 mainStates={mainStates}
                 onValueChange={setMainValue}
                 onStateChange={setMainStates}
+                showPopupReject={setshowPopupReject}
+                popUpResponseReject={response}
+                showPopupAccept={setshowPopupAccept}
+                popUpResponseAccept={responseAccept}
                 canGoBack={false}
-            />            
+                maxValueGoBack={1}
+            />
             <span className="slider-button">
-                {(!response && buttonVisibility) &&(<button className="refuse-button" onClick={() => {setShowPopupRefuse(true) }}>Rifiuta prenotazione</button>)}
+                {(!response && buttonVisibility) && (<button className="refuse-button" onClick={() => { handleReject() }}>Rifiuta prenotazione</button>)}
             </span>
 
             <div className='slider-popup'>
-                {showPopup && (
+                {showPopupReject && (
                     <Popup
                         importantText="Sei sicuro di voler RIFIUTARE la prenotazione?"
                         subText="Questa azione è irreversibile."
                         confirmText="RIFIUTA"
                         cancelText="Annulla"
                         onClose={handlePopupClose}
+                    />
+                )}
+
+                {showPopupAccept && (
+                    <Popup
+                        importantText="Sei sicuro di voler ACCETTARE la prenotazione?"
+                        subText="Questa azione è irreversibile."
+                        confirmText="ACCETTA"
+                        cancelText="Annulla"
+                        onClose={handlePopupAcceptClose}
                     />
                 )}
             </div>

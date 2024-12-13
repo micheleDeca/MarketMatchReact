@@ -33,7 +33,7 @@ const App = () => {
       <NavBar navColor={navColorState} />
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/test' element={<SliderContainer />} />
+        <Route path='/prenotazione' element={<SliderContainer />} />
       </Routes>
       <Footer />
     </div>
