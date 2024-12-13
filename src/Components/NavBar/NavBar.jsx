@@ -65,7 +65,7 @@ const NavBar = () => {
             </div>
 
             <div className="nav-right flex-div">
-                {isVisibleForUserType(["ConA", "AmmA", "NegA"]) && <a href="#prenotazioni" id="prenotazioniNav" style={{ color: navColor }}>Prenotazioni</a>}
+                {isVisibleForUserType(["ConA", "AmmA", "NegA"]) && <Link to="/prenotazioni" id="prenotazioniNav" style={{ color: navColor }}>Prenotazioni</Link>}
                 {isVisibleForUserType(["AmmA"]) && <a href="#consumatori" id="consumatoriNav" style={{ color: navColor }}>Consumatori</a>}
                 {isVisibleForUserType(["ConA", "NegA"]) && <a href="#account" id="accountNav" style={{ color: navColor }}>Account</a>}
                 {isVisibleForUserType(["AmmA"]) && <a href="#pagamenti" id="pagamentiNav" style={{ color: navColor }}>Pagamenti</a>}
@@ -74,7 +74,7 @@ const NavBar = () => {
                     {isVisibleForUserType(["ConA"]) && <a href="#carrello" id="carrelloNav" style={{ color: navColor }} >
                         Carrello
                         {cartItems > 0 && (
-                            <span className="cart-quantity">({cartItems})</span>
+                            <span className="cart-quantity" style={{ color: navColor }}>({cartItems})</span>
                         )}
                     </a>}
                 </div>
@@ -89,7 +89,7 @@ const NavBar = () => {
                     {isVisibleForUserType(["NegA"]) && <a href="#negozio" id="negozioSlide">Negozio</a>}
                     {isVisibleForUserType(["ConA", "AmmA"]) && <a href="#ricette" id="ricetteSlide">Ricette</a>}
                     {isVisibleForUserType(["NoAccesso", "ConA", "AmmA", "NegA"]) && <a href="#chiSiamo" id="chiSiamoNSlide">Chi Siamo</a>}
-                    {isVisibleForUserType(["ConA", "AmmA", "NegA"]) && <a href="#prenotazioni" id="prenotazioniSlide">Prenotazioni</a>}
+                    {isVisibleForUserType(["ConA", "AmmA", "NegA"]) && <Link to="/prenotazioni" id="prenotazioniSlide">Prenotazioni</Link>}
 
                 </div>
             )}
