@@ -1,5 +1,8 @@
  /*  CODICE ESTERNO MODIFICATO REACT NON MAI*/
-
+.container-product{
+    width: 100%;
+    justify-content: center;
+}
 .rpb-root {
     position: static;
 

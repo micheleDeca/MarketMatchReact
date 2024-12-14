@@ -19,7 +19,7 @@ const mockProducts = Array.from({ length: 200 }, (_, index) => {
 const Product = () => {
     const [products, setProducts] = useState([]); // Stato per i prodotti
     const [currentPage, setCurrentPage] = useState(1); // Stato per la pagina attuale
-    const productsPerPage = 20; // Numero di prodotti per pagina
+    const productsPerPage = 16; // Numero di prodotti per pagina
 
     // Funzione per simulare il recupero dei prodotti
     const fetchProducts = (page) => {
