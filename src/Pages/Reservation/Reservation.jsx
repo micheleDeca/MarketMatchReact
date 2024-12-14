@@ -41,7 +41,7 @@ const Reservation = () => {
     return (
         <div>
             <SliderContainer />
-            <ProductLongList products={products} />
+            <ProductLongList title="Riepilogo Prenotazione" products={products} />
         </div>
     )
 }

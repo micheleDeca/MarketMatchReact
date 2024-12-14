@@ -62,6 +62,7 @@ function Negozio(props) {
         />
         <span>&nbsp;</span>
         <ProductLongList
+          title="Prodotti in vendita"
           products={mockProducts}
 
         />
