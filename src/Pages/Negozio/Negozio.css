@@ -1,0 +1,10 @@
+.boxNegozio{
+    display: flex;
+    flex-direction: column;
+    justify-content:flex-start;
+    align-items: center;
+    width: 96%;
+    margin-left:2%;
+    margin-right:2%;
+    margin-bottom: 2%;
+}

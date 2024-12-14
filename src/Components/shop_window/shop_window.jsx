@@ -18,7 +18,7 @@ import BadgeContainer from "../CategoryLabelList/CategoryLabelList";
  */
 
 function ShopWindow(props) {
-  if (props.mode != "amm") {
+  if (props.mode != "neg") {
     return (
       <>
         <div className="ShopWindowBox">
