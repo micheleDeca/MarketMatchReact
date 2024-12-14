@@ -4,17 +4,36 @@ import ShopWindow from "../../Components/shop_window/shop_window";
 import "./Negozio.css";
 
 // Simula un database di prodotti
-const mockProducts = Array.from({ length: 15 }, (_, index) => {
+const mockProducts = Array.from({ length: 4 }, (_, index) => {
   const hasDiscount = Math.random() > 0.4; // 50% di probabilità di avere uno sconto
+
+  // Funzione per generare badge casuali
+  const generateBadges = () => {
+    const possibleBadges = [
+      { text: 'Bio', backgroundColor: '#4caf50' },
+      { text: 'Senza lattosio', backgroundColor: '#2196f3' },
+      { text: 'Vegan', backgroundColor: '#ff9800' },
+      { text: 'Senza glutine', backgroundColor: '#9c27b0' },
+    ];
+
+    // Numero casuale di badge (1-3)
+    const badgeCount = Math.floor(Math.random() * 3) + 1;
+
+    // Seleziona casualmente `badgeCount` badge unici
+    return possibleBadges.sort(() => 0.5 - Math.random()).slice(0, badgeCount);
+  };
+
   return {
     id: index + 1,
-    name: `Prodotto ${index + 1}`,
+    productName: `Prodotto ${index + 1}`,
     detail: `Dettaglio del prodotto ${index + 1}`,
-    currentPrice: (Math.random() * 100).toFixed(2),
-    originalPrice: hasDiscount ? (Math.random() * 100 + 100).toFixed(2) : null, // Solo se ha sconto
+    price: (Math.random() * 100).toFixed(2),
+    priceDiscount: hasDiscount ? (Math.random() * 100 + 100).toFixed(2) : null, // Solo se ha sconto
     image: `https://via.placeholder.com/150?text=Prodotto+${index + 1}`,
+    badges: generateBadges(), // Aggiunge i badge generati
   };
 });
+
 
 function Negozio(props) {
   return (
@@ -42,9 +61,9 @@ function Negozio(props) {
           contatti="02 1234567"
         />
         <span>&nbsp;</span>
-        <ProductLongList 
-        products= {mockProducts}
-        
+        <ProductLongList
+          products={mockProducts}
+
         />
       </div>
     </>
