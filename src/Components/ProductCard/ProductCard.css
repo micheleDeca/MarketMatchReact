@@ -1,42 +1,42 @@
 .card {
-  display: flex;
-  /* Posiziona immagine e informazioni fianco a fianco */
-  align-items: center;
-  /* Centra verticalmente */
-  padding-right: 35px;
-  padding-left: 35px;
-  margin: 10px 0;
+  width: calc(25% - 50px); /* Ogni card occupa il 30% dello spazio meno il margine */
+  display: flex; /* Posiziona immagine e informazioni fianco a fianco */
+  align-items: center; /* Centra verticalmente */
   border-radius: 8px;
-  /*box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.2), 0 6px 15px 0 rgba(0, 0, 0, 0.19); */
-  max-width: 800px;
-  /* Larghezza massima */
   font-family: "Roboto", serif;
   padding-bottom: 25px;
-
+  flex-direction: row;
+  gap: 20px; /* Spaziatura uniforme tra le card */
+  min-height: 150px; /* Altezza minima per evitare disallineamenti */
+  min-width: 350px;
+  margin-bottom: 10px;
+ 
 
 }
+
 
 .card-image {
-  width: 120px;
-  /* Larghezza immagine */
-  height: 120px;
-  /* Altezza immagine */
-  object-fit: contain;
-  /* Taglia immagine mantenendo proporzioni */
-  border-radius: 15px;
-  /* Angoli arrotondati */
-  margin-right: 15px;
-  /* Spazio tra immagine e informazioni */
+  width: 150px;
+  height: 150px;
+  object-fit: contain; /* Taglia immagine mantenendo proporzioni */
+  border-radius: 15px; /* Angoli arrotondati */
   padding: 5px;
   background-color: #e0e0e0a1;
-}
+  justify-content: center;
+  align-items: center;
+  background-image: url('placeholder.jpg'); /* Sostituisci con il percorso dell'immagine */
+  background-size: cover;
+  background-position: center;
+} 
 
+ 
 .card-info {
-  flex: 1;
+  max-width: 150px;
+  min-width: 130px;
   display: flex;
   flex-direction: column;
   /* Disposizione verticale */
-  justify-content: space-between;
+  justify-content: space-around;
   /* Spaziatura tra elementi */
 }
 
@@ -46,8 +46,7 @@
 }
 
 .card-detail {
-    font-family: "Roboto", serif;
-
+  font-family: "Roboto", serif;
   font-size: 18px;
   color: #555;
   margin-bottom: 5px;
@@ -109,16 +108,30 @@
   /* Testo bianco */
 }
 
+@media (max-width: 1700px){
+  .card {
+    width: calc(30% - 20px); /* Ogni card occupa il 30% dello spazio meno il margine */
+  }
+}
+
+@media (max-width: 1450px){
+  .card {
+    width: calc(35% - 20px); /* Ogni card occupa il 30% dello spazio meno il margine */
+  }
+}
+
+@media (max-width: 1100px){
+  .card {
+    width: calc(40% - 10px); /* Ogni card occupa il 30% dello spazio meno il margine */
+  }
+}
+
 @media (max-width: 950px) {
   .card {
-    flex-direction: column;
-    /* Dispone immagine e informazioni in colonna */
-    align-items: flex-start;
-    /* Allinea gli elementi all'inizio */
-    text-align: left;
-    /* Testo allineato a sinistra */
-    padding-right: 20px;
-    padding-left: 20px;
+    width: calc(45% - 10px); /* Ogni card occupa il 30% dello spazio meno il margine */
+     align-items: stretch;
+       padding-bottom: 15px;
+
   }
 
   .current-price-card {
@@ -136,4 +149,14 @@
 
 }
 
- 
+@media (max-width: 768px) {
+  .card {
+    width: calc(50% - 10px); 
+}
+}
+
+@media (max-width: 480px) {
+  .card {
+    width: calc(100% - 20px);  
+}
+}

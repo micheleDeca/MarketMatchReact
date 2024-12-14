@@ -11,12 +11,13 @@ const ProductContainer = (props) => {
             {props.products.map((product) => (
                 <ProductCard
                     key={product.id}
-                    straight={isMobile ? "true" : "false"}
+                    straight={isMobile ? "false" : "false"}
                     name={product.name}
                     detail={product.detail}
                     currentPrice={product.currentPrice}
                     originalPrice={product.originalPrice}
                     image={product.image}
+                    button={"Prenota"}
 
                 />
             ))}
