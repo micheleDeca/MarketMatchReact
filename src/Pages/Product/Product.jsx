@@ -10,8 +10,8 @@ const mockProducts = Array.from({ length: 200 }, (_, index) => {
         id: index + 1,
         name: `Prodotto ${index + 1}`,
         detail: `Dettaglio del prodotto ${index + 1}`,
-        currentPrice: ((Math.random() * 100).toFixed(2)+"€"),
-        originalPrice: hasDiscount ? ((Math.random() * 100 + 100).toFixed(2)+"€") : null, // Solo se ha sconto
+        currentPrice: ((Math.random() * 100).toFixed(2) + "€"),
+        originalPrice: hasDiscount ? ((Math.random() * 100 + 100).toFixed(2) + "€") : null, // Solo se ha sconto
         image: `https://via.placeholder.com/150?text=Prodotto+${index + 1}`,
     };
 });
@@ -37,27 +37,26 @@ const Product = () => {
     }, [currentPage]);
 
     return (
-    <div className="products-page">
-        <br /><br /><br /><br />
-        <h1>Prodotti</h1>
-        <div className="content-container">
-            <div className="container-product">
-                <ProductContainer products={products} />
-            </div>
-            <div className="pagination-container">
-                <Pagination
-                    currentPage={currentPage}
-                    itemsPerPage={productsPerPage}
-                    onPageChange={(page) => setCurrentPage(page)}
-                    totalItems={mockProducts.length}
-                    pageNeighbours={2}
-                   
-                    
-                />
+        <div className="products-page">
+            <br /><br /><br /><br />
+            <h1>Prodotti</h1>
+            <div className="content-container">
+                <div className="container-product">
+                    <ProductContainer products={products} />
+                </div>
+                <div className="pagination-container">
+
+                    <Pagination
+                        currentPage={currentPage}
+                        totalItems={mockProducts.length}
+                        itemsPerPage={productsPerPage}
+                        onPageChange={(page) => setCurrentPage(page)}
+                        pageNeighbours={1}
+                    />
+                </div>
             </div>
         </div>
-    </div>
-);
+    );
 
 };
 

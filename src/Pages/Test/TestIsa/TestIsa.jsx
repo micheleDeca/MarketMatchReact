@@ -1,6 +1,6 @@
 import React from 'react'
 import './TestIsa.css'
-import '../../../Components/Caratteristiche/Caratteristiche'
+import Caratteristiche from '../../../Components/Caratteristiche/Caratteristiche'
 
 const TestIsa = () => {
   return (
