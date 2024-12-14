@@ -30,8 +30,8 @@
  * ```
  */
 
-import '../zig-zag/zig-zag'
-import './ButtonDisponibile/ButtonDisponibile'
+import ZigZag from '../zig-zag/zig-zag'
+import ButtonDisponibile from './ButtonDisponibile/ButtonDisponibile'
 import './Caratteristiche.css';
 
 export default function Caratteristiche(value) {
@@ -40,7 +40,7 @@ export default function Caratteristiche(value) {
       <h1 className="CaratteristicheTitle">Caratteristiche</h1>
       <hr />
       <div className="box">
-        <ZigZag className="zig" pulsante="Modifica caratteristiche">
+        <ZigZag pulsante="Modifica caratteristiche">
             <div className="disponibile"><ButtonDisponibile/></div>
             <div>
           <dl className="list">

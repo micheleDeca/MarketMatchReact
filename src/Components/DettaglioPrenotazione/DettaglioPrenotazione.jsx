@@ -45,9 +45,9 @@ export default function DettaglioPrenotazione(value){
             </div>
             <div className="info">
                 #{value.codice}
-                <img src="src\assets\dettaglioPrenotazione\assets\line-xl-svgrepo-com.svg" width="20" height="20"/>
+                <img src="src\Components\DettaglioPrenotazione\assets\line-xl-svgrepo-com.svg" width="20" height="20"/>
                 {value.client}
-                <img src="src\assets\dettaglioPrenotazione\assets\line-xl-svgrepo-com.svg" width="20" height="20" />
+                <img src="src\Components\DettaglioPrenotazione\assets\line-xl-svgrepo-com.svg" width="20" height="20" />
                 {value.date}
             </div>
             <hr className="line"/>
