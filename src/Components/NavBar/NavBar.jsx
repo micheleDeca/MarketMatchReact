@@ -34,17 +34,31 @@ const NavBar = () => {
 
     // Funzione per determinare se mostrare un link o una funzione basata sul tipo di utente
     const isVisibleForUserType = (types) => types.includes(userType);
+    const [isStyleActive, setIsStyleActive] = useState(false);
 
     useEffect(() => {
         if (location.pathname === "/") {
             setNavColor("white");
+            setIsStyleActive(true);
         } else {
             setNavColor(""); // Resetta il colore per altre pagine
+            setIsStyleActive(false);
         }
     }, [location.pathname]); // Ascolta i cambiamenti di location.pathname
 
+    const styles = {
+        nav: {
+          ...(isStyleActive && {
+            position: "absolute",
+            top: 0,
+            left: 0,
+          }),
+        },
+      };
+
     return (
-        <nav className="flex-div">
+        <nav className="flex-div"
+            style={styles.nav}>
             <div className="nav-left-wrapper flex-div">
                 <div className="nav-left-logo flex-div">
                     <button id="buttonSlideBar" className="sidebar-toggle" onClick={toggleSidebar}>☰</button>
