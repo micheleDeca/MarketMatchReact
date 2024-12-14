@@ -10,8 +10,8 @@ const mockProducts = Array.from({ length: 200 }, (_, index) => {
         id: index + 1,
         name: `Prodotto ${index + 1}`,
         detail: `Dettaglio del prodotto ${index + 1}`,
-        currentPrice: (Math.random() * 100).toFixed(2),
-        originalPrice: hasDiscount ? ((Math.random() * 100) + 100).toFixed(2) : null, // Solo se ha sconto
+        currentPrice: ((Math.random() * 100).toFixed(2)+"€"),
+        originalPrice: hasDiscount ? ((Math.random() * 100 + 100).toFixed(2)+"€") : null, // Solo se ha sconto
         image: `https://via.placeholder.com/150?text=Prodotto+${index + 1}`,
     };
 });

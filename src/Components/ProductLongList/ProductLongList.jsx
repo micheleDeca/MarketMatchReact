@@ -14,8 +14,8 @@ const ProductLongList = (props) => {
               quantity={product.quantity}
               productName={product.productName}
               detail={product.detail}
-              currentPrice={product.price}
-              originalPrice={product.priceDiscount}
+              currentPrice={product.currentPrice}
+              originalPrice={product.originalPrice}
               badges={product.badges}
             />
           ))}

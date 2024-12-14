@@ -27,8 +27,8 @@ const mockProducts = Array.from({ length: 4 }, (_, index) => {
     id: index + 1,
     productName: `Prodotto ${index + 1}`,
     detail: `Dettaglio del prodotto ${index + 1}`,
-    price: (Math.random() * 100).toFixed(2),
-    priceDiscount: hasDiscount ? (Math.random() * 100 + 100).toFixed(2) : null, // Solo se ha sconto
+    currentPrice: ((Math.random() * 100).toFixed(2)+"€"),
+    originalPrice: hasDiscount ? ((Math.random() * 100 + 100).toFixed(2)+"€") : null, // Solo se ha sconto
     image: `https://via.placeholder.com/150?text=Prodotto+${index + 1}`,
     badges: generateBadges(), // Aggiunge i badge generati
   };
