@@ -1,14 +1,14 @@
 .OrangeButton {
   background-color: rgb(247, 103, 0);
   width: 100%;
-  aspect-ratio: 5/1;
+  aspect-ratio: 7/1;
   border-radius: 20px;
   border: 0px;
   cursor: pointer;
   box-shadow: 4px 4px 10px grey;
   color:darkslateblue;
   font-weight: bold;
-  font-size: medium;
+  font-size: 85%;
   text-overflow: ellipsis;
 }
 
@@ -16,8 +16,3 @@
   transform: scale(0.97);
 }
 
-@media (orientation: portrait) and (max-width: 480px) {
-  .OrangeButton {
-    font-size: small;
-  }
-}
