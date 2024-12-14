@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ProductContainer from '../../Components/ProductContainer/ProductContainer';
 import './Product.css';
+import '../../ExternalContent/PaginationBar.css'
 import { Pagination } from 'react-pagination-bar';
 
 // Simula un database di prodotti
