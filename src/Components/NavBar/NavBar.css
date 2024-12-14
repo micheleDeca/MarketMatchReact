@@ -1,8 +1,8 @@
 /* Navbar principale */
 nav {
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: absolute;/*gg*/
+    top: 0;/*gg*/
+    left: 0;/*gg*/
     width: 100%;
     padding: 10px 2%;
     z-index: 10;

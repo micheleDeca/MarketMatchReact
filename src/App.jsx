@@ -12,6 +12,8 @@ import TestMichele from './Pages/Test/TestMichele/TestMichele';
 import TestIsa from './Pages/Test/TestIsa/TestIsa';
 import PageNotFound from './Pages/PageNotFound/PageNotFound';
 import Product from './Pages/Product/Product';
+import Negozio from './Pages/Negozio/Negozio';
+
 
 /*
 *    - "NoAccesso" (utente non loggato)
@@ -36,7 +38,7 @@ const App = () => {
 
   return (
     <div>
-      {/*<NavBar navColor={navColorState} />*/}
+      <NavBar navColor={navColorState} />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/prenotazioni' element={<Reservation/>} />
@@ -44,9 +46,10 @@ const App = () => {
         <Route path='/antonio' element={<TestAntonio /> } />
         <Route path='/michele' element={<Product/> } />
         <Route path='/isabella' element={<TestIsa /> } />
+        <Route path='/negozio' element={<Negozio/>}/>
         <Route path='*' element={<PageNotFound /> }/>
       </Routes>
-      {/*<Footer />*/}
+      <Footer />
     </div>
   )
 }
