@@ -3,25 +3,24 @@
     width: 100%;
     justify-content: center;
 }
+
 .rpb-root {
     position: static;
-
     display: inline-flex;
-    flex-direction: column
-    
+    flex-direction: column;
 }
 
 .rpb-root ul {
     flex-wrap: wrap;
     list-style: none;
     margin: 0;
-    padding: 0
+    padding: 0;
 }
 
 .rpb-item,
 .rpb-root ul {
     display: flex;
-    justify-content: center
+    justify-content: center;
 }
 
 .rpb-item {
@@ -29,66 +28,122 @@
     appearance: none;
     background: #fff;
     border: 1.5px solid rgba(9, 39, 49, 0.2);
-    border-radius: .375rem;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, .09);
+    border-radius: 0.375rem;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.09);
     cursor: pointer;
     font-size: 1rem;
     height: 2.4rem;
-    margin-left: .25rem;
-    margin-right: .25rem;
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
     min-width: 2.4rem;
     outline: 2px solid transparent;
     outline-offset: 2px;
-    padding-left: .75rem;
-    padding-right: .75rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
     position: relative;
-    transition: all .15s ease;
+    transition: all 0.15s ease;
     user-select: none;
     white-space: nowrap;
     width: auto;
-    will-change: transform
+    will-change: transform;
 }
 
 .rpb-item--disabled {
-    opacity: .4
+    opacity: 0.4;
 }
 
 .rpb-item--active {
     background-color: #05644D;
-    color: #fff
+    color: #fff;
 }
 
 .rpb-progress {
     background-color: #7597ff;
     border-radius: 5px;
-    box-shadow: 0 0 4px rgba(127, 177, 255, .6);
+    box-shadow: 0 0 4px rgba(127, 177, 255, 0.6);
     height: 3px;
     margin: 1rem 0;
     max-width: 100%;
-    transition: width .2s ease;
-    width: 0
+    transition: width 0.2s ease;
+    width: 0;
 }
 
 .rpb-go-item {
-    -webkit-padding-end: .75rem;
-    -webkit-padding-start: .75rem;
+    -webkit-padding-end: 0.75rem;
+    -webkit-padding-start: 0.75rem;
     align-items: center;
     background-color: #fff;
-    border-radius: .375rem;
-    box-shadow: 0 2px 1px rgba(0, 0, 0, .04);
+    border-radius: 0.375rem;
+    box-shadow: 0 2px 1px rgba(0, 0, 0, 0.04);
     display: flex;
     font-size: 1rem;
     height: 2.4rem;
-    padding-inline-end: .75rem;
-    padding-inline-start: .75rem;
-    width: 70px
+    padding-inline-end: 0.75rem;
+    padding-inline-start: 0.75rem;
+    width: 70px;
 }
 
 .rpb-go-item input {
-    border: 1px solid rgba(0, 0, 0, .1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 4px;
     height: 20px;
-    width: 100%
+    width: 100%;
 }
 
-/*# sourceMappingURL=index.css.map */
+/* Responsività */
+@media (max-width: 768px) {
+    .rpb-root {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Allinea al centro gli elementi */
+        text-align: center;
+    }
+
+    .rpb-root ul {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .rpb-item {
+        font-size: 0.9rem; /* Riduce il font sui dispositivi più piccoli */
+        height: 2.2rem; /* Riduce l'altezza degli elementi */
+        padding: 0.5rem 0.6rem; /* Riduce il padding */
+    }
+
+    .rpb-go-item {
+        width: 60px; /* Riduce la larghezza del pulsante */
+        height: 2rem; /* Riduce l'altezza del pulsante */
+    }
+
+    .rpb-progress {
+        margin: 0.5rem 0; /* Riduce il margine verticale */
+        height: 2px; /* Riduce l'altezza della barra di progresso */
+    }
+}
+
+@media (max-width: 480px) {
+    .rpb-root {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch; /* Assicura che gli elementi occupino l'intera larghezza */
+    }
+
+    .rpb-item {
+        font-size: 0.8rem; /* Riduce ulteriormente il font */
+        height: 1.8rem; /* Altezza più compatta */
+        margin-left: 0.2rem;
+        margin-right: 0.2rem;
+        padding: 0.4rem 0.5rem; /* Riduce ancora il padding */
+    }
+
+    .rpb-go-item {
+        width: 40px; /* Pulsanti più stretti */
+        height: 1.6rem;
+        font-size: 0.8rem; /* Font più piccolo per pulsanti */
+    }
+
+    .rpb-progress {
+        height: 1px; /* Barra di progresso più sottile */
+        margin: 0.4rem 0;
+    }
+}
