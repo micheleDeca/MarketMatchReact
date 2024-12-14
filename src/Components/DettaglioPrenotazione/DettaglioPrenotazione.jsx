@@ -30,7 +30,7 @@
  * ```
  */
 
-import ButtonSucessivo from "./ButtonSucessivo/ButtonSucessivo";
+import '../ButtonSucessivo/ButtonSucessivo'
 import './DettaglioPrenotazione.css'
 
 export default function DettaglioPrenotazione(value){

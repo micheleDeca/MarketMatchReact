@@ -1,0 +1,26 @@
+.prenHeader{
+    font-size: 100%;
+    font-weight: normal;
+    padding-bottom: 3%;
+    padding-left: 2%;
+}
+
+.prenBar{
+    padding-bottom: 2%;
+    padding-left: 2%;
+}
+
+.prenotations{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-bottom: 2%;
+    padding-left: 2%;
+}
+
+.prenButton{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding-bottom: 2%;
+}

@@ -50,13 +50,22 @@ function PrenStatusFilter(props) {
         span[3].style.borderBottom = "3px solid darkslateblue";
         span[4].style.borderBottom = "";
         break;
-      
+
       case "5":
         span[0].style.borderBottom = "";
         span[1].style.borderBottom = "";
         span[2].style.borderBottom = "";
         span[3].style.borderBottom = "";
         span[4].style.borderBottom = "3px solid darkslateblue";
+        break;
+
+      case "6":
+        span[0].style.borderBottom = "";
+        span[1].style.borderBottom = "";
+        span[2].style.borderBottom = "";
+        span[3].style.borderBottom = "";
+        span[4].style.borderBottom = "";
+        span[5].style.borderBottom = "3px solid darkslateblue";
         break;
 
       default:
@@ -76,6 +85,7 @@ function PrenStatusFilter(props) {
         <span className='PrenStatusFilterSpan' onClick={() => border("3")}><p className='PrenStatusFilterP'>{props.third}</p></span>
         <span className='PrenStatusFilterSpan' onClick={() => border("4")}><p className='PrenStatusFilterP'>{props.fourth}</p></span>
         <span className='PrenStatusFilterSpan' onClick={() => border("5")}><p className='PrenStatusFilterP'>{props.fifth}</p></span>
+        <span className='PrenStatusFilterSpan' onClick={() => border("6")}><p className='PrenStatusFilterP'>{props.sixth}</p></span>
       </div>
     </>
   )

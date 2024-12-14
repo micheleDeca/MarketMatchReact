@@ -1,4 +1,4 @@
-import "./Prenotation+Search.css";
+import "./PrenotationSearch.css";
 import PrenStatusFilter from "../Prenotation_status_filter/Prenotation_status_filter";
 import SearchBar from "../SearchBar/SearchBar";
 
