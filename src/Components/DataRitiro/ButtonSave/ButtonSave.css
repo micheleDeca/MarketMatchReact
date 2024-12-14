@@ -1,0 +1,13 @@
+.buttonSave{
+    width: 30%;
+    border-radius: 20px;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+}
+
+.buttonSave:hover {
+    transform: scale(0.99);
+  }

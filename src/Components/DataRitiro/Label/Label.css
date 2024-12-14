@@ -1,0 +1,11 @@
+.label{
+    display: flex;
+    width: 100%;
+    border-radius: 20px;
+    cursor: pointer;
+    padding-top: 4%;
+    padding-bottom: 4%;
+    padding-left: 3%;
+    border-color: rgba(100, 100, 98, 0.1);
+    border-width: 1.8px;
+}

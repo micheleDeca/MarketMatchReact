@@ -1,0 +1,83 @@
+.container {
+    border: 2px solid #d0c9c9;   
+    border-radius: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 80%;
+    height: auto;
+}
+
+hr{
+    width: 100%;
+}
+
+.box {
+    text-align: left;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+dl.list dd {
+    margin: 0 ; /* Rimuovi il margine di default del termine di definizione */
+    padding: 0; /* Rimuovi il padding di default del termine di definizione */
+    font-size: 15px;
+    margin-top: 5px;
+}
+
+dl.list dt {
+    padding-bottom: 30px;
+    position: relative;
+    margin-left: 40px; 
+    font-size: 20px;
+}
+
+dl.list dt:last-of-type{
+    padding-bottom: 0px;
+}
+
+dl.list dt::before {
+    content: '•'; 
+    font-size: 60px;
+    color: rgb(224, 218, 218); 
+    position: absolute;
+    left: -30px; /* Distanza tra il pallino e il testo */
+    top: 13%; /* Centra il pallino verticalmente */
+    transform: translateY(-50%); /* Corregge il centraggio verticale */
+}
+
+.CaratteristicheTitle{
+    width: 100%;
+    text-align: left;
+    font-weight: 600;
+    color: black;
+    font-size: 25px;
+    text-align: left;
+    padding-bottom: 1.5%;
+}
+
+.disponibile{
+    display: flex;
+    justify-content:flex-end;
+    width: 100%;
+}
+
+.list{
+    display: flex;
+    flex-direction: column;
+    align-items:flex-start;
+    width: 100%;
+}
+
+
+
+
+
+
+
+
+

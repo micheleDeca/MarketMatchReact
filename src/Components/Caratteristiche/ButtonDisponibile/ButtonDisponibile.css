@@ -1,0 +1,38 @@
+button.buttonDisp{
+    background-color: rgb(11, 144, 35);
+    color: white;
+    font-weight: normal;
+    width: 20%;
+    height: 40px;
+    border: 2px solid black;
+    border-radius: 10px; 
+    float: right;
+    margin-right: 10px;
+    display: flex; 
+    align-items: center; /* Allinea contenuto al centro verticalmente */
+    justify-content: center; /* centra testo e immagine orizzontalmente */
+    gap: 10px; /* Spazio tra immagine e testo */
+
+}
+
+img.image{
+    float: left;
+    max-width: 100%; /* Assicura che l'immagine non esca dal contenitore */
+}
+
+@media (max-width: 500px) { 
+
+    button.buttonDisp{
+        width: 50%;
+        height: 30px;
+        gap: 2px;
+    }
+
+}
+
+@media (min-width: 481px) and (max-width: 768px) { 
+
+    button.buttonDisp{
+        width: 30%;
+    }
+}

@@ -1,0 +1,54 @@
+.dettContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.header {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    font-size: 150%;
+    font-weight: 400;
+}
+
+.buttonSucc {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.info {
+    display: flex;
+    align-items: flex-start;
+    align-items: center; /* Allinea verticalmente il contenuto */
+    width: 100%;
+    font-size: 120%;
+    font-weight: bold;
+}
+
+.info img {
+    margin: 0 5px; /* Per distanziare le immagini dal testo */
+}
+
+.line{
+    margin-top: 1%;
+}
+
+
+@media (max-width: 480px) { 
+
+    .buttonSucc{
+        padding: 5%;
+    }
+
+    .header{
+        font-size: large;
+    }
+
+    .info{
+        font-size: medium;
+    }
+}

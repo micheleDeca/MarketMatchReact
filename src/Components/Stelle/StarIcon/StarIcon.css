@@ -1,0 +1,14 @@
+
+@media (max-width: 480px) { 
+    .icon{
+        width: 10px;
+    }
+}
+
+
+@media (min-width: 481px) and (max-width: 768px) { 
+    .icon{
+        width: 30px;
+    }
+}
+
