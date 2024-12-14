@@ -4,7 +4,8 @@ import Caratteristiche from '../../../Components/Caratteristiche/Caratteristiche
 import DataRitiro from '../../../Components/DataRitiro/DataRitiro'
 import DettaglioPrenotazione from '../../../Components/DettaglioPrenotazione/DettaglioPrenotazione'
 import SezioneAccount from '../../../Components/SezioneAccount/SezioneAccount'
-import Stelle from '../../../Components/Stelle/Stelle'
+import Stelle from '../../../Components/Stelle/Stelle'   
+
 
 const TestIsa = () => {
   const buttonComponents={

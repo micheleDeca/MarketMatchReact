@@ -1,13 +1,15 @@
 .zigzagBox{
-    width: 98%;
+    width: 96%;
     border: 2px dashed orange;
     border-radius: 20px;
     padding: 1%;
     margin: 1%;
+    display: grid;
+    place-items: center;
 }
 
 .modifica{
-    width: 100%;
+    width: 98%;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -18,11 +20,11 @@
 }
 
 .zigzagSpan{
-    width: 56%;
+    width: 58%;
 }
 
 .zigzagSpan2{
-    width: 42%;
+    width: 40%;
 }
 
 @media (orientation: portrait) and (max-width: 480px) {
@@ -35,5 +37,4 @@
         width: 50%;
     }
 
- 
 }

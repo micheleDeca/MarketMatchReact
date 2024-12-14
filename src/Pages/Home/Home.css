@@ -1,7 +1,7 @@
 .background {
     width: 100%;
     height: 80vh; /* Occupa l'intero viewport */
-    background-image: url('./assets/Wallpaper1FullSIzeLowResolution.png'); /* Immagine per desktop */
+    background-image: url('./assets/Wallpaper1.webp'); /* Immagine per desktop */
     background-size: cover; /* Riempie lo schermo mantenendo proporzioni */
     background-position: center; /* Centra l'immagine */
     background-repeat: no-repeat; /* Evita la ripetizione */
@@ -11,7 +11,7 @@
 @media (max-width: 768px) {
     .background {
         width: 100%;
-         background-image: url('./assets/WallpaperMobileLowResolution.png'); /* Immagine mobile */
+         background-image: url('./assets/WallpaperMobile.webp'); /* Immagine mobile */
          background-size: cover; /* Riempie lo schermo mantenendo proporzioni */
          background-position: center; /* Centra l'immagine */
          background-repeat: no-repeat; /* Evita la ripetizione */
@@ -23,7 +23,7 @@
 @media (max-width: 500px) {
     .background {
         width: 100%;
-         background-image: url('./assets/WallpaperMobileSmallSizeLowQuality.png'); /* Immagine mobile */
+         background-image: url('./assets/WallpaperMobileSmallSize.webp'); /* Immagine mobile */
          background-size: cover; /* Riempie lo schermo mantenendo proporzioni */
          background-position: center; /* Centra l'immagine */
          background-repeat: no-repeat; /* Evita la ripetizione */
