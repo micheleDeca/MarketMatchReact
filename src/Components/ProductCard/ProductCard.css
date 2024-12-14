@@ -24,7 +24,7 @@
   background-color: #e0e0e0a1;
   justify-content: center;
   align-items: center;
-  background-image: url('placeholder.jpg'); /* Sostituisci con il percorso dell'immagine */
+  background-image: url('https://via.placeholder.com/100'); /* Sostituisci con il percorso dell'immagine */
   background-size: cover;
   background-position: center;
 } 
