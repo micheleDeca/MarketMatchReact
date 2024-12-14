@@ -2,13 +2,12 @@
     display: flex;
     flex-direction: column;
     align-items:center;
-    justify-content: flex-start;
+    justify-content: center;
     border-radius: 20px;
     background-color: #f1f1f1;
     width: 96%;
     flex: 1;
-    padding-left: 2%;
-    padding-right: 2%;
+  
 }
 
 .OrariNegozioBox{
@@ -24,10 +23,8 @@
     flex-direction: row;
     justify-content:flex-start;
     align-items:center;
-    width: 100%;
-    padding-top:2%;
-    padding-left:2%;
-    padding-bottom: 2%;
+    width: 96%;
+    margin-top:2%;
 }
 
 .OrariNegozioRow{
@@ -35,7 +32,7 @@
     flex-direction: row;
     justify-content:flex-start;
     align-items:center;
-    width: 100%;
+    width: 98%;
     margin-top:2%;
     margin-bottom: 2%;
 }
@@ -54,25 +51,18 @@
     border-bottom: 3px solid darkslateblue;
 }
 
-.OrariNegozioSpan{
-    width: 50%;
-}
-
 .day{
     background-color: darkslateblue;
     border-radius: 20px;
     color: white;
     width: 30%;
     text-align: center;
-    font-size: medium;
+    font-size: 90%;
 }
 
 .hours{
-    margin-left: 10px;
-}
-
-.space{
-    width: 2%;
+    margin-left: 2%;
+    font-size: 90%;
 }
 
 @media (orientation: portrait){
@@ -81,17 +71,15 @@
         align-items: center;
     }
 
-    .OrariNegozioSpan{
-        width: 35%;
-    }
-
     .OrariNegozioRow{
         flex-direction: column;
         justify-content:center;
+        margin-bottom: 3%;
+        margin-top: 3%;
     }
 
     .day{
-        font-size: medium;
+        font-size: 90%;
         margin:0px;
     }
     

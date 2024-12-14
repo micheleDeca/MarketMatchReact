@@ -46,6 +46,7 @@ function Negozio(props) {
           Name="nome prodotto"
           tipo="prodotto"
           Prezzo="prezzo prodotto"
+          mode="neg"
         />
         <span>&nbsp;</span>
         <Orari
