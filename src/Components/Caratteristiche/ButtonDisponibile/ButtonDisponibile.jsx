@@ -24,7 +24,7 @@ import './ButtonDisponibile.css'
 export default function ButtonDisponibile() {
     return (
         <button className="buttonDisp">
-            <img className="image" src="src\assets\caratteristiche\ButtonDisponibile\assets\check-876.svg" width="30px" height="30px" />
+            <img className="image" src="src\Components\Caratteristiche\ButtonDisponibile\assets\check-876.svg" width="30px" height="30px" />
             Disponibile
         </button>
     );

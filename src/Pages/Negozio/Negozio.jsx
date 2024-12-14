@@ -1,6 +1,7 @@
 import Orari from "../../Components/orari_negozio/orari_negozio";
 import ProductLongList from "../../Components/ProductLongList/ProductLongList";
 import ShopWindow from "../../Components/shop_window/shop_window";
+import Stelle from "../../Components/Stelle/Stelle";
 import "./Negozio.css";
 
 // Simula un database di prodotti
@@ -39,6 +40,7 @@ function Negozio(props) {
   return (
     <>
       <div className="boxNegozio">
+        <Stelle starNumber={1}/>
         <span>&nbsp;</span>
         <ShopWindow
           Description="Una bottiglia riutilizzabile ed ecologica realizzata in acciaio inossidabile di alta qualità, progettata per mantenere le bevande calde per 12 ore e fredde per 24 ore. Leggera, resistente e priva di BPA, è ideale per l'uso quotidiano e le attività outdoor. Disponibile in vari colori."
