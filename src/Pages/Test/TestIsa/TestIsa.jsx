@@ -33,7 +33,7 @@ const TestIsa = () => {
   };
   const oggetto2 = {
     userType: "ConA", status: "ritirato",
-    id: "#145825", reservationDate: "10/11/24", infoDate: "11/11/24", shopId: "1"
+    id: "#145825", reservationDate: "10/11/24", infoDate: "11/11/24", shopId: "1", customerId: "2"
   };
   const oggetto3 = {
     userType: "ConA", status: "accettato",
@@ -49,7 +49,26 @@ const TestIsa = () => {
   };
 
 
-  const mockPrenotations = creaArrayConOggettiDiversi(oggetto1, oggetto2, oggetto3, oggetto4, oggetto5);
+ 
+  const mockPrenotations = Array.from({ length: 50 }, (_, index) => {
+    const reservationStatuses = ["prenotato", "accettato", "rifiutato", "daRitirare", "ritirato"];
+    const randomStatus = reservationStatuses[Math.floor(Math.random() * reservationStatuses.length)];
+    const randomDate = (offset = 0) => {
+        const date = new Date();
+        date.setDate(date.getDate() + offset);
+        return date.toLocaleDateString("it-IT");
+    };
+    return {
+        id: `#${100000 + index}`, // ID univoco
+        userType: "ConA", // Tipo utente
+        status: randomStatus, // Stato casuale
+        reservationDate: randomDate(-index), // Data prenotazione (retroattiva rispetto all'indice)
+        infoDate: randomDate(-(index - 1)), // Data info successiva
+        shopId: `${Math.floor(Math.random() * 10) + 1}`, // ID negozio casuale
+    };
+});
+
+ 
 
   const [prenotations, setPrenotations] = useState([]); // Stato per le prenotazioni
   const [currentPage, setCurrentPage] = useState(1); // Stato per la pagina attuale
