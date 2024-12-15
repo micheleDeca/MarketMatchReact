@@ -30,28 +30,28 @@
  * ```
  */
 
-import '../ButtonSucessivo/ButtonSucessivo'
+import ButtonSucessivo from '../ButtonSucessivo/ButtonSucessivo'
 import './DettaglioPrenotazione.css'
 
-export default function DettaglioPrenotazione(value){
-    return(
+export default function DettaglioPrenotazione(value) {
+    return (
         <>
-        <div className="dettContainer">
-            <div className="header">
-                Dettaglio Prenotazione
+            <div className="dettContainer">
+                <div className="header">
+                    Dettaglio Prenotazione
+                </div>
+                <div className="buttonSucc">
+                    <ButtonSucessivo onclick={() => clickFunction} />
+                </div>
+                <div className="info">
+                    #{value.codice}
+                    <img src="src\Components\DettaglioPrenotazione\assets\line-xl-svgrepo-com.svg" width="20" height="20" />
+                    {value.client}
+                    <img src="src\Components\DettaglioPrenotazione\assets\line-xl-svgrepo-com.svg" width="20" height="20" />
+                    {value.date}
+                </div>
             </div>
-            <div className="buttonSucc">
-                <ButtonSucessivo onclick={() => clickFunction} />
-            </div>
-            <div className="info">
-                #{value.codice}
-                <img src="src\Components\DettaglioPrenotazione\assets\line-xl-svgrepo-com.svg" width="20" height="20"/>
-                {value.client}
-                <img src="src\Components\DettaglioPrenotazione\assets\line-xl-svgrepo-com.svg" width="20" height="20" />
-                {value.date}
-            </div>
-            <hr className="line"/>
-        </div>
+
         </>
     )
 }

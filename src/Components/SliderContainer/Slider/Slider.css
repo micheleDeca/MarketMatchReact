@@ -102,7 +102,7 @@
 }
 
 
-.label {
+.slider-container .label {
   display: flex;
   flex-direction: column;
   color: #444;

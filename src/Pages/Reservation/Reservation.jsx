@@ -1,7 +1,9 @@
 import React from 'react'
-import './Reservation.css' 
+import './Reservation.css'
 import SliderContainer from '../../Components/SliderContainer/SliderContainer';
 import ProductLongList from '../../Components/ProductLongList/ProductLongList';
+import DettaglioPrenotazione from '../../Components/DettaglioPrenotazione/DettaglioPrenotazione';
+import DataRitiro from '../../Components/DataRitiro/DataRitiro';
 
 const Reservation = () => {
 
@@ -40,8 +42,32 @@ const Reservation = () => {
 
     return (
         <div>
+            <div className="reservation-header">
+                <h1>Prenotazioni</h1>
+            </div>
+            <div className='dettaglioPrenotazione-container'>
+                <DettaglioPrenotazione
+                    codice="12345"
+                    client="Mario Rossi"
+                    date="15/12/2024" />
+            </div>
+            <div className="svg-divider">
+                <svg width="100%" height="2" xmlns="http://www.w3.org/2000/svg">
+                    <line x1="0" y1="1" x2="100%" y2="1" stroke="#CAC4D0" />
+                </svg>
+            </div>
             <SliderContainer />
-            <ProductLongList title="Riepilogo Prenotazione" products={products} />
+            <div className="dataLabel-reservation">
+                <DataRitiro />
+            </div>
+            <div className="svg-divider">
+                <svg width="100%" height="2" xmlns="http://www.w3.org/2000/svg">
+                    <line x1="0" y1="1" x2="100%" y2="1" stroke="#CAC4D0" />
+                </svg>
+            </div>
+            <ProductLongList
+                title="Riepilogo Prenotazione"
+                products={products} />
         </div>
     )
 }

@@ -39,8 +39,9 @@ const Product = () => {
 
     return (
         <div className="products-page">
-            <br /><br /><br /><br />
-            <h1>Prodotti</h1>
+            <div className="product-header">
+                <h1>Prenotazioni</h1>
+            </div>
             <div className="content-container">
                 <div className="container-product">
                     <ProductContainer products={products} />

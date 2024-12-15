@@ -58,7 +58,6 @@ export default function DataRitiro(submitFunction) {
                     <ButtonSave name="Save" />
                     </div>
                 </form>
-                <hr className="bar" />
             </div>
         </>
     )

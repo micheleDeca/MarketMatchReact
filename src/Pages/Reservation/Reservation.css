@@ -1,0 +1,21 @@
+.reservation-header h1 {
+    padding-bottom: 2.5%;
+    padding-top: 0.5%;
+    padding-left: 2%;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.dettaglioPrenotazione-container {
+    display: flex;
+    justify-content: center;
+    width: ;
+}
+
+
+.dataLabel-reservation {
+    display: flex;
+    justify-content: center; /* Centra orizzontalmente */
+    align-items: center; /* Centra verticalmente */
+     flex-direction: column; /* Mantieni i contenuti in colonna (opzionale, se necessario) */
+}

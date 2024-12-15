@@ -1,3 +1,11 @@
+.product-header h1{
+    padding-bottom: 2.5%;
+    padding-top: 0.5%;
+    padding-left: 2%;
+    font-size: 30px;
+    font-weight: bold;
+}
+
 .container-product{
     width: 100%;
     justify-content: center;

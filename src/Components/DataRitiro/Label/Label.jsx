@@ -26,7 +26,7 @@ const Label = (elements) =>  {
 
     return( 
     <label>
-        <input className="label"
+        <input className="input-label"
             type="text"
             placeholder={elements.text}
             value={name}

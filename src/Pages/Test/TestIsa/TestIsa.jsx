@@ -18,12 +18,7 @@ const TestIsa = () => {
   }
 
   return (
-    <>
-      <div>
-        <br /><br /><br /><br /><br /><br /><br />
-        <h2>Isabella Page</h2> <br /><br />
-      </div>
-
+    <> 
       <div className="prenHeader">
         <h1>Prenotazioni</h1>
       </div>
@@ -34,7 +29,7 @@ const TestIsa = () => {
         <ReservationLong userType="NegA" status="daRitirare"
           id="#145825" reservationDate="10/11/24" infoDate="11/11/24" customerId="1" />
         <ReservationLong userType="NegA" status="ritirato"
-          id="#145825" reservationDate="10/11/24" infoDate="11/11/24" customerId="1" />
+          id="#145825" reservationDate="10/11/24" infoDate="11/11/24" customerId="1" shopId="1" />
         <ReservationLong userType="NegA" status="accettato"
           id="#145825" reservationDate="10/11/24" infoDate="11/11/24" customerId="1" />
         <ReservationLong userType="NegA" status="rifiutato"

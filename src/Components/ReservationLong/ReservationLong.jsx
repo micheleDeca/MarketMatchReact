@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState} from 'react'
 import './ReservationLong.css'
+import { useUserContext } from '../../Context/UserContext';
 
 /**
  * Props da passare al componente ReservationLong per richiamarlo correttamente:
@@ -31,8 +32,9 @@ import './ReservationLong.css'
  */
 
 const ReservationLong = (props) => {
+    const { userType } = useUserContext();
 
-    const isVisibleForUserType = (types) => types.includes(props.userType);
+    const isVisibleForUserType = (types) => types.includes(userType);
     // Funzione per determinare colore e testo in base allo stato
     const getStylesByStatus = (status) => {
         switch (status) {
@@ -77,8 +79,8 @@ const ReservationLong = (props) => {
                     </span>
                 </div>
                 <div className="reservation-bigInfo-long">
-                    {isVisibleForUserType(["AmmA","NegA"]) &&  <span className="reservation-bigInfo-uno-long">{props.customerId}</span>}
-                    {isVisibleForUserType(["ConA", "AmmA"]) && <span className="reservation-bigInfo-due-long">{props.shopId}</span>}
+                    {isVisibleForUserType(["AmmA","NegA"]) &&  <span className="reservation-bigInfo-uno-long">Consumatore: {props.customerId}</span>}
+                    {isVisibleForUserType(["ConA", "AmmA"]) && <span className="reservation-bigInfo-due-long">Negozio: {props.shopId}</span>}
                 </div>
             </div>
 
