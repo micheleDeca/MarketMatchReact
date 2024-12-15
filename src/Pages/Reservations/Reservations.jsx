@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import './Prenotazioni.css'
+import './Reservations.css'
 import PrenotationSearch from '../../Components/PrenotationSearch/PrenotationSearch';
 import ReservationLong from '../../Components/ReservationLong/ReservationLong';
 import ButtonPrecedente from '../../Components/ButtonPrecedente/ButtonPrecedente';

@@ -14,7 +14,7 @@ import PageNotFound from './Pages/PageNotFound/PageNotFound';
 import Product from './Pages/Product/Product';
 import Negozio from './Pages/Negozio/Negozio';
 import Prodotto from './Pages/Prodotto/Prodotto';
-import Prenotazioni from './Pages/Prenotazioni/Prenotazioni';
+import Reservations from './Pages/Reservations/Reservations';
 
 
 /*
@@ -43,7 +43,7 @@ const App = () => {
       <NavBar navColor={navColorState} />
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/prenotazioni' element={<Prenotazioni/>} />
+        <Route path='/prenotazioni' element={<Reservations/>} />
         <Route path='/prenotazione' element={<Reservation/>} />
         <Route path='/prodotti' element={<Product />} />
         <Route path='/antonio' element={<TestAntonio /> } />
