@@ -18,38 +18,7 @@ const TestIsa = () => {
     descrizione: "descrizione"
   }*/
 
-
- function creaArrayConOggettiDiversi(...oggetti) {
-    // Creare un array di 40 oggetti mescolando i 6 tipi forniti in ordine casuale
-    const array = Array(40).fill(null).map((_, i) => oggetti[i % oggetti.length]);
-    // Mescolare l'array in ordine casuale
-    return array.sort(() => Math.random() - 0.5);
-}
-
-  // Esempio di utilizzo
-  const oggetto1 = {
-    userType: "ConA", status: "daRitirare",
-    id: "#145825", reservationDate: "10/11/24", infoDate: "11/11/24", shopId: "1"
-  };
-  const oggetto2 = {
-    userType: "ConA", status: "ritirato",
-    id: "#145825", reservationDate: "10/11/24", infoDate: "11/11/24", shopId: "1", customerId: "2"
-  };
-  const oggetto3 = {
-    userType: "ConA", status: "accettato",
-    id: "#145825", reservationDate: "10/11/24", infoDate: "11/11/24", shopId: "1"
-  };
-  const oggetto4 = {
-    userType: "ConA", status: "rifiutato",
-    id: "#145825", reservationDate: "10/11/24", infoDate: "11/11/24", shopId: "1"
-  };
-  const oggetto5 = {
-    userType: "ConA", status: "prenotato",
-    id: "#145825", reservationDate: "10/11/24", infoDate: "11/11/24", shopId: "1"
-  };
-
-
- 
+  
   const mockPrenotations = Array.from({ length: 50 }, (_, index) => {
     const reservationStatuses = ["prenotato", "accettato", "rifiutato", "daRitirare", "ritirato"];
     const randomStatus = reservationStatuses[Math.floor(Math.random() * reservationStatuses.length)];
@@ -60,11 +29,11 @@ const TestIsa = () => {
     };
     return {
         id: `#${100000 + index}`, // ID univoco
-        userType: "ConA", // Tipo utente
         status: randomStatus, // Stato casuale
         reservationDate: randomDate(-index), // Data prenotazione (retroattiva rispetto all'indice)
         infoDate: randomDate(-(index - 1)), // Data info successiva
         shopId: `${Math.floor(Math.random() * 10) + 1}`, // ID negozio casuale
+        customerId: `${Math.floor(Math.random() * 10) + 1}`, // ID negozio casuale
     };
 });
 
@@ -100,12 +69,12 @@ const TestIsa = () => {
 
       {prenotations.map((prenotation) => (
           <ReservationLong
-            userType={prenotation.userType}
             status={prenotation.status}
             id={prenotation.id}
             reservationDate={prenotation.reservationDate}
             infoDate={prenotation.infoDate}
             shopId={prenotation.shopId}
+            customerId={prenotation.customerId}
           />
         ))}
 
