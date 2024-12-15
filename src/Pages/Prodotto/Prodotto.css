@@ -1,0 +1,44 @@
+.boxProdotto{
+    display: flex;
+    flex-direction: column;
+    width: 96%;
+    margin-left:2%;
+    margin-right:2%;
+    margin-bottom: 2%;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.containerProdotto{
+    display:flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+}
+
+.spaceProdotto{
+    width: 80%;
+}
+
+.spaceProdotto2{
+    width: 20%;
+}
+
+.ButtonProdotto{
+    width: 10%;
+}
+
+@media (orientation: portrait){
+    .boxProdotto{
+        align-items: center;
+    }
+
+    .spaceProdotto{
+        width: 60%;
+    }
+    
+    .spaceProdotto2{
+        width: 40%;
+    }
+}

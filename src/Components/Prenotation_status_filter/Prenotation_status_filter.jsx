@@ -25,6 +25,7 @@ function PrenStatusFilter(props) {
         span[2].style.borderBottom = "";
         span[3].style.borderBottom = "";
         span[4].style.borderBottom = "";
+        span[5].style.borderBottom = "";
         break;
 
       case "2":
@@ -33,6 +34,7 @@ function PrenStatusFilter(props) {
         span[2].style.borderBottom = "";
         span[3].style.borderBottom = "";
         span[4].style.borderBottom = "";
+        span[5].style.borderBottom = "";
         break;
 
       case "3":
@@ -41,6 +43,7 @@ function PrenStatusFilter(props) {
         span[2].style.borderBottom = "3px solid darkslateblue";
         span[3].style.borderBottom = "";
         span[4].style.borderBottom = "";
+        span[5].style.borderBottom = "";
         break;
 
       case "4":
@@ -49,6 +52,7 @@ function PrenStatusFilter(props) {
         span[2].style.borderBottom = "";
         span[3].style.borderBottom = "3px solid darkslateblue";
         span[4].style.borderBottom = "";
+        span[5].style.borderBottom = "";
         break;
 
       case "5":
@@ -57,6 +61,7 @@ function PrenStatusFilter(props) {
         span[2].style.borderBottom = "";
         span[3].style.borderBottom = "";
         span[4].style.borderBottom = "3px solid darkslateblue";
+        span[5].style.borderBottom = "";
         break;
 
       case "6":
@@ -66,6 +71,7 @@ function PrenStatusFilter(props) {
         span[3].style.borderBottom = "";
         span[4].style.borderBottom = "";
         span[5].style.borderBottom = "3px solid darkslateblue";
+        span[5].style.borderBottom = "";
         break;
 
       default:
@@ -74,6 +80,7 @@ function PrenStatusFilter(props) {
         span[2].style.borderBottom = "";
         span[3].style.borderBottom = "";
         span[4].style.borderBottom = "";
+        span[5].style.borderBottom = "";
     }
   };
 

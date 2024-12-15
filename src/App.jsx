@@ -13,6 +13,7 @@ import TestIsa from './Pages/Test/TestIsa/TestIsa';
 import PageNotFound from './Pages/PageNotFound/PageNotFound';
 import Product from './Pages/Product/Product';
 import Negozio from './Pages/Negozio/Negozio';
+import Prodotto from './Pages/Prodotto/Prodotto';
 
 
 /*
@@ -47,6 +48,7 @@ const App = () => {
         <Route path='/michele' element={<Product/> } />
         <Route path='/isabella' element={<TestIsa /> } />
         <Route path='/negozio' element={<Negozio/>}/>
+        <Route path='/prodotto' element={<Prodotto/>}/>
         <Route path='*' element={<PageNotFound /> }/>
       </Routes>
       <Footer />

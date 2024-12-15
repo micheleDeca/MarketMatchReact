@@ -26,6 +26,7 @@ function PrenotationSearch(props) {
           third={props.third}
           fourth={props.fourth}
           fifth={props.fifth}
+          sixth={props.sixth}
         />
         <span className="PrenotationSearchSpan"></span>
         <SearchBar />

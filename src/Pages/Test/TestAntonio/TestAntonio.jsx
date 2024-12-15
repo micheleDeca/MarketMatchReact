@@ -3,9 +3,9 @@ import "./TestAntonio.css";
 //import ShopWindow from "../../../Components/shop_window/shop_window";
 //import PrenStatusFilter from "../../../Components/Prenotation_status_filter/Prenotation_status_filter";
 //import SearchBar from "../../../Components/SearchBar/SearchBar";
-//import PrenotationSearch from "../../../Components/Prenotation+Search/Prenotation+Search";
+import PrenotationSearch from "../../../Components/PrenotationSearch/PrenotationSearch";
 //import ZigZag from "../../../Components/zig-zag/zig-zag";
-import Orari from "../../../Components/orari_negozio/orari_negozio";
+//import Orari from "../../../Components/orari_negozio/orari_negozio";
 
 const TestAntonio = () => {
   return (
@@ -20,21 +20,22 @@ const TestAntonio = () => {
       />
       */}
       {/*<SearchBar />*/}
-      {/*
+      
     <PrenotationSearch
         first="tutto"
         second="accettato"
         third="rifiutato"
         fourth="da&nbsp;ritirare"
         fifth="ritirato"
+        sixth="scaduto"
       />
-      */}
+    
       {/*
       <ZigZag>
         <p>uui6i76i</p>
       </ZigZag>
       */}
-      
+      {/*
       <Orari
       mode="neg"
         lunedi="09:00-13:00/15:30-19:00"
@@ -47,7 +48,7 @@ const TestAntonio = () => {
         posizione="Lombardia,Mi,20100,Milano,Via Roma 1"
         contatti="02 1234567"
       />
-      
+      */}
       {/*
       <ShopWindow
         Description="Una bottiglia riutilizzabile ed ecologica realizzata in acciaio inossidabile di alta qualità, progettata per mantenere le bevande calde per 12 ore e fredde per 24 ore. Leggera, resistente e priva di BPA, è ideale per l'uso quotidiano e le attività outdoor. Disponibile in vari colori."
