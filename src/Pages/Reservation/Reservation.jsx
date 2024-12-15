@@ -43,7 +43,7 @@ const Reservation = () => {
     return (
         <div>
             <div className="reservation-header">
-                <h1>Prenotazioni</h1>
+                <h1>Prenotazione</h1>
             </div>
             <div className='dettaglioPrenotazione-container'>
                 <DettaglioPrenotazione
