@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ProductContainer from '../../Components/ProductContainer/ProductContainer';
 import './Product.css';
-import '../../ExternalContent/PaginationBar.css'
+import '../../ExternalContent/PaginationBar.css';
 import { Pagination } from 'react-pagination-bar';
 
 // Simula un database di prodotti
@@ -19,7 +19,12 @@ const mockProducts = Array.from({ length: 200 }, (_, index) => {
 
 const Product = () => {
     const [products, setProducts] = useState([]); // Stato per i prodotti
-    const [currentPage, setCurrentPage] = useState(1); // Stato per la pagina attuale
+    const [currentPage, setCurrentPage] = useState(() => {
+        // Recupera la pagina corrente da sessionStorage, di default 1
+        const savedPage = sessionStorage.getItem('currentPage');
+        return savedPage ? parseInt(savedPage, 10) : 1;
+    });
+
     const productsPerPage = 16; // Numero di prodotti per pagina
 
     // Funzione per simulare il recupero dei prodotti
@@ -34,20 +39,22 @@ const Product = () => {
 
     // Effetto per caricare i prodotti quando cambia la pagina
     useEffect(() => {
-        fetchProducts(currentPage); // Simulazione, qui sarà sostituito da una chiamata al DB
+        fetchProducts(currentPage);
+
+        // Salva la pagina corrente nel sessionStorage
+        sessionStorage.setItem('currentPage', currentPage);
     }, [currentPage]);
 
     return (
         <div className="products-page">
             <div className="product-header">
-                <h1>Prenotazioni</h1>
+                <h1>Prodotti</h1>
             </div>
             <div className="content-container">
                 <div className="container-product">
                     <ProductContainer products={products} />
                 </div>
                 <div className="pagination-container">
-
                     <Pagination
                         currentPage={currentPage}
                         totalItems={mockProducts.length}
@@ -59,12 +66,9 @@ const Product = () => {
             </div>
         </div>
     );
-
 };
 
 export default Product;
-
-
 /*
 
 const fetchProducts = async (page) => {
