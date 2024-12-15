@@ -28,7 +28,7 @@ export default function ButtonSucessivo(value){
     return(
     <button className="buttonElement" onClick={value.onclick}>
         Successivo
-        <img src="src\Components\ButtonSucessivo\assets\next-svgrepo-com.svg" width="10px" height="10px"/>
+        <img src="src\Components\ButtonSucessivo\assets\nextsvgrepo-com.svg" width="10px" height="10px"/>
     </button>
     )
 }
