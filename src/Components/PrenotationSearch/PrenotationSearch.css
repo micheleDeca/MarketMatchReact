@@ -25,3 +25,11 @@
   }
 
 }
+
+@media (orientation: landscape) and (max-width: 926px) {
+    
+  .SearchBarWidth{
+    width: 68%;
+  }
+
+}

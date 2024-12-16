@@ -1,0 +1,72 @@
+.GreenPointsBox{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f5f5;
+    border-radius: 20px;
+    padding: 2%;
+}
+
+.GreenPointsTitle{
+    font-size: x-large;
+    font-weight: bold;
+    text-align: left;
+    width: 96%;
+}
+
+.GreenPointsRange{
+    margin-top: 2%;
+    margin-bottom: 2%;
+    font-size: xx-large;
+    color: green;
+    font-weight: bold;
+    text-align: right;
+    width: 96%;
+}
+
+progress {
+    width: 96%; /* Imposta la larghezza della barra di progresso */
+    height: 20px; /* Imposta l'altezza della barra */
+    border-radius: 10px; /* Angoli arrotondati */
+    background-color: #e0e0e0; /* Colore di sfondo (barra vuota) */
+    -webkit-appearance: none; /* Disabilita l'aspetto di default su WebKit */
+    appearance: none; /* Disabilita l'aspetto di default */
+  }
+  
+  /* Stile per la parte che rappresenta il progresso */
+  progress::-webkit-progress-bar {
+    background-color: #e0e0e0; /* Colore di sfondo della barra */
+    border-radius: 10px; /* Angoli arrotondati */
+  }
+  
+  progress::-webkit-progress-value {
+    background-color: green; /* Colore della parte che rappresenta il progresso */
+    border-radius: 10px; /* Angoli arrotondati */
+  }
+  
+  progress::-moz-progress-bar {
+    background-color: green; /* Colore della parte che rappresenta il progresso */
+    border-radius: 10px; /* Angoli arrotondati */
+  }
+  
+  /* Aggiungi una transizione per un effetto più fluido */
+  progress {
+    transition: width 0.5s ease-in-out;
+  }
+
+  .GreenPointsNext{
+    width: 96%;
+    margin-top: 2%;
+    text-align: left;
+    font-size: small;
+  }
+
+  @media (orientation: portrait) {
+    .GreenPointsBox{
+        width: 90%;
+    }
+
+ 
+}

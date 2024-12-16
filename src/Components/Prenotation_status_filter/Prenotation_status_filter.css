@@ -5,7 +5,7 @@
     font-size: 90%;
     cursor: pointer;
     text-align: center;
-    aspect-ratio: 20 / 1;
+    aspect-ratio: 28 / 1;
     border-radius: 20px;
     font-size: 90%;
     text-overflow: ellipsis;
@@ -34,5 +34,19 @@ option{
     
     .SelectFilter{
         aspect-ratio: 8/1;
+    }
+}
+
+@media (orientation: landscape) and (max-width: 1279px) {
+    
+    .SelectFilter{
+        aspect-ratio: 15/1;
+    }
+}
+
+@media (orientation: landscape) and (max-width: 926px) {
+    
+    .SelectFilter{
+        width: 30%;
     }
 }

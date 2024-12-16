@@ -3,7 +3,8 @@ import "./TestAntonio.css";
 //import ShopWindow from "../../../Components/shop_window/shop_window";
 //import PrenStatusFilter from "../../../Components/Prenotation_status_filter/Prenotation_status_filter";
 //import SearchBar from "../../../Components/SearchBar/SearchBar";
-import PrenotationSearch from "../../../Components/PrenotationSearch/PrenotationSearch";
+//import PrenotationSearch from "../../../Components/PrenotationSearch/PrenotationSearch";
+import GreenPoints from "../../../Components/GreenPoints/GreenPoints";
 //import ZigZag from "../../../Components/zig-zag/zig-zag";
 //import Orari from "../../../Components/orari_negozio/orari_negozio";
 
@@ -20,14 +21,14 @@ const TestAntonio = () => {
       />
       */}
       {/*<SearchBar />*/}
-      
+      {/*
     <PrenotationSearch
         first="tutto"
         second="accettato"
         third="rifiutato"
         fourth="da ritirare"
       />
-    <p>&nbsp;</p>
+      */}
       {/*
       <ZigZag>
         <p>uui6i76i</p>
@@ -56,6 +57,7 @@ const TestAntonio = () => {
         Prezzo="prezzo prodotto"
       />
       */}
+      <GreenPoints range={1080} />
     </div>
   );
 };
