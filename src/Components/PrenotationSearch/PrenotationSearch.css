@@ -3,16 +3,25 @@
   justify-content: center;
   align-items: stretch;
   flex-direction: row;
-  width: 100%;
+  width: 90%;
 }
 
 .PrenotationSearchSpan {
   width: 2%;
 }
 
+.SearchBarWidth{
+  width: 88%;
+}
+
 @media (orientation: portrait){
-  .PrenotationSearchBox{
-    align-items: center;
-    flex-direction: column;
+
+  .PrenotationSearchBox {
+    width: 98%;
   }
+
+  .SearchBarWidth{
+    width: 63%;
+  }
+
 }

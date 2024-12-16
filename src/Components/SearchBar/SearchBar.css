@@ -6,7 +6,7 @@
     align-items: center;
     background-color: #f1f1f1;
     border-radius: 20px;
-    aspect-ratio: 17 / 1;
+    aspect-ratio: 20 / 1;
 }
 
 .SearchBarImg{
@@ -26,6 +26,18 @@
     
     .SearchBarImg{
         width: 15px;
+    }
+
+    .SearchBarBox{
+        aspect-ratio: 5 / 1;
+    }
+
+}
+
+@media (orientation: portrait) and (max-width: 1024px) and (min-width: 481px) {
+    
+    .SearchBarBox{
+        aspect-ratio: 8 / 1;
     }
 
 }

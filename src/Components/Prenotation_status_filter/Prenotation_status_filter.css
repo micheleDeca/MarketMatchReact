@@ -1,43 +1,38 @@
-.PrenStatusFilterBox{
-    width: 100%;
-    display: flex;
-    justify-content:space-around;
-    flex-direction: row;
-    align-items: center;
-    background-color: #f1f1f1;
+.SelectFilter{
+    width: 10%;
+    border: 0;
+    background-color: #f5f5f5;
+    font-size: 90%;
+    cursor: pointer;
+    text-align: center;
+    aspect-ratio: 20 / 1;
     border-radius: 20px;
-    aspect-ratio: 17 / 1;
+    font-size: 90%;
+    text-overflow: ellipsis;
 }
 
-.PrenStatusFilterP{
-    color: darkslateblue;
-    text-align: center;
+option{
+    font-family: 'Roboto', sans-serif;
     font-size: medium;
 }
 
-.PrenStatusFilterSpan:hover{
-    border-bottom: 3px solid darkslateblue;
-    cursor: pointer;
-}
-
-@media (orientation: portrait){
-
-    .PrenStatusFilterBox{
-       margin-bottom: 4%;
+@media (orientation: portrait) {
+    
+    .SelectFilter{
+        width: 35%;
     }
-
 }
 
 @media (orientation: portrait) and (max-width: 480px) {
-
-    .PrenStatusFilterP{
-        font-size:small;
+    
+    .SelectFilter{
+        aspect-ratio: 5/1;
     }
 }
 
-@media (orientation: portrait) and (max-width: 834px) and (min-width: 481px) {
-
-    .PrenStatusFilterP{
-        font-size:medium;
+@media (orientation: portrait) and (max-width: 1024px) and (min-width: 481px){
+    
+    .SelectFilter{
+        aspect-ratio: 8/1;
     }
 }

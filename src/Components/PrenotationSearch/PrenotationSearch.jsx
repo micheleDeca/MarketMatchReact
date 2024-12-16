@@ -27,9 +27,10 @@ function PrenotationSearch(props) {
           fourth={props.fourth}
           fifth={props.fifth}
           sixth={props.sixth}
+          seventh={props.seventh}
         />
         <span className="PrenotationSearchSpan"></span>
-        <SearchBar />
+        <span className="SearchBarWidth"><SearchBar /></span>
       </div>
     </>
   );
