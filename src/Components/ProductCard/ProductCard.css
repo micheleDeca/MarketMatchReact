@@ -1,10 +1,11 @@
 .card {
-  width: calc(25% - 50px); /* Ogni card occupa il 30% dello spazio meno il margine */
+  width: calc(20% - 50px); /* Ogni card occupa il 30% dello spazio meno il margine */
   display: flex; /* Posiziona immagine e informazioni fianco a fianco */
   align-items: center; /* Centra verticalmente */
   border-radius: 8px;
   font-family: "Roboto", serif;
   padding-bottom: 25px;
+  margin-right: 5px;
   flex-direction: row;
   gap: 20px; /* Spaziatura uniforme tra le card */
   min-height: 150px; /* Altezza minima per evitare disallineamenti */
@@ -129,8 +130,9 @@
 @media (max-width: 950px) {
   .card {
     width: calc(45% - 10px); /* Ogni card occupa il 30% dello spazio meno il margine */
-     align-items: stretch;
-       padding-bottom: 15px;
+    align-items: stretch;
+    padding-bottom: 15px;
+    margin-left: 15px;
 
   }
 

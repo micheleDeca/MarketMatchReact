@@ -13,8 +13,13 @@
     width: 20px; /* Dimensione dell'icona */
     height: 20px;
     margin-right: 10px; /* Spazio tra icona e testo */
+    cursor: pointer; /* Cambia il cursore */
+    transition: transform 0.2s ease-in-out; /* Aggiunge un effetto visivo */
 }
 
+.reservation-icon-long:hover {
+    transform: scale(1.1); /* Ingrandisce leggermente l'icona */
+}
 .reservation-info-long {
     display: flex;
     flex-direction: column; /* Posiziona i contenuti verticalmente */
@@ -68,4 +73,26 @@
 .reservation-arrow {
     font-size: 18px; /* Dimensione della freccia */
     color: #333; /* Colore della freccia */
+}
+
+
+/* Classe per l'animazione pulsante */
+.pulse {
+    animation: pulse-animation 1.5s infinite;
+}
+
+/* Definizione dell'animazione */
+@keyframes pulse-animation {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.2); /* Leggera espansione */
+        opacity: 0.8; /* Riduce leggermente l'opacità */
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
 }

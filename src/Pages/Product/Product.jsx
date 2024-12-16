@@ -25,7 +25,7 @@ const Product = () => {
         return savedPage ? parseInt(savedPage, 10) : 1;
     });
 
-    const productsPerPage = 16; // Numero di prodotti per pagina
+    const productsPerPage = 15; // Numero di prodotti per pagina
 
     // Funzione per simulare il recupero dei prodotti
     const fetchProducts = (page) => {

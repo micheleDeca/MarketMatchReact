@@ -6,7 +6,7 @@ import ButtonPrecedente from '../../Components/ButtonPrecedente/ButtonPrecedente
 import ButtonSucessivo from '../../Components/ButtonSucessivo/ButtonSucessivo';
 
 const mockPrenotations = Array.from({ length: 50 }, (_, index) => {
-    const reservationStatuses = ["prenotato", "accettato", "rifiutato", "daRitirare", "ritirato"];
+    const reservationStatuses = ["prenotato", "accettato", "rifiutato", "daRitirare", "ritirato", "scaduto"];
     const randomStatus = reservationStatuses[Math.floor(Math.random() * reservationStatuses.length)];
     const randomDate = (offset = 0) => {
         const date = new Date();
