@@ -20,15 +20,8 @@ const TestIsa = () => {
    }*/
 
      function TextLabel(){
-      
+
      }
-
-
-
-
-  return (
-
-  )
 }
 
 export default TestIsa
