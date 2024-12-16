@@ -37,11 +37,13 @@ export default function DettaglioPrenotazione(value) {
     return (
         <>
             <div className="dettContainer">
+                <div className="headerButton">
                 <div className="header">
                     Dettaglio Prenotazione
                 </div>
                 <div className="buttonSucc">
                     <ButtonSucessivo onclick={() => clickFunction} />
+                </div>
                 </div>
                 <div className="info">
                     #{value.codice}

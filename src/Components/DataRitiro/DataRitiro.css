@@ -1,18 +1,14 @@
-.headerDate{
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    width: 100%;
+.headerDate h1{
     padding-bottom: 3%;
-    font-size: 90%;
+    font-size: 25px;
 }
 
 .formDate{
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
-    gap: 2%;
+    justify-content: flex-start;
+    gap: 5%;
 }
 
 .labelBox{
@@ -22,13 +18,12 @@
     gap: 5%;
 }
 
-.bar{
-    margin-top: 1%;
-}
-
-
 /* Tablet verticali */
 @media (max-width: 768px) {
+
+    .headerDate h1{
+        font-size: medium;
+    }
 
     .formDate{
         display: flex;
@@ -36,15 +31,6 @@
         justify-content: flex-start; 
         align-items: flex-start; 
         gap: 20px; 
-    }
-
-    .bar{
-        margin-top: 3%;
-    }
-
-    .headerDate{
-        font-size: small;
-        padding-bottom: 5%;
     }
 
  }

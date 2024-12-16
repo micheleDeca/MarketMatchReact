@@ -3,6 +3,7 @@ import ProductContainer from '../../Components/ProductContainer/ProductContainer
 import './Product.css';
 import '../../ExternalContent/PaginationBar.css';
 import { Pagination } from 'react-pagination-bar';
+import SearchBar from '../../Components/SearchBar/SearchBar';
 
 // Simula un database di prodotti
 const mockProducts = Array.from({ length: 200 }, (_, index) => {
@@ -48,7 +49,9 @@ const Product = () => {
     return (
         <div className="products-page">
             <div className="product-header">
-                <h1>Prodotti</h1>
+                <div className="searchBar">
+                <SearchBar />
+                </div>
             </div>
             <div className="content-container">
                 <div className="container-product">

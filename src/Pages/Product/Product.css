@@ -1,9 +1,23 @@
-.product-header h1{
+/*.product-header h1{
     padding-bottom: 2.5%;
     padding-top: 0.5%;
     padding-left: 2%;
     font-size: 30px;
     font-weight: bold;
+}                                da sistemare quando si aggiunge il title */
+
+.product-header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 2%;
+}
+
+.searchBar{
+    display: flex;
+    justify-content: center;
+    width: 20%;
+    height: 40px;
 }
 
 .container-product{

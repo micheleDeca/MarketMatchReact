@@ -14,8 +14,6 @@
 
 
 .dataLabel-reservation {
-    display: flex;
-    justify-content: center; /* Centra orizzontalmente */
-    align-items: center; /* Centra verticalmente */
-     flex-direction: column; /* Mantieni i contenuti in colonna (opzionale, se necessario) */
+    padding-left: 2%;
+    padding-right: 2%;
 }
