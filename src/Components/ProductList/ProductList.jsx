@@ -1,6 +1,6 @@
 import React, { useState, useEffect} from 'react';
 
-import ProductCard from '../ProductCard/ProductCard';
+import ProductCard from '../Card/Card';
 import { Swiper, SwiperSlide } from 'swiper/react'; // Import Swiper components
 import '../../../node_modules/swiper/swiper-bundle.min.css';
 import '../../../node_modules/swiper/modules/pagination.min.css'; // Importa i CSS per la paginazione

@@ -1,7 +1,7 @@
 import React from 'react'
 import './Reservation.css'
 import SliderContainer from '../../Components/SliderContainer/SliderContainer';
-import ProductLongList from '../../Components/ProductLongList/ProductLongList';
+import ProductLongList from '../../Components/CardLongList/CardLongList';
 import DettaglioPrenotazione from '../../Components/DettaglioPrenotazione/DettaglioPrenotazione';
 import DataRitiro from '../../Components/DataRitiro/DataRitiro';
 

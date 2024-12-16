@@ -1,5 +1,5 @@
 import Orari from "../../Components/orari_negozio/orari_negozio";
-import ProductLongList from "../../Components/ProductLongList/ProductLongList";
+import ProductLongList from "../../Components/CardLongList/CardLongList";
 import ShopWindow from "../../Components/shop_window/shop_window";
 import Stelle from "../../Components/Stelle/Stelle";
 import "./Negozio.css";

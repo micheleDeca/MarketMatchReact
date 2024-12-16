@@ -1,6 +1,6 @@
 import React from 'react'
 import './TestMichele.css'
-import ProductContainer from '../../../Components/ProductContainer/ProductContainer';
+import ProductContainer from '../../../Components/CardContainer/CardContainer';
  const TestMichele = ( ) => {
   const products = [
     { id: 1, name: "Prodotto 1", originalPrice: "10.00€", currentPrice: "80.00€", image: "https://app.naturasi.it/media/catalog/product/cache/852x852/_/1/_1725943432_000100022410_1.jpg", detail: "Un prodotto di alta qualità per ogni esigenza." },

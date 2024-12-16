@@ -1,14 +1,14 @@
 import React from 'react'
-import ProductLong from '../ProductLong/ProductLong';
-import './ProductLongList.css'
+import CardLong from '../CardLong/CardLong';
+import './CardLongList.css'
 
-const ProductLongList = (props) => {
+const CardLongList = (props) => {
     return (
       <div className="product-long-list-container">
         <h2 className="product-long-list-title">{props.title}</h2>
         <span className="product-list-long">
           {props.products.map((product, index) => (
-            <ProductLong
+            <CardLong
               key={index}
               image={product.image}
               quantity={product.quantity}
@@ -24,4 +24,4 @@ const ProductLongList = (props) => {
     );
   };
 
-export default ProductLongList
+export default CardLongList

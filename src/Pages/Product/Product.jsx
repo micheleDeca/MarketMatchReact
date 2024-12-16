@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import ProductContainer from '../../Components/ProductContainer/ProductContainer';
+import ProductContainer from '../../Components/CardContainer/CardContainer';
 import './Product.css';
 import '../../ExternalContent/PaginationBar.css';
 import { Pagination } from 'react-pagination-bar';

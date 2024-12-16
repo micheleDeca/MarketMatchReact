@@ -1,0 +1,175 @@
+.card-long {
+    display: flex;      /* Posiziona immagine e informazioni fianco a fianco */
+    align-items: center; /* Allinea gli elementi all'inizio */
+    padding-right: 35px;
+    padding-left: 35px;
+     border-radius: 8px;
+    /*box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.2), 0 6px 15px 0 rgba(0, 0, 0, 0.19); */
+    font-family: "Roboto", serif;
+    padding-bottom: 15px;
+    width: 100%;
+    
+
+  }
+  
+  .card-image-long {
+    display: flex; /* Disposizione orizzontale */
+    align-items: stretch; /* Allinea tutti gli elementi alla stessa altezza */
+    object-fit: contain; /* Taglia immagine mantenendo proporzioni */
+    border-radius: 15px; /* Angoli arrotondati */
+    margin-right: 15px; /* Spazio tra immagine e informazioni */
+    padding: 5px;
+    background-color: #e0e0e0a1;
+    max-width: 120px;
+    max-height: 120px;
+  }
+
+  .card-info-long {
+    flex: 1; /* Permette a questo contenitore di occupare tutto lo spazio disponibile */
+    display: flex;
+    flex-direction: column; /* Disposizione verticale */
+    justify-content: space-between; /* Spaziatura tra elementi */
+  }
+  
+  .card-name-long {
+    font-size: 23px;
+    font-weight: bold;
+  }
+  
+  .card-detail-long {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 5px;
+    max-width: 600px; /* Limita la larghezza massima a 100px */
+    word-wrap: break-word; /* Permette di andare a capo se necessario */
+    overflow-wrap: break-word; /* Compatibile con browser moderni */
+}
+  
+.price-container-long {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.current-price-long {
+  color: red;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.original-price-long {
+  color: gray;
+  text-decoration: line-through;
+  font-size: 18px;
+}
+
+.normal-price-long {
+  color: black;
+  font-size: 25px;
+  font-weight: bold;
+}
+   
+.card-name-category-long {
+    display: flex;
+    align-items: center;  
+    gap: 10px;  
+}
+  
+ 
+
+  @media (max-width: 950px) {
+    .card-long {
+        flex-direction: row; /* Mantiene immagine a sinistra */
+        text-align: left; /* Testo allineato a sinistra */
+        padding-right: 10px;
+        padding-left: 5px;
+     }
+
+    
+
+    .card-info-long {
+        margin-left: 10px; /* Aggiunge un po' di spazio rispetto all'immagine */
+    }
+
+    .card-name-long {
+        font-size: 18px; /* Riduce la dimensione del titolo */
+    }
+
+    .card-detail-long {
+        font-size: 14px; /* Riduce la dimensione del dettaglio */
+ 
+    }
+
+    .current-price-long {
+      font-size: 23px;
+    }
+    
+    .original-price-long {
+      font-size: 16px;
+    }
+    
+    .normal-price-long {
+      font-size: 23px;       
+    }
+      
+
+  
+}
+@media (max-width: 600px) {
+  .card-name-category-long{
+    display: inline;
+  }
+
+  .card-image-long {
+    margin-right: 4px; /* Spazio tra immagine e informazioni */ 
+    max-width: 100px;
+    max-height: 100px;
+  }
+
+  .current-price-long {
+    font-size: 21px;
+  }
+  
+  .original-price-long {
+    font-size: 15px;
+  }
+  
+  .normal-price-long {
+    font-size: 21px;       
+  }
+}
+
+@media (max-width: 400px) {
+     
+    .card-image-long {
+      margin-right: 4px; /* Spazio tra immagine e informazioni */ 
+    }
+    
+    .card-info-long {
+        margin-left: 4px; /* Aggiunge un po' di spazio rispetto all'immagine */
+    }
+
+    .card-name-long {
+        font-size: 15px; /* Riduce la dimensione del titolo */
+    }
+
+    .card-detail-long {
+        font-size: 10px; /* Riduce la dimensione del dettaglio */
+
+    }
+
+    .current-price-long {
+      font-size: 17px;
+    }
+    
+    .original-price-long {
+      font-size: 13px;
+    }
+    
+    .normal-price-long {
+      font-size: 17px;       
+    }
+
+}
+
+
