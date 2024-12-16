@@ -6,21 +6,46 @@
     font-weight: bold;
 }                                da sistemare quando si aggiunge il title */
 
-.product-header{
+.product-header {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-bottom: 2%;
 }
 
-.searchBar{
+.searchBar {
     display: flex;
     justify-content: center;
     width: 20%;
     height: 40px;
 }
 
-.container-product{
+.container-product {
     width: 100%;
     justify-content: center;
 }
+
+@media (max-width: 480px) {
+    .searchBar {
+        width: 50%;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    .searchBar {
+        width: 40%;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .searchBar {
+        width: 30%;
+    }
+}
+
+@media (min-width: 1025px) and (max-width: 1200px) {
+    .searchBar {
+        width: 20%;
+    }
+}
+
