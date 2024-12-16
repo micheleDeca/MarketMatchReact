@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './NavBar.css';
 import navLogo from "../../assets/logo.png";
 import { useUserContext } from '../../Context/UserContext';
@@ -22,53 +22,72 @@ import { Link, useLocation } from 'react-router-dom';
  */
 
 const NavBar = () => {
-    // Stato per gestire l'apertura/chiusura della sidebar
+    // Stato per controllare l'apertura della sidebar
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-    const [cartItems, setCartItems] = useState(5);  // Esempio di stato per il numero di articoli nel carrello
-    const { userType } = useUserContext();
-    const [navColor, setNavColor] = useState("");
+    const [cartItems, setCartItems] = useState(5);
+    const { userType } = useUserContext();   // Contesto dell'utente, determina userType
+    const [navColor, setNavColor] = useState("");    // Stato per il colore dinamico della navbar
     const location = useLocation();
-
-    // Funzione per toggle della sidebar
+    const [isStyleActive, setIsStyleActive] = useState(false); // Stato per applicare uno stile speciale alla navbar nella home
+    1
+    const sidebarRef = useRef(null); // Riferimento per la sidebar, usato per controllare i click esterni
     const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
 
-    // Funzione per determinare se mostrare un link o una funzione basata sul tipo di utente
-    const isVisibleForUserType = (types) => types.includes(userType);
-    const [isStyleActive, setIsStyleActive] = useState(false);
+    // Funzione che chiude la sidebar se si clicca fuori da essa
+    const handleClickOutside = (event) => {
+        if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+            setIsSidebarOpen(false);
+        }
+    };
 
+    // Aggiunge/rimuove l'event listener per il click esterno quando la sidebar è aperta
+    useEffect(() => {
+        if (isSidebarOpen) {
+            document.addEventListener("mousedown", handleClickOutside);
+        } else {
+            document.removeEventListener("mousedown", handleClickOutside);
+        }
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, [isSidebarOpen]);
+
+    // Imposta il colore della navbar dinamicamente in base alla pagina corrente
     useEffect(() => {
         if (location.pathname === "/") {
             setNavColor("white");
             setIsStyleActive(true);
         } else {
-            setNavColor(""); // Resetta il colore per altre pagine
+            setNavColor("");
             setIsStyleActive(false);
         }
-    }, [location.pathname]); // Ascolta i cambiamenti di location.pathname
+    }, [location.pathname]);
 
+    // Funzione helper per controllare la visibilità dei link in base al tipo di utente
+    const isVisibleForUserType = (types) => types.includes(userType);
+
+    // Stili dinamici applicati alla navbar
     const styles = {
         nav: {
-          ...(isStyleActive && {
-            position: "absolute",
-            top: 0,
-            left: 0,
-          }),
+            ...(isStyleActive && {
+                position: "absolute",
+                top: 0,
+                left: 0,
+            }),
         },
-      };
+    };
 
     return (
         <nav className="flex-div"
             style={styles.nav}>
             <div className="nav-left-wrapper flex-div">
                 <div className="nav-left-logo flex-div">
-                    <button id="buttonSlideBar" className="sidebar-toggle" onClick={toggleSidebar}>☰</button>
-                    {location.pathname === "/" ? (
+                    <button id="buttonSlideBar" className="sidebar-toggle" onClick={toggleSidebar} style={{ color: navColor }}>☰</button>
+                    <span className="navLogo"> {location.pathname === "/" ? (
                         <img className="logo" src={navLogo} alt="Logo" />
                     ) : (
                         <Link to="/">
                             <img className="logo" src={navLogo} alt="Logo" />
                         </Link>
-                    )}                </div>
+                    )}   </span>             </div>
                 <div className="nav-left flex-div">
                     {isVisibleForUserType(["NoAccesso", "ConA", "AmmA", "NegA"]) && <Link to="/prodotti" id="prodottiNav" style={{ color: navColor }} >Prodotti</Link>}
                     {isVisibleForUserType(["ConA", "AmmA"]) && <a href="#negozi" id="negoziNav" style={{ color: navColor }}>Negozi</a>}
@@ -88,7 +107,7 @@ const NavBar = () => {
                     {isVisibleForUserType(["ConA"]) && <a href="#carrello" id="carrelloNav" style={{ color: navColor }} >
                         Carrello
                         {cartItems > 0 && (
-                            <span className="cart-quantity" style={{ color: navColor }}>({cartItems})</span>
+                            <span hidden className="cart-quantity" style={{ color: navColor }}>({cartItems})</span>
                         )}
                     </a>}
                 </div>
@@ -96,15 +115,15 @@ const NavBar = () => {
 
             {/* Sidebar - visibile solo se isSidebarOpen è true */}
             {isSidebarOpen && (
-                <div className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
+                <div ref={sidebarRef} className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
                     <button className="close-sidebar" onClick={toggleSidebar}>✖</button>
-                    {isVisibleForUserType(["NoAccesso", "ConA", "AmmA", "NegA"]) && <a href="#prodotti" id="prodottiSlide">Prodotti</a>}
-                    {isVisibleForUserType(["ConA", "AmmA"]) && <a href="#negozi" id="negoziSlide">Negozi</a>}
-                    {isVisibleForUserType(["NegA"]) && <a href="#negozio" id="negozioSlide">Negozio</a>}
-                    {isVisibleForUserType(["ConA", "AmmA"]) && <a href="#ricette" id="ricetteSlide">Ricette</a>}
-                    {isVisibleForUserType(["NoAccesso", "ConA", "AmmA", "NegA"]) && <a href="#chiSiamo" id="chiSiamoNSlide">Chi Siamo</a>}
-                    {isVisibleForUserType(["ConA", "AmmA", "NegA"]) && <Link to="/prenotazioni" id="prenotazioniSlide">Prenotazioni</Link>}
-
+                    {isVisibleForUserType(["NoAccesso", "ConA", "AmmA", "NegA"]) && <a href="#prodotti">Prodotti</a>}
+                    {isVisibleForUserType(["ConA", "AmmA"]) && <a href="#negozi">Negozi</a>}
+                    {isVisibleForUserType(["NegA"]) && <a href="#negozio">Negozio</a>}
+                    {isVisibleForUserType(["ConA", "AmmA"]) && <a href="#ricette">Ricette</a>}
+                    {isVisibleForUserType(["NoAccesso", "ConA", "AmmA", "NegA"]) && <a href="#chiSiamo">Chi Siamo</a>}
+                    {isVisibleForUserType(["ConA", "AmmA", "NegA"]) && <Link to="/prenotazioni">Prenotazioni</Link>}
+                    {isVisibleForUserType(["ConA", "NegA"]) && <a href="#account" id="accountNav" style={{ color: navColor }}>Account</a>}
                 </div>
             )}
         </nav>

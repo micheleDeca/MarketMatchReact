@@ -107,6 +107,7 @@ a:hover {
     #prodottiNav,
     #negoziNav,
     #ricetteNav,
+    #accountNav,
     #chiSiamoNav {
         display: none;
     }
@@ -142,8 +143,8 @@ a:hover {
     /* Mostra il bottone per aprire la sidebar */
     .sidebar-toggle {
         display: block;
-        background-color: #333;
-        color: white;
+        background-color: transparent;
+        color: rgb(17, 17, 17);
         font-size: 25px;
         border: none;
         padding: 10px;
@@ -164,5 +165,8 @@ a:hover {
     #buttonSlideBar {
         display: none;
     }
+
+     
+     
 }
 
