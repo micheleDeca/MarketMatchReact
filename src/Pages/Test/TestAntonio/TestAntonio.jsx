@@ -25,9 +25,7 @@ const TestAntonio = () => {
         first="tutto"
         second="accettato"
         third="rifiutato"
-        fourth="da&nbsp;ritirare"
-        fifth="ritirato"
-        sixth="scaduto"
+        fourth="da ritirare"
       />
     <p>&nbsp;</p>
       {/*

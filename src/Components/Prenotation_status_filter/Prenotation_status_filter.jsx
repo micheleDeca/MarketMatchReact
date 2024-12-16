@@ -25,12 +25,12 @@ function PrenStatusFilter(props) {
     <>
       <select className="SelectFilter">
         <option className="option1">{props.first}</option>
-        <option>{props.second}</option>
-        <option>{props.third}</option>
-        <option>{props.fourth}</option>
-        <option>{props.fifth}</option>
-        <option>{props.sixth}</option>
-        <option>{props.seventh}</option>
+        {props.second && <option>{props.second}</option>}
+        {props.third && <option>{props.third}</option>}
+        {props.fourth && <option>{props.fourth}</option>}
+        {props.fifth && <option>{props.fifth}</option>}
+        {props.sixth && <option>{props.sixth}</option>}
+        {props.seventh && <option>{props.seventh}</option>}
       </select>
     </>
   );
