@@ -13,7 +13,6 @@ function SearchBar() {
   return (
     <>
       <div className="SearchBarBox">
-        <img src={MenuIcon} alt="menu" className="SearchBarImg"/>
         <input type="text" className="SearchBarInput" placeholder="Cerca..."/>
         <img src={SearchIcon} alt="search" className="SearchBarImg"/>
       </div>
