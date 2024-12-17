@@ -5,6 +5,7 @@ import "./TestAntonio.css";
 //import SearchBar from "../../../Components/SearchBar/SearchBar";
 //import PrenotationSearch from "../../../Components/PrenotationSearch/PrenotationSearch";
 import GreenPoints from "../../../Components/GreenPoints/GreenPoints";
+import CO2 from "../../../Components/C02/CO2";
 //import ZigZag from "../../../Components/zig-zag/zig-zag";
 //import Orari from "../../../Components/orari_negozio/orari_negozio";
 
@@ -57,7 +58,9 @@ const TestAntonio = () => {
         Prezzo="prezzo prodotto"
       />
       */}
-      <GreenPoints range={1080} />
+      <GreenPoints points={1080} />
+      <p>try</p>
+      <CO2 points={1080} />
     </div>
   );
 };
