@@ -96,29 +96,32 @@ const ReservationLong = (props) => {
                 }}
             />
 
-            <div className="reservation-info-long">
-                <div className="reservation-name-date-long">
-                    <span className="reservation-name-long">{props.id}</span>
-                    <span className="reservation-a-long">-</span>
-                    <span className="reservation-date-long">{props.reservationDate}</span>
+            <Link to={`/reservation/${props.id}`} className="reservation-link">
+                <div className="reservation-info-long">
+                    <div className="reservation-name-date-long">
+                        <span className="reservation-name-long">#{props.id}</span>
+                        <span className="reservation-a-long">-</span>
+                        <span className="reservation-date-long">{props.reservationDate}</span>
+                    </div>
+                    <div className="reservation-state-date-long">
+                        <span className="reservation-state-long">{text}</span>
+                        <span className="reservation-date-state-long" style={{ color: colorDate }}>
+                            {props.infoDate}
+                        </span>
+                    </div>
+                    <div className="reservation-bigInfo-long">
+                        {isVisibleForUserType(["AmmA", "NegA"]) && <span className="reservation-bigInfo-uno-long">Consumatore: {props.customerId}</span>}
+                        {isVisibleForUserType(["ConA", "AmmA"]) && <span className="reservation-bigInfo-due-long">Negozio: {props.shopId}</span>}
+                    </div>
                 </div>
-                <div className="reservation-state-date-long">
-                    <span className="reservation-state-long">{text}</span>
-                    <span className="reservation-date-state-long" style={{ color: colorDate }}>
-                        {props.infoDate}
-                    </span>
-                </div>
-                <div className="reservation-bigInfo-long">
-                    {isVisibleForUserType(["AmmA", "NegA"]) && <span className="reservation-bigInfo-uno-long">Consumatore: {props.customerId}</span>}
-                    {isVisibleForUserType(["ConA", "AmmA"]) && <span className="reservation-bigInfo-due-long">Negozio: {props.shopId}</span>}
-                </div>
-            </div>
 
-            <span className="reservation-arrow">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12.6 12L8 7.4L9.4 6L15.4 12L9.4 18L8 16.6L12.6 12Z" fill="#1D1B20" />
-                </svg>
-            </span>
+                <span className="reservation-arrow">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12.6 12L8 7.4L9.4 6L15.4 12L9.4 18L8 16.6L12.6 12Z" fill="#1D1B20" />
+                    </svg>
+                </span>
+            </Link>
+
         </div>
     );
 };

@@ -8,16 +8,16 @@ const CardContainer = (props) => {
 
     return (
         <div className="container-product">
-            {props.products.map((product) => (
+            {props.card.map((card) => (
                 <Card
-                    key={product.id}
+                    key={card.id}
                     straight={isMobile ? "false" : "false"}
-                    name={product.name}
-                    detail={product.detail}
-                    currentPrice={product.currentPrice}
-                    originalPrice={product.originalPrice}
-                    image={product.image}
-                    button={"Prenota"}
+                    name={card.name}
+                    detail={card.detail}
+                    currentPrice={card.currentPrice}
+                    originalPrice={card.originalPrice}
+                    image={card.image}
+                    button={props.button}
 
                 />
             ))}

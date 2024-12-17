@@ -43,6 +43,17 @@
     font-size: 15px;
 }
 
+.reservation-state-long{
+    font-weight: 800;  
+    font-size: 15px;
+}
+
+.reservation-date-state-long{
+    font-weight: 500;  
+    font-size: 15px;
+}
+
+
 .reservation-state-date-long {
     display: flex;
     align-items: center; /* Allinea verticalmente al centro */    
@@ -95,4 +106,29 @@
         transform: scale(1);
         opacity: 1;
     }
+}
+
+
+.reservation-link {
+    color: inherit; /* Inerita il colore del testo */
+    display: flex; /* Assicura che il contenuto si allinei correttamente */
+    justify-content: space-between;
+    align-items: center;
+    width: 100%; /* Occupa l'intera larghezza */
+}
+
+.reservation-link:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.05); /* Aggiunge un effetto hover */
+}
+
+.reservation-info-long {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    margin-left: 10px;
+}
+
+.reservation-arrow {
+    margin-right: 10px; /* Allinea l'icona freccia */
 }

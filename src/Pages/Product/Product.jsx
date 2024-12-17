@@ -55,7 +55,7 @@ const Product = () => {
             </div>
             <div className="content-container">
                 <div className="container-product">
-                    <ProductContainer products={products} />
+                    <ProductContainer card={products} button={"Prenota"}/>
                 </div>
                 <div className="pagination-container">
                     <Pagination
