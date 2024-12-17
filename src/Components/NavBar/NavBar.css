@@ -144,7 +144,7 @@ a:hover {
     .sidebar-toggle {
         display: block;
         background-color: transparent;
-        color: rgb(17, 17, 17);
+        color: rgb(0, 0, 0);
         font-size: 25px;
         border: none;
         padding: 10px;
