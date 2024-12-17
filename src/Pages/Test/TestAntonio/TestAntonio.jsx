@@ -1,12 +1,14 @@
 import React from "react";
 import "./TestAntonio.css";
+//import RecipesInformation from "../../../Components/RecipesInformation/RecipesInformation";
+import Ingredients from "../../../Components/Ingredients/Ingredients";
 //import ShopWindow from "../../../Components/shop_window/shop_window";
 //import PrenStatusFilter from "../../../Components/Prenotation_status_filter/Prenotation_status_filter";
 //import SearchBar from "../../../Components/SearchBar/SearchBar";
 //import PrenotationSearch from "../../../Components/PrenotationSearch/PrenotationSearch";
-import GreenPoints from "../../../Components/GreenPoints/GreenPoints";
-import CO2 from "../../../Components/C02/CO2";
-import GreenPointsCO2 from "../../../Components/GreenPointsCO2/GreenPointsCO2.jsx";
+//import GreenPoints from "../../../Components/GreenPoints/GreenPoints";
+//import CO2 from "../../../Components/C02/CO2";
+//import GreenPointsCO2 from "../../../Components/GreenPointsCO2/GreenPointsCO2.jsx";
 //import ZigZag from "../../../Components/zig-zag/zig-zag";
 //import Orari from "../../../Components/orari_negozio/orari_negozio";
 
@@ -59,12 +61,20 @@ const TestAntonio = () => {
         Prezzo="prezzo prodotto"
       />
       */}
-        {/*}
+      {/*}
       <GreenPoints points={1080} />
       <p>try</p>
       <CO2 points={1080} />
       */}
+      {/*
         <GreenPointsCO2 points={1080}/>
+      */}
+      {/*
+      <RecipesInformation costo="3$" difficolta="alta" cottura="Al sangue" preparazione="A Cazzo" />
+      */}
+      <Ingredients
+        ingredienti="gfjhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhd"
+      />
     </div>
   );
 };

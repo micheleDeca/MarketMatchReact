@@ -16,3 +16,16 @@
   transform: scale(0.97);
 }
 
+@media (orientation: portrait) and (max-width: 480px) {
+  .OrangeButton {
+    aspect-ratio: 5/1;
+  }
+}
+
+@media (orientation: landscape) and (max-width: 950px) {
+  .OrangeButton {
+    height: 30px;
+    font-size: 75%;
+  }
+}
+
