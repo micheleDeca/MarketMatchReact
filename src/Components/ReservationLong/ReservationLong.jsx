@@ -96,7 +96,7 @@ const ReservationLong = (props) => {
                 }}
             />
 
-            <Link to={`/reservation/${props.id}`} className="reservation-link">
+            <Link to={`/prenotazione/${props.id}`} className="reservation-link">
                 <div className="reservation-info-long">
                     <div className="reservation-name-date-long">
                         <span className="reservation-name-long">#{props.id}</span>

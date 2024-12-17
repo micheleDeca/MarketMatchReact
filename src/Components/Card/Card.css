@@ -1,17 +1,22 @@
 .card {
-  width: calc(20% - 50px); /* Ogni card occupa il 30% dello spazio meno il margine */
-  display: flex; /* Posiziona immagine e informazioni fianco a fianco */
-  align-items: center; /* Centra verticalmente */
+  width: calc(20% - 50px);
+  /* Ogni card occupa il 30% dello spazio meno il margine */
+  display: flex;
+  /* Posiziona immagine e informazioni fianco a fianco */
+  align-items: center;
+  /* Centra verticalmente */
   border-radius: 8px;
   font-family: "Roboto", serif;
   padding-bottom: 25px;
   margin-right: 5px;
   flex-direction: row;
-  gap: 20px; /* Spaziatura uniforme tra le card */
-  min-height: 150px; /* Altezza minima per evitare disallineamenti */
+  gap: 20px;
+  /* Spaziatura uniforme tra le card */
+  min-height: 150px;
+  /* Altezza minima per evitare disallineamenti */
   min-width: 350px;
   margin-bottom: 10px;
- 
+
 
 }
 
@@ -19,18 +24,21 @@
 .card-image {
   width: 150px;
   height: 150px;
-  object-fit: contain; /* Taglia immagine mantenendo proporzioni */
-  border-radius: 15px; /* Angoli arrotondati */
+  object-fit: contain;
+  /* Taglia immagine mantenendo proporzioni */
+  border-radius: 15px;
+  /* Angoli arrotondati */
   padding: 5px;
   background-color: #e0e0e0a1;
   justify-content: center;
   align-items: center;
-  background-image: url('https://via.placeholder.com/100'); /* Sostituisci con il percorso dell'immagine */
+  background-image: url('https://via.placeholder.com/100');
+  /* Sostituisci con il percorso dell'immagine */
   background-size: cover;
   background-position: center;
-} 
+}
 
- 
+
 .card-info {
   max-width: 150px;
   min-width: 130px;
@@ -47,13 +55,13 @@
 }
 
 .card-detail {
-  font-family: "Roboto", serif;
   font-size: 18px;
   color: #555;
   margin-bottom: 5px;
-  max-width: 150px;  
+  max-width: 150px;
   display: -webkit-box;
-  -webkit-line-clamp: 2; /* Limita a due righe */
+  -webkit-line-clamp: 2;
+  /* Limita a due righe */
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -109,27 +117,31 @@
   /* Testo bianco */
 }
 
-@media (max-width: 1700px){
+@media (max-width: 1700px) {
   .card {
-    width: calc(30% - 20px); /* Ogni card occupa il 30% dello spazio meno il margine */
+    width: calc(30% - 20px);
+    /* Ogni card occupa il 30% dello spazio meno il margine */
   }
 }
 
-@media (max-width: 1450px){
+@media (max-width: 1450px) {
   .card {
-    width: calc(35% - 20px); /* Ogni card occupa il 30% dello spazio meno il margine */
+    width: calc(30% - 20px);
+    /* Ogni card occupa il 30% dello spazio meno il margine */
   }
 }
 
-@media (max-width: 1100px){
+@media (max-width: 1100px) {
   .card {
-    width: calc(40% - 10px); /* Ogni card occupa il 30% dello spazio meno il margine */
+    width: calc(40% - 10px);
+    /* Ogni card occupa il 30% dello spazio meno il margine */
   }
 }
 
 @media (max-width: 950px) {
   .card {
-    width: calc(45% - 10px); /* Ogni card occupa il 30% dello spazio meno il margine */
+    width: calc(45% - 10px);
+    /* Ogni card occupa il 30% dello spazio meno il margine */
     align-items: stretch;
     padding-bottom: 15px;
     margin-left: 15px;
@@ -139,13 +151,13 @@
   .current-price-card {
     font-size: 23px;
   }
-  
+
   .original-price-card {
     font-size: 16px;
   }
-  
+
   .normal-price-card {
-    font-size: 23px;       
+    font-size: 23px;
   }
 
 
@@ -153,12 +165,43 @@
 
 @media (max-width: 768px) {
   .card {
-    width: calc(50% - 10px); 
-}
+    width: calc(50% - 10px);
+  }
+
+  .card-image {
+    width: 120px;
+    height: 120px;
+  }
 }
 
 @media (max-width: 480px) {
   .card {
-    width: calc(100% - 20px);  
-}
+    width: calc(100% - 20px);
+  }
+
+  .current-price-card {
+    font-size: 20px;
+  }
+
+  .original-price-card {
+    font-size: 14px;
+  }
+
+  .normal-price-card {
+    font-size: 20px;
+  }
+
+  .card-name {
+    font-size: 22px;
+  }
+
+  .card-detail {
+    font-size: 15px;
+  }
+
+  .card-info {
+    max-width: 130px;
+    min-width: 100px;
+  }
+
 }
