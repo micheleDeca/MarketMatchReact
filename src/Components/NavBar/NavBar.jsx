@@ -70,7 +70,9 @@ const NavBar = () => {
             ...(isStyleActive && {
                 position: "absolute",
                 top: 0,
-                left: 0,
+                left: 0,   
+                backdropFilter:  "brightness(80%)"
+
             }),
         },
     };
