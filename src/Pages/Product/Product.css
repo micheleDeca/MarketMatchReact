@@ -11,6 +11,7 @@
     flex-direction: column;
     align-items: center;
     padding-bottom: 2%;
+    gap: 10px;
 }
 
 .searchBar {
@@ -18,6 +19,12 @@
     justify-content: center;
     width: 20%;
     height: 40px;
+}
+
+.filterButton{
+    display: flex;
+    justify-content: center;
+    width: 20%;
 }
 
 .container-product {

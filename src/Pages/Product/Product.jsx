@@ -4,6 +4,7 @@ import './Product.css';
 import '../../ExternalContent/PaginationBar.css';
 import { Pagination } from 'react-pagination-bar';
 import SearchBar from '../../Components/SearchBar/SearchBar';
+import ButtonFilter from '../../Components/ButtonFilter/ButtonFilter';
 
 // Simula un database di prodotti
 const mockProducts = Array.from({ length: 200 }, (_, index) => {
@@ -51,6 +52,9 @@ const Product = () => {
             <div className="product-header">
                 <div className="searchBar">
                 <SearchBar />
+                </div>
+                <div className="filterButton">
+                <ButtonFilter />
                 </div>
             </div>
             <div className="content-container">

@@ -9,6 +9,8 @@ import PrenotationSearch from '../../../Components/PrenotationSearch/Prenotation
 import ReservationLong from '../../../Components/ReservationLong/ReservationLong'
 import ButtonSucessivo from '../../../Components/ButtonSucessivo/ButtonSucessivo'
 import ButtonPrecedente from '../../../Components/ButtonPrecedente/ButtonPrecedente'
+import ButtonFilter from '../../../Components/ButtonFilter/ButtonFilter'
+import FilterElement from '../../../Components/ButtonFilter/FilterPopUp/FilterElement/FiilterElement'
 
 
 const TestIsa = () => {
@@ -19,9 +21,9 @@ const TestIsa = () => {
      descrizione: "descrizione"
    }*/
 
-     function TextLabel(){
-
-     }
-}
+      return(
+        <FilterElement name="Bio" />
+      )
+  }
 
 export default TestIsa

@@ -71,7 +71,7 @@ const Prenotazioni = () => {
                 )}
 
                 {currentPage < (mockPrenotations.length / prenotationsPerPage) && (
-                    <ButtonSucessivo onclick={() => setCurrentPage(currentPage + 1)} />
+                    <ButtonSucessivo name="Successivo" onclick={() => setCurrentPage(currentPage + 1)} />
                 )}
             </div>
 
