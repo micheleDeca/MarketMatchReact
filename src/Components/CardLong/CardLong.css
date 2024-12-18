@@ -19,9 +19,11 @@
     border-radius: 15px; /* Angoli arrotondati */
     margin-right: 15px; /* Spazio tra immagine e informazioni */
     padding: 5px;
-    background-color: #e0e0e0a1;
+    background-color: #ffffff;
     max-width: 120px;
     max-height: 120px;
+    border: 1px solid rgba(0, 0, 0, 0.2); /* Micro bordo nero con opacità al 20% */
+
   }
 
   .card-info-long {

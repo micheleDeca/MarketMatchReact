@@ -31,16 +31,41 @@
 .nomeProdotto{
    font-size: large;
    font-weight: bold;
+   text-align: left;
+   width: 100%;
 }
 
 .descrizioneProdotto{
     font-size: large;
+    text-align: left;
+    width: 100%;
 }
 
-.Prezzo{
-    font-size: large;
+.prezzo-ShopWindow{
+    text-align: left;
+    width: 100%;
+
 }
 
+.prezzo-ShopWindow .current-price-card {
+    color: red;
+    font-size: xx-large;
+    font-weight: bold;
+    padding-right: 1%;
+  }
+  
+  .prezzo-ShopWindow .original-price-card {
+    color: gray;
+    text-decoration: line-through;
+    font-size: x-large;
+  }
+  
+  .prezzo-ShopWindow .normal-price-card {
+    color: black;
+    font-size: xx-large;
+    font-weight: bold;
+  }
+  
 @media (orientation: portrait){
     .ShopWindowBox{
         flex-direction: column;

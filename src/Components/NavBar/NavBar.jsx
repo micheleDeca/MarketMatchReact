@@ -70,13 +70,14 @@ const NavBar = () => {
             ...(isStyleActive && {
                 position: "absolute",
                 top: 0,
-                left: 0,   
-                backdropFilter:  "brightness(80%)"
-
+                left: 0,
+                backdropFilter: isSidebarOpen ? "" : "brightness(80%)",
             }),
         },
     };
+    
 
+  
     return (
         <nav className="flex-div"
             style={styles.nav}>
@@ -117,7 +118,7 @@ const NavBar = () => {
 
             {/* Sidebar - visibile solo se isSidebarOpen è true */}
             {isSidebarOpen && (
-                <div ref={sidebarRef} className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
+                <div ref={sidebarRef} className={`sidebar ${isSidebarOpen ? "open" : ""}`} >
                     <button className="close-sidebar" onClick={toggleSidebar}>✖</button>
                     {isVisibleForUserType(["NoAccesso", "ConA", "AmmA", "NegA"]) && <a href="#prodotti">Prodotti</a>}
                     {isVisibleForUserType(["ConA", "AmmA"]) && <a href="#negozi">Negozi</a>}

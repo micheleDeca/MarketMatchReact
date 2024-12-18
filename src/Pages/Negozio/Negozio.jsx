@@ -46,7 +46,6 @@ function Negozio(props) {
           Description="Una bottiglia riutilizzabile ed ecologica realizzata in acciaio inossidabile di alta qualità, progettata per mantenere le bevande calde per 12 ore e fredde per 24 ore. Leggera, resistente e priva di BPA, è ideale per l'uso quotidiano e le attività outdoor. Disponibile in vari colori."
           ImageDescription="immagine prodotto"
           Name="nome prodotto"
-          tipo="prodotto"
           Prezzo="prezzo prodotto"
           mode="neg"
         />

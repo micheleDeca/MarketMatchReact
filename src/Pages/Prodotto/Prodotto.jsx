@@ -17,7 +17,8 @@ function Prodotto(props) {
           ImageDescription="immagine prodotto"
           Name="nome prodotto"
           tipo="prodotto"
-          Prezzo="prezzo prodotto"
+          currentPrice="10.00€"
+          originalPrice="9.55€"
           mode="neg"
         />
         <span>&nbsp;</span>

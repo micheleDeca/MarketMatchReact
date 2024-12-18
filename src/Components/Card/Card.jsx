@@ -38,7 +38,7 @@ const Card = (props) => {
                 <p className="card-detail">{props.detail}</p>
                 <p className="price-container-card">{props.originalPrice ? (
                     <>
-                        <span className="current-price-card">{props.originalPrice}</span>
+                        <span className="current-price-card">{props.currentPrice}</span>
                         <span className="original-price-card">{props.originalPrice}</span>
                     </>
                 ) : (

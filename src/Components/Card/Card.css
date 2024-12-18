@@ -25,15 +25,12 @@
   width: 150px;
   height: 150px;
   object-fit: contain;
-  /* Taglia immagine mantenendo proporzioni */
   border-radius: 15px;
-  /* Angoli arrotondati */
   padding: 5px;
-  background-color: #e0e0e0a1;
+  background-color: #ffffff;
   justify-content: center;
   align-items: center;
-  background-image: url('https://via.placeholder.com/100');
-  /* Sostituisci con il percorso dell'immagine */
+  border: 1px solid rgba(0, 0, 0, 0.2); /* Micro bordo nero con opacità al 20% */
   background-size: cover;
   background-position: center;
 }
