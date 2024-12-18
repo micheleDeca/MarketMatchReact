@@ -12,14 +12,14 @@ import Button from "../Button/Button";
  * @returns {JSX.Element} A styled container with a customizable button.
  */
 
-function ZigZag({ children, pulsante }) {
+function ZigZag({ children, pulsante, onEdit }) {
   return (
     <>
       <div className="zigzagBox">
         {children}
         <div className="modifica">
           <span className="zigzagSpan"></span>
-          <span className="zigzagSpan2"><Button name={pulsante}/></span>
+          <span className="zigzagSpan2"><Button onEdit={onEdit} name={pulsante}/></span>
         </div>
       </div>
     </>

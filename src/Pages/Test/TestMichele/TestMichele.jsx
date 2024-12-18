@@ -1,424 +1,139 @@
-import React, { useState, useEffect } from "react";
-import './TestMichele.css'
+import { useEffect, useState } from 'react';
+import Popup from '../../../Components/Popup/Popup';
 
-const TestMichele = () => {
-  const [activeSection, setActiveSection] = useState("Profilo");
-  const [isMobileView, setIsMobileView] = useState(false);
-  const [showSidebar, setShowSidebar] = useState(true);
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    vat: "",
-  });
+import Orari from "../../../Components/orari_negozio/orari_negozio";
+import ProductLongList from "../../../Components/CardLongList/CardLongList";
+import ShopWindow from "../../../Components/shop_window/shop_window";
+import Stelle from "../../../Components/Stelle/Stelle";
+import "../../Negozio/Negozio.css";
 
-  // Gestione della vista mobile
-  useEffect(() => {
-    const handleResize = () => setIsMobileView(window.innerWidth <= 768);
-    window.addEventListener("resize", handleResize);
-    handleResize();
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+// Simula un database di prodotti
+const mockProducts = Array.from({ length: 4 }, (_, index) => {
+  const hasDiscount = Math.random() > 0.4; // 50% di probabilità di avere uno sconto
 
-  const handleSectionClick = (section) => {
-    setActiveSection(section);
-    if (isMobileView) setShowSidebar(false);
+  // Funzione per generare badge casuali
+  const generateBadges = () => {
+    const possibleBadges = [
+      { text: 'Bio', backgroundColor: '#4caf50' },
+      { text: 'Senza lattosio', backgroundColor: '#2196f3' },
+      { text: 'Vegan', backgroundColor: '#ff9800' },
+      { text: 'Senza glutine', backgroundColor: '#9c27b0' },
+    ];
+
+    // Numero casuale di badge (1-3)
+    const badgeCount = Math.floor(Math.random() * 3) + 1;
+
+    // Seleziona casualmente `badgeCount` badge unici
+    return possibleBadges.sort(() => 0.5 - Math.random()).slice(0, badgeCount);
   };
 
-  const goBackToSidebar = () => setShowSidebar(true);
+  return {
+    id: index + 1,
+    productName: `Prodotto ${index + 1}`,
+    detail: `Dettaglio del prodotto ${index + 1}`,
+    currentPrice: ((Math.random() * 100).toFixed(2) + "€"),
+    originalPrice: hasDiscount ? ((Math.random() * 100 + 100).toFixed(2) + "€") : null, // Solo se ha sconto
+    image: `https://via.placeholder.com/150?text=Prodotto+${index + 1}`,
+    badges: generateBadges(), // Aggiunge i badge generati
+  };
+});
 
-  // Gestione input e checkbox
-  const handleInputChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData({
-      ...formData,
-      [name]: type === "checkbox" ? checked : value,
+
+
+function TestMichele(props) {
+
+  const [negozioInfo, setNegozioInfo] = useState({
+    nome: "Nome Negozio",
+    foto: "url_della_foto.jpg",
+    descrizione: "Descrizione Negozio, Descrizione Negozio, Descrizione Negozio...",
+    categorie: ["Bio", "Senza lattosio"],
+    orari: [
+      { giorno: "Lunedì", orario: "09:00 - 13:00 / 15:30 - 19:30" },
+      { giorno: "Martedì", orario: "09:00 - 13:00 / 15:30 - 19:30" },
+      { giorno: "Mercoledì", orario: "09:00 - 13:00 / 15:30 - 19:30" },
+      { giorno: "Giovedì", orario: "09:00 - 13:00 / 15:30 - 19:30" },
+      { giorno: "Venerdì", orario: "09:00 - 13:00 / 15:30 - 19:30" },
+      { giorno: "Sabato", orario: "09:00 - 13:00 / Chiuso" },
+      { giorno: "Domenica", orario: "Chiuso" },
+    ],
+    posizione: {
+      regione: "Regione",
+      provincia: "Provincia",
+      cap: "CAP",
+      indirizzo: "Indirizzo - numero civico",
+    },
+    contatti: {
+      telefono: "Telefono",
+      mail: "Mail",
+    },
+    valutazione: 2,
+  });
+
+  const [popupState, setPopupState] = useState({
+    isOpen: false,
+    section: null,
+  });
+
+   // Funzione per aprire il popup e memorizzare la sezione cliccata
+   const handleEditClick = (section) => {
+    setPopupState({
+      isOpen: true,
+      section: section,
     });
   };
 
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Dati inviati:", formData);
-    alert("Form inviato con successo!");
+  // Funzione per chiudere il popup
+  const handleClosePopup = () => {
+    setPopupState({
+      isOpen: false,
+      section: null,
+    });
   };
-
-  const renderContent = () => {
-    if (activeSection === "Profilo") {
-      return (
-        <div className="content-box">
-          {isMobileView && !showSidebar && (
-            <button className="back-button" onClick={goBackToSidebar}>
-              &#8592; Indietro
-            </button>
-          )}
-          <h2>Impostazioni Profilo</h2>
-          <form onSubmit={handleSubmit}>
-            {/* Ragione Sociale e P.IVA */}
-            <div className="form-row">
-              <div className="form-group">
-                <label>Ragione sociale *</label>
-                <input
-                  type="text"
-                  name="companyName"
-                  placeholder="BioShop Tagine More"
-                  value={formData.companyName || ""}
-                  onChange={handleInputChange}
-                  disabled
-                />
-              </div>
-              <div className="form-group">
-                <label>P. IVA *</label>
-                <input
-                  type="text"
-                  name="vat"
-                  placeholder="123456789"
-                  value={formData.vat || ""}
-                  onChange={handleInputChange}
-                />
-              </div>
-            </div>
-  
-            {/* Cellulare e Informazioni Pagamento */}
-            <div className="form-row">
-              <div className="form-group">
-                <label>Cellulare *</label>
-                <input
-                  type="tel"
-                  name="phone"
-                  placeholder="+39 123 456 7894"
-                  value={formData.phone || ""}
-                  onChange={handleInputChange}
-                />
-              </div>
-              <div className="form-group">
-                <label>Informazioni Pagamento</label>
-                <input
-                  type="text"
-                  name="paymentInfo"
-                  placeholder="Carta, contanti e app"
-                  value={formData.paymentInfo || ""}
-                  onChange={handleInputChange}
-                />
-              </div>
-            </div>
-  
-            {/* Descrizione */}
-            <div className="form-row">
-              <div className="form-group">
-                <label>Descrizione *</label>
-                <input
-                  type="text"
-                  name="description"
-                  placeholder="Descrizione negozio, Descrizione negozio, Descrizione negozio"
-                  value={formData.description || ""}
-                  onChange={handleInputChange}
-                  disabled
-                />
-              </div>
-            </div>
-  
-            {/* Mail */}
-            <div className="form-row">
-              <div className="form-group">
-                <label>Mail *</label>
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="BioShop Tagine More"
-                  value={formData.email || ""}
-                  onChange={handleInputChange}
-                  disabled
-                />
-              </div>
-            </div>
-  
-            {/* Password e Conferma Password */}
-            <div className="form-row">
-              <div className="form-group">
-                <label>Password *</label>
-                <input
-                  type="password"
-                  name="password"
-                  placeholder="Inserire password.."
-                  value={formData.password || ""}
-                  onChange={handleInputChange}
-                />
-              </div>
-  
-              <div className="form-group">
-                <label>Conferma Password *</label>
-                <input
-                  type="password"
-                  name="confirmPassword"
-                  placeholder="Conferma password.."
-                  value={formData.confirmPassword || ""}
-                  onChange={handleInputChange}
-                />
-              </div>
-            </div>
-  
-            {/* Pulsante di aggiornamento */}
-            <div className="form-row">
-              <button type="submit" className="update-button">
-                Aggiorna informazioni
-              </button>
-            </div>
-          </form>
-        </div>
-      );
-    } else if (activeSection === "Negozio") {
-      return (
-        <div className="content-box">
-          {isMobileView && !showSidebar && (
-            <button className="back-button" onClick={goBackToSidebar}>
-              &#8592; Indietro
-            </button>
-          )}
-          <h2>Impostazioni Negozio</h2>
-          <form onSubmit={handleSubmit}>
-            {/* Regione e Provincia */}
-            <div className="form-row">
-              <div className="form-group">
-                <label>Regione *</label>
-                <input
-                  type="text"
-                  name="region"
-                  placeholder="Regione"
-                  value={formData.region || ""}
-                  onChange={handleInputChange}
-                  disabled
-                />
-                <small>Questa informazione si modifica dalla pagina Negozio</small>
-              </div>
-              <div className="form-group">
-                <label>Provincia *</label>
-                <input
-                  type="text"
-                  name="province"
-                  placeholder="Provincia"
-                  value={formData.province || ""}
-                  onChange={handleInputChange}
-                  disabled
-                />
-                <small>Questa informazione si modifica dalla pagina Negozio</small>
-              </div>
-            </div>
-            
-            {/* CAP e Città */}
-            <div className="form-row">
-              <div className="form-group">
-                <label>CAP *</label>
-                <input
-                  type="text"
-                  name="cap"
-                  placeholder="CAP"
-                  value={formData.cap || ""}
-                  onChange={handleInputChange}
-                  disabled
-                />
-                <small>Questa informazione si modifica dalla pagina Negozio</small>
-              </div>
-              <div className="form-group">
-                <label>Città *</label>
-                <input
-                  type="text"
-                  name="city"
-                  placeholder="Città"
-                  value={formData.city || ""}
-                  onChange={handleInputChange}
-                  disabled
-                />
-                <small>Questa informazione si modifica dalla pagina Negozio</small>
-              </div>
-            </div>
-  
-            {/* Indirizzo */}
-            <div className="form-row">
-              <div className="form-group">
-                <label>Indirizzo *</label>
-                <input
-                  type="text"
-                  name="address"
-                  placeholder="Indirizzo"
-                  value={formData.address || ""}
-                  onChange={handleInputChange}
-                  disabled
-                />
-                <small>Questa informazione si modifica dalla pagina Negozio</small>
-              </div>
-            </div>
-  
-            {/* Latitudine e Longitudine */}
-            <div className="form-row">
-              <div className="form-group">
-                <label>Latitudine</label>
-                <input
-                  type="text"
-                  name="latitude"
-                  placeholder="Latitudine"
-                  value={formData.latitude || ""}
-                  onChange={handleInputChange}
-                />
-              </div>
-              <div className="form-group">
-                <label>Longitudine</label>
-                <input
-                  type="text"
-                  name="longitude"
-                  placeholder="Longitudine"
-                  value={formData.longitude || ""}
-                  onChange={handleInputChange}
-                />
-              </div>
-            </div>
-  
-            {/* Pulsante di aggiornamento */}
-            <div className="form-row">
-              <button type="submit" className="update-button">
-                Aggiorna informazioni
-              </button>
-            </div>
-          </form>
-        </div>
-      );
-    } else if (activeSection === "Consensi") {
-      return (
-        <div className="content-box">
-          {isMobileView && !showSidebar && (
-            <button className="back-button" onClick={goBackToSidebar}>
-              &#8592; Indietro
-            </button>
-          )}
-          <h2>Preferenze e Consensi</h2>
-          <form onSubmit={handleSubmit}>
-            <div className="form-row">
-              <div className="form-group">
-                <label>Preferenza Sconti</label>
-                <label className="switch">
-                  <input
-                    type="checkbox"
-                    name="preferenzaSconti"
-                    checked={formData.preferenzaSconti}
-                    onChange={handleInputChange}
-                  />
-                  <span className="slider"></span>
-                </label>
-              </div>
-            </div>
-            <div className="form-row">
-              <div className="form-group">
-                <label>Preferenza Prenotazioni</label>
-                <label className="switch">
-                  <input
-                    type="checkbox"
-                    name="preferenzaPrenotazioni"
-                    checked={formData.preferenzaPrenotazioni}
-                    onChange={handleInputChange}
-                  />
-                  <span className="slider"></span>
-                </label>
-              </div>
-            </div>
-            <div className="form-row">
-              <div className="form-group">
-                <label>Consenso Privacy Policy</label>
-                <label className="switch">
-                  <input
-                    type="checkbox"
-                    name="consensoPrivacy"
-                    checked={formData.consensoPrivacy}
-                    onChange={handleInputChange}
-                  />
-                  <span className="slider"></span>
-                </label>
-              </div>
-            </div>
-            <div className="form-row">
-              <div className="form-group">
-                <label>Consenso Profilazione</label>
-                <label className="switch">
-                  <input
-                    type="checkbox"
-                    name="consensoProfilazione"
-                    checked={formData.consensoProfilazione}
-                    onChange={handleInputChange}
-                  />
-                  <span className="slider"></span>
-                </label>
-              </div>
-            </div>
-            <div className="form-row">
-              <div className="form-group">
-                <label>Consenso Newsletter</label>
-                <label className="switch">
-                  <input
-                    type="checkbox"
-                    name="consensoNewsletter"
-                    checked={formData.consensoNewsletter}
-                    onChange={handleInputChange}
-                  />
-                  <span className="slider"></span>
-                </label>
-              </div>
-            </div>
-            <div className="form-row">
-              <button type="submit" className="update-button">
-                Aggiorna Consensi
-              </button>
-            </div>
-          </form>
-        </div>
-      );
-    }
-  };
-  
-  
 
   return (
-    <div className="settings-container">
-      {(!isMobileView || showSidebar) && (
-        <div className="sidebar-option">
-          {/* Sezione icona + titolo */}
-          <div className="welcome">
-            <img
-              src="src\Pages\Test\TestMichele\sadsdasdas.png" /* Sostituisci con l'URL della tua icona */
-              alt="Logo Negozio"
-              className="shop-icon"
-            />
-            <div>
-              <h3>BioShop Tagine More</h3>
-              <p>Codice negozio: #26515</p>
-            </div>
-          </div>
+    <>
+      <div className="boxNegozio">
+        <Stelle starNumber={1} />
+        <h1>NEGOZIO FINTO</h1>
+        <span>&nbsp;</span>
+        <ShopWindow
+          Description={negozioInfo.descrizione}
+          ImageDescription="immagine prodotto"
+          Name={negozioInfo.nome}
+          mode="neg"
+          onEdit={handleEditClick}
+        />
+        <span>&nbsp;</span>
+        <Orari
+          mode="neg"
+          lunedi={negozioInfo.orari[0].orario}
+          martedi={negozioInfo.orari[1].orario}
+          mercoledi={negozioInfo.orari[2].orario}
+          giovedi={negozioInfo.orari[3].orario}
+          venerdi={negozioInfo.orari[4].orario}
+          sabato={negozioInfo.orari[5].orario}
+          domenica={negozioInfo.orari[6].orario}
+          posizione={negozioInfo.posizione.regione + negozioInfo.posizione.provincia + negozioInfo.posizione.cap + negozioInfo.posizione.indirizzo}
+          contatti={negozioInfo.contatti.telefono + negozioInfo.contatti.mail}
+        />
+        <span>&nbsp;</span>
+        <ProductLongList
+          title="Prodotti in vendita"
+          products={mockProducts}
 
-          {/* Sezioni cliccabili */}
-          <ul>
-            <li onClick={() => handleSectionClick("Profilo")}>
-              <span>Impostazioni Profilo</span>
-              <span className="arrow-icon">&gt;</span>
-            </li>
-            <div className="divider"></div>
-            <li onClick={() => handleSectionClick("Negozio")}>
-              <span>Impostazioni Negozio</span>
-              <span className="arrow-icon">&gt;</span>
-            </li>
-            <div className="divider"></div>
-            <li onClick={() => handleSectionClick("Abbonamento")}>
-              <span>Abbonamento</span>
-              <span className="arrow-icon">&gt;</span>
-            </li>
-            <div className="divider"></div>
-            <li onClick={() => handleSectionClick("Consensi")}>
-              <span>Preferenze e Consensi</span>
-              <span className="arrow-icon">&gt;</span>
-            </li>
-          </ul>
-        </div>
-      )}
-      {!showSidebar && renderContent()}
-      {!isMobileView && <div className="main-content">{renderContent()}</div>}
-    </div>
+        />
+      </div>
+      {popupState.isOpen && (
+                    <Popup
+                        importantText={popupState.section}
+                        subText={negozioInfo[popupState.section]}
+                        confirmText="ACCETTA"
+                        cancelText="Annulla"
+                        onClose={handleClosePopup}
+                    />
+                )}
+    </>
   );
-};
+}
 
-export default TestMichele
+export default TestMichele;

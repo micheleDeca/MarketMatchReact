@@ -11,7 +11,7 @@ import "./Button.css";
  */
 
 function Button(props) {
-  return <input type="button" value={props.name} className="OrangeButton"/>;
+  return <input type="button" value={props.name} className="OrangeButton"  onClick={props.onEdit}/>;
 }
 
 export default Button;

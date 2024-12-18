@@ -59,7 +59,7 @@ function ShopWindow(props) {
       <>
         <div className="ShopWindowBox">
           <div className="LeftShopWindow">
-            <ZigZag pulsante="Modifica Immagine">
+            <ZigZag pulsante="Modifica Immagine" onEdit={() => props.onEdit("immagine")}>
               <div className="ShopWindowBox">
                 <img
                   src=""
@@ -71,18 +71,18 @@ function ShopWindow(props) {
           </div>
           <div className="RightShopWindow">
             <div className="ShopWindowBox">
-              <ZigZag pulsante="Modifica Nome">
+              <ZigZag pulsante="Modifica Nome" onEdit={() => props.onEdit("nome")}>
                 <p className="nomeProdotto">{props.Name}</p>
               </ZigZag>
-              <ZigZag pulsante="Modifica Categorie">
+              <ZigZag pulsante="Modifica Categorie" onEdit={() => props.onEdit("categoria")}>
                 <BadgeContainer />
               </ZigZag>
             </div>
-            <ZigZag pulsante="Modifica Descrizione">
+            <ZigZag pulsante="Modifica Descrizione" onEdit={() => props.onEdit("descrizione")}>
               <p className="descrizioneProdotto">{props.Description}</p>
             </ZigZag>
             {props.tipo == "prodotto" && (
-              <ZigZag pulsante="Modifica Prezzo">
+              <ZigZag pulsante="Modifica Prezzo" onEdit={() => props.onEdit("prezzo")}>
                 <p className="prezzo-ShopWindow">
                   {props.originalPrice ? (
                     <>

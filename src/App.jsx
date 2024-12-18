@@ -15,6 +15,7 @@ import Product from './Pages/Product/Product';
 import Negozio from './Pages/Negozio/Negozio';
 import Prodotto from './Pages/Prodotto/Prodotto';
 import Reservations from './Pages/Reservations/Reservations';
+import Settings from './Pages/Settings/Settings';
 
 
 /*
@@ -51,6 +52,7 @@ const App = () => {
         <Route path='/isabella' element={<TestIsa /> } />
         <Route path='/negozio' element={<Negozio/>}/>
         <Route path='/prodotto' element={<Prodotto/>}/>
+        <Route path='/impostazioni' element={<Settings /> }/>
         <Route path='*' element={<PageNotFound /> }/>
       </Routes>
       <Footer />
