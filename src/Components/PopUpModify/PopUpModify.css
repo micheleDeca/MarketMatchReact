@@ -1,0 +1,37 @@
+/* The popup form - hidden by default */
+.form-popup {
+  background-color: #f5f5f5;
+  display: none;
+  position: fixed;
+  margin-left: 2%;
+  margin-right: 2%;
+  border-radius: 20px;
+  z-index: 1000;
+  width: 96%;
+  height: 100vh;
+}
+
+.input{
+  width: 50%;
+}
+
+.form-container {
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 2%
+}
+
+.orari{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2%;
+}
+
+.popUpImg{
+  width: 25px;
+}
+

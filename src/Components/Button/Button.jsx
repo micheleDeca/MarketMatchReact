@@ -11,7 +11,14 @@ import "./Button.css";
  */
 
 function Button(props) {
-  return <input type="button" value={props.name} className="OrangeButton"  onClick={props.onEdit}/>;
+
+  const setModify = (name) => {
+    props.modify(name);
+    document.getElementById("myForm").style.display = "block";
+  };
+
+  return <input type="button" value={props.name} className="OrangeButton" onClick={() => setModify(props.name)} />;
 }
 
 export default Button;
+

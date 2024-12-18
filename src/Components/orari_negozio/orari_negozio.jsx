@@ -25,7 +25,7 @@ function Orari(props) {
     return (
       <>
         <div className="OrariNegozioBox">
-          <ZigZag pulsante="Modifica orari">
+          <ZigZag pulsante="Modifica orari" modify={props.modify}>
             <div className="OrariNegozioContainer">
               <div className="OrariNegozioRowTitle">
                 <p className="OrariNegozioTitle">Orari Ritiro</p>
@@ -68,7 +68,7 @@ function Orari(props) {
           </ZigZag>
           <span className="space"></span>
           <span className="VerticalSpace"></span>
-          <ZigZag pulsante="Modifica Informazioni">
+          <ZigZag pulsante="Modifica Informazioni" modify={props.modify}>
             <div className="OrariNegozioContainer">
               <div className="OrariNegozioRowTitle">
                 <p className="OrariNegozioTitle">Informazioni Negozio</p>

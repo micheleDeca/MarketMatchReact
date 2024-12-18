@@ -3,6 +3,8 @@ import ProductLongList from "../../Components/CardLongList/CardLongList";
 import ShopWindow from "../../Components/shop_window/shop_window";
 import Stelle from "../../Components/Stelle/Stelle";
 import "./Negozio.css";
+import PopUpModify from "../../Components/PopUpModify/PopUpModify";
+import { useEffect, useState} from 'react';
 
 // Simula un database di prodotti
 const mockProducts = Array.from({ length: 4 }, (_, index) => {
@@ -11,10 +13,10 @@ const mockProducts = Array.from({ length: 4 }, (_, index) => {
   // Funzione per generare badge casuali
   const generateBadges = () => {
     const possibleBadges = [
-      { text: 'Bio', backgroundColor: '#4caf50' },
-      { text: 'Senza lattosio', backgroundColor: '#2196f3' },
-      { text: 'Vegan', backgroundColor: '#ff9800' },
-      { text: 'Senza glutine', backgroundColor: '#9c27b0' },
+      { text: "Bio", backgroundColor: "#4caf50" },
+      { text: "Senza lattosio", backgroundColor: "#2196f3" },
+      { text: "Vegan", backgroundColor: "#ff9800" },
+      { text: "Senza glutine", backgroundColor: "#9c27b0" },
     ];
 
     // Numero casuale di badge (1-3)
@@ -28,46 +30,81 @@ const mockProducts = Array.from({ length: 4 }, (_, index) => {
     id: index + 1,
     productName: `Prodotto ${index + 1}`,
     detail: `Dettaglio del prodotto ${index + 1}`,
-    currentPrice: ((Math.random() * 100).toFixed(2)+"€"),
-    originalPrice: hasDiscount ? ((Math.random() * 100 + 100).toFixed(2)+"€") : null, // Solo se ha sconto
+    currentPrice: (Math.random() * 100).toFixed(2) + "€",
+    originalPrice: hasDiscount
+      ? (Math.random() * 100 + 100).toFixed(2) + "€"
+      : null, // Solo se ha sconto
     image: `https://via.placeholder.com/150?text=Prodotto+${index + 1}`,
     badges: generateBadges(), // Aggiunge i badge generati
   };
 });
 
-
 function Negozio(props) {
+
+  const [negozioInfo, setNegozioInfo] = useState({
+    nome: "Nome Negozio",
+    foto: "url_della_foto.jpg",
+    descrizione:
+      "Descrizione Negozio, Descrizione Negozio, Descrizione Negozio...",
+    categorie: ["Bio", "Senza lattosio"],
+    orari: [
+      { giorno: "Lunedì", orario: "09:00 - 13:00 / 15:30 - 19:30" },
+      { giorno: "Martedì", orario: "09:00 - 13:00 / 15:30 - 19:30" },
+      { giorno: "Mercoledì", orario: "09:00 - 13:00 / 15:30 - 19:30" },
+      { giorno: "Giovedì", orario: "09:00 - 13:00 / 15:30 - 19:30" },
+      { giorno: "Venerdì", orario: "09:00 - 13:00 / 15:30 - 19:30" },
+      { giorno: "Sabato", orario: "09:00 - 13:00 / Chiuso" },
+      { giorno: "Domenica", orario: "Chiuso" },
+    ],
+    posizione: {
+      regione: "Regione",
+      provincia: "Provincia",
+      cap: "CAP",
+      indirizzo: "Indirizzo - numero civico",
+    },
+    contatti: {
+      telefono: "Telefono",
+      mail: "Mail",
+    },
+    valutazione: 2,
+  });
+
+  const [modify, setModify] = useState("");
+
   return (
-    <>
+    <>  
+      <PopUpModify modify={modify} negozioInfo={negozioInfo}/>
       <div className="boxNegozio">
-        <Stelle starNumber={1}/>
+        <Stelle starNumber={1} />
         <span>&nbsp;</span>
         <ShopWindow
-          Description="Una bottiglia riutilizzabile ed ecologica realizzata in acciaio inossidabile di alta qualità, progettata per mantenere le bevande calde per 12 ore e fredde per 24 ore. Leggera, resistente e priva di BPA, è ideale per l'uso quotidiano e le attività outdoor. Disponibile in vari colori."
+          Description={negozioInfo.descrizione}
           ImageDescription="immagine prodotto"
-          Name="nome prodotto"
-          Prezzo="prezzo prodotto"
+          Name={negozioInfo.nome}
           mode="neg"
+          modify={setModify}
         />
         <span>&nbsp;</span>
         <Orari
           mode="neg"
-          lunedi="09:00-13:00/15:30-19:00"
-          martedi="09:00-13:00/15:30-19:00"
-          mercoledi="09:00-13:00/15:30-19:00"
-          giovedi="09:00-13:00/15:30-19:00"
-          venerdi="09:00-13:00/15:30-19:00"
-          sabato="09:00-13:00/15:30-19:00"
-          domenica="chiuso"
-          posizione="Lombardia,Mi,20100,Milano,Via Roma 1"
-          contatti="02 1234567"
+          lunedi={negozioInfo.orari[0].orario}
+          martedi={negozioInfo.orari[1].orario}
+          mercoledi={negozioInfo.orari[2].orario}
+          giovedi={negozioInfo.orari[3].orario}
+          venerdi={negozioInfo.orari[4].orario}
+          sabato={negozioInfo.orari[5].orario}
+          domenica={negozioInfo.orari[6].orario}
+          posizione={
+            negozioInfo.posizione.regione +', '+
+            negozioInfo.posizione.provincia +', '+
+            negozioInfo.posizione.cap +', '+
+            negozioInfo.posizione.indirizzo
+          }
+          contatti={negozioInfo.contatti.telefono +', '+  negozioInfo.contatti.mail}
+          modify={setModify}
         />
         <span>&nbsp;</span>
-        <ProductLongList
-          title="Prodotti in vendita"
-          products={mockProducts}
-
-        />
+        <ProductLongList title="Prodotti in vendita" products={mockProducts} />
       </div>
     </>
   );
