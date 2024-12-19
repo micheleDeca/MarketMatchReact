@@ -71,7 +71,7 @@ const NavBar = () => {
                 position: "absolute",
                 top: 0,
                 left: 0,
-                backdropFilter: isSidebarOpen ? "" : "brightness(80%)",
+                backdropFilter: isSidebarOpen ? "" : "brightness(70%)",
             }),
         },
     };
@@ -120,7 +120,7 @@ const NavBar = () => {
             {isSidebarOpen && (
                 <div ref={sidebarRef} className={`sidebar ${isSidebarOpen ? "open" : ""}`} >
                     <button className="close-sidebar" onClick={toggleSidebar}>✖</button>
-                    {isVisibleForUserType(["NoAccesso", "ConA", "AmmA", "NegA"]) && <a href="#prodotti">Prodotti</a>}
+                    {isVisibleForUserType(["NoAccesso", "ConA", "AmmA", "NegA"]) && <Link to="/prodotti">Prodotti</Link>}
                     {isVisibleForUserType(["ConA", "AmmA"]) && <a href="#negozi">Negozi</a>}
                     {isVisibleForUserType(["NegA"]) && <a href="#negozio">Negozio</a>}
                     {isVisibleForUserType(["ConA", "AmmA"]) && <a href="#ricette">Ricette</a>}

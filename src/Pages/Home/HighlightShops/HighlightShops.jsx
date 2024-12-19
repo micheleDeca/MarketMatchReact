@@ -33,12 +33,7 @@ const shops = [
   },
 ];
 
-const badges = [
-    { text: "Bio", backgroundColor: "#4caf50" },
-    { text: "Senza lattosio", backgroundColor: "#039be5" },
-   
-    // Aggiungi altri badge qui...
-  ];
+ 
 
 const HighlightShops = () => {
   return (
