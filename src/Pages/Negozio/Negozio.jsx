@@ -73,7 +73,7 @@ function Negozio(props) {
 
   return (
     <>  
-      <PopUpModify modify={modify} negozioInfo={negozioInfo}/>
+      <PopUpModify modify={modify} negozioInfo={negozioInfo} setNegozioInfo={setNegozioInfo}/>
       <div className="boxNegozio">
         <Stelle starNumber={1} />
         <span>&nbsp;</span>
@@ -83,6 +83,7 @@ function Negozio(props) {
           Name={negozioInfo.nome}
           mode="neg"
           modify={setModify}
+          badges={negozioInfo.categorie}
         />
         <span>&nbsp;</span>
         <Orari

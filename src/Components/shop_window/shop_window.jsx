@@ -31,7 +31,7 @@ function ShopWindow(props) {
           <div className="RightShopWindow">
             <div className="ShopWindowBox">
               <p className="nomeProdotto">{props.Name}</p>
-              <BadgeContainer />
+              <BadgeContainer badges={props.badges}/>
             </div>
             <p className="descrizioneProdotto">{props.Description}</p>
             {props.tipo == "prodotto" && (
@@ -86,7 +86,7 @@ function ShopWindow(props) {
                 pulsante="Modifica Categorie"
                 modify={props.modify}
               >
-                <BadgeContainer />
+                <BadgeContainer badges={props.badges}/>
               </ZigZag>
             </div>
             <ZigZag
