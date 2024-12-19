@@ -122,7 +122,7 @@ export default function FilterPopUp(elements) {
 
                 <div className="position">
                     <div className="manualPosition">
-                    <SearchBar />
+                    <SearchBar placeholder="Inserisci l'indirizzo" />
                     </div>
                     <div className="autoPosition">
                     <PositionButton />
