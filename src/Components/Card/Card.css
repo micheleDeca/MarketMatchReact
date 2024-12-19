@@ -158,7 +158,6 @@
   .card {
     width: calc(45% - 10px);
     /* Ogni card occupa il 30% dello spazio meno il margine */
-    align-items: stretch;
     padding-bottom: 15px;
     margin-left: 15px;
 
