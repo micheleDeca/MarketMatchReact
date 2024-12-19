@@ -22,10 +22,10 @@
   justify-content: center;
   flex-direction: column;
   padding: 2%;
-  height: 70vh;
+  height: 65vh;
 }
 
-.popUporari{
+.ColumnPopUp{
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -62,4 +62,28 @@
   color: white;
   border: 0px;
   cursor: pointer;
+}
+
+.checkInput{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+input[type=checkbox]{
+  width: 5%;
+}
+
+.RowPopUp{
+  width: 100%;
+  display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.labelPopUp{
+  margin-right: 2%;
 }
