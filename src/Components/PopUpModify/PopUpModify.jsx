@@ -244,7 +244,6 @@ function PopUpModify(props) {
                         <>
                             <div className="ColumnPopUp">
                                 <div className="RowPopUp">
-                                    <CategoryLabelList
                                     <CategoryLabel
                                         category="Bio"
                                     />
@@ -255,7 +254,6 @@ function PopUpModify(props) {
                             <div className="ColumnPopUp">
                                 <div className="RowPopUp">
                                     <CategoryLabel
-                                        color="darkslateblue"
                                         category="Senza lattosio"
                                     />
                                     <input type="checkbox" name="option" value="Senza lattosio"
@@ -265,7 +263,6 @@ function PopUpModify(props) {
                             <div className="ColumnPopUp">
                                 <div className="RowPopUp">
                                     <CategoryLabel
-                                        color="darkslateblue"
                                         category="Vegan"
                                     />
                                     <input type="checkbox" name="option" value="Vegan"
@@ -275,7 +272,6 @@ function PopUpModify(props) {
                             <div className="ColumnPopUp">
                                 <div className="RowPopUp">
                                     <CategoryLabel
-                                        color="darkslateblue"
                                         category="Vegetariano"
                                     />
                                     <input type="checkbox" name="option" value="Vegetariano"
@@ -285,7 +281,6 @@ function PopUpModify(props) {
                             <div className="ColumnPopUp">
                                 <div className="RowPopUp">
                                     <CategoryLabel
-                                        color="darkslateblue"
                                         category="Senza glutine"
                                     />
                                     <input type="checkbox" name="option" value="Senza glutine"
@@ -295,7 +290,6 @@ function PopUpModify(props) {
                             <div className="ColumnPopUp">
                                 <div className="RowPopUp">
                                     <CategoryLabel
-                                        color="darkslateblue"
                                         category="km0"
                                     />
                                     <input type="checkbox" name="option" value="km0"
