@@ -7,7 +7,7 @@
   z-index: 1000;
   width: 80%;
   max-width: 600px;
-  height: 650px;
+  height: 600px;
   margin: 30px;
 }
 
@@ -22,7 +22,7 @@
   padding-bottom: 4%;
 }
 
-.distanceTitle{
+.distanceTitle {
   padding-top: 40px;
 }
 
@@ -35,14 +35,21 @@
 }
 
 .filterSwiper {
-  width: 95%;
-  padding: 2%;
-  padding-bottom: 4%;
   display: flex;
-  flex-direction: row;
-  align-content: space-between;
-   
+  justify-content: center; /* Centra tutti gli elementi */
+   flex-wrap: wrap; /* Permette il wrapping su più righe se necessario */
+  width: 95%; /* Assicura che utilizzi tutta la larghezza disponibile */
+  padding-bottom: 4%;
+  padding-top: 2%;
+   align-items: center; /* Allinea verticalmente */
+
 }
+.swiper {
+  width: 100%; /* Usa tutta la larghezza del contenitore */
+  display: flex;
+  justify-content: center; /* Centra il contenitore */
+}
+
 
 .range-slider {
   position: relative;
@@ -107,7 +114,8 @@
   position: absolute;
   top: 50%;
   height: 10px;
-  background:  #03684D; /*#5c4004*/
+  background: #03684D;
+  /*#5c4004*/
   border-radius: 5px;
   transform: translateY(-50%);
   z-index: 0;
@@ -144,7 +152,7 @@
   padding-top: 8%;
 }
 
- 
+
 
 @media (max-width: 480px) {
   .filterSwiper {

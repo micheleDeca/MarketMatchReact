@@ -69,7 +69,7 @@ export default function FilterPopUp(elements) {
             </div>
             <Swiper
                 modules={[Pagination]} // Necessario per impostare i pallini
-                spaceBetween={10} // Spazio tra gli slider
+                spaceBetween={15} // Spazio tra gli slider
                 slidesPerView="4" // Imposta la visualizzazione 
                 pagination={{ clickable: true }} // Inserisci pallini sotto gli slides
                 breakpoints={{
