@@ -7,26 +7,7 @@ import "./CategoryLabelList.css";
 const BadgeContainer = (props) => {
   const badges = props.badges || []; // Usa un array vuoto se props.badges è null o undefined
 
-  // Mappa dei colori predefiniti per le categorie
-  const categoryColors = {
-    bio: "#4caf50",
-    "senza lattosio": "#039be5",
-    vegan: "#0adea5",
-    "senza glutine": "#9c27b0",
-    km0: "#cddc39",
-    vegetariano: "#ff9800",
-    default: "#607d8b", // Colore di default se la categoria non è nella mappa
-  };
-
-  // Funzione per ottenere il colore in base al testo normalizzato
-  const getColorForCategory = (category) => {
-    if (typeof category !== "string") {
-      console.warn("Categoria non valida:", category); // Log per debugging
-      return categoryColors.default;
-    }
-    const normalizedCategory = category.trim().toLowerCase();
-    return categoryColors[normalizedCategory] || categoryColors.default;
-  };
+   
 
   return (
     <div className="badge-container">
@@ -36,7 +17,6 @@ const BadgeContainer = (props) => {
           <Label
             key={index}
             category={badge} // Passa il testo dell'etichetta
-            color={getColorForCategory(badge)} // Calcola il colore dinamicamente
           />
         ))}
     </div>

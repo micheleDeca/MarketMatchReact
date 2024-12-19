@@ -244,8 +244,8 @@ function PopUpModify(props) {
                         <>
                             <div className="ColumnPopUp">
                                 <div className="RowPopUp">
+                                    <CategoryLabelList
                                     <CategoryLabel
-                                        color="darkslateblue"
                                         category="Bio"
                                     />
                                     <input type="checkbox" name="option" value="Bio"
