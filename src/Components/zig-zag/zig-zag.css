@@ -15,8 +15,7 @@
     align-items: center;
     justify-content: center;
     padding-top: 2%;
-    padding-bottom: 2%;
-    padding-right: 2%;
+   
 }
 
 .zigzagSpan{
@@ -24,9 +23,11 @@
 }
 
 .zigzagSpan2{
-    width: 40%;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
 }
-
+ 
 @media (orientation: portrait) and (max-width: 480px) {
 
     .zigzagSpan{

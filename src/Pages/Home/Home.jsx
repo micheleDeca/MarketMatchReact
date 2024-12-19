@@ -4,6 +4,9 @@ import ProductList from '../../Components/ProductList/ProductList';
 import CategoryCardList from '../../Components/CategoryCardList/CategoryCardList';
 import WelcomeBanner from '../../Components/WelcomeBanner/WelcomeBanner';
 import { useUserContext } from '../../Context/UserContext';
+import FeaturesComponent from './FeaturesComponent/FeaturesComponent';
+import PositionComponent from './PositionComponent/PositionComponent';
+import HighlightShops from './HighlightShops/HighlightShops';
 
 
 const Home = (props) => {
@@ -26,7 +29,7 @@ const Home = (props) => {
     { name: "Senza Glutine", logo: "🍞", color: "#FFF5D6" },
     { name: "Biologico", logo: "🍎", color: "#FFDFDF" },
     { name: "Vegenariano", logo: "🥦", color: "#DFFFD6" },
-];
+  ];
 
 
   const { userType } = useUserContext();
@@ -45,7 +48,7 @@ const Home = (props) => {
         });
     }, []); */
 
-  
+
   console.log(userType);
   return (
     <>
@@ -53,37 +56,40 @@ const Home = (props) => {
       {
         userType === "NoAccesso" ? (
           <>
-            <CategoryCardList title="LE NOSTRE MIGLIORI CATEGORIE" categories={categories}/>
+            <CategoryCardList title="LE NOSTRE MIGLIORI CATEGORIE" categories={categories} />
             <WelcomeBanner />
-            <ProductList title="SCOPRI I NOSTRI PRODOTTI" products={products} buttonName ={"Scopri"}/>
-            <ProductList title="VICINO A TE" products={products} buttonName ={"Scopri"}/>
+            <ProductList title="SCOPRI I NOSTRI PRODOTTI" products={products} buttonName={"Scopri"} />
+            <ProductList title="VICINO A TE" products={products} buttonName={"Scopri"} />
           </>
 
         ) : userType == "ConA" ? (
           <>
-          <CategoryCardList title="LE TUE CATEGORIE PREFERITE" categories={categories}/>
-            <WelcomeBanner />
-            <ProductList title="SCOPRI I NOSTRI PRODOTTI" products={products} buttonName ={"Prenota"} />
-            <ProductList title="PRODOTTI VICINO A TE" products={products} buttonName ={"Prenota"}/>
-            <ProductList title="RICETTE PER I TUOI GUSTI (sviluppare)" products={products} buttonName ={"mario"}/>
-            <ProductList title="NEGOZI VICINO A TE (sviluppare)" products={products} buttonName ={"mario"}/>
+            <CategoryCardList title="LE TUE CATEGORIE PREFERITE" categories={categories} />
+            <PositionComponent />
+            <ProductList title="SCOPRI I NOSTRI PRODOTTI" products={products} buttonName={"Prenota"} />
+
+            <FeaturesComponent />
+            <ProductList title="PRODOTTI VICINO A TE" products={products} buttonName={"Prenota"} />
+            <HighlightShops />
+            <ProductList title="RICETTE PER I TUOI GUSTI (sviluppare)" products={products} buttonName={"mario"} />
+            <ProductList title="NEGOZI VICINO A TE (sviluppare)" products={products} buttonName={"mario"} />
           </>
         ) : userType == "AmmA" ? (
           <>
           </>
         ) : userType == "NegA" ? (
           <>
-          <CategoryCardList title="CATEGORIE NEGOZIO" categories={categories}/>
+            <CategoryCardList title="CATEGORIE NEGOZIO" categories={categories} />
             <ProductList title="PRODOTTI IN VENDITA" products={products} />
-            <ProductList title="PRODOTTI IN PROMOZIONE (verificare come)" products={products} buttonName ={"Modifica"}/>
-            <ProductList title="LE TUE ULTIME PRENTOAZIONI (sviluppare)" products={products} buttonName ={"Modifica"}/>
-            <ProductList title="STATISTICHE? (sviluppare)" products={products} buttonName ={"mario"}/>
+            <ProductList title="PRODOTTI IN PROMOZIONE (verificare come)" products={products} buttonName={"Modifica"} />
+            <ProductList title="LE TUE ULTIME PRENTOAZIONI (sviluppare)" products={products} buttonName={"Modifica"} />
+            <ProductList title="STATISTICHE? (sviluppare)" products={products} buttonName={"mario"} />
           </>
         ) : (
           <>
           </>
-        )  
-  }
+        )
+      }
 
     </>
 

@@ -30,7 +30,8 @@
   background-color: #ffffff;
   justify-content: center;
   align-items: center;
-  border: 1px solid rgba(0, 0, 0, 0.2); /* Micro bordo nero con opacità al 20% */
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  /* Micro bordo nero con opacità al 20% */
   background-size: cover;
   background-position: center;
 }
@@ -113,6 +114,12 @@
   color: #fff;
   /* Testo bianco */
 }
+
+.product-link {
+  display: flex;
+  /* Assicura che il contenuto si allinei correttamente */
+}
+
 
 @media (max-width: 1700px) {
   .card {
@@ -201,4 +208,41 @@
     min-width: 100px;
   }
 
+}
+
+.notification-popup {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #03684D;
+  /* Verde per successo */
+  color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  margin-top: 50px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  opacity: 1;
+  animation: fadeOut 3s forwards;
+  /* Animazione di dissolvenza */
+}
+
+/* Animazione di dissolvenza */
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  80% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 0;
+  }
 }

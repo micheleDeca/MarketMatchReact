@@ -120,7 +120,6 @@ function TestMichele(props) {
         <ProductLongList
           title="Prodotti in vendita"
           products={mockProducts}
-
         />
       </div>
       {popupState.isOpen && (

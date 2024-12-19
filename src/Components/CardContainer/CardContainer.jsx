@@ -10,7 +10,7 @@ const CardContainer = (props) => {
         <div className="container-product">
             {props.card.map((card) => (
                 <Card
-                    key={card.id}
+                    id={card.id}
                     straight={isMobile ? "false" : "false"}
                     name={card.name}
                     detail={card.detail}

@@ -46,8 +46,13 @@
 
     }
 
+    
+    .product-list {
+        display: none; /* Nascondi la lista normale su mobile */
+    }
+
     .section-title-product {
-        font-size: 25px;
+        font-size: 20px;
     }
 }
 
@@ -63,16 +68,7 @@
     justify-content: center;
 }
 
-@media (max-width: 450px) {
-    .product-list {
-        display: none; /* Nascondi la lista normale su mobile */
-    }
-
-    .section-title-product {
-        font-size: 20px;
-    }
-}
-
+ 
  
 /* Definizione dell'animazione */
 @keyframes swipeHint {

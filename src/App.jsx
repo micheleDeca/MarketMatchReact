@@ -5,7 +5,6 @@ import { Route, Routes } from 'react-router-dom';
 import Home from './Pages/Home/Home';
 import Footer from './Components/Footer/Footer';
 import { useUserContext } from './Context/UserContext';
-import SliderContainer from './Components/SliderContainer/SliderContainer';
 import Reservation from './Pages/Reservation/Reservation';
 import TestAntonio from './Pages/Test/TestAntonio/TestAntonio';
 import TestMichele from './Pages/Test/TestMichele/TestMichele';

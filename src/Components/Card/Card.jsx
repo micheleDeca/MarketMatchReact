@@ -1,5 +1,6 @@
-import React from 'react'
+import React, {useState} from 'react'
 import './Card.css'
+import { Link } from 'react-router';
 
 /**
  * 
@@ -23,18 +24,37 @@ import './Card.css'
 
 const Card = (props) => {
 
+    const handleAddClick = () => {
+        
+        console.log("prodotto: " +  props.id + " aggiunto nel carrello");
+        setNotification(`${props.name} è stato aggiunto al carrello`);
+
+        // Rimuovi la notifica dopo 3 secondi
+        setTimeout(() => {
+            setNotification(null);
+        }, 2000);
+    };
+
+    const [notification, setNotification] = useState(null); // Stato per la notifica
+
+
     const straightContent = props.straight === true;
     return (
+        <>
         <div
             className="card"
             style={{
                 flexDirection: props.straight === "false" ? "" : "column",
             }}
         >
+            <Link to={`/prodotto/${props.id}`} className="product-link">
+                <img className="card-image" src={props.image} />
+            </Link>
 
-            <img className="card-image" src={props.image} />
             <div className="card-info">
-                <h3 className="card-name">{props.name}</h3>
+                <Link to={`/prodotto/${props.id}`} className="product-link">
+                    <h3 className="card-name">{props.name}</h3>
+                </Link>
                 <p className="card-detail">{props.detail}</p>
                 <p className="price-container-card">{props.originalPrice ? (
                     <>
@@ -44,10 +64,19 @@ const Card = (props) => {
                 ) : (
                     <span className="normal-price-card">{props.currentPrice}</span>
                 )}</p>
-                {props.button? (<button className="card-button">{props.button}</button>) : ""}
-                
+                {props.button ? (<button className="card-button" onClick={handleAddClick}>{props.button}</button>) : ""}
+
             </div>
         </div>
+
+        {/* Popup di notifica */}
+        {notification && (
+                <div className="notification-popup">
+                    {notification}
+                </div>
+            )}
+
+        </>
     )
 }
 
