@@ -46,7 +46,12 @@ function Negozio(props) {
     foto: "url_della_foto.jpg",
     descrizione:
       "Descrizione Negozio, Descrizione Negozio, Descrizione Negozio...",
-    categorie: ["Bio", "Senza lattosio"],
+    categorie: [
+      { text: "Bio", backgroundColor: "#4caf50" },
+      { text: "Senza lattosio", backgroundColor: "#2196f3" },
+      { text: "Vegan", backgroundColor: "#ff9800" },
+      { text: "Senza glutine", backgroundColor: "#9c27b0" },
+    ],
     orari: [
       { giorno: "Lunedì", orario: "09:00 - 13:00 / 15:30 - 19:30" },
       { giorno: "Martedì", orario: "09:00 - 13:00 / 15:30 - 19:30" },
