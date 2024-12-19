@@ -224,6 +224,51 @@ function PopUpModify(props) {
           ) : (
             <></>
           )}
+          {props.modify === "Modifica Categorie" ? (
+            <>
+              <div className="popUporari">
+                <label for="textInput" style={{ color: "darkslateblue" }}>
+                  Bio
+                </label>
+                <input type="checkbox" name="option1" value="Option 1" defaultChecked={props.negozioInfo.categorie.some(categoria => categoria.text === "Bio")}/>
+              </div>
+              <div className="popUporari">
+                <label for="textInput" style={{ color: "darkslateblue" }}>
+                  Senza lattosio
+                </label>
+                <input type="checkbox" name="option1" value="Option 1" defaultChecked={props.negozioInfo.categorie.some(categoria => categoria.text === "Senza lattosio")} />
+              </div>
+              <div className="popUporari">
+                <label for="textInput" style={{ color: "darkslateblue" }} >
+                  Vegan
+                </label>
+                <input type="checkbox" name="option1" value="Option 1" defaultChecked={props.negozioInfo.categorie.some(categoria => categoria.text === "Vegan")} />
+              </div>
+              <div className="popUporari">
+                <label for="textInput" style={{ color: "darkslateblue" }}>
+                  Vegetariano
+                </label>
+                <input type="checkbox" name="option1" value="Option 1" defaultChecked={props.negozioInfo.categorie.some(categoria => categoria.text === "Vegetariano")} />
+              </div>
+              <div className="popUporari">
+                <label for="textInput" style={{ color: "darkslateblue" }}>
+                  Senza glutine
+                </label>
+                <input type="checkbox" name="option1" value="Option 1" defaultChecked={props.negozioInfo.categorie.some(categoria => categoria.text === "Senza glutine")} />
+              </div>
+              <div className="popUpRight">
+                <input
+                  type="submit"
+                  value="Salva"
+                  className="popUpbtn"
+                  onClick={() => save("Descrizione")}
+                />
+              </div>
+            </>
+          ) : (
+            <></>
+          )}
+          
         </div>
       </div>
     </>
