@@ -18,17 +18,14 @@ import BadgeContainer from "../CategoryLabelList/CategoryLabelList";
  */
 
 function ShopWindow(props) {
+
   if (props.mode != "neg") {
     return (
       <>
         <div className="ShopWindowBox">
           <div className="LeftShopWindow">
             <div className="ShopWindowBox">
-              <img
-                src=""
-                alt={props.ImageDescription}
-                className="Image"
-              ></img>
+              <img src="" alt={props.ImageDescription} className="Image"></img>
             </div>
           </div>
           <div className="RightShopWindow">
@@ -41,13 +38,18 @@ function ShopWindow(props) {
               <p className="prezzo-ShopWindow">
                 {props.originalPrice ? (
                   <>
-                    <span className="current-price-card">{props.currentPrice}</span>
-                    <span className="original-price-card">{props.originalPrice}</span>
+                    <span className="current-price-card">
+                      {props.currentPrice}
+                    </span>
+                    <span className="original-price-card">
+                      {props.originalPrice}
+                    </span>
                   </>
                 ) : (
-                  <span className="normal-price-card">{props.currentPrice}</span>
+                  <span className="normal-price-card">
+                    {props.currentPrice}
+                  </span>
                 )}
-
               </p>
             )}
           </div>
@@ -59,7 +61,10 @@ function ShopWindow(props) {
       <>
         <div className="ShopWindowBox">
           <div className="LeftShopWindow">
-            <ZigZag pulsante="Modifica Immagine" onEdit={() => props.onEdit("immagine")}>
+            <ZigZag
+              pulsante="Modifica Immagine"
+              modify={props.modify}
+            >
               <div className="ShopWindowBox">
                 <img
                   src=""
@@ -71,28 +76,45 @@ function ShopWindow(props) {
           </div>
           <div className="RightShopWindow">
             <div className="ShopWindowBox">
-              <ZigZag pulsante="Modifica Nome" onEdit={() => props.onEdit("nome")}>
+              <ZigZag
+                pulsante="Modifica Nome"
+                modify={props.modify}
+              >
                 <p className="nomeProdotto">{props.Name}</p>
               </ZigZag>
-              <ZigZag pulsante="Modifica Categorie" onEdit={() => props.onEdit("categoria")}>
+              <ZigZag
+                pulsante="Modifica Categorie"
+                modify={props.modify}
+              >
                 <BadgeContainer />
               </ZigZag>
             </div>
-            <ZigZag pulsante="Modifica Descrizione" onEdit={() => props.onEdit("descrizione")}>
+            <ZigZag
+              pulsante="Modifica Descrizione"
+              modify={props.modify}
+            >
               <p className="descrizioneProdotto">{props.Description}</p>
             </ZigZag>
             {props.tipo == "prodotto" && (
-              <ZigZag pulsante="Modifica Prezzo" onEdit={() => props.onEdit("prezzo")}>
+              <ZigZag
+                pulsante="Modifica Prezzo"
+                modify={props.modify}
+              >
                 <p className="prezzo-ShopWindow">
                   {props.originalPrice ? (
                     <>
-                      <span className="current-price-card">{props.currentPrice}</span>
-                      <span className="original-price-card">{props.originalPrice}</span>
+                      <span className="current-price-card">
+                        {props.currentPrice}
+                      </span>
+                      <span className="original-price-card">
+                        {props.originalPrice}
+                      </span>
                     </>
                   ) : (
-                    <span className="normal-price-card">{props.currentPrice}</span>
+                    <span className="normal-price-card">
+                      {props.currentPrice}
+                    </span>
                   )}
-
                 </p>
               </ZigZag>
             )}
