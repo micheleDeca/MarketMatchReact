@@ -69,11 +69,11 @@ export default function FilterPopUp(elements) {
             </div>
             <Swiper
                 modules={[Pagination]} // Necessario per impostare i pallini
-                spaceBetween={15} // Spazio tra gli slider
-                slidesPerView="4" // Imposta la visualizzazione 
+                spaceBetween={10} // Spazio tra gli slider
+                slidesPerView="3" // Imposta la visualizzazione 
                 pagination={{ clickable: true }} // Inserisci pallini sotto gli slides
                 breakpoints={{
-                    480: { slidesPerView: 5 }
+                    600: { slidesPerView: "5" }
                 }}
                 className="filterSwiper" // Classe per personalizzare lo stile
             >
@@ -89,16 +89,14 @@ export default function FilterPopUp(elements) {
                 </h2>
             </div>
             <Swiper
-                modules={[Pagination, Mousewheel]}
-                spaceBetween={10}
-                slidesPerView="4"
-                pagination={{ clickable: true }}
-                mousewheel={{
-                    forceToAxis: true, // Forza lo scorrimento solo sull'asse orizzontale
-                    releaseOnEdges: true // Permette di rilasciare lo scroll all'esterno
+                modules={[Pagination]} // Necessario per impostare i pallini
+                spaceBetween={10} // Spazio tra gli slider
+                slidesPerView="3" // Imposta la visualizzazione 
+                pagination={{ clickable: true }} // Inserisci pallini sotto gli slides
+                breakpoints={{
+                    600: { slidesPerView: "5" }
                 }}
-                grabCursor={true}
-                className="filterSwiper"
+                className="filterSwiper" // Classe per personalizzare lo stile
             >
                 {elements.filter.map((item, index) => (
                     <SwiperSlide key={index}>
