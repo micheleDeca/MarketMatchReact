@@ -4,6 +4,7 @@ import CategoryLabel from "../CategoryLabel/CategoryLabel.jsx";
 
 function PopUpModify(props) {
     const closeForm = () => {
+        props.setModify(""); /*AGGIUNTO*/
         document.getElementById("myForm").style.display = "none";
     };
 
@@ -58,6 +59,8 @@ function PopUpModify(props) {
             props.setNegozioInfo({...props.negozioInfo, categorie: newCategorie});
         }
         document.getElementById("myForm").style.display = "none";
+        props.setModify("");
+
     };
 
     return (

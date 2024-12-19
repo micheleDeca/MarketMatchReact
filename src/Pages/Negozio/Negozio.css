@@ -8,3 +8,17 @@
     margin-right:2%;
     margin-bottom: 2%;
 }
+
+
+.popup-edit-active {  /*AGGIUNTO*/
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;  
+    height: 100vh; 
+    position: fixed;  
+    top: 0;  
+    left: 0;  
+    background-color: rgba(0, 0, 0, 0.3);  
+    z-index: 1000;  
+}

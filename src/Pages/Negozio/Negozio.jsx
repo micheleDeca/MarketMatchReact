@@ -46,7 +46,7 @@ function Negozio(props) {
     foto: "url_della_foto.jpg",
     descrizione:
       "Descrizione Negozio, Descrizione Negozio, Descrizione Negozio...",
-    categorie: ["Bio", "Senza lattosio","Vegan","Senza glutine","Km0","Vegetariano"],
+    categorie: ["Bio", "Senza lattosio","Vegan","Senza glutine","Km0","Vegetariano" ],
     orari: [
       { giorno: "Lunedì", orario: "09:00 - 13:00 / 15:30 - 19:30" },
       { giorno: "Martedì", orario: "09:00 - 13:00 / 15:30 - 19:30" },
@@ -73,8 +73,9 @@ function Negozio(props) {
 
   return (
     <>  
-      <PopUpModify modify={modify} negozioInfo={negozioInfo} setNegozioInfo={setNegozioInfo}/>
-      <div className="boxNegozio">
+ <div className={`popup-edit${modify === ""? "" : "-active"}`  /*AGGIUNTO*/}> 
+        <PopUpModify modify={modify} setModify={setModify} negozioInfo={negozioInfo} setNegozioInfo={setNegozioInfo}/>
+      </div>      <div className="boxNegozio">
         <Stelle starNumber={1} />
         <span>&nbsp;</span>
         <ShopWindow
