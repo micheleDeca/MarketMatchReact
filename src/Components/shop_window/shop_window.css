@@ -1,18 +1,18 @@
-.ShopWindowBox{
+.ShopWindowBox {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: center;
+    align-items: stretch;
     width: 100%;
 }
 
-.Image{
+.Image {
     width: 90%;
     aspect-ratio: 1/1;
     border-radius: 20px;
 }
 
-.LeftShopWindow{
+.LeftShopWindow {
     width: 28%;
     margin-right: 1%;
     display: flex;
@@ -20,7 +20,7 @@
     align-items: center;
 }
 
-.RightShopWindow{
+.RightShopWindow {
     width: 71%;
     display: flex;
     flex-direction: column;
@@ -28,23 +28,18 @@
     align-items: center;
 }
 
-.nomeProdotto{
-   font-size: large;
-   font-weight: bold;
-   text-align: left;
-   width: 100%;
-}
-
-.descrizioneProdotto{
+.nome {
     font-size: large;
-    text-align: left;
+    font-weight: bold;
     width: 100%;
 }
 
-.prezzo-ShopWindow{
-    text-align: left;
-    width: 100%;
+.descrizione {
+    font-size: 90%;
+}
 
+.prezzo-ShopWindow {
+    width: 100%;
 }
 
 .prezzo-ShopWindow .current-price-card {
@@ -52,39 +47,67 @@
     font-size: xx-large;
     font-weight: bold;
     padding-right: 1%;
-  }
-  
-  .prezzo-ShopWindow .original-price-card {
+}
+
+.prezzo-ShopWindow .original-price-card {
     color: gray;
     text-decoration: line-through;
     font-size: x-large;
-  }
-  
-  .prezzo-ShopWindow .normal-price-card {
+}
+
+.prezzo-ShopWindow .normal-price-card {
     color: black;
     font-size: xx-large;
     font-weight: bold;
-  }
-  
-@media (orientation: portrait){
-    .ShopWindowBox{
+}
+
+.boxName {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.boxBadges {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.boxDescription {
+    margin-top: 2%;
+    margin-bottom: 2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+@media (orientation: portrait) {
+    .ShopWindowBox {
         flex-direction: column;
     }
 
-    .LeftShopWindow{
+    .LeftShopWindow {
         width: 98%;
-        margin-right:0px;
+        margin-right: 0px;
     }
 
-    .Image{
-        width: 50%;
+    .Image {
+        width: 40%;
+        margin-left: 30%;
+        margin-right: 30%;
     }
 
-    .RightShopWindow{
+    .RightShopWindow {
         width: 98%;
     }
 
-    .descrizioneProdotto{
+    .nome {
         text-align: center;
     }
-  }
+
+}

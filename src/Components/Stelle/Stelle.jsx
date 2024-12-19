@@ -22,11 +22,11 @@ import StarIcon from './StarIcon/StarIcon'
 const Stelle = (props) => {
    return (
     <div>
-      <StarIcon size={"50px"} color={props.starNumber >= 1 ? "#FFE414" : "#1E1E1E"} />
-      <StarIcon size={"50px"} color={props.starNumber >= 2 ? "#FFE414" : "#1E1E1E"} />
-      <StarIcon size={"50px"} color={props.starNumber >= 3 ? "#FFE414" : "#1E1E1E"} />
-      <StarIcon size={"50px"} color={props.starNumber >= 4 ? "#FFE414" : "#1E1E1E"} />
-      <StarIcon size={"50px"} color={props.starNumber >= 5 ? "#FFE414" : "#1E1E1E"} />
+      <StarIcon size={"30px"} color={props.starNumber >= 1 ? "#FFE414" : "#1E1E1E"} />
+      <StarIcon size={"30px"} color={props.starNumber >= 2 ? "#FFE414" : "#1E1E1E"} />
+      <StarIcon size={"30px"} color={props.starNumber >= 3 ? "#FFE414" : "#1E1E1E"} />
+      <StarIcon size={"30px"} color={props.starNumber >= 4 ? "#FFE414" : "#1E1E1E"} />
+      <StarIcon size={"30px"} color={props.starNumber >= 5 ? "#FFE414" : "#1E1E1E"} />
     </div>
   )
 }

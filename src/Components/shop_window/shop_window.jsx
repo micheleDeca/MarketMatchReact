@@ -19,110 +19,118 @@ import BadgeContainer from "../CategoryLabelList/CategoryLabelList";
 
 function ShopWindow(props) {
 
-  if (props.mode != "neg") {
-    return (
-      <>
-        <div className="ShopWindowBox">
-          <div className="LeftShopWindow">
-            <div className="ShopWindowBox">
-              <img src="" alt={props.ImageDescription} className="Image"></img>
-            </div>
-          </div>
-          <div className="RightShopWindow">
-            <div className="ShopWindowBox">
-              <p className="nomeProdotto">{props.Name}</p>
-              <BadgeContainer badges={props.badges}/>
-            </div>
-            <p className="descrizioneProdotto">{props.Description}</p>
-            {props.tipo == "prodotto" && (
-              <p className="prezzo-ShopWindow">
-                {props.originalPrice ? (
-                  <>
+    if (props.mode != "neg") {
+        return (
+            <>
+                <div className="ShopWindowBox">
+                    <div className="LeftShopWindow">
+                        <div className="ShopWindowBox">
+                            <img
+                                src="https://www.archibio.com/wp-content/uploads/2021/03/come-aprire-un-negozio-BIO-in-Italia.jpg"
+                                alt={props.ImageDescription} className="Image"></img>
+                        </div>
+                    </div>
+                    <div className="RightShopWindow">
+                        <div className="ShopWindowBox">
+                            <div className="boxName">
+                                <p className="nome">{props.Name}</p>
+                            </div>
+                            <div className="boxBadges">
+                                <BadgeContainer badges={props.badges}/>
+                            </div>
+                        </div>
+                        <div className="boxDescription">
+                            <p className="descrizione">{props.Description}</p>
+                        </div>
+                        {props.tipo == "prodotto" && (
+                            <p className="prezzo-ShopWindow">
+                                {props.originalPrice ? (
+                                    <>
                     <span className="current-price-card">
                       {props.currentPrice}
                     </span>
-                    <span className="original-price-card">
+                                        <span className="original-price-card">
                       {props.originalPrice}
                     </span>
-                  </>
-                ) : (
-                  <span className="normal-price-card">
+                                    </>
+                                ) : (
+                                    <span className="normal-price-card">
                     {props.currentPrice}
                   </span>
-                )}
-              </p>
-            )}
-          </div>
-        </div>
-      </>
-    );
-  } else {
-    return (
-      <>
-        <div className="ShopWindowBox">
-          <div className="LeftShopWindow">
-            <ZigZag
-              pulsante="Modifica Immagine"
-              modify={props.modify}
-            >
-              <div className="ShopWindowBox">
-                <img
-                  src=""
-                  alt={props.ImageDescription}
-                  className="Image"
-                ></img>
-              </div>
-            </ZigZag>
-          </div>
-          <div className="RightShopWindow">
-            <div className="ShopWindowBox">
-              <ZigZag
-                pulsante="Modifica Nome"
-                modify={props.modify}
-              >
-                <p className="nomeProdotto">{props.Name}</p>
-              </ZigZag>
-              <ZigZag
-                pulsante="Modifica Categorie"
-                modify={props.modify}
-              >
-                <BadgeContainer badges={props.badges}/>
-              </ZigZag>
-            </div>
-            <ZigZag
-              pulsante="Modifica Descrizione"
-              modify={props.modify}
-            >
-              <p className="descrizioneProdotto">{props.Description}</p>
-            </ZigZag>
-            {props.tipo == "prodotto" && (
-              <ZigZag
-                pulsante="Modifica Prezzo"
-                modify={props.modify}
-              >
-                <p className="prezzo-ShopWindow">
-                  {props.originalPrice ? (
-                    <>
+                                )}
+                            </p>
+                        )}
+                    </div>
+                </div>
+            </>
+        );
+    } else {
+        return (
+            <>
+                <div className="ShopWindowBox">
+                    <div className="LeftShopWindow">
+                        <ZigZag
+                            pulsante="Modifica Immagine"
+                            modify={props.modify}
+                        >
+                            <div className="ShopWindowBox">
+                                <img
+                                    src="https://www.archibio.com/wp-content/uploads/2021/03/come-aprire-un-negozio-BIO-in-Italia.jpg"
+                                    alt={props.ImageDescription}
+                                    className="Image"
+                                ></img>
+                            </div>
+                        </ZigZag>
+                    </div>
+                    <div className="RightShopWindow">
+                        <div className="ShopWindowBox">
+                            <ZigZag
+                                pulsante="Modifica Nome"
+                                modify={props.modify}
+                            >
+                                <p className="nome">{props.Name}</p>
+                            </ZigZag>
+                            <ZigZag
+                                pulsante="Modifica Categorie"
+                                modify={props.modify}
+                            >
+                                <BadgeContainer badges={props.badges}/>
+                            </ZigZag>
+                        </div>
+                        <ZigZag
+                            pulsante="Modifica Descrizione"
+                            modify={props.modify}
+                        >
+                            <p className="descrizione">{props.Description}</p>
+                        </ZigZag>
+                        {props.tipo == "prodotto" && (
+                            <ZigZag
+                                pulsante="Modifica Prezzo"
+                                modify={props.modify}
+                            >
+                                <p className="prezzo-ShopWindow">
+                                    {props.originalPrice ? (
+                                        <>
                       <span className="current-price-card">
                         {props.currentPrice}
                       </span>
-                      <span className="original-price-card">
+                                            <span className="original-price-card">
                         {props.originalPrice}
                       </span>
-                    </>
-                  ) : (
-                    <span className="normal-price-card">
+                                        </>
+                                    ) : (
+                                        <span className="normal-price-card">
                       {props.currentPrice}
                     </span>
-                  )}
-                </p>
-              </ZigZag>
-            )}
-          </div>
-        </div>
-      </>
-    );
-  }
+                                    )}
+                                </p>
+                            </ZigZag>
+                        )}
+                    </div>
+                </div>
+            </>
+        );
+    }
 }
 
 export default ShopWindow;
