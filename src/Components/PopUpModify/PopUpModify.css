@@ -16,22 +16,50 @@
 }
 
 .form-container {
-  width: 100%;
+  display: flex;
+  width: 96%;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  padding: 2%
+  padding: 2%;
+  height: 70vh;
 }
 
-.orari{
+.popUporari{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 2%;
+  margin-bottom: 1%;
+  width: 100%;
 }
 
 .popUpImg{
   width: 25px;
 }
 
+.close {
+  width: 98%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 2%;
+  margin-right: 2%;
+}
+
+.popUpRight{
+  margin-top: 2%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.popUpbtn{
+  width: 10%;
+  background-color: darkslateblue;
+  color: white;
+  border: 0px;
+  cursor: pointer;
+}

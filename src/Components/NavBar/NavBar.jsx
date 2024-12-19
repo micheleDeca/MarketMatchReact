@@ -71,13 +71,13 @@ const NavBar = () => {
                 position: "absolute",
                 top: 0,
                 left: 0,
-                backdropFilter: isSidebarOpen ? "" : "brightness(80%)",
+                backdropFilter: isSidebarOpen ? "" : "brightness(70%)",
             }),
         },
     };
-    
 
-  
+
+
     return (
         <nav className="flex-div"
             style={styles.nav}>
@@ -120,13 +120,15 @@ const NavBar = () => {
             {isSidebarOpen && (
                 <div ref={sidebarRef} className={`sidebar ${isSidebarOpen ? "open" : ""}`} >
                     <button className="close-sidebar" onClick={toggleSidebar}>✖</button>
-                    {isVisibleForUserType(["NoAccesso", "ConA", "AmmA", "NegA"]) && <a href="#prodotti">Prodotti</a>}
-                    {isVisibleForUserType(["ConA", "AmmA"]) && <a href="#negozi">Negozi</a>}
-                    {isVisibleForUserType(["NegA"]) && <a href="#negozio">Negozio</a>}
-                    {isVisibleForUserType(["ConA", "AmmA"]) && <a href="#ricette">Ricette</a>}
-                    {isVisibleForUserType(["NoAccesso", "ConA", "AmmA", "NegA"]) && <a href="#chiSiamo">Chi Siamo</a>}
-                    {isVisibleForUserType(["ConA", "AmmA", "NegA"]) && <Link to="/prenotazioni">Prenotazioni</Link>}
-                    {isVisibleForUserType(["ConA", "NegA"]) && <a href="#account" id="accountNav" style={{ color: navColor }}>Account</a>}
+                    <div onClick={toggleSidebar}>
+                        {isVisibleForUserType(["NoAccesso", "ConA", "AmmA", "NegA"]) && <Link to="/prodotti">Prodotti</Link>}
+                        {isVisibleForUserType(["ConA", "AmmA"]) && <a href="#negozi">Negozi</a>}
+                        {isVisibleForUserType(["NegA"]) && <a href="#negozio">Negozio</a>}
+                        {isVisibleForUserType(["ConA", "AmmA"]) && <a href="#ricette">Ricette</a>}
+                        {isVisibleForUserType(["NoAccesso", "ConA", "AmmA", "NegA"]) && <a href="#chiSiamo">Chi Siamo</a>}
+                        {isVisibleForUserType(["ConA", "AmmA", "NegA"]) && <Link to="/prenotazioni">Prenotazioni</Link>}
+                        {isVisibleForUserType(["ConA", "NegA"]) && <a href="#account" id="accountNav" style={{ color: navColor }}>Account</a>}
+                    </div>
                 </div>
             )}
         </nav>

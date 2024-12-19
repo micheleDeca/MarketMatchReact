@@ -11,7 +11,7 @@ const shops = [
     description: "Prodotti biologici e freschi direttamente dalla tua zona.",
     city: "Bari",
     distance: "2 km",
-    category: "Biologico",
+    category: ["Biologico"],
   },
   {
     id: 2,
@@ -20,7 +20,7 @@ const shops = [
     description: "Cucina gourmet vegan con ingredienti selezionati.",
     city: "Milano",
     distance: "5 km",
-    category: "Vegan",
+    category: ["Vegan","Bio"],
   },
   {
     id: 3,
@@ -29,16 +29,11 @@ const shops = [
     description: "Ampia scelta di prodotti senza glutine per ogni occasione.",
     city: "Roma",
     distance: "8 km",
-    category: "Senza Glutine",
+    category: ["Senza Glutine"],
   },
 ];
 
-const badges = [
-    { text: "Bio", backgroundColor: "#4caf50" },
-    { text: "Senza lattosio", backgroundColor: "#039be5" },
-   
-    // Aggiungi altri badge qui...
-  ];
+ 
 
 const HighlightShops = () => {
   return (
@@ -59,7 +54,7 @@ const HighlightShops = () => {
             <p className="shop-location">
               {shop.city} • {shop.distance}
             </p>
-             <div className="shop-category"><BadgeContainer badges={badges}/></div>
+             <div className="shop-category"><BadgeContainer badges={shop.category}/></div>
             <button className="shop-button">Scopri di più</button>
           </div>
         </div>

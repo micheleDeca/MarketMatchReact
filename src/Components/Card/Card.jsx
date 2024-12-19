@@ -1,6 +1,8 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import './Card.css'
 import { Link } from 'react-router';
+import { Tooltip } from "react-tooltip";
+import "react-tooltip/dist/react-tooltip.css";
 
 /**
  * 
@@ -25,8 +27,8 @@ import { Link } from 'react-router';
 const Card = (props) => {
 
     const handleAddClick = () => {
-        
-        console.log("prodotto: " +  props.id + " aggiunto nel carrello");
+
+        console.log("prodotto: " + props.id + " aggiunto nel carrello");
         setNotification(`${props.name} è stato aggiunto al carrello`);
 
         // Rimuovi la notifica dopo 3 secondi
@@ -35,42 +37,93 @@ const Card = (props) => {
         }, 2000);
     };
 
+    // Mappa dei colori per le categorie
+    const categoryColors = {
+        bio: "#4caf50",
+        "senza lattosio": "#039be5",
+        vegan: "#0adea5",
+        "senza glutine": "#9c27b0",
+        km0: "#cddc39",
+        vegetariano: "#ff9800",
+        default: "#607d8b", // Colore di default se la categoria non è nella mappa
+      };    
+
+    // Funzione per ottenere il colore della categoria
+    const getColorForCategory = (category) => {
+        return categoryColors[category.toLowerCase()] || categoryColors.default;
+    };
+
     const [notification, setNotification] = useState(null); // Stato per la notifica
 
 
     const straightContent = props.straight === true;
     return (
         <>
-        <div
-            className="card"
-            style={{
-                flexDirection: props.straight === "false" ? "" : "column",
-            }}
-        >
-            <Link to={`/prodotto/${props.id}`} className="product-link">
-                <img className="card-image" src={props.image} />
-            </Link>
-
-            <div className="card-info">
+            <div
+                className="card"
+                style={{
+                    flexDirection: props.straight === "false" ? "" : "column",
+                }}
+            >
                 <Link to={`/prodotto/${props.id}`} className="product-link">
-                    <h3 className="card-name">{props.name}</h3>
+                    <img className="card-image" src={props.image} />
                 </Link>
-                <p className="card-detail">{props.detail}</p>
-                <p className="price-container-card">{props.originalPrice ? (
-                    <>
-                        <span className="current-price-card">{props.currentPrice}</span>
-                        <span className="original-price-card">{props.originalPrice}</span>
-                    </>
-                ) : (
-                    <span className="normal-price-card">{props.currentPrice}</span>
-                )}</p>
-                {props.button ? (<button className="card-button" onClick={handleAddClick}>{props.button}</button>) : ""}
 
+                <div className="card-info">
+                    <Link
+                        to={`/prodotto/${props.id}`} className="product-link">
+                        <h3 className="card-name">{props.name}</h3>
+                    </Link>
+
+                    {/* Sezione categorie */}
+                    {props.categories && props.categories.length > 0 && (
+                        <div className="category-icons">
+                            {props.categories.map((category, index) => (
+                                <span
+                                    key={index}
+                                    className="category-dot"
+                                    style={{ backgroundColor: getColorForCategory(category) }}
+                                    data-tooltip-id={`tooltip-${props.id}-${index}`}
+                                    data-tooltip-content={category}
+                                ></span>
+                            ))}
+                        </div>
+                    )}
+
+                    <p className="card-detail">{props.detail}</p>
+                    <p className="price-container-card">{props.originalPrice ? (
+                        <>
+                            <span className="current-price-card">{props.currentPrice}</span>
+                            <span className="original-price-card">{props.originalPrice}</span>
+                        </>
+                    ) : (
+                        <span className="normal-price-card">{props.currentPrice}</span>
+                    )}</p>
+                    {props.button ? (<button className="card-button" onClick={handleAddClick}>{props.button}</button>) : ""}
+
+                </div>
             </div>
-        </div>
 
-        {/* Popup di notifica */}
-        {notification && (
+            {/* Tooltip associato alle categorie */}
+            {props.categories &&
+                props.categories.map((category, index) => (
+                    <Tooltip
+                        key={index}
+                        id={`tooltip-${props.id}-${index}`}
+                        place="top"
+                        style={{
+                            backgroundColor: "#1e1e1e",
+                            color: "#ffffff",
+                            fontSize: "12px",
+                            borderRadius: "4px",
+                            padding: "5px 10px",
+                            boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)",
+                        }}
+                    />
+                ))}
+
+            {/* Popup di notifica */}
+            {notification && (
                 <div className="notification-popup">
                     {notification}
                 </div>

@@ -11,8 +11,14 @@ import "./CategoryLabel.css";
  */
 
 const Badge = (props) => {
+
+  const labelSizeSmall = false;
+
   return (
-    <div className="badge" style={{ backgroundColor : props.color }}>
+    <div className="badge" style={{
+      backgroundColor: props.color,
+      "--badge-font-size": labelSizeSmall ? "12px" : "",
+    }}>
       {props.category}
     </div>
   );

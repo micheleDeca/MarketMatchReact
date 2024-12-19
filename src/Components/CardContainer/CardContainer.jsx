@@ -18,7 +18,8 @@ const CardContainer = (props) => {
                     originalPrice={card.originalPrice}
                     image={card.image}
                     button={props.button}
-
+                    categories={card.categories}
+                    
                 />
             ))}
         </div>
