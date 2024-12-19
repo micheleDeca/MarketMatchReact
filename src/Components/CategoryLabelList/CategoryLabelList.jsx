@@ -2,33 +2,45 @@ import React from "react";
 import Label from "../CategoryLabel/CategoryLabel";
 import "./CategoryLabelList.css";
 
-/* 
-* @prop {Array<Object>} badges - Un array di oggetti che rappresentano le etichette/categorie. Ogni oggetto deve contenere:
-*    - {string} text - Il testo dell'etichetta. (es. "Biologico")
-*    - {string} backgroundColor - Il colore di sfondo dell'etichetta. (es. "#4CAF50")
-*/
+/* PASSARE SOLO LISTE */
 
 const BadgeContainer = (props) => {
-  // Lista di badge con testo e colori
-  /*const badges = [
-    { text: "Bio", backgroundColor: "#4caf50" },
-    { text: "Senza lattosio", backgroundColor: "#039be5" },
-    { text: "Bio", backgroundColor: "#4caf50" },
-   
-    // Aggiungi altri badge qui...
-  ]; */
-
   const badges = props.badges || []; // Usa un array vuoto se props.badges è null o undefined
 
+  // Mappa dei colori predefiniti per le categorie
+  const categoryColors = {
+    bio: "#4caf50",
+    "senza lattosio": "#039be5",
+    vegan: "#0adea5",
+    "senza glutine": "#9c27b0",
+    km0: "#cddc39",
+    vegetariano: "#ff9800",
+    default: "#607d8b", // Colore di default se la categoria non è nella mappa
+  };
+
+  // Funzione per ottenere il colore in base al testo normalizzato
+  const getColorForCategory = (category) => {
+    if (typeof category !== "string") {
+      console.warn("Categoria non valida:", category); // Log per debugging
+      return categoryColors.default;
+    }
+    const normalizedCategory = category.trim().toLowerCase();
+    return categoryColors[normalizedCategory] || categoryColors.default;
+  };
 
   return (
     <div className="badge-container">
-      {badges.map((badge, index) => (
-        <Label key={index} category={badge.text} color={badge.backgroundColor} />
-          //Key necessaria per aiutare react a renderizzare liste di elementi, ottimizzando il processo di aggiornametno del dom
-      ))}
+      {badges
+        .filter((badge) => typeof badge === "string") // Filtra solo le stringhe valide
+        .map((badge, index) => (
+          <Label
+            key={index}
+            category={badge} // Passa il testo dell'etichetta
+            color={getColorForCategory(badge)} // Calcola il colore dinamicamente
+          />
+        ))}
     </div>
   );
 };
- 
+
 export default BadgeContainer;

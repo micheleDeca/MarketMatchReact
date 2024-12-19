@@ -15,7 +15,7 @@ const Reservation = () => {
             productName: 'Prodotto 1',
             detail: 'Descrizione Prodotto, Descrizione Prodotto, Descrizione Prodotto',
             price: "5.99€",
-            badges: [{ text: 'Bio', backgroundColor: '#4caf50' }],
+            badges: ['Bio'],
         },
         {
             image: 'https://via.placeholder.com/100',
@@ -24,11 +24,7 @@ const Reservation = () => {
             detail: 'Descrizione Prodotto, Descrizione Prodotto, Descrizione Prodotto',
             price: "5.99€",
             priceDiscount: "4.26€",
-            badges: [
-                { text: 'Bio', backgroundColor: '#4caf50' },
-                { text: 'Senza lattosio', backgroundColor: '#2196f3' },
-                { text: 'Senza lattosio', backgroundColor: '#2196f3' },
-            ],
+            badges: ['Bio','Senza lattosio'],
         },
         {
             image: 'https://via.placeholder.com/100',
@@ -36,7 +32,7 @@ const Reservation = () => {
             productName: 'Prodotto 3',
             detail: 'Descrizione Pro asdasdasdas das das dasdsa dasdotto, Descrsaaaaaaaaa aaaaaaaaaaaaaaaaaaaa aaaaaaaaas izione Prodotto, Descrizione Prodotto',
             price: "5.99€",
-            badges: [{ text: 'Bio', backgroundColor: '#4caf50' }],
+            badges: ['Senza Glutine'],
         },
     ];
 
