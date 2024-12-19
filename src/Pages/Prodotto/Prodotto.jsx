@@ -1,28 +1,52 @@
+import { useState } from "react";
 import Button from "../../Components/Button/Button";
 import Caratteristiche from "../../Components/Caratteristiche/Caratteristiche";
 import ShopWindow from "../../Components/shop_window/shop_window";
 import "./Prodotto.css";
 
 function Prodotto(props) {
+
+  const [prodottoInfo, setProdottoInfo] = useState({
+    nome: "Nome Prodotto",
+    foto: "url_della_foto.jpg",
+    descrizione:
+      "Descrizione Prodotto, Descrizione Prodotto, Descrizione Prodotto...",
+    categorie: ["Bio", "Senza lattosio", "Vegan", "Senza glutine", "Km0", "Vegetariano"],
+    prezzo: {
+      scontato: "15.08",
+      base: "28.22",
+    },
+    caratteristiche: {
+      PesoDimensioniUnitaria: "pezzi",
+      DescrizioneUnita: "Venduto in confezioni da 1Litro",
+      Quantità: "150",
+      disponibile: true,
+    },
+
+
+  });
+
   return (
     <>
       <div className="boxProdotto">
         <div className="containerProdotto">
           <span className="spaceProdotto"></span>
-          <span className="spaceProdotto2"><Button name="Elimina Prodotto"/></span>
+          <span className="spaceProdotto2"><Button name="Elimina Prodotto" /></span>
         </div>
         <span>&nbsp;</span>
         <ShopWindow
-          Description="Una bottiglia riutilizzabile ed ecologica realizzata in acciaio inossidabile di alta qualità, progettata per mantenere le bevande calde per 12 ore e fredde per 24 ore. Leggera, resistente e priva di BPA, è ideale per l'uso quotidiano e le attività outdoor. Disponibile in vari colori."
-          ImageDescription="immagine prodotto"
-          Name="nome prodotto"
+          Description={prodottoInfo.descrizione}
+          ImageDescription={prodottoInfo.foto}
+          Name={prodottoInfo.nome}
           tipo="prodotto"
-          currentPrice="10.00€"
-          originalPrice="9.55€"
+          currentPrice={prodottoInfo.prezzo.scontato + "€"}
+          originalPrice={prodottoInfo.prezzo.base + "€"}
           mode="neg"
         />
         <span>&nbsp;</span>
-        <Caratteristiche peso="10kg" quantità="100" dimensioni="grandi" />
+        <Caratteristiche peso={"Venduto in: " + prodottoInfo.caratteristiche.PesoDimensioniUnitaria}
+          quantita={prodottoInfo.caratteristiche.Quantità + " " + prodottoInfo.caratteristiche.PesoDimensioniUnitaria}
+          dimensioni={prodottoInfo.caratteristiche.DescrizioneUnita} />
       </div>
     </>
   );
