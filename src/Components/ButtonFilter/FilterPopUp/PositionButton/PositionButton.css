@@ -1,0 +1,32 @@
+.error {
+    color: red;
+}
+
+.buttPosition {
+    width: 100%;
+    padding: 0.8rem 1.5rem;
+    background-color: rgb(217, 141, 26);
+    border: none;
+    border-radius: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.buttPosition:hover{
+    background-color: rgb(151, 105, 6);
+    transform: scale(0.98);
+}
+
+.posInfo{
+    display: flex;
+    flex-direction: row;
+    gap: 2%;
+    align-items: center;
+    font-size: 17px;
+    color: black;
+}

@@ -1,0 +1,15 @@
+.showButton{
+    border-radius: 20px;
+    background-color: rgb(210, 57, 44);
+    border: none;
+    width: 30%;
+    height: 40px;
+    font-size: medium;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.showButton:hover{
+    background-color: rgb(158, 42, 31);
+    transform: scale(0.98);
+}

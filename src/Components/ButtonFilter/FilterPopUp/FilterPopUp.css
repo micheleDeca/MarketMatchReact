@@ -1,0 +1,131 @@
+.popUpContainer{
+  position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    z-index: 1000;
+    width: 90%;
+    max-width: 600px;
+    height: 600px;
+}
+
+.filterHeader{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 15px;
+  padding-bottom: 2%;
+}
+
+.orderTitle h2, .filterTitle h2, .priceTitle h2{
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.filterSwiper{
+  padding: 2%;
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+}
+
+.range-slider {
+    position: relative;
+    width: 100%;
+    height: 20px; 
+    background: #e0e0e0;
+    border-radius: 10px;
+    margin-top: 20px;
+  }
+  
+  .range-slider input[type="range"] {
+    -webkit-appearance: none;  /* elimina lo stile di default */
+    appearance: none;
+    pointer-events: none;
+    position: absolute; /* posizione assoluta rispetto al contenitore più vicino */
+    height: 10px; /* Altezza dell'input */
+    background: transparent;
+    width: 100%;
+    z-index: 1; /*z-index gestisce la sovrapposizione tra gli elementi -> 1 starà sotto al 2 */
+  }
+  
+  .range-slider input[type="range"].slider-min {
+    z-index: 2;
+    cursor: pointer;
+  }
+  
+  .range-slider input[type="range"].slider-max {
+    z-index: 2;
+    cursor: pointer;
+  }
+  
+  /* palline */
+  .range-slider input[type="range"]::-webkit-slider-thumb { 
+    pointer-events: auto;
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px; 
+    height: 20px; 
+    background: white;
+    border-radius: 50%;
+    border: 2px solid #5c4004;
+    cursor: pointer;
+  }
+  
+  .range-slider input[type="range"]::-moz-range-thumb {
+    pointer-events: auto;
+    width: 20px; 
+    height: 20px; 
+    background: white;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid #5c4004;
+  }
+  
+  /* Track tra le due palline */
+  .slider-track {
+    position: absolute;
+    top: 50%;
+    height: 10px;
+    background: #5c4004;
+    border-radius: 5px;
+    transform: translateY(-50%);
+    z-index: 0;
+  }
+  
+  /* Valori Min e Max */
+  .slider-values {
+    display: flex;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: bold;
+  }
+
+  .position{
+    padding-top: 8%;
+    display: flex;
+    flex-direction: row;
+    gap: 2%;
+    width: 100%;
+  }
+
+  .manualPosition {
+    width: 50%;
+  }
+
+  .autoPosition{
+    width: 50%;
+  }
+
+  .finalButton{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-top: 5%;
+  }
+
