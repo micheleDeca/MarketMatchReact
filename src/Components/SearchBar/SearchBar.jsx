@@ -8,11 +8,11 @@ import SearchIcon from './search.svg';
  * @returns {JSX.Element} A search bar component with input and accompanying icons.
  */
 
-function SearchBar() {
+function SearchBar(props) {
   return (
     <>
       <div className="SearchBarBox">
-        <input type="text" className="SearchBarInput" placeholder="Cerca..."/>
+        <input type="text" className="SearchBarInput" placeholder={props.placeholder || "Cerca..."}/>
         <img src={SearchIcon} alt="search" className="SearchBarImg"/>
       </div>
     </>

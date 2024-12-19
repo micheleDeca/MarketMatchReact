@@ -11,6 +11,7 @@
   font-size: 85%;
   text-overflow: ellipsis;
   max-width: 250px;
+  max-height: 30px;
 }
 
 .OrangeButton:hover {
@@ -23,10 +24,9 @@
   }
 }
 
-@media (orientation: landscape) and (max-width: 950px) {
+@media (orientation: landscape) and (max-width: 1080px) {
   .OrangeButton {
-    height: 30px;
-    font-size: 75%;
+    aspect-ratio: 4.5/1;
   }
 }
 
