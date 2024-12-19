@@ -5,7 +5,7 @@ import FilterPopUp from './FilterPopUp/FilterPopUp';
 export default function ButtonFilter() {
 
   const orderNames = ["Prezzo crescente", "Prezzo decrescente", "Quantità", "Nome", "Rilevanza"];
-  const filterNames = ["Bio", "Senza Lattosio", "Senza Glutine", "Vegetariano", "Vegano", "Km 0", "Prodotti in promozione", "Più vicini a te"];
+  const filterNames = ["Bio", "Senza Lattosio", "Senza Glutine", "Vegetariano", "Vegan", "Km0", "In promozione", "Più vicini a te"];
 
   const [isPopupOpen, setIsPopupOpen] = useState(false); // Stato per gestire la visibilità della popup
 
@@ -21,7 +21,7 @@ export default function ButtonFilter() {
       </button>
 
         {isPopupOpen &&
-          (<FilterPopUp order={orderNames} filter={filterNames} setState={setIsPopupOpen}/>)
+          (<div className='filter-popup-container'><FilterPopUp order={orderNames} filter={filterNames} setState={setIsPopupOpen}/></div>)
         }
 
     </>

@@ -1,6 +1,6 @@
 .showButton{
     border-radius: 20px;
-    background-color: rgb(210, 57, 44);
+    background-color: #6eaf7e; /*rgb(210, 57, 44);*/
     border: none;
     width: 40%;
     height: 40px;
@@ -10,10 +10,10 @@
 }
 
 .showButton:hover{
-    background-color: rgb(158, 42, 31);
+    background-color:rgb(70, 142, 102);  /*rgb(158, 42, 31);*/
     transform: scale(0.98);
 }
-
+ 
 @media (max-width: 480px){
     .showButton{
       font-size: small;
