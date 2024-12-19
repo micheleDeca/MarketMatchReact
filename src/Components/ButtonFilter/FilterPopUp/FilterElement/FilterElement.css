@@ -5,6 +5,19 @@
     font-weight: 450;
     color:rgba(0, 0, 0, 0.778);
     width: 100%;
+    min-width:fit-content;
     height: 40px;
     cursor: pointer;
 }
+
+
+@media (max-width: 570px) {
+
+    .element{
+        font-size: small;
+    }
+}
+
+
+
+

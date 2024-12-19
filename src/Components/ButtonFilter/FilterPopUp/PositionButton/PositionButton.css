@@ -27,6 +27,12 @@
     flex-direction: row;
     gap: 2%;
     align-items: center;
-    font-size: 17px;
+    font-size: 15px;
     color: black;
 }
+
+@media (max-width: 480px){
+    .buttPosition{
+      font-size: small;
+    }
+  }

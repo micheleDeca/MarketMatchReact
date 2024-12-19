@@ -5,6 +5,7 @@ import SearchBar from "../../SearchBar/SearchBar";
 import PositionButton from "./PositionButton/PositionButton";
 import ShowButton from "./ShowButton/ShowButton";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper/modules";
 
 export default function FilterPopUp(elements) {
 
@@ -48,8 +49,13 @@ export default function FilterPopUp(elements) {
                 </h2>
             </div>
                 <Swiper
+                    modules={[Pagination]} // Necessario per impostare i pallini
                     spaceBetween={10} // Spazio tra gli slider
-                    slidesPerView="5" // Imposta la visualizzazione automatica in base alla larghezza degli elementi
+                    slidesPerView="4" // Imposta la visualizzazione 
+                    pagination={{ clickable: true }} // Inserisci pallini sotto gli slides
+                    breakpoints={{
+                        480: { slidesPerView: 5 }
+                      }}
                     className="filterSwiper" // Classe per personalizzare lo stile
                 >
                     {elements.order.map((item, index) => (
@@ -64,8 +70,13 @@ export default function FilterPopUp(elements) {
                 </h2>
             </div>
                 <Swiper
+                    modules={[Pagination]}
                     spaceBetween={10}
-                    slidesPerView="5"
+                    slidesPerView="4"
+                    pagination={{ clickable: true }}
+                    breakpoints={{
+                        480: { slidesPerView: 5 }
+                      }}
                     className="filterSwiper"
                 >
                     {elements.filter.map((item, index) => (
@@ -103,8 +114,8 @@ export default function FilterPopUp(elements) {
                 <div
                     className="slider-track"
                     style={{
-                        left: `${minValue - 1}%`,           /* definisce la lunghezza del track contenuto tra minValue e maxValue */
-                        right: `${100 - maxValue}%`,
+                        left: `${minValue + 1}%`,           /* definisce la lunghezza del track contenuto tra minValue e maxValue */
+                        right: `${100 - maxValue + 2}%`,
                     }}
                 ></div>
 

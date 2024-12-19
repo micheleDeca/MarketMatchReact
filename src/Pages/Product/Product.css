@@ -36,10 +36,18 @@
     .searchBar {
         width: 50%;
     }
+
+    .filterButton {
+        width: 50%;
+    }
 }
 
 @media (min-width: 481px) and (max-width: 768px) {
     .searchBar {
+        width: 40%;
+    }
+
+    .filterButton {
         width: 40%;
     }
 }
@@ -48,10 +56,18 @@
     .searchBar {
         width: 30%;
     }
+
+    .filterButton {
+        width: 30%;
+    }
 }
 
 @media (min-width: 1025px) and (max-width: 1200px) {
     .searchBar {
+        width: 20%;
+    }
+
+    .filterButton {
         width: 20%;
     }
 }
