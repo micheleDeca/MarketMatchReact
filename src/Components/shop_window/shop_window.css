@@ -24,8 +24,6 @@
     width: 71%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
 
 .nome {
@@ -65,25 +63,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    margin-top: 2%;
+    width: 40%;
     margin-bottom: 2%;
 }
 
-.boxBadges {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
+.boxBadges{
+    width: 60%;
 }
 
 .boxDescription {
     margin-top: 2%;
     margin-bottom: 2%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
 }
 
 @media (orientation: portrait) {
@@ -92,7 +82,7 @@
     }
 
     .LeftShopWindow {
-        width: 98%;
+        width: 100%;
         margin-right: 0px;
     }
 
@@ -103,11 +93,29 @@
     }
 
     .RightShopWindow {
-        width: 98%;
+        width: 100%;
     }
 
     .nome {
         text-align: center;
+    }
+
+    .boxName {
+        width: 100%;
+        margin-top: 4%;
+        margin-bottom: 4%;
+    }
+
+    .boxBadges{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .boxDescription {
+        margin-top: 4%;
     }
 
 }

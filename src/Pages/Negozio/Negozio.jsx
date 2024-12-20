@@ -78,7 +78,7 @@ function Negozio(props) {
                              setNegozioInfo={setNegozioInfo}/>
             </div>
             <div className="boxNegozio">
-                <Stelle starNumber={1}/>
+                <div className="star"><Stelle starNumber={1}/></div>
                 <span>&nbsp;</span>
                 <ShopWindow
                     Description={negozioInfo.descrizione}

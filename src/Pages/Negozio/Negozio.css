@@ -22,3 +22,13 @@
     background-color: rgba(0, 0, 0, 0.3);  
     z-index: 1000;  
 }
+
+.star{
+    margin-top: 2%;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 2%;
+    margin-right: 2%;
+}
