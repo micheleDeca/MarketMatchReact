@@ -58,6 +58,28 @@ function PopUpModify(props) {
             }
             props.setNegozioInfo({...props.negozioInfo, categorie: newCategorie});
         }
+        if(type === "Prezzo"){
+            const prezzo = document.getElementsByClassName("input");
+            props.setNegozioInfo({
+                ...props.negozioInfo,
+                prezzo: {
+                    base: prezzo[0].value,
+                    scontato: prezzo[1].value,
+                },
+            });
+        }
+        if(type === "Caratteristiche"){
+            const caratteristiche = document.getElementsByTagName("input");
+            props.setNegozioInfo({
+                ...props.negozioInfo,
+                caratteristiche: {
+                    PesoDimensioniUnitaria: caratteristiche[0].value,
+                    DescrizioneUnita: caratteristiche[1].value,
+                    Quantità: caratteristiche[2].value,
+                    disponibile: caratteristiche[3].checked,
+                },
+            });
+        }
         document.getElementById("myForm").style.display = "none";
         props.setModify("");
 
@@ -308,7 +330,102 @@ function PopUpModify(props) {
                     ) : (
                         <></>
                     )}
-
+                    {props.modify === "Modifica Prezzo" ? (
+                        <>
+                            <div className="ColumnPopUp">
+                                <label htmlFor="textInput" style={{color: "darkslateblue"}}>
+                                    Prezzo Originale
+                                </label>
+                                <input type="text" className="input" defaultValue={props.negozioInfo.prezzo.base}/>
+                            </div>
+                            <div className="ColumnPopUp">
+                                <label htmlFor="textInput" style={{color: "darkslateblue"}}>
+                                    Prezzo Corrente
+                                </label>
+                                <input type="text" className="input" defaultValue={props.negozioInfo.prezzo.scontato}/>
+                            </div>
+                            <div className="popUpRight">
+                                <input
+                                    type="submit"
+                                    value="Salva"
+                                    className="popUpbtn"
+                                    onClick={() => save("Prezzo")}
+                                />
+                            </div>
+                        </>
+                    ) : (
+                        <></>
+                    )}
+                    {props.modify === "Modifica Prezzo" ? (
+                        <>
+                            <div className="ColumnPopUp">
+                                <label htmlFor="textInput" style={{color: "darkslateblue"}}>
+                                    Prezzo Originale
+                                </label>
+                                <input type="text" className="input" defaultValue={props.negozioInfo.prezzo.base}/>
+                            </div>
+                            <div className="ColumnPopUp">
+                                <label htmlFor="textInput" style={{color: "darkslateblue"}}>
+                                    Prezzo Corrente
+                                </label>
+                                <input type="text" className="input" defaultValue={props.negozioInfo.prezzo.scontato}/>
+                            </div>
+                            <div className="popUpRight">
+                                <input
+                                    type="submit"
+                                    value="Salva"
+                                    className="popUpbtn"
+                                    onClick={() => save("Prezzo")}
+                                />
+                            </div>
+                        </>
+                    ) : (
+                        <></>
+                    )}
+                    {props.modify === "Modifica Caratteristiche" ? (
+                        <>
+                            <div className="ColumnPopUp">
+                                <label htmlFor="textInput" style={{color: "darkslateblue"}}>
+                                    Peso
+                                </label>
+                                <input type="text" className="input"
+                                       defaultValue={props.negozioInfo.caratteristiche.PesoDimensioniUnitaria}/>
+                            </div>
+                            <div className="ColumnPopUp">
+                                <label htmlFor="textInput" style={{color: "darkslateblue"}}>
+                                    Dimensioni
+                                </label>
+                                <input type="text" className="input"
+                                       defaultValue={props.negozioInfo.caratteristiche.DescrizioneUnita}/>
+                            </div>
+                            <div className="ColumnPopUp">
+                                <label htmlFor="textInput" style={{color: "darkslateblue"}}>
+                                    Quantità
+                                </label>
+                                <input type="text" className="input"
+                                       defaultValue={props.negozioInfo.caratteristiche.Quantità}/>
+                            </div>
+                            <div className="ColumnPopUp">
+                                <div className="RowPopUp">
+                                    <label htmlFor="textInput" style={{color: "darkslateblue"}}>
+                                        Disponibilità
+                                    </label>
+                                    <input type="checkbox" name="option_disp" value="disponiblita"
+                                           defaultChecked={props.negozioInfo.caratteristiche.disponibile === true}/>
+                                </div>
+                            </div>
+                            <div className="popUpRight">
+                                <input
+                                    type="submit"
+                                    value="Salva"
+                                    className="popUpbtn"
+                                    onClick={() => save("Caratteristiche")}
+                                />
+                            </div>
+                        </>
+                    ) : (
+                        <></>
+                    )}
                 </div>
             </div>
         </>

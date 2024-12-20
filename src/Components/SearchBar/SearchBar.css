@@ -19,7 +19,7 @@
     border: none;
     border-radius: 20px;
     background-color: #f1f1f1;
-    font-size: medium;
+    font-size: 90%;
 }
 
 @media (orientation: portrait) and (max-width: 480px) {
