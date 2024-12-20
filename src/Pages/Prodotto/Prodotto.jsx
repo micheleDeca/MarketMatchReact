@@ -37,7 +37,6 @@ function Prodotto(props) {
             <span className="spaceProdotto"></span>
             <span className="spaceProdotto2"><Button name="Elimina Prodotto"/></span>
           </div>
-          <span>&nbsp;</span>
           <ShopWindow
               Description={prodottoInfo.descrizione}
               ImageDescription={prodottoInfo.foto}
@@ -49,7 +48,6 @@ function Prodotto(props) {
               badges={prodottoInfo.categorie}
               mode="neg"
           />
-          <span>&nbsp;</span>
           <Caratteristiche peso={"Venduto in: " + prodottoInfo.caratteristiche.PesoDimensioniUnitaria}
                            quantita={prodottoInfo.caratteristiche.Quantità + " " + prodottoInfo.caratteristiche.PesoDimensioniUnitaria}
                            dimensioni={prodottoInfo.caratteristiche.DescrizioneUnita}

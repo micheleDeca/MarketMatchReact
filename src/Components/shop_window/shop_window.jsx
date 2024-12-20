@@ -46,17 +46,17 @@ function ShopWindow(props) {
                             <p className="prezzo-ShopWindow">
                                 {props.originalPrice ? (
                                     <>
-                    <span className="current-price-card">
-                      {props.currentPrice}
-                    </span>
+                                        <span className="current-price-card">
+                                          {props.currentPrice}
+                                        </span>
                                         <span className="original-price-card">
-                      {props.originalPrice}
-                    </span>
+                                          {props.originalPrice}
+                                        </span>
                                     </>
                                 ) : (
                                     <span className="normal-price-card">
-                    {props.currentPrice}
-                  </span>
+                                        {props.currentPrice}
+                                        </span>
                                 )}
                             </p>
                         )}

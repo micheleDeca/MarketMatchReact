@@ -67,7 +67,6 @@ function Ricetta(props) {
                     modify={setModify}
                     badges={ricettaInfo.categorie}
                 />
-                <span>&nbsp;</span>
                 <div className="Informazioni">
                     <RecipesInformation
                         difficolta={ricettaInfo.badgeInformativi.difficolta}
@@ -75,11 +74,9 @@ function Ricetta(props) {
                         cottura={ricettaInfo.badgeInformativi.tempoCottura + " min"}
                         costo={ricettaInfo.badgeInformativi.costo + "€"}/>
                 </div>
-                <span>&nbsp;</span>
                 <div className="Ingredienti">
                     <Ingredients ingredienti={ricettaInfo.Ingredienti} name="Prenota prodotti"/>
                 </div>
-                <span>&nbsp;</span>
                 <ProductLongList
                     title="Preparazione"
                     products={ricettaInfo.Passaggi}/>

@@ -79,7 +79,6 @@ function Negozio(props) {
             </div>
             <div className="boxNegozio">
                 <div className="star"><Stelle starNumber={1}/></div>
-                <span>&nbsp;</span>
                 <ShopWindow
                     Description={negozioInfo.descrizione}
                     ImageDescription="immagine prodotto"
@@ -88,7 +87,6 @@ function Negozio(props) {
                     modify={setModify}
                     badges={negozioInfo.categorie}
                 />
-                <span>&nbsp;</span>
                 <Orari
                     mode={props.mode}
                     lunedi={negozioInfo.orari[0].orario}
@@ -107,7 +105,6 @@ function Negozio(props) {
                     contatti={negozioInfo.contatti.telefono + ', ' + negozioInfo.contatti.mail}
                     modify={setModify}
                 />
-                <span>&nbsp;</span>
                 <ProductLongList title="Prodotti in vendita" products={mockProducts}/>
             </div>
         </>

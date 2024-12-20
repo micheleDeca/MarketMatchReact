@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: flex-start;
   background-color: #f5f5f5;
-  width: 90%;
+  width: 94%;
   padding: 3%;
   gap: 20px;
   border-radius: 20px;
@@ -15,12 +15,6 @@
   font-weight: bold;
   font-size: large;
   border-bottom: 2px solid darkslateblue;
-}
-
-.IngredientsText {
-  font-size: 90%;
-  width: 100%;
-  word-wrap: break-word;
 }
 
 .Successivo {
@@ -40,12 +34,20 @@
 }
 
 @media (orientation: portrait) and (max-width: 644px) {
+
   .IngredientsBox {
-    padding: 4%;
+    padding-top: 4%;
+    padding-bottom: 4%;
+    padding-left: 7%;
+    width: 90%;
   }
 
   .IngredientsTitle {
     width: 40%;
+  }
+
+  .IngredientsList {
+    font-size: small;
   }
 }
 
@@ -54,4 +56,10 @@
     .IngredientsTitle {
       width: 20%;
     }
+
+  .IngredientsBox {
+    padding-left: 4%;
+    padding-right: 3%;
+    width: 92%;
+  }
 }

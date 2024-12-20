@@ -92,7 +92,14 @@
     }
 
     .VerticalSpace{
-        margin:1%;
+        margin:2%;
+    }
+
+    .OrariNegozioContainer{
+        margin-left: 0px;
+        margin-right:0px;
+        width: 100%;
+
     }
 
 }

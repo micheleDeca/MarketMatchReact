@@ -5,9 +5,8 @@
     align-items: flex-start;
     width: 96%;
     margin: 2%;
-    gap: 15px;
+    gap: 30px;
 }
-
 
 .popup-edit-active {  /*AGGIUNTO*/
     width: 100%;
@@ -30,4 +29,20 @@
 .Ingredienti{
     margin-left: 1%;
     width: 99%;
+}
+
+@media (orientation: portrait) {
+
+    .boxRicetta{
+        gap: 20px;
+    }
+
+    .Informazioni{
+        margin-left: 0px;
+    }
+
+    .Ingredienti{
+        margin-left: 0px;
+    }
+
 }
