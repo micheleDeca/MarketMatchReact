@@ -4,9 +4,8 @@
     justify-content:flex-start;
     align-items: center;
     width: 96%;
-    margin-left:2%;
-    margin-right:2%;
-    margin-bottom: 2%;
+    margin:2%;
+    gap:15px;
 }
 
 
@@ -24,11 +23,8 @@
 }
 
 .star{
-    margin-top: 2%;
     width: 100%;
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    margin-bottom: 2%;
-    margin-right: 2%;
 }

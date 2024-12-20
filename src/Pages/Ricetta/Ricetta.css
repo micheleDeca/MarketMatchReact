@@ -1,12 +1,11 @@
 .boxRicetta{
     display: flex;
     flex-direction: column;
-    justify-content:flex-start;
-    align-items: center;
+    justify-content:center;
+    align-items: flex-start;
     width: 96%;
-    margin-left:2%;
-    margin-right:2%;
-    margin-bottom: 2%;
+    margin: 2%;
+    gap: 15px;
 }
 
 
@@ -21,4 +20,14 @@
     left: 0;
     background-color: rgba(0, 0, 0, 0.3);
     z-index: 1000;
+}
+
+.Informazioni{
+    margin-left: 1%;
+    width: 99%;
+}
+
+.Ingredienti{
+    margin-left: 1%;
+    width: 99%;
 }

@@ -15,7 +15,7 @@ import Negozio from './Pages/Negozio/Negozio';
 import Prodotto from './Pages/Prodotto/Prodotto';
 import Reservations from './Pages/Reservations/Reservations';
 import Settings from './Pages/Settings/Settings';
-import Ricetta from "./Pages/Ricette/Ricetta.jsx";
+import Ricetta from "./Pages/Ricetta/Ricetta.jsx";
 
 
 /*
@@ -50,7 +50,7 @@ const App = () => {
         <Route path='/antonio' element={<TestAntonio /> } />
         <Route path='/michele' element={<TestMichele/> } />
         <Route path='/isabella' element={<TestIsa /> } />
-        <Route path='/negozio' element={<Negozio />}/>
+        <Route path='/negozio' element={<Negozio mode="neg" />}/>
         <Route path='/prodotto' element={<Prodotto mode="neg"/>}/>
         <Route path='/Ricetta' element={<Ricetta/>}/>
         <Route path='/impostazioni' element={<Settings /> }/>

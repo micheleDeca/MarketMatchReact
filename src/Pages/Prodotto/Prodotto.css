@@ -2,11 +2,10 @@
     display: flex;
     flex-direction: column;
     width: 96%;
-    margin-left:2%;
-    margin-right:2%;
-    margin-bottom: 2%;
+    margin:2%;
     justify-content: center;
     align-items: flex-start;
+    gap:15px;
 }
 
 .containerProdotto{
@@ -15,8 +14,6 @@
     justify-content: flex-end;
     align-items: center;
     width: 100%;
-    margin-bottom: 2%;
-    margin-top: 2%;
 }
 
 .spaceProdotto{

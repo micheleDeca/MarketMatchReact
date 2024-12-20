@@ -4,8 +4,8 @@
   justify-content: center;
   align-items: flex-start;
   background-color: #f5f5f5;
-  width: 80%;
-  padding: 2%;
+  width: 90%;
+  padding: 3%;
   gap: 20px;
   border-radius: 20px;
 }
@@ -28,6 +28,15 @@
   justify-content: flex-end;
   width: 100%;
   word-wrap: break-word;
+}
+
+.IngredientsList {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  gap: 30px;
 }
 
 @media (orientation: portrait) and (max-width: 644px) {
