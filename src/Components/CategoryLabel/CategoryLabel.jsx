@@ -20,7 +20,7 @@ const Badge = (props) => {
     "senza glutine": "#9c27b0",
     km0: "#cddc39",
     vegetariano: "#ff9800",
-    default: "#607d8b", // Colore di default se la categoria non è nella mappa
+    default: "darkslateblue", // Colore di default se la categoria non è nella mappa
   };
 
   const getColorForCategory = (category) => {
