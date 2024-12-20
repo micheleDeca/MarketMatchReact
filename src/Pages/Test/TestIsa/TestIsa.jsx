@@ -67,8 +67,6 @@ const TestIsa = () => {
       <SezioneAccount info={gestioneNeg}/>
       <SezioneAccount info={prodotti}/>
       <SezioneAccount info={prenotazioni}/>
-      </div>
-      <div className="profButton">
       <SezioneAccount info={impostazioni}/>
       </div>
     </>
