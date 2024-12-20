@@ -25,7 +25,7 @@ function Prodotto(props) {
   });
 
   const [modify, setModify] = useState("");
-
+  
   return (
       <>
         <div className={`popup-edit${modify === "" ? "" : "-active"}`  /*AGGIUNTO*/}>
