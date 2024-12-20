@@ -9,8 +9,7 @@
   max-width: 600px;
   height: 650px;
   margin: 30px; 
-}
-.popUpContainer {
+
   overflow-y: auto; /* Aggiunge lo scorrimento verticale quando necessario */
   max-height: calc(100vh - 40px); /* Altezza massima, lasciando un margine di 20px sopra e sotto */
   margin: 20px auto; /* Assicura 20px di margine sopra e sotto */

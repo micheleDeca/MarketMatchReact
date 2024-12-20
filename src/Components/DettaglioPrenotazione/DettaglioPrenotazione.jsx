@@ -41,9 +41,6 @@ export default function DettaglioPrenotazione(value) {
                 <div className="header">
                     Dettaglio Prenotazione
                 </div>
-                <div className="buttonSucc">
-                    <ButtonSucessivo onclick={() => clickFunction} />
-                </div>
                 </div>
                 <div className="info">
                     #{value.codice}

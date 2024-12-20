@@ -5,6 +5,7 @@ import '../../ExternalContent/PaginationBar.css';
 import { Pagination } from 'react-pagination-bar';
 import SearchBar from '../../Components/SearchBar/SearchBar';
 import ButtonFilter from '../../Components/ButtonFilter/ButtonFilter';
+import Button from '../../Components/Button/Button';
 
 const categoriesList = [
     "Bio",
@@ -84,6 +85,9 @@ const Product = () => {
     return (
         <div className="products-page">
             <div className="product-header">
+            <div className="newProduct">
+                    <Button name="Inserisci prodotto" />
+                </div>
                 <div className="searchBar">
                 <SearchBar />
                 </div>

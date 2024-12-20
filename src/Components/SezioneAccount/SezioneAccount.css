@@ -28,7 +28,8 @@
     white-space: normal; 
     word-wrap: break-word; 
     word-break: break-word; 
-    font-weight: normal;
+    font-weight: 400;
+    font-size: 15px;
     color: rgb(90, 89, 89);
     padding-left: 5%;
     padding-right: 5%;
@@ -37,7 +38,7 @@
 
   #buttonNegozio{
     background-color: rgb(240, 240, 240);
-    max-width: 300px;
+    max-width: 400px;
     max-height: 200px;
     text-align: left;
     width: 100%;
@@ -71,4 +72,16 @@
       height: 100px;
     }
   }
+
+  .feature-animation {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+    border: none;
+  }
   
+  .feature-box{
+    background: none;
+    padding: 0px;
+    box-shadow: none;
+  }

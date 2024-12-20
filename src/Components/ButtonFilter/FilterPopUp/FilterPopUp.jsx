@@ -31,7 +31,6 @@ export default function FilterPopUp(elements) {
         setMinValue(value);
     };
 
-
     const handleMaxChange = (event) => {
         let value = Number(event.target.value);
         if (value <= minValue) {
@@ -39,6 +38,8 @@ export default function FilterPopUp(elements) {
         }
         setMaxValue(value);
     };
+
+    /* Gestione dello Slider per la distanza */
     const handleMinChangeDistance = (event) => {
         let value = parseFloat(event.target.value); // Usa parseFloat per supportare i decimali
         if (value >= maxValueDistance - 0.1) { // Assicura che ci sia almeno uno spazio di 0.1 tra min e max
@@ -139,7 +140,7 @@ export default function FilterPopUp(elements) {
                     }}
                 ></div>
 
-
+                {/* Slider per la distanza */}
                 <div className="distanceTitle">
                     <h2>Distanza: </h2>
                     <div className="slider-values">
@@ -149,7 +150,7 @@ export default function FilterPopUp(elements) {
                 <div className="range-slider">
                     <input
                         type="range"
-                        min="1"
+                        min="0.1"
                         max="9"
                         step="0.1"          // Imposta step per supportare decimali
                         value={minValueDistance}
@@ -158,7 +159,7 @@ export default function FilterPopUp(elements) {
                     />
                     <input
                         type="range"
-                        min="2"
+                        min="0.2"
                         max="10"
                         step="0.1"
                         value={maxValueDistance}
@@ -168,10 +169,8 @@ export default function FilterPopUp(elements) {
                     <div
                         className="slider-track"            //sistemare calcoli
                         style={{
-                            left: `${(((minValueDistance+2) -1.8) /10.5) * 100}%`
-                            , right: `${100 - (((maxValueDistance-0.2) - 1.5) / 8.5) * 100}%`
-
-                            ,
+                            left: `${((minValueDistance - 0.1) / (10 - 0.1)) * 100 + 2}%`,
+                            width: `${((maxValueDistance - minValueDistance) / (10 - 0.1)) * 100 - 4}%`,
                         }}
 
                     ></div>

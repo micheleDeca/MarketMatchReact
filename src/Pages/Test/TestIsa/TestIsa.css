@@ -1,0 +1,25 @@
+.accountHeader h1{
+    padding-bottom: 2.5%;
+    padding-top: 0.5%;
+    padding-left: 2%;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.sezButtons{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 5%;
+}
+
+.profButton{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding-left: 2%;
+    padding-top: 4%;
+    padding-bottom: 4%;
+}
+  

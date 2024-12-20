@@ -14,6 +14,13 @@
     gap: 10px;
 }
 
+.searchProduct{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+}
+
 .searchBar {
     display: flex;
     justify-content: center;
@@ -25,6 +32,13 @@
     display: flex;
     justify-content: center;
     width: 20%;
+}
+
+.newProduct{
+    width: 95%;
+    position: absolute;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .container-product {
@@ -40,6 +54,7 @@
     .filterButton {
         width: 50%;
     }
+
 }
 
 @media (min-width: 481px) and (max-width: 768px) {
@@ -60,6 +75,7 @@
     .filterButton {
         width: 30%;
     }
+
 }
 
 @media (min-width: 1025px) and (max-width: 1200px) {
@@ -69,6 +85,16 @@
 
     .filterButton {
         width: 20%;
+    }
+}
+
+@media (max-width: 870px){
+    .newProduct{
+        position: relative;
+        width: 95%;
+        display: flex;
+        justify-content: center;
+        padding-bottom: 2%;
     }
 }
 

@@ -36,25 +36,30 @@
  * ```
  */
 
-
+import Lottie from 'react-lottie-player'
 import './SezioneAccount.css'
 
-export default function SezioneAccount(buttonComponents){
+export default function SezioneAccount(buttonComponents) {
 
-    return(
-    <button id="buttonNegozio" onClick={buttonComponents.onclick}>
-        <div className="sezAccount1">
-            <div className="sezImg">
-            <img id="image" src={buttonComponents.info.img} width="70px" height="70px" />
+    return (
+        <button id="buttonNegozio" onClick={buttonComponents.onclick}>
+            <div className="sezAccount1">
+                <div className="feature-box">
+                    <Lottie
+                        loop
+                        animationData={buttonComponents.info.animation}
+                        play
+                        className="feature-animation"
+                    />
+                </div>
+                <div className="sezName">
+                    {buttonComponents.info.name}
+                </div>
             </div>
-            <div className="sezName">
-                {buttonComponents.info.name}
+            <div className="sezAccount2">
+                {buttonComponents.info.descrizione}
             </div>
-        </div>
-        <div className="sezAccount2">
-            {buttonComponents.info.descrizione}
-        </div>
 
-    </button>
+        </button>
     )
 }
