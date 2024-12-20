@@ -356,32 +356,6 @@ function PopUpModify(props) {
                     ) : (
                         <></>
                     )}
-                    {props.modify === "Modifica Prezzo" ? (
-                        <>
-                            <div className="ColumnPopUp">
-                                <label htmlFor="textInput" style={{color: "darkslateblue"}}>
-                                    Prezzo Originale
-                                </label>
-                                <input type="text" className="input" defaultValue={props.negozioInfo.prezzo.base}/>
-                            </div>
-                            <div className="ColumnPopUp">
-                                <label htmlFor="textInput" style={{color: "darkslateblue"}}>
-                                    Prezzo Corrente
-                                </label>
-                                <input type="text" className="input" defaultValue={props.negozioInfo.prezzo.scontato}/>
-                            </div>
-                            <div className="popUpRight">
-                                <input
-                                    type="submit"
-                                    value="Salva"
-                                    className="popUpbtn"
-                                    onClick={() => save("Prezzo")}
-                                />
-                            </div>
-                        </>
-                    ) : (
-                        <></>
-                    )}
                     {props.modify === "Modifica Caratteristiche" ? (
                         <>
                             <div className="ColumnPopUp">
