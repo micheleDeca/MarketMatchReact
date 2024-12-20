@@ -47,6 +47,7 @@ function Prodotto(props) {
               originalPrice={prodottoInfo.prezzo.base + "€"}
               modify={setModify}
               badges={prodottoInfo.categorie}
+              mode="neg"
           />
           <span>&nbsp;</span>
           <Caratteristiche peso={"Venduto in: " + prodottoInfo.caratteristiche.PesoDimensioniUnitaria}
