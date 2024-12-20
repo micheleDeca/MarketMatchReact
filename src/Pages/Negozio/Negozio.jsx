@@ -84,13 +84,13 @@ function Negozio(props) {
                     Description={negozioInfo.descrizione}
                     ImageDescription="immagine prodotto"
                     Name={negozioInfo.nome}
-                    mode="neg"
+                    mode={props.mode}
                     modify={setModify}
                     badges={negozioInfo.categorie}
                 />
                 <span>&nbsp;</span>
                 <Orari
-                    mode="neg"
+                    mode={props.mode}
                     lunedi={negozioInfo.orari[0].orario}
                     martedi={negozioInfo.orari[1].orario}
                     mercoledi={negozioInfo.orari[2].orario}
