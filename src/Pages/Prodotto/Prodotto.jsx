@@ -52,7 +52,8 @@ function Prodotto(props) {
                            quantita={prodottoInfo.caratteristiche.Quantità + " " + prodottoInfo.caratteristiche.PesoDimensioniUnitaria}
                            dimensioni={prodottoInfo.caratteristiche.DescrizioneUnita}
                            modify={setModify}
-                           tipo={props.mode}/>
+                           tipo={props.mode}
+                           disponibile={prodottoInfo.caratteristiche.disponibile}/>
         </div>
       </>
   );

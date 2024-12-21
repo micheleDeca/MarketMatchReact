@@ -1,10 +1,10 @@
 button.buttonDisp{
-    background-color: rgb(11, 144, 35);
     color: white;
     font-weight: normal;
+    font-size: 15px;
     width: 20%;
     height: 40px;
-    border: 2px solid black;
+    border: 1px solid rgba(0, 0, 0, 0.885);
     border-radius: 10px; 
     float: right;
     margin-right: 10px;
@@ -26,13 +26,15 @@ img.image{
         width: 50%;
         height: 30px;
         gap: 2px;
+        font-size: small;
     }
 
 }
 
-@media (min-width: 481px) and (max-width: 768px) { 
+@media (min-width: 499px) and (max-width: 768px) { 
 
     button.buttonDisp{
         width: 30%;
+        font-size: medium;
     }
 }
