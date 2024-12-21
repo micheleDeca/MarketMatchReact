@@ -39,6 +39,11 @@ function ShopWindow(props) {
                                 <BadgeContainer badges={props.badges}/>
                             </div>
                         </div>
+                        <div className="img">
+                            <img
+                                src="https://www.archibio.com/wp-content/uploads/2021/03/come-aprire-un-negozio-BIO-in-Italia.jpg"
+                                alt={props.ImageDescription} className="Image"></img>
+                        </div>
                         <div className="boxDescription">
                             <p className="descrizione">{props.Description}</p>
                         </div>
@@ -96,6 +101,20 @@ function ShopWindow(props) {
                             >
                                 <BadgeContainer badges={props.badges}/>
                             </ZigZag>
+                        </div>
+                        <div className="hidden-zig">
+                        <ZigZag
+                            pulsante="Modifica Immagine"
+                            modify={props.modify}
+                        >
+                            <div className="img">
+                                <img
+                                    src="https://www.archibio.com/wp-content/uploads/2021/03/come-aprire-un-negozio-BIO-in-Italia.jpg"
+                                    alt={props.ImageDescription}
+                                    className="Image"
+                                ></img>
+                            </div>
+                        </ZigZag>
                         </div>
                         <ZigZag
                             pulsante="Modifica Descrizione"
