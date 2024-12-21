@@ -52,7 +52,7 @@ const App = () => {
         <Route path='/michele' element={<TestMichele/> } />
         <Route path='/isabella' element={<TestIsa /> } />
         <Route path='/negozio' element={<Negozio mode="neg" />}/>
-        <Route path='/prodotto' element={<Prodotto mode="neg"/>}/>
+        <Route path='/prodotto' element={<Prodotto />}/>
         <Route path='/Ricetta' element={<Ricetta/>}/>
         <Route path='/impostazioni' element={<Settings /> }/>
         <Route path='*' element={<PageNotFound /> }/>
