@@ -18,16 +18,24 @@ import FilterPopUp from '../../../Components/ButtonFilter/FilterPopUp/FilterPopU
 
 const TestIsa = () => {
 
-  /*const buttonComponents = {
-     img: "https://img.freepik.com/vettori-premium/modello-di-logo-vettoriale-dell-icona-del-negozio-del-negozio_917138-2083.jpg",
-     name: "GESTIONE NEGOZIO",
-     descrizione: "descrizione"
-   }*/
+
+  function DettaglioOperazione(value){
+    return( 
+      <>
+    <div>
+    <h1>{value.type}</h1>
+    </div>
+    <div>
+
+    </div>
+    </>
+  )
+}
 
 
   return (
     <>
-     <Caratteristiche peso="de" dimensioni="fr5" quantita="sef" tipo="neg" />
+     
     </>
   )
 }

@@ -90,22 +90,26 @@ const Product = () => {
         sessionStorage.setItem('currentPage', currentPage);
     }, [currentPage]);
 
+
+    const orderNames = ["Prezzo crescente", "Prezzo decrescente", "Quantità", "Nome", "Rilevanza"];
+    const filterNames = ["Bio", "Senza Lattosio", "Senza Glutine", "Vegetariano", "Vegan", "Km0", "In promozione", "Più vicini a te"];
+
     return (
         <div className="products-page">
             <div className="product-header">
-            <div className="newProduct">
-                    <Button name="Inserisci prodotto" function={goToProduct}/>
+                <div className="newProduct">
+                    <Button name="Inserisci prodotto" function={goToProduct} />
                 </div>
                 <div className="searchBar">
-                <SearchBar />
+                    <SearchBar />
                 </div>
                 <div className="filterButton">
-                <ButtonFilter />
+                    <ButtonFilter order={orderNames} filter={filterNames} type="Neg, Prod"/>
                 </div>
             </div>
             <div className="content-container">
                 <div className="container-product">
-                    <ProductContainer card={products} button={"Prenota"}/>
+                    <ProductContainer card={products} button={"Prenota"} />
                 </div>
                 <div className="pagination-container">
                     <Pagination

@@ -8,13 +8,18 @@
   width: 80%;
   max-width: 600px;
   height: 650px;
-  margin: 30px; 
+  margin: 30px;
 
-  overflow-y: auto; /* Aggiunge lo scorrimento verticale quando necessario */
-  max-height: calc(100vh - 40px); /* Altezza massima, lasciando un margine di 20px sopra e sotto */
-  margin: 20px auto; /* Assicura 20px di margine sopra e sotto */
-  scrollbar-width: thin; /* Per Firefox: larghezza della scrollbar sottile */
-  scrollbar-color: #03684D #e0e0e0; /* Colori personalizzati per Firefox */
+  overflow-y: auto;
+  /* Aggiunge lo scorrimento verticale quando necessario */
+  max-height: calc(100vh - 40px);
+  /* Altezza massima, lasciando un margine di 20px sopra e sotto */
+  margin: 20px auto;
+  /* Assicura 20px di margine sopra e sotto */
+  scrollbar-width: thin;
+  /* Per Firefox: larghezza della scrollbar sottile */
+  scrollbar-color: #03684D #e0e0e0;
+  /* Colori personalizzati per Firefox */
 }
 
 
@@ -41,19 +46,25 @@
 
 .filterSwiper {
   display: flex;
-  justify-content: center; /* Centra tutti gli elementi */
-   flex-wrap: wrap; /* Permette il wrapping su più righe se necessario */
-  width: 95%; /* Assicura che utilizzi tutta la larghezza disponibile */
+  justify-content: center;
+  /* Centra tutti gli elementi */
+  flex-wrap: wrap;
+  /* Permette il wrapping su più righe se necessario */
+  width: 95%;
+  /* Assicura che utilizzi tutta la larghezza disponibile */
   padding-bottom: 5%;
   padding-top: 2%;
-   align-items: center; /* Allinea verticalmente */
+  align-items: center;
+  /* Allinea verticalmente */
 
 }
- 
+
 .swiper {
-  width: 100%; /* Usa tutta la larghezza del contenitore */
+  width: 100%;
+  /* Usa tutta la larghezza del contenitore */
   display: flex;
-  justify-content: center; /* Centra il contenitore */
+  justify-content: center;
+  /* Centra il contenitore */
 }
 
 
@@ -156,7 +167,6 @@
   flex-direction: row;
   justify-content: center;
   padding-top: 8%;
-  padding-bottom: 25px;
 }
 
 
@@ -177,14 +187,18 @@
 
 /* Stile per la scrollbar su browser WebKit (Chrome, Safari, Edge) */
 .popUpContainer::-webkit-scrollbar {
-  width: 8px; /* Larghezza della scrollbar */
+  width: 8px;
+  /* Larghezza della scrollbar */
 }
 
 .popUpContainer::-webkit-scrollbar-thumb {
-  background-color: #03684D; /* Colore della barra di scorrimento */
-  border-radius: 4px; /* Arrotonda gli angoli */
+  background-color: #03684D;
+  /* Colore della barra di scorrimento */
+  border-radius: 4px;
+  /* Arrotonda gli angoli */
 }
 
 .popUpContainer::-webkit-scrollbar-track {
-  background: #e0e0e0; /* Colore dello sfondo della barra di scorrimento */
+  background: #e0e0e0;
+  /* Colore dello sfondo della barra di scorrimento */
 }
