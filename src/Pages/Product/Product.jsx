@@ -6,6 +6,7 @@ import { Pagination } from 'react-pagination-bar';
 import SearchBar from '../../Components/SearchBar/SearchBar';
 import ButtonFilter from '../../Components/ButtonFilter/ButtonFilter';
 import Button from '../../Components/Button/Button';
+import { useNavigate } from 'react-router-dom';
 
 const categoriesList = [
     "Bio",
@@ -55,6 +56,13 @@ const mockProducts = Array.from({ length: 200 }, (_, index) => {
 });
 
 const Product = () => {
+
+    const navigate = useNavigate();
+
+    const goToProduct = () => {
+        navigate('/prodotto');
+    };
+
     const [products, setProducts] = useState([]); // Stato per i prodotti
     const [currentPage, setCurrentPage] = useState(() => {
         // Recupera la pagina corrente da sessionStorage, di default 1
@@ -86,7 +94,7 @@ const Product = () => {
         <div className="products-page">
             <div className="product-header">
             <div className="newProduct">
-                    <Button name="Inserisci prodotto" />
+                    <Button name="Inserisci prodotto" function={goToProduct}/>
                 </div>
                 <div className="searchBar">
                 <SearchBar />
