@@ -36,3 +36,29 @@
       font-size: small;
     }
   }
+
+@media (min-width: 400px) and (max-width: 560px){
+    .posInfo h3{
+        font-size: 12px;
+    }
+
+    .posInfo p{
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 399px){
+    .posInfo{
+        display: flex;
+        flex-wrap: wrap;
+        padding-left: 15px;
+    }
+
+    .posInfo h3{
+        font-size: 12px;
+    }
+
+    .posInfo p{
+        font-size: 12px;
+    }
+}

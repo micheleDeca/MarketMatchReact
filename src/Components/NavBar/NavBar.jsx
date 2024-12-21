@@ -103,7 +103,7 @@ const NavBar = () => {
             <div className="nav-right flex-div">
                 {isVisibleForUserType(["ConA", "AmmA", "NegA"]) && <Link to="/prenotazioni" id="prenotazioniNav" style={{ color: navColor }}>Prenotazioni</Link>}
                 {isVisibleForUserType(["AmmA"]) && <a href="#consumatori" id="consumatoriNav" style={{ color: navColor }}>Consumatori</a>}
-                {isVisibleForUserType(["ConA", "NegA"]) && <a href="#account" id="accountNav" style={{ color: navColor }}>Account</a>}
+                {isVisibleForUserType(["ConA", "NegA"]) && <Link to="/account" id="accountNav" style={{ color: navColor }}>Account</Link>}
                 {isVisibleForUserType(["AmmA"]) && <a href="#pagamenti" id="pagamentiNav" style={{ color: navColor }}>Pagamenti</a>}
                 {isVisibleForUserType(["NoAccesso"]) && <a href="#accedi" id="accediNav" style={{ color: navColor }}>Accedi</a>}
                 <div className="cart-container">

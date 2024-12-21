@@ -1,0 +1,29 @@
+.accountHeader h1{
+    padding-bottom: 2.5%;
+    padding-top: 0.5%;
+    padding-left: 2%;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.sezButtons{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-left: 2%;
+    padding-right: 2%;
+    gap: 5%;
+    row-gap: 40px;
+    padding-bottom: 2%;
+    
+}
+  
+@media (min-width: 1330px) and (max-width: 1388px) {
+    
+    .sezButtons{
+        gap: 3%;
+        row-gap: 40px;
+    }
+}
+

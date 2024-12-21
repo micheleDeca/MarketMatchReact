@@ -16,6 +16,7 @@ import Prodotto from './Pages/Prodotto/Prodotto';
 import Reservations from './Pages/Reservations/Reservations';
 import Settings from './Pages/Settings/Settings';
 import Ricetta from "./Pages/Ricetta/Ricetta.jsx";
+import Account from './Pages/Account/Account.jsx';
 
 
 /*
@@ -55,6 +56,7 @@ const App = () => {
         <Route path='/Ricetta' element={<Ricetta/>}/>
         <Route path='/impostazioni' element={<Settings /> }/>
         <Route path='*' element={<PageNotFound /> }/>
+        <Route path='/account' element={<Account /> }/>
       </Routes>
       <Footer />
     </div>
