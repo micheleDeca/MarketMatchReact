@@ -44,12 +44,12 @@ export default function SezioneAccount(buttonComponents) {
     return (
         <button id="buttonNegozio" onClick={buttonComponents.onclick}>
             <div className="sezAccount1">
-                <div className="feature-box">
+                <div className="feature-box-account">
                     <Lottie
                         loop
                         animationData={buttonComponents.info.animation}
                         play
-                        className="feature-animation"
+                        className="feature-animation-account"
                     />
                 </div>
                 <div className="sezName">
