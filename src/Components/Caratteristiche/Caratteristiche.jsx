@@ -40,8 +40,9 @@ export default function Caratteristiche(value) {
       <h1 className="CaratteristicheTitle">Caratteristiche</h1>
       <hr />
       <div className="box">
+        {value.tipo == "neg" ? (
         <ZigZag pulsante="Modifica Caratteristiche" modify={value.modify}>
-            <div className="disponibile"><ButtonDisponibile/></div>
+            <div className="disponibile"><ButtonDisponibile disponibile={value.disponibile}/></div>
             <div>
           <dl className="list">
             <dt>
@@ -59,6 +60,27 @@ export default function Caratteristiche(value) {
           </dl>
           </div>
         </ZigZag>
+        ) : (
+          <>
+          <div className="disponibile"><ButtonDisponibile disponibile={value.disponibile}/></div>
+            <div>
+          <dl className="list">
+            <dt>
+              Peso
+              <dd>{value.peso}</dd>
+            </dt>
+            <dt>
+              Dimensioni
+              <dd>{value.dimensioni}</dd>
+            </dt>
+            <dt>
+              Quantità
+              <dd>{value.quantita}</dd>
+            </dt>
+          </dl>
+          </div>
+          </>
+        )}
       </div>
     </div>
   );

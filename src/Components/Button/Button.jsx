@@ -12,12 +12,25 @@ import "./Button.css";
 
 function Button(props) {
 
-  const setModify = (name) => {
-    props.modify(name);
-    document.getElementById("myForm").style.display = "block";
-  };
+    const setModify = (name) => {
+        props.modify(name);
+        document.getElementById("myForm").style.display = "block";
+    };
 
-  return <input type="button" value={props.name} className="OrangeButton" onClick={() => setModify(props.name)} />;
+    return (
+        <input
+            type="button"
+            value={props.name}
+            className="OrangeButton"
+            onClick={() => {
+                if (props.function) {
+                    props.function();
+                } else {
+                    setModify(props.name);
+                }
+            }}
+        />
+    );
 }
 
 export default Button;

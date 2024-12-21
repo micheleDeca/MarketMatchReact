@@ -16,10 +16,6 @@ hr{
 .box {
     text-align: left;
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
 
 dl.list dd {
@@ -64,12 +60,14 @@ dl.list dt::before {
     display: flex;
     justify-content:flex-end;
     width: 100%;
+    padding-top: 1%;
 }
 
 .list{
     display: flex;
     flex-direction: column;
     align-items:flex-start;
+    justify-items: flex-start;
     width: 100%;
 }
 
