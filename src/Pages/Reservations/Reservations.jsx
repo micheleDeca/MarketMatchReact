@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import './Reservations.css'
 import PrenotationSearch from '../../Components/PrenotationSearch/PrenotationSearch';
-import ReservationLong from '../../Components/ReservationLong/ReservationLong';
 import ButtonPrecedente from '../../Components/ButtonPrecedente/ButtonPrecedente';
 import ButtonSucessivo from '../../Components/ButtonSucessivo/ButtonSucessivo';
+import OperationLongContainer from '../../Components/OperationLongContainer/OperationLongContainer';
 
 const mockPrenotations = Array.from({ length: 50 }, (_, index) => {
     const reservationStatuses = ["prenotato", "accettato", "rifiutato", "daRitirare", "ritirato", "scaduto"];
@@ -52,18 +52,7 @@ const Prenotazioni = () => {
                 <PrenotationSearch first="Tutto" second="Accettato" third="Rifiutato" fourth="Prenotato" fifth="Da Ritirare" sixth="Ritirato" />
             </div>
             <div className="prenotations">
-
-                {prenotations.map((prenotation) => (
-                    <ReservationLong
-                        status={prenotation.status}
-                        id={prenotation.id}
-                        reservationDate={prenotation.reservationDate}
-                        infoDate={prenotation.infoDate}
-                        shopId={prenotation.shopId}
-                        customerId={prenotation.customerId}
-                    />
-                ))}
-
+                <OperationLongContainer operations={prenotations} type={"reservation"}/>
             </div>
             <div className="prenButton">
                 {currentPage >= 2 && (
