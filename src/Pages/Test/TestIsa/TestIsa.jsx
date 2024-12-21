@@ -27,7 +27,7 @@ const TestIsa = () => {
 
   return (
     <>
-     <Caratteristiche peso="de" dimensioni="fr5" quantita="sef" tipo="trw" />
+     <Caratteristiche peso="de" dimensioni="fr5" quantita="sef" tipo="neg" />
     </>
   )
 }
