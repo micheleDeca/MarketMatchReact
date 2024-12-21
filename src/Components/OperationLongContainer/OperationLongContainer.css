@@ -1,0 +1,8 @@
+.operations{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-bottom: 2%;
+    padding-left: 2%;
+    width: 95%;
+}
