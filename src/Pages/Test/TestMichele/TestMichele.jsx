@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import MapComponent from "../../../Components/MapComponent/MapComponent";
 import "./TestMichele.css";
 import CardLongList from "../../../Components/CardLongList/CardLongList";
- 
+
 // Simulazione del database di negozi
 
 // Simulazione del database di negozi: un array di oggetti rappresenta i negozi
@@ -136,6 +136,9 @@ const TestMichele = () => {
 
   return (
     <div>
+      <div className="shops-header">
+        <h1>Negozi</h1>
+      </div>
       {/* Wrapper per la mappa */}
       <div className="map-wrapper">
         <div className="map-container">
@@ -147,14 +150,16 @@ const TestMichele = () => {
           />
         </div>
       </div>
+      <div className="svg-divider-shops">
+        <svg width="100%" height="2" xmlns="http://www.w3.org/2000/svg">
+          <line x1="0" y1="1" x2="100%" y2="1" stroke="#CAC4D0" />
+        </svg>
+      </div>
 
-      {/* Lista dei negozi ordinati */}
-      {/* Lista dei negozi */}
-       
       <CardLongList
-        title={selectedStoreId
+        /*title={selectedStoreId
           ? `Negozi Vicini a "${stores.find((store) => store.id === selectedStoreId)?.name}"`
-          : "Negozi Vicini al Centro della Mappa"}
+          : "Negozi Vicini al Centro della Mappa"} */
         shops={sortedStores}
         type="shop"
       />

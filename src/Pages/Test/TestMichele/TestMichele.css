@@ -15,4 +15,17 @@
     width: 100%;
 }
 
-   
+.shops-header h1 {
+    padding-bottom: 2.5%;
+    padding-top: 0.5%;
+    padding-left: 2%;
+    font-size: 30px;
+    font-weight: bold;
+}
+.svg-divider-shops {
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-top: 20px;
+    display: block; /* Rimuove eventuali spazi indesiderati sotto l'SVG */
+
+  }
