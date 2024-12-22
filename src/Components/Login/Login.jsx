@@ -1,7 +1,13 @@
 import { Link } from "react-router-dom";
 import "./Login.css";
+import {useState} from 'react';
 
 function Login() {
+    const [loginData, setLoginData] = useState({
+        email: "",
+        password: "",
+    });
+
     return (
         <>
             <div className="LoginBox">
