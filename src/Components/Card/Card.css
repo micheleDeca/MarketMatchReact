@@ -133,6 +133,36 @@
 }
 
 
+.recipe-icon-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px; /* Spaziatura verticale tra le righe */
+  
+  
+}
+
+.card-recipe-icon-text {
+  display: flex;
+  align-items: center; /* Centra verticalmente l'icona e il numero */
+}
+
+.icon-recipe {
+  display: flex;
+  gap: 5px; /* Spaziatura tra l'icona e il numero */
+  width: 25px;
+  height: 25px;
+}
+
+.text-icon-recipe {
+  font-size: 16px; /* Dimensione del testo */
+  font-weight: 500; /* Peso del font */
+  color: #333; /* Colore del testo */
+  padding-right: 20px;
+
+}
+
+ 
+
 @media (max-width: 1700px) {
   .card {
     width: calc(30% - 20px);

@@ -1,7 +1,7 @@
 import React from 'react'
 import './CardContainer.css'
 import Card from '../Card/Card'
-
+ 
 const CardContainer = (props) => {
     const isMobile = window.innerWidth <= 768; // Controlla se lo schermo è mobile
 
@@ -19,7 +19,11 @@ const CardContainer = (props) => {
                     image={card.image}
                     button={props.button}
                     categories={card.categories}
-                    
+                    difficulty={card.difficulty}
+                    prepTime={card.prepTime}
+                    cookTime={card.cookTime}
+                    cost={card.cost}
+                    type={props.type}
                 />
             ))}
         </div>

@@ -4,6 +4,11 @@ import { Link } from 'react-router';
 import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
 
+import CostIcon from '../Card/assets/costo.svg';
+import DifficultyIcon from '../Card/assets/difficolta.svg';
+import CookingTimeIcon from '../Card/assets/tempoCottura.svg';
+import PreparationTimeIcon from '../Card/assets/tempoPreparazione.svg';
+
 /**
  * 
  * @prop {string} image - L'URL dell'immagine del prodotto. (es. "https://example.com/prodotto.jpg")
@@ -24,7 +29,15 @@ import "react-tooltip/dist/react-tooltip.css";
  * />
  */
 
+/*
+Tipologia Card (type)
+-product
+-recipe
+*/
+
 const Card = (props) => {
+
+    const isProduct = props.type === "product";
 
     const handleAddClick = () => {
 
@@ -46,7 +59,7 @@ const Card = (props) => {
         km0: "#cddc39",
         vegetariano: "#ff9800",
         default: "#607d8b", // Colore di default se la categoria non è nella mappa
-      };    
+    };
 
     // Funzione per ottenere il colore della categoria
     const getColorForCategory = (category) => {
@@ -65,13 +78,13 @@ const Card = (props) => {
                     flexDirection: props.straight === "false" ? "" : "column",
                 }}
             >
-                <Link to={`/prodotto/${props.id}`} className="product-link">
+                <Link to={isProduct? `/prodotto/${props.id}` : `/ricetta/${props.id}`} className="product-link">
                     <img className="card-image" src={props.image} />
                 </Link>
 
                 <div className="card-info">
                     <Link
-                        to={`/prodotto/${props.id}`} className="product-link">
+                        to={isProduct? `/prodotto/${props.id}` : `/ricetta/${props.id}`}  className="product-link">
                         <h3 className="card-name">{props.name}</h3>
                     </Link>
 
@@ -99,10 +112,27 @@ const Card = (props) => {
                     ) : (
                         <span className="normal-price-card">{props.currentPrice}</span>
                     )}</p>
+
+                    {!isProduct && (<div className='recipe-icon-container'>
+                        <div className="card-recipe-icon-text">
+                            <span className='icon-recipe' data-tooltip-id={`cost-tooltip`} data-tooltip-content="Costo"><img src={CostIcon}/></span><span className='text-icon-recipe' >: {props.cost}</span>
+                            <span className='icon-recipe' data-tooltip-id={`difficulty-tooltip`} data-tooltip-content="Difficoltà"><img src={DifficultyIcon} /></span><span className='text-icon-recipe' >: {props.difficulty}</span>
+                        </div>
+                        <div className="card-recipe-icon-text">
+                            <span className='icon-recipe' data-tooltip-id={`prepTime-tooltip`} data-tooltip-content="Tempo di preparazione"><img src={PreparationTimeIcon} /></span><span className='text-icon-recipe' >: {props.prepTime}</span>
+                            <span className='icon-recipe' data-tooltip-id={`cookTime-tooltip`} data-tooltip-content="Tempo di cottura"><img src={CookingTimeIcon} /></span><span className='text-icon-recipe' >: {props.cookTime}</span>
+                        </div>
+                    </div>)}
                     {props.button ? (<button className="card-button" onClick={handleAddClick}>{props.button}</button>) : ""}
 
                 </div>
             </div>
+
+            {/* Tooltip associato alle icone */}
+            <Tooltip id={`cost-tooltip`} place="top" />
+            <Tooltip id={`difficulty-tooltip`} place="top" />
+            <Tooltip id={`prepTime-tooltip`} place="top" />
+            <Tooltip id={`cookTime-tooltip`} place="top" />
 
             {/* Tooltip associato alle categorie */}
             {props.categories &&
