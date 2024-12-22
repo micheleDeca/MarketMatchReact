@@ -153,7 +153,8 @@ const SliderContainer = () => {
             <span className="slider-button">
                 {(!responseConsumer &&
                     buttonVisibilityConsumer &&
-                    (userType === "ConA")) &&
+                    (userType === "ConA")&& 
+                    mainValue === 0) &&
                     (<button className="refuse-button" onClick={() => { setshowPopupRejectConsumer(true) }}>Annulla prenotazione</button>)}
             </span>
 
