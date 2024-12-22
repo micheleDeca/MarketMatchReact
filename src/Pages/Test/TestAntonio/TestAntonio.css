@@ -1,12 +1,8 @@
 .AntonioTest{
-    margin:0;
     width: 100%;
-    padding-top: 4%;
-    padding-bottom: 4%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-image: url('https://www.colorrevelation.com/other-countries/wp-content/uploads/sites/6/2020/01/05-green-header_3514x2000-1740x1000.jpg');
 }
 

@@ -384,7 +384,7 @@ function PopUpModify(props) {
                                     <label htmlFor="textInput" style={{color: "darkslateblue"}}>
                                         Disponibilità
                                     </label>
-                                    <input type="checkbox" name="option_disp" value="disponiblita"
+                                    <input type="checkbox" name="option_disp" value="disponiblita" className="PopUpCheck"
                                            defaultChecked={props.negozioInfo.caratteristiche.disponibile === true}/>
                                 </div>
                             </div>
