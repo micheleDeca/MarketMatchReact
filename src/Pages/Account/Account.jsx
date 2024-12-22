@@ -5,8 +5,12 @@ import animation2 from "./assets/xbjrmvz4zi.json"
 import animation3 from "./assets/Zxcvc5b9DH.json"
 import animation4 from "./assets/vJtKTxTsTl.json"
 import { Link } from "react-router"
+import {useUserContext} from '../../Context/UserContext'
+
 
 const Account = () => {
+
+    const {userType} = useUserContext();
 
     const gestioneNeg = {
         name: "GESTIONE NEGOZIO",
@@ -32,6 +36,12 @@ const Account = () => {
         animation: animation3
     }
 
+    const punti = {
+        name: "PUNTI",
+        descrizione: "Monitora e gestisci i punti accumulati con gli acquisti. Scopri il saldo punti, il dettaglio delle operazioni e approfitta delle opportunità di risparmio offerte dal programma fedeltà",
+        animation: animation3
+    }
+
     return (
         <>
             <div className="accountHeader">
@@ -39,6 +49,7 @@ const Account = () => {
                     Il mio Account
                 </h1>
             </div>
+            {userType === "NegA" && ( 
             <div className="sezButtons">
                 <Link to="/negozio" >
                     <SezioneAccount info={gestioneNeg} />
@@ -52,7 +63,17 @@ const Account = () => {
                 <Link to="/impostazioni">
                 <SezioneAccount info={impostazioni} />
                 </Link>
-            </div>
+            </div> )}
+
+            {userType === "ConA" && ( 
+            <div className="sezButtons">
+                <Link to="/prenotazioni">
+                <SezioneAccount info={prenotazioni} />
+                </Link>
+                <Link to="/impostazioni">
+                <SezioneAccount info={impostazioni} />
+                </Link>
+            </div> )}
         </>
     )
 }

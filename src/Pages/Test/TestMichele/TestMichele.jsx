@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import MapComponent from "../../../Components/MapComponent/MapComponent";
 import "./TestMichele.css";
 import CardLongList from "../../../Components/CardLongList/CardLongList";
+import SearchBar from "../../../Components/SearchBar/SearchBar";
+import ButtonFilter from "../../../Components/ButtonFilter/ButtonFilter";
 
 // Simulazione del database di negozi
 
@@ -134,11 +136,23 @@ const TestMichele = () => {
     setMapCenter(newCenter); // Aggiorna lo stato del centro della mappa
   };
 
+  const orderNames = ["Nome", "Rilevanza", "Valutazione"];
+  const filterNames = ["Bio", "Senza Lattosio", "Senza Glutine", "Vegetariano", "Vegan", "Km0"];
+
   return (
     <div>
       <div className="shops-header">
         <h1>Negozi</h1>
       </div>
+      <div className="shop-header">
+        <div className="searchBar">
+          <SearchBar />
+        </div>
+        <div className="filterButton">
+          <ButtonFilter order={orderNames} filter={filterNames} type="ConA, Neg" />
+        </div>
+      </div>
+
       {/* Wrapper per la mappa */}
       <div className="map-wrapper">
         <div className="map-container">
