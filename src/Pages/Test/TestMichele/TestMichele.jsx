@@ -167,6 +167,10 @@ export default TestMichele;
 
 
 /*
+quando fai richiesta al db, fai richiesta con cordinate di ne4j, per vicinanza, ma metti limite di quantita negozi dopo aver ordinato
+*/
+
+/*
  // Funzione per caricare i negozi dal backend
   const fetchStores = async () => {
     try {
