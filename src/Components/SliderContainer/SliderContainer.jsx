@@ -63,7 +63,7 @@ const SliderContainer = () => {
     const [buttonVisibility, setbuttonVisibility] = useState(true);
 
     const [showPopupRejectConsumer, setshowPopupRejectConsumer] = useState(false);
-    const [responseConsumer, setResponseConsumer] = useState(null);
+    const [responseConsumer, setResponseConsumer] = useState(false);
     const [buttonVisibilityConsumer, setbuttonVisibilityConsumer] = useState(true);
 
     const [showPopupAccept, setshowPopupAccept] = useState(false);
@@ -89,17 +89,8 @@ const SliderContainer = () => {
     };
 
     const handleRejectConsumer = (result) => {
-        setResponseConsumer(result)
+        setResponseConsumer(result);
         setshowPopupRejectConsumer(false);
-        console.log(result);
-        if (!responseConsumer) {
-            setbuttonVisibilityConsumer(false);
-            setMainStates((prevStates) => [
-                ...prevStates.slice(0, 3), // Mantiene i primi tre step
-                { key: 'annullato', label: 'Cancellato', date: null } // Aggiunge il nuovo record
-            ]);
-            setMainValue(3);
-        }
 
     };
 
@@ -122,6 +113,20 @@ const SliderContainer = () => {
     }, [mainValue]); // Osserva il valore di mainValue
 
 
+    // useEffect per reagire ai cambiamenti di consumatore annulla prenotazione
+    useEffect(() => {
+        if (responseConsumer) {
+            setbuttonVisibilityConsumer(false);
+            setMainStates((prevStates) => [
+                ...prevStates.slice(0, 3), // Mantiene i primi tre step
+                { key: 'annullato', label: 'Cancellato', date: null } // Aggiunge il nuovo record
+            ]);
+            setMainValue(3);
+        }
+    }, [responseConsumer]); // Osserva il valore di mainValue
+
+
+    
 
     return (
         <div className="slider-wrapper">
