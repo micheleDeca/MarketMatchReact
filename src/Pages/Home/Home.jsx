@@ -66,12 +66,12 @@ const Home = (props) => {
           <>
             <CategoryCardList title="LE TUE CATEGORIE PREFERITE" categories={categories} />
             <PositionComponent />
-            <ProductList title="SCOPRI I NOSTRI PRODOTTI" products={products} buttonName={"Prenota"} />
+            <ProductList title="SCOPRI I NOSTRI PRODOTTI" products={products} buttonName={"Prenota"} type={"product"}/>
 
             <FeaturesComponent />
-            <ProductList title="PRODOTTI VICINO A TE" products={products} buttonName={"Prenota"} />
+            <ProductList title="PRODOTTI VICINO A TE" products={products} buttonName={"Prenota"} type={"product"}/>
             <HighlightShops />
-            <ProductList title="RICETTE PER I TUOI GUSTI (sviluppare)" products={products} buttonName={"mario"} />
+            <ProductList title="RICETTE PER I TUOI GUSTI (sviluppare)" products={products} type={"recipe"} />
             <ProductList title="NEGOZI VICINO A TE (sviluppare)" products={products} buttonName={"mario"} />
           </>
         ) : userType == "AmmA" ? (

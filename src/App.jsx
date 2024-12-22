@@ -19,6 +19,7 @@ import Ricetta from "./Pages/Ricetta/Ricetta.jsx";
 import Account from './Pages/Account/Account.jsx';
 import LoginRegister from "./Pages/LoginRegister/LoginRegister.jsx";
 import Recipes from './Pages/Recipes/Recipes.jsx';
+import Stores from './Pages/Stores/Stores.jsx';
 
 
 /*
@@ -56,12 +57,13 @@ const App = () => {
         <Route path='/negozio' element={<Negozio mode="neg" />}/>
         <Route path='/prodotto' element={<Prodotto />}/>
         <Route path='/Ricetta' element={<Ricetta/>}/>
+        <Route path='/stores' element={<Stores /> }/>
         <Route path='/impostazioni' element={<Settings /> }/>
         <Route path='*' element={<PageNotFound /> }/>
         <Route path='/account' element={<Account /> }/>
-        <Route path='/Login' element={<LoginRegister mode="Login"/>} />
-        <Route path='/RegisterNeg' element={<LoginRegister mode="Register" tipo="neg"/>} />
-        <Route path='/RegisterCons' element={<LoginRegister mode="Register"/>} />
+        <Route path='/login' element={<LoginRegister mode="Login"/>} />
+        <Route path='/registerNeg' element={<LoginRegister mode="Register" tipo="neg"/>} />
+        <Route path='/registerCons' element={<LoginRegister mode="Register"/>} />
         <Route path='/ricette' element={<Recipes/>} />
       </Routes>
       <Footer />

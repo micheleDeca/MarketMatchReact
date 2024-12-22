@@ -65,23 +65,35 @@ const Slider = (props) => {
             console.log("Non puoi saltare stati!");
             return;
         }
-
-        if (!props.canGoBack && val < mainValue && props.maxValueGoBack === (val + 1)) {
+    
+        // Se canGoBack è false e si tenta di tornare indietro, impedisce il movimento
+        if (!props.canGoBack && val < mainValue) {
             console.log("Non è permesso tornare indietro!");
             return;
         }
-
+    
+        // Se canGoForward è false e si tenta di andare avanti, impedisce il movimento
+        if (props.canGoForward === false && val > mainValue) {
+            console.log("Non è permesso andare avanti!");
+            return;
+        }
+    
+        if (props.canGoBack && val < mainValue && props.maxValueGoBack === (val + 1)) {
+            console.log("Non è permesso tornare indietro!");
+            return;
+        }
+    
         // Quando lo stato è "rifiutato", mostra il popup
         if (mainStates[val].key === "rifiutato") {
             props.showPopupReject(true);
             return; // Esci dalla funzione per aspettare la risposta del popup
         }
-
+    
         if ((mainStates[val].key === "accettato") && (mainValue < 1)) {
             props.showPopupAccept(true);
             return; // Esci dalla funzione per aspettare la risposta del popup
         }
-
+    
         // Se si sposta indietro, cancella la data del campo associato
         if (val < mainValue) {
             props.onStateChange((prevStates) =>
@@ -96,10 +108,10 @@ const Slider = (props) => {
                 })
             );
         }
-
+    
         // Aggiorna il valore dello slider
         props.onValueChange(val);
-
+    
         // Aggiorna gli stati con la data corrente
         props.onStateChange((prevStates) =>
             prevStates.map((state, idx) => {
@@ -118,9 +130,10 @@ const Slider = (props) => {
                 return state;
             })
         );
-
+    
         console.log(`Aggiornamento DB per stato: ${val}`);
     };
+    
 
     useEffect(() => {
         if (props.popUpResponseReject === true) {

@@ -1,7 +1,10 @@
 .slider-container {
   width: 100%;
   font-family: "Roboto", serif;
-
+  user-select: none; /* Disabilita la selezione del testo */
+  -webkit-user-select: none; /* Compatibilità per Safari */
+  -moz-user-select: none; /* Compatibilità per Firefox */
+  -ms-user-select: none; /* Compatibilità per vecchi browser IE */
 }
 
 .horizontal-slider {

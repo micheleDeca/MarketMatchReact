@@ -91,6 +91,7 @@ const ProductList = (props) => {
                                 originalPrice={product.originalPrice}
                                 image={product.image}
                                 button={props.buttonName}
+                                type={props.type}
                             />
                         </SwiperSlide>
                     ))}
@@ -107,6 +108,8 @@ const ProductList = (props) => {
                             originalPrice={product.originalPrice}
                             image={product.image}
                             button={props.buttonName}
+                            type={props.type}
+
                             />
                     ))}
                 </div>

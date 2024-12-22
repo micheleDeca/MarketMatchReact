@@ -64,7 +64,7 @@ const NavBar = () => {
     }, [location.pathname]);
 
     useEffect(() => {
-        if (location.pathname === "/login" || location.pathname === "/RegisterCons" || location.pathname === "/RegisterNeg") {
+        if (location.pathname === "/login" || location.pathname === "/registerCons" || location.pathname === "/registerNeg") {
             setNavVisibility(false);
         } else {
             setNavVisibility(true);
@@ -104,7 +104,7 @@ const NavBar = () => {
                     )}   </span>             </div>
                 <div className="nav-left flex-div">
                     {isVisibleForUserType(["NoAccesso", "ConA", "AmmA", "NegA"]) && <Link to="/prodotti" id="prodottiNav" style={{ color: navColor }} >Prodotti</Link>}
-                    {isVisibleForUserType(["ConA", "AmmA"]) && <a href="#negozi" id="negoziNav" style={{ color: navColor }}>Negozi</a>}
+                    {isVisibleForUserType(["ConA", "AmmA"]) && <Link to="/stores"  id="negoziNav" style={{ color: navColor }}>Negozi</Link>}
                     {isVisibleForUserType(["NegA"]) && <a href="#negozio" id="negozioNav" style={{ color: navColor }}>Negozio</a>}
                     {isVisibleForUserType(["ConA", "AmmA"]) && <Link to="/ricette" id="ricetteNav" style={{ color: navColor }}>Ricette</Link>}
                     {isVisibleForUserType(["NoAccesso", "ConA", "AmmA", "NegA"]) && <a href="#chiSiamo" id="chiSiamoNav" style={{ color: navColor }}>Chi Siamo</a>}
@@ -133,12 +133,13 @@ const NavBar = () => {
                     <button className="close-sidebar" onClick={toggleSidebar}>✖</button>
                     <div onClick={toggleSidebar}>
                         {isVisibleForUserType(["NoAccesso", "ConA", "AmmA", "NegA"]) && <Link to="/prodotti">Prodotti</Link>}
-                        {isVisibleForUserType(["ConA", "AmmA"]) && <a href="#negozi">Negozi</a>}
+                        {isVisibleForUserType(["ConA", "AmmA"]) && <Link to="/stores" >Negozi</Link>}
                         {isVisibleForUserType(["NegA"]) && <a href="#negozio">Negozio</a>}
                         {isVisibleForUserType(["ConA", "AmmA"]) && <a href="#ricette">Ricette</a>}
                         {isVisibleForUserType(["NoAccesso", "ConA", "AmmA", "NegA"]) && <a href="#chiSiamo">Chi Siamo</a>}
                         {isVisibleForUserType(["ConA", "AmmA", "NegA"]) && <Link to="/prenotazioni">Prenotazioni</Link>}
-                        {isVisibleForUserType(["ConA", "NegA"]) && <a href="#account" id="accountNav" style={{ color: navColor }}>Account</a>}
+                        {isVisibleForUserType(["ConA", "NegA"]) && <Link to="/account" >Account</Link>}
+                        
                     </div>
                 </div>
             )}

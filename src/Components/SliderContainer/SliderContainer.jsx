@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Slider from './Slider/Slider';
 import './SliderContainer.css';
 import Popup from '../Popup/Popup';
+import { useUserContext } from '../../Context/UserContext';
+import { useLocation } from 'react-router-dom';
 
 /**
  * Componente SliderContainer:
@@ -54,9 +56,15 @@ const SliderContainer = () => {
         { key: 'ritirato', label: 'Ritirato', date: null },
     ]);
 
+    const { userType } = useUserContext();   // Contesto dell'utente, determina userType
+
     const [showPopupReject, setshowPopupReject] = useState(false);
     const [response, setResponse] = useState(null);
     const [buttonVisibility, setbuttonVisibility] = useState(true);
+
+    const [showPopupRejectConsumer, setshowPopupRejectConsumer] = useState(false);
+    const [responseConsumer, setResponseConsumer] = useState(null);
+    const [buttonVisibilityConsumer, setbuttonVisibilityConsumer] = useState(true);
 
     const [showPopupAccept, setshowPopupAccept] = useState(false);
     const [responseAccept, setResponseAccept] = useState(null);
@@ -80,18 +88,31 @@ const SliderContainer = () => {
         ]);
     };
 
+    const handleRejectConsumer = (result) => {
+        setResponseConsumer(result)
+        setshowPopupRejectConsumer(false);
+        console.log(result);
+        if (!responseConsumer) {
+            setbuttonVisibilityConsumer(false);
+            setMainStates((prevStates) => [
+                ...prevStates.slice(0, 3), // Mantiene i primi tre step
+                { key: 'annullato', label: 'Cancellato', date: null } // Aggiunge il nuovo record
+            ]);
+            setMainValue(3);
+        }
+
+    };
+
     // Funzione per gestire annulla (sistema)
     const handleCancel = () => {
         setMainStates((prevStates) => [
             ...prevStates.slice(0, 3), // Mantiene i primi tre step
-            { key: 'cancellato', label: 'Cancellato', date: null } // Aggiunge il nuovo record
+            { key: 'annullato', label: 'Cancellato', date: null } // Aggiunge il nuovo record
         ]);
         setMainValue(3);
     };
-    
-    
 
-     
+
 
     // useEffect per reagire ai cambiamenti di mainValue e settare la visilità del tasto rifiuta
     useEffect(() => {
@@ -114,11 +135,21 @@ const SliderContainer = () => {
                 popUpResponseReject={response}
                 showPopupAccept={setshowPopupAccept}
                 popUpResponseAccept={responseAccept}
-                canGoBack={false}
+                canGoBack={userType === "ConA" ? false : (userType === "NegA" ? true : false)}
+                canGoForward={userType === "ConA" ? false : (userType === "NegA" ? true : false)}
                 maxValueGoBack={1}
             />
             <span className="slider-button">
-                {(!response && buttonVisibility) && (<button className="refuse-button" onClick={() => { handleReject() }}>Rifiuta prenotazione</button>)}
+                {(!response &&
+                    buttonVisibility &&
+                    (userType === "NegA")) &&
+                    (<button className="refuse-button" onClick={() => { handleReject() }}>Rifiuta prenotazione</button>)}
+            </span>
+            <span className="slider-button">
+                {(!responseConsumer &&
+                    buttonVisibilityConsumer &&
+                    (userType === "ConA")) &&
+                    (<button className="refuse-button" onClick={() => { setshowPopupRejectConsumer(true) }}>Annulla prenotazione</button>)}
             </span>
 
             <div className='slider-popup'>
@@ -141,6 +172,17 @@ const SliderContainer = () => {
                         onClose={handlePopupAcceptClose}
                     />
                 )}
+
+                {showPopupRejectConsumer && (
+                    <Popup
+                        importantText="Sei sicuro di voler ANNULLARE la prenotazione?"
+                        subText="Questa azione è irreversibile."
+                        confirmText="ANNULLARE"
+                        cancelText="Annulla"
+                        onClose={handleRejectConsumer}
+                    />
+                )}
+
             </div>
         </div>
     );
