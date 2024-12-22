@@ -34,18 +34,12 @@ function Register(props) {
         indirizzo: "", 
         longitudine: "",    //senza api vanno messe da utente per forza
         latitudine: "", //senza api vanno messe da utente per forza
-        cellulare : "",  
-        InformazioniPagamento: "Accetta carta, contanti e app",  //da mettere qui?
-        logo: "", //da mettere qui?
-        orari: ["","","","","","","",],  //da mettere qui?
+        cellulare : "",
         privacy: false, //SENZA NO PROFILO
         statistiche: false, //SENZA NO PROFILO
-        newsLetter: false,
         sconti: "",
         prenotazione: ""
     });
-
-
 
     return (
         <>
@@ -75,23 +69,24 @@ function Register(props) {
                         <input type="email" placeholder="Password" className="RegisterInput" required/>
                         <input type="password" placeholder="Conferma password" className="RegisterInput" required/>
                     </div>
+                    <p className="word">Consensi:</p>
                     <div className="rowLogin">
                         <div className="rowCheck">
-                            <label>Accetto Privacy policy</label>
+                            <label>Privacy policy</label>
                             <input type="checkbox" name="option1" value="1" required/>
                         </div>
                         <div className="rowCheck">
-                            <label>Consento profilazione</label>
-                            <input type="checkbox" name="option2" value="2"/>
+                            <label>Analisti statistiche</label>
+                            <input type="checkbox" name="option2" value="2" required/>
                         </div>
                     </div>
                     <div className="rowLogin">
                         <div className="rowCheck">
-                            <label>Consento sconti</label>
+                            <label>Generazione sconti</label>
                             <input type="checkbox" name="option3" value="3" required/>
                         </div>
                         <div className="rowCheck">
-                            <label>Consento prenotazioni</label>
+                            <label>Utilizzo prenotazioni</label>
                             <input type="checkbox" name="option4" value="4" required/>
                         </div>
                     </div>
@@ -123,23 +118,33 @@ function Register(props) {
                         <input type="date" placeholder="Data Nascita" className="RegisterInput"/>
                     </div>
                     <div className="rowLogin">
+                        <input type="text" placeholder="Genere" className="RegisterInput" required/>
                         <input type="email" placeholder="Email" className="RegisterInput" required/>
-                        <input type="password" placeholder="Password" className="RegisterInput" required/>
                     </div>
-                    <input type="password" placeholder="Conferma password" className="RegisterInput" required/>
+                    <div className="rowLogin">
+                        <input type="password" placeholder="Password" className="RegisterInput" required/>
+                        <input type="password" placeholder="Conferma password" className="RegisterInput" required/>
+                    </div>
+                    <p className="word">Consensi:</p>
                     <div className="rowLogin">
                         <div className="rowCheck">
-                            <label>Accetto Privacy policy</label>
+                            <label>Privacy policy</label>
                             <input type="checkbox" name="Option1" value="1" required/>
                         </div>
                         <div className="rowCheck">
-                            <label>Consento profilazione</label>
-                            <input type="checkbox" name="Option2" value="2"/>
+                            <label>Analisi statistiche</label>
+                            <input type="checkbox" name="Option2" value="2" required/>
                         </div>
                     </div>
-                    <div className="rowCheck">
-                        <label>Consento NewsLetter</label>
-                        <input type="checkbox" name="Option3" value="3"/>
+                    <div className="rowLogin">
+                        <div className="rowCheck">
+                            <label>Profilazione</label>
+                            <input type="checkbox" name="Option1" value="1"/>
+                        </div>
+                        <div className="rowCheck">
+                            <label>NewsLetter</label>
+                            <input type="checkbox" name="Option2" value="2"/>
+                        </div>
                     </div>
                     <input type="button" value="Register" className="buttonRegister"/>
                     <p className="word">Hai già un account?
