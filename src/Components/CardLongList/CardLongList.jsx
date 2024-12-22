@@ -28,7 +28,7 @@ const CardLongList = (props) => {
             key={index}
             image={shop.image}
             productName={shop.name}
-            detail2={"Distante: " + shop.distance.toFixed(2) + " Km da te"}
+            detail2={"Distante: " + shop.distance.toFixed(2) + " Km"}
             detail={shop.city + ", " + shop.address}
             badges={shop.categories}
           />
