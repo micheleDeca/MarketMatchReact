@@ -4,6 +4,7 @@ import animation1 from "./assets/5oakBWG66Z.json"
 import animation2 from "./assets/xbjrmvz4zi.json"
 import animation3 from "./assets/Zxcvc5b9DH.json"
 import animation4 from "./assets/vJtKTxTsTl.json"
+import animation5 from "./assets/UGoyu2qZox.json"
 import { Link } from "react-router"
 import {useUserContext} from '../../Context/UserContext'
 
@@ -38,8 +39,14 @@ const Account = () => {
 
     const punti = {
         name: "PUNTI",
-        descrizione: "Monitora e gestisci i punti accumulati con gli acquisti. Scopri il saldo punti, il dettaglio delle operazioni e approfitta delle opportunità di risparmio offerte dal programma fedeltà",
-        animation: animation3
+        descrizione: "Monitora e gestisci i punti accumulati con gli acquisti. Scopri il saldo punti, il dettaglio delle operazioni e approfitta delle opportunità di risparmio",
+        animation: animation5
+    }
+
+    const carrello = {
+        name: "CARRELLO",
+        descrizione: "Visualizza e gestisci i prodotti selezionati per l'acquisto. Controlla quantità, prezzi e procedi al checkout",
+        animation: animation2
     }
 
     return (
@@ -67,8 +74,14 @@ const Account = () => {
 
             {userType === "ConA" && ( 
             <div className="sezButtons">
+                <Link to="/carrello">
+                <SezioneAccount info={carrello} />
+                </Link>
                 <Link to="/prenotazioni">
                 <SezioneAccount info={prenotazioni} />
+                </Link>
+                <Link to="/punti">
+                <SezioneAccount info={punti} />
                 </Link>
                 <Link to="/impostazioni">
                 <SezioneAccount info={impostazioni} />
