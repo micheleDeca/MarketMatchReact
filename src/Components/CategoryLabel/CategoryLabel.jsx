@@ -10,6 +10,12 @@ import "./CategoryLabel.css";
  * <Badge category="Biologico" color="#4CAF50" />
  */
 
+/*
+SIZE
+-small
+-normal
+*/
+
 const Badge = (props) => {
 
   const labelSizeSmall = false;
@@ -37,7 +43,7 @@ const Badge = (props) => {
   return (
     <div className="badge" style={{
       backgroundColor: getColorForCategory(props.category),
-      "--badge-font-size": labelSizeSmall ? "12px" : "",
+      "--badge-font-size": props.size==="small" ? "12px" : "",
     }}>
       {props.category}
     </div>

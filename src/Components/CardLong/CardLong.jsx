@@ -88,6 +88,9 @@ const CardLong = (props) => {
                 <p className="card-detail-long">
                     {truncateText(props.detail)}
                 </p>
+                <p className="card-detail-long">
+                    {props.detail2}
+                </p>
                 <div className="price-container-long">
                     {props.originalPrice ? (
                         <>

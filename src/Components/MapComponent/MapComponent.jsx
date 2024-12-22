@@ -53,7 +53,7 @@ const MarkerCluster = ({ stores, userPosition, onMarkerAction }) => {
 
       // Genera dinamicamente la lista delle categorie come stringa HTML
       const categoryListHTML = ReactDOMServer.renderToString(
-        <CategoryLabelList badges={store.categories} />
+        <CategoryLabelList badges={store.categories} size={"small"}/>
       );
 
       // Crea il marker per il negozio
@@ -67,21 +67,19 @@ const MarkerCluster = ({ stores, userPosition, onMarkerAction }) => {
           📍 <span>${store.address}, ${store.city}</span><br/>
           🚶‍♂️ <span>Distanza: ${distance.toFixed(2)} km</span><br/>
           ${categoryListHTML}
-        </div>`
-      );
-
-
-      // Eventi: quando il mouse passa sopra il marker
-      marker.on("mouseover", () => {
+        </div>`,
+        {
+          autoClose: true, // Chiude automaticamente altri popup
+          closeOnClick: false, // Non chiude il popup quando clicchi su di esso
+        }
+      ).on("popupopen", () => {
+        console.log("Marker cliccato! ID negozio:", store.id);
         if (onMarkerAction) {
-          onMarkerAction({
-            type: "mouseover", // Tipo di evento
-            storeId: store.id, // ID del negozio
-            position: [store.latitude, store.longitude], // Posizione del negozio
-          });
+          onMarkerAction(store.id); // Restituisci solo l'ID
         }
       });
-
+      
+ 
       markers.addLayer(marker); // Aggiungi il marker al cluster
     });
 
@@ -122,18 +120,17 @@ const MapEvents = ({ onMapMove }) => {
 const MapComponent = ({ userPosition, stores, onStoreClick, onMapMove }) => {
   
   // Funzione per gestire azioni sui marker
-  const handleMarkerAction = (event) => {
-    console.log("Azione marker:", event); // Log dell'evento per debug
-    if (event.type === "mouseover") {
-      onStoreClick(event.storeId); // Passa solo l'ID del negozio cliccato
-    }
+  const handleMarkerAction = (shopId) => {
+    console.log("Azione marker:", shopId); // Log dell'evento per debug
+       onStoreClick(shopId); // Passa solo l'ID del negozio cliccato
+   
   };
 
   return (
     <MapContainer
       center={userPosition} // Centro iniziale della mappa
       zoom={14} // Livello di zoom iniziale
-      style={{ height: "80vh", width: "100%" }} // Dimensioni della mappa
+      style={{ height: "100vh", width: "100%" }} // Dimensioni della mappa
     >
       {/* Layer della mappa */}
       <TileLayer
@@ -145,8 +142,9 @@ const MapComponent = ({ userPosition, stores, onStoreClick, onMapMove }) => {
       <MarkerCluster
         stores={stores} // Negozi da visualizzare
         userPosition={userPosition} // Posizione dell'utente
-        onMarkerAction={handleMarkerAction} // Callback per azioni sui marker
-      />
+        onMarkerAction={handleMarkerAction}
+
+              />
 
       {/* Eventi della mappa */}
       <MapEvents onMapMove={onMapMove} />

@@ -6,7 +6,7 @@ import "./CategoryLabelList.css";
 
 const BadgeContainer = (props) => {
   const badges = props.badges || []; // Usa un array vuoto se props.badges è null o undefined
-
+  const size = props.size;
    
 
   return (
@@ -17,6 +17,7 @@ const BadgeContainer = (props) => {
           <Label
             key={index}
             category={badge} // Passa il testo dell'etichetta
+            size={size}
           />
         ))}
     </div>
