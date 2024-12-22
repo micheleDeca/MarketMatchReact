@@ -1,15 +1,22 @@
 .map-container {
-    width: 85%; /* Larghezza massima del contenitore */
-    height: 400px; /* Altezza ridotta */
-    border-radius: 25px; /* Angoli arrotondati */
-    overflow: hidden; /* Assicura che la mappa non esca dai bordi */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Aggiunge un'ombra per l'estetica */
-    margin: 10px 0; /* Spaziatura verticale */
-    z-index: 1; /* Abbassa la priorità della mappa */
+    width: 85%;
+    /* Larghezza massima del contenitore */
+    height: 400px;
+    /* Altezza ridotta */
+    border-radius: 25px;
+    /* Angoli arrotondati */
+    overflow: hidden;
+    /* Assicura che la mappa non esca dai bordi */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Aggiunge un'ombra per l'estetica */
+    margin: 10px 0;
+    /* Spaziatura verticale */
+    z-index: 1;
+    /* Abbassa la priorità della mappa */
 
-   }
-  
-.map-wrapper{
+}
+
+.map-wrapper {
     display: flex;
     justify-content: center;
     width: 100%;
@@ -22,10 +29,78 @@
     font-size: 30px;
     font-weight: bold;
 }
+
 .svg-divider-shops {
     margin-left: 30px;
     margin-right: 30px;
     margin-top: 20px;
-    display: block; /* Rimuove eventuali spazi indesiderati sotto l'SVG */
+    display: block;
+    /* Rimuove eventuali spazi indesiderati sotto l'SVG */
 
-  }
+}
+
+.shop-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 2%;
+    gap: 10px;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+.searchBar {
+    display: flex;
+    justify-content: center;
+    width: 20%;
+    height: 40px;
+}
+
+.filterButton {
+    display: flex;
+    justify-content: center;
+    width: 20%;
+}
+
+@media (max-width: 480px) {
+    .searchBar {
+        width: 50%;
+    }
+
+    .filterButton {
+        width: 50%;
+    }
+
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    .searchBar {
+        width: 40%;
+    }
+
+    .filterButton {
+        width: 40%;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .searchBar {
+        width: 30%;
+    }
+
+    .filterButton {
+        width: 30%;
+    }
+
+}
+
+@media (min-width: 1025px) and (max-width: 1200px) {
+    .searchBar {
+        width: 20%;
+    }
+
+    .filterButton {
+        width: 20%;
+    }
+}
