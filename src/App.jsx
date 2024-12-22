@@ -18,6 +18,7 @@ import Settings from './Pages/Settings/Settings';
 import Ricetta from "./Pages/Ricetta/Ricetta.jsx";
 import Account from './Pages/Account/Account.jsx';
 import LoginRegister from "./Pages/LoginRegister/LoginRegister.jsx";
+import Recipes from './Pages/Recipes/Recipes.jsx';
 
 
 /*
@@ -61,6 +62,7 @@ const App = () => {
         <Route path='/Login' element={<LoginRegister mode="Login"/>} />
         <Route path='/RegisterNeg' element={<LoginRegister mode="Register" tipo="neg"/>} />
         <Route path='/RegisterCons' element={<LoginRegister mode="Register"/>} />
+        <Route path='/ricette' element={<Recipes/>} />
       </Routes>
       <Footer />
     </div>
