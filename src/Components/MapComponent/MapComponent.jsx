@@ -70,7 +70,7 @@ const MarkerCluster = ({ stores, userPosition, onMarkerAction }) => {
         </div>`,
         {
           autoClose: true, // Chiude automaticamente altri popup
-          closeOnClick: false, // Non chiude il popup quando clicchi su di esso
+          closeOnClick: true, //   chiude il popup quando clicchi su di esso
         }
       ).on("popupopen", () => {
         console.log("Marker cliccato! ID negozio:", store.id);
