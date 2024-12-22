@@ -99,6 +99,18 @@ input:focus {
     font-size: medium;
 }
 
+.errorRegisterInput{
+    border-bottom: 2px solid darkred;
+}
+
+.errorRegisterInputInequal{
+    border-bottom: 2px solid darkred;
+}
+
+.rowCheck .errorRegisterCheck{
+    color: darkred;
+}
+
 @media (orientation: portrait) {
     .RegisterBox{
         width: 90%;
