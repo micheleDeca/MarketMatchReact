@@ -1,7 +1,51 @@
 import "./Register.css";
 import { Link } from "react-router-dom";
+import {useState} from 'react';
 
 function Register(props) {
+    const [registerDataUser, setregisterDataUser] = useState({
+        nome: "",
+        cognome: "",
+        dataNascita: "",  //opzionale
+        email: "",
+        password: "",
+        genere: "", //non opzionale, ma preferisco non specificare
+        Regione: "",
+        Provincia: "",
+        cap: "",
+        citta: "",
+        indirizzo: "", //opzionale
+        cellulare : "", //opzionale
+        privacy: false, //SENZA NO PROFILO
+        statistiche: false, //SENZA NO PROFILO
+        profilazione: false,
+        newsLetter: false,
+    });
+
+    const [registerDataShop, setregisterDataShop] = useState({
+        ragioneSociale: "",
+        pIva: "",
+        email: "",
+        password: "",
+        Regione: "",
+        Provincia: "",
+        cap: "",
+        citta: "",
+        indirizzo: "", 
+        longitudine: "",    //senza api vanno messe da utente per forza
+        latitudine: "", //senza api vanno messe da utente per forza
+        cellulare : "",  
+        InformazioniPagamento: "Accetta carta, contanti e app",  //da mettere qui?
+        logo: "", //da mettere qui?
+        orari: ["","","","","","","",],  //da mettere qui?
+        privacy: false, //SENZA NO PROFILO
+        statistiche: false, //SENZA NO PROFILO
+        newsLetter: false,
+        sconti: "",
+        prenotazione: ""
+    });
+
+
 
     return (
         <>

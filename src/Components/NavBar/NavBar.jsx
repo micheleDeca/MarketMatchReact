@@ -29,7 +29,9 @@ const NavBar = () => {
     const [navColor, setNavColor] = useState("");    // Stato per il colore dinamico della navbar
     const location = useLocation();
     const [isStyleActive, setIsStyleActive] = useState(false); // Stato per applicare uno stile speciale alla navbar nella home
-    1
+    
+    const [navVisibility, setNavVisibility] = useState(true);
+
     const sidebarRef = useRef(null); // Riferimento per la sidebar, usato per controllare i click esterni
     const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
 
@@ -61,6 +63,14 @@ const NavBar = () => {
         }
     }, [location.pathname]);
 
+    useEffect(() => {
+        if (location.pathname === "/login" || location.pathname === "/RegisterCons" || location.pathname === "/RegisterNeg") {
+            setNavVisibility(false);
+        } else {
+            setNavVisibility(true);
+        }
+    }, [location.pathname]);
+
     // Funzione helper per controllare la visibilità dei link in base al tipo di utente
     const isVisibleForUserType = (types) => types.includes(userType);
 
@@ -79,7 +89,8 @@ const NavBar = () => {
 
 
     return (
-        <nav className="flex-div"
+        <>
+        {navVisibility && (<nav className="flex-div"
             style={styles.nav}>
             <div className="nav-left-wrapper flex-div">
                 <div className="nav-left-logo flex-div">
@@ -131,7 +142,8 @@ const NavBar = () => {
                     </div>
                 </div>
             )}
-        </nav>
+        </nav>)}
+        </>
     );
 };
 
