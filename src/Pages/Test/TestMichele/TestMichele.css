@@ -5,6 +5,8 @@
     overflow: hidden; /* Assicura che la mappa non esca dai bordi */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Aggiunge un'ombra per l'estetica */
     margin: 10px 0; /* Spaziatura verticale */
+    z-index: 1; /* Abbassa la priorità della mappa */
+
    }
   
 .map-wrapper{
