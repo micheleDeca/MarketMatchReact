@@ -95,7 +95,7 @@ const NavBar = () => {
                     {isVisibleForUserType(["NoAccesso", "ConA", "AmmA", "NegA"]) && <Link to="/prodotti" id="prodottiNav" style={{ color: navColor }} >Prodotti</Link>}
                     {isVisibleForUserType(["ConA", "AmmA"]) && <a href="#negozi" id="negoziNav" style={{ color: navColor }}>Negozi</a>}
                     {isVisibleForUserType(["NegA"]) && <a href="#negozio" id="negozioNav" style={{ color: navColor }}>Negozio</a>}
-                    {isVisibleForUserType(["ConA", "AmmA"]) && <a href="#ricette" id="ricetteNav" style={{ color: navColor }}>Ricette</a>}
+                    {isVisibleForUserType(["ConA", "AmmA"]) && <Link to="/ricette" id="ricetteNav" style={{ color: navColor }}>Ricette</Link>}
                     {isVisibleForUserType(["NoAccesso", "ConA", "AmmA", "NegA"]) && <a href="#chiSiamo" id="chiSiamoNav" style={{ color: navColor }}>Chi Siamo</a>}
                 </div>
             </div>
