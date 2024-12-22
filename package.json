@@ -11,9 +11,12 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.26.0",
+    "leaflet": "^1.9.4",
+    "leaflet.markercluster": "^1.5.3",
     "mkcert": "^3.2.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-leaflet": "^4.2.1",
     "react-lottie-player": "^2.1.0",
     "react-pagination-bar": "^2.0.1",
     "react-router": "^7.0.2",

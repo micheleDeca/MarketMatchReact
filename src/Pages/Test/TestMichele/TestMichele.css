@@ -1,1 +1,16 @@
- 
+.map-container {
+    width: 85%; /* Larghezza massima del contenitore */
+    height: 400px; /* Altezza ridotta */
+    border-radius: 25px; /* Angoli arrotondati */
+    overflow: hidden; /* Assicura che la mappa non esca dai bordi */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Aggiunge un'ombra per l'estetica */
+    margin: 10px 0; /* Spaziatura verticale */
+   }
+  
+.map-wrapper{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+   
