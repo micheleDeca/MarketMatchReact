@@ -7,6 +7,7 @@ import SearchBar from '../../Components/SearchBar/SearchBar';
 import ButtonFilter from '../../Components/ButtonFilter/ButtonFilter';
 import Button from '../../Components/Button/Button';
 import { useNavigate } from 'react-router-dom';
+import { useUserContext } from '../../Context/UserContext';
 
 const categoriesList = [
     "Bio",
@@ -55,8 +56,11 @@ const mockProducts = Array.from({ length: 200 }, (_, index) => {
     };
 });
 
+
 const Product = () => {
 
+    const {userType} = useUserContext();
+    
     const navigate = useNavigate();
 
     const goToProduct = () => {
@@ -90,9 +94,17 @@ const Product = () => {
         sessionStorage.setItem('currentPage', currentPage);
     }, [currentPage]);
 
+    let orderNames = [];
+    let filterNames = [];
+    
+    if (userType === "NegA") {
+        orderNames = ["Prezzo crescente", "Prezzo decrescente", "Quantità", "Nome", "Rilevanza"];
+        filterNames = ["Bio", "Senza Lattosio", "Senza Glutine", "Vegetariano", "Vegan", "Km0", "In promozione"];
+    } else if (userType === "ConA") {
+        orderNames = ["Prezzo crescente", "Prezzo decrescente", "Quantità", "Nome", "Rilevanza"];
+        filterNames = ["Bio", "Senza Lattosio", "Senza Glutine", "Vegetariano", "Vegan", "Km0", "In promozione", "Più vicini a Te"];
+    }
 
-    const orderNames = ["Prezzo crescente", "Prezzo decrescente", "Quantità", "Nome", "Rilevanza"];
-    const filterNames = ["Bio", "Senza Lattosio", "Senza Glutine", "Vegetariano", "Vegan", "Km0", "In promozione"];
 
     return (
         <div className="products-page">
@@ -104,7 +116,8 @@ const Product = () => {
                     <SearchBar />
                 </div>
                 <div className="filterButton">
-                    <ButtonFilter order={orderNames} filter={filterNames} type="Neg, Prod"/>
+                    <ButtonFilter order={orderNames} filter={filterNames} type={userType === "NegA" ? "Neg, Prod" : "ConA, Prod"}
+                    />
                 </div>
             </div>
             <div className="content-container">
