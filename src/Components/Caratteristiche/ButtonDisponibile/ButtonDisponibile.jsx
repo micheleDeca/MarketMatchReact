@@ -24,7 +24,7 @@ import './ButtonDisponibile.css'
 export default function ButtonDisponibile(value) {
     const isDisponibile = value.disponibile;
     return (
-        <button className="buttonDisp"  style={{ backgroundColor: isDisponibile ? "rgb(11, 144, 35)" : "red",}}>
+        <button className="buttonDisp" style={{ backgroundColor: isDisponibile ? "rgb(11, 144, 35)" : "red", }}>
             {isDisponibile ? (
                 <>
                     <img className="image" src="src\Components\Caratteristiche\ButtonDisponibile\assets\check-876.svg" width="30px" height="30px" />
@@ -34,7 +34,6 @@ export default function ButtonDisponibile(value) {
                     Non Disponibile
                 </>
             )
-
             }
 
         </button>

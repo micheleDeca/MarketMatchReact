@@ -2,10 +2,10 @@ import { useState } from 'react';
 import './ButtonFilter.css'
 import FilterPopUp from './FilterPopUp/FilterPopUp';
 
-export default function ButtonFilter() {
+export default function ButtonFilter(value) {
 
-  const orderNames = ["Prezzo crescente", "Prezzo decrescente", "Quantità", "Nome", "Rilevanza"];
-  const filterNames = ["Bio", "Senza Lattosio", "Senza Glutine", "Vegetariano", "Vegan", "Km0", "In promozione", "Più vicini a te"];
+  const orderNames = value.order;
+  const filterNames = value.filter;
 
   const [isPopupOpen, setIsPopupOpen] = useState(false); // Stato per gestire la visibilità della popup
 
@@ -21,7 +21,8 @@ export default function ButtonFilter() {
       </button>
 
         {isPopupOpen &&
-          (<div className='filter-popup-container'><FilterPopUp order={orderNames} filter={filterNames} setState={setIsPopupOpen}/></div>)
+          (<div className='filter-popup-container'><FilterPopUp order={orderNames} filter={filterNames} type={value.type} 
+            setState={setIsPopupOpen} /></div>)
         }
 
     </>
