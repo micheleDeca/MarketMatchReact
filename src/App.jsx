@@ -17,6 +17,7 @@ import Reservations from './Pages/Reservations/Reservations';
 import Settings from './Pages/Settings/Settings';
 import Ricetta from "./Pages/Ricetta/Ricetta.jsx";
 import Account from './Pages/Account/Account.jsx';
+import LoginRegister from "./Pages/LoginRegister/LoginRegister.jsx";
 
 
 /*
@@ -57,6 +58,9 @@ const App = () => {
         <Route path='/impostazioni' element={<Settings /> }/>
         <Route path='*' element={<PageNotFound /> }/>
         <Route path='/account' element={<Account /> }/>
+        <Route path='/Login' element={<LoginRegister mode="Login"/>} />
+        <Route path='/RegisterNeg' element={<LoginRegister mode="Register" tipo="neg"/>} />
+        <Route path='/RegisterCons' element={<LoginRegister mode="Register"/>} />
       </Routes>
       <Footer />
     </div>

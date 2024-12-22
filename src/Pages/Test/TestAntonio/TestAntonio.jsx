@@ -1,6 +1,7 @@
 import "./TestAntonio.css";
 //import Login from "../../../Components/Login/Login.jsx";
 import Register from "../../../Components/Register/Register.jsx";
+import Login from "../../../Components/Login/Login.jsx";
 //import RecipesInformation from "../../../Components/RecipesInformation/RecipesInformation";
 //import Ingredients from "../../../Components/Ingredients/Ingredients";
 //import ShopWindow from "../../../Components/shop_window/shop_window";
@@ -16,7 +17,7 @@ import Register from "../../../Components/Register/Register.jsx";
 const TestAntonio = () => {
   return (
     <div className="AntonioTest">
-        <Register/>
+        <Register />
     </div>
   );
 };
