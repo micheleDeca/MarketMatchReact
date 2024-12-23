@@ -31,6 +31,10 @@ input:focus {
     padding: 5px;
 }
 
+.errorLogin{
+    border-bottom: 2px solid darkred;
+}
+
 .title{
     color:white;
     font-weight: bold;

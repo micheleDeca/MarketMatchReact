@@ -41,12 +41,121 @@ function Register(props) {
         prenotazione: ""
     });
 
+const handleShopRegister = () => {
+    const inputs = document.querySelectorAll(".RegisterInput[required]");
+    const checkboxes = document.querySelectorAll(".rowCheck input[required]");
+    let isValid = true;
+
+    inputs.forEach((input) => {
+        if (!input.value.trim()) {
+            isValid = false;
+            input.classList.add("errorRegister");
+        } else {
+            input.classList.remove("errorRegister");
+        }
+    });
+
+    checkboxes.forEach((checkbox) => {
+        if (!checkbox.checked) {
+            isValid = false;
+            checkbox.classList.add("errorRegister");
+        } else {
+            checkbox.classList.remove("errorRegister");
+        }
+    });
+
+    if (isValid) {
+        setregisterDataShop({
+            ragioneSociale: inputs[0].value,
+            pIva: inputs[1].value,
+            Regione: inputs[2].value,
+            Provincia: inputs[3].value,
+            cap: inputs[4].value,
+            citta: inputs[5].value,
+            indirizzo: inputs[6].value,
+            email: inputs[7].value,
+            password: inputs[8].value,
+            longitudine: "", // Add logic to get this value if needed
+            latitudine: "", // Add logic to get this value if needed
+            cellulare: "", // Add logic to get this value if needed
+            privacy: checkboxes[0].checked,
+            statistiche: checkboxes[1].checked,
+            sconti: checkboxes[2].checked,
+            prenotazione: checkboxes[3].checked,
+        });
+    } else {
+        alert("Per favore, compila tutti i campi richiesti.");
+    }
+};
+
+const handleConsumerRegister = () => {
+    const inputs = document.querySelectorAll(".RegisterInput");
+    const checkboxes = document.querySelectorAll(".rowCheck input");
+    const inputsR = document.querySelectorAll(".RegisterInput[required]");
+    const checkboxesR = document.querySelectorAll(".rowCheck input[required]");
+    const labels = document.querySelectorAll(".rowCheck label");
+    let isValid = true;
+    let isValid2 = true;
+
+    inputsR.forEach((input) => {
+        if (!input.value.trim()) {
+            isValid = false;
+            input.classList.add("errorRegisterInput");
+        } else {
+            input.classList.remove("errorRegisterInput");
+        }
+    });
+
+    checkboxesR.forEach((checkbox, index) => {
+        if (!checkbox.checked) {
+            isValid = false;
+            labels[index].classList.add("errorRegisterCheck");
+        } else {
+            labels[index].classList.remove("errorRegisterCheck");
+        }
+    });
+
+    if(inputs[10].value !== inputs[11].value){
+        isValid2 = false;
+        inputs[10].classList.add("errorRegisterInputInequal");
+        inputs[11].classList.add("errorRegisterInputInequal");
+        alert("Le password non corrispondono");
+    }
+    else{
+        inputs[10].classList.remove("errorRegisterInputInequal");
+        inputs[11].classList.remove("errorRegisterInputInequal");
+    }
+
+    if (isValid && isValid2) {
+        setregisterDataUser({
+            nome: inputs[0].value,
+            cognome: inputs[1].value,
+            Regione: inputs[2].value,
+            Provincia: inputs[3].value,
+            cap: inputs[4].value,
+            citta: inputs[5].value,
+            cellulare: inputs[6].value,
+            dataNascita: inputs[7].value,
+            genere: inputs[8].value,
+            email: inputs[9].value,
+            password: inputs[10].value,
+            privacy: checkboxes[0].checked,
+            statistiche: checkboxes[1].checked,
+            profilazione: checkboxes[2].checked,
+            newsLetter: checkboxes[3].checked,
+        });
+        console.log(registerDataUser);
+    } else if(!isValid){
+        alert("Per favore, compila tutti i campi richiesti.");
+    }
+};
+
     return (
         <>
             {props.tipo === "neg" ? (
                 <div className="RegisterBox">
                     <p className="tipeRegister">
-                        <Link to="/RegisterCons" className="link">Sono un consumatore</Link>
+                        <Link to="/registerCons" className="link">Sono un consumatore</Link>
                     </p>
                     <p className="title">Register</p>
                     <div className="rowLogin">
@@ -92,13 +201,13 @@ function Register(props) {
                     </div>
                     <input type="button" value="Register" className="buttonRegister"/>
                     <p className="word">Hai già un account?
-                        <Link to="/Login" className="link"> Accedi qui!</Link>
+                        <Link to="/login" className="link"> Accedi qui!</Link>
                     </p>
                 </div>
             ) : (
                 <div className="RegisterBox">
                     <p className="tipeRegister">
-                        <Link to="/RegisterNeg" className="link">Sono un Negoziante</Link>
+                        <Link to="/registerNeg" className="link">Sono un Negoziante</Link>
                     </p>
                     <p className="title">Register</p>
                     <div className="rowLogin">
@@ -146,9 +255,9 @@ function Register(props) {
                             <input type="checkbox" name="Option2" value="2"/>
                         </div>
                     </div>
-                    <input type="button" value="Register" className="buttonRegister"/>
+                    <input type="button" value="Register" className="buttonRegister" onClick={handleConsumerRegister}/>
                     <p className="word">Hai già un account?
-                        <Link to="/Login" className="link"> Accedi qui!</Link>
+                        <Link to="/login" className="link"> Accedi qui!</Link>
                     </p>
                 </div>
             )}

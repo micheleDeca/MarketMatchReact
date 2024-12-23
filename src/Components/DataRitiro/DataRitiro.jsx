@@ -31,8 +31,7 @@
  * <DataRitiro submitFunction={submitFunction} />
  * ```
  */
-
-import ButtonSave from "./ButtonSave/ButtonSave";
+import ButtonSave from '../ButtonSave/ButtonSave';
 import Label from "./Label/Label";
 import './DataRitiro.css'
 
