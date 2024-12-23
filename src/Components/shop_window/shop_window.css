@@ -6,6 +6,14 @@
     width: 100%;
 }
 
+.nameBadge {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+    width: 100%;
+}
+
 .Image {
     width: 90%;
     aspect-ratio: 1/1;
@@ -110,6 +118,11 @@
 
     .ShopWindowBox {
         flex-direction: column;
+    }
+
+    .nameBadge {
+        flex-direction: column;
+        gap:15px;
     }
 
     .LeftShopWindow {

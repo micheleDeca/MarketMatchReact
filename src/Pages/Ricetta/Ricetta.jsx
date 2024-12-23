@@ -6,7 +6,7 @@ import Ingredients from "../../Components/Ingredients/Ingredients.jsx";
 import React, {useState} from "react";
 import ProductLongList from "../../Components/CardLongList/CardLongList.jsx";
 
-function Ricetta(props) {
+function Ricetta() {
 
     const [ricettaInfo, setRicettaInfo] = useState({
         nome: "Risotto ai Funghi Porcini Bio",
@@ -63,9 +63,9 @@ function Ricetta(props) {
                     Description={ricettaInfo.descrizione}
                     ImageDescription={ricettaInfo.foto}
                     Name={ricettaInfo.nome}
-                    mode={props.mode}
                     modify={setModify}
                     badges={ricettaInfo.categorie}
+                    mode={"ConA"}
                 />
                 <div className="Informazioni">
                     <RecipesInformation

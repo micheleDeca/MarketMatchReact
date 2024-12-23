@@ -40,7 +40,7 @@ export default function Caratteristiche(value) {
       <h1 className="CaratteristicheTitle">Caratteristiche</h1>
       <hr />
       <div className="box">
-        {value.tipo == "neg" ? (
+        {value.tipo == "NegA" ? (
         <ZigZag pulsante="Modifica Caratteristiche" modify={value.modify}>
             <div className="disponibile"><ButtonDisponibile disponibile={value.disponibile}/></div>
             <div>

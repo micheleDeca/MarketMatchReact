@@ -21,7 +21,7 @@ import ZigZag from "../zig-zag/zig-zag";
  */
 
 function Orari(props) {
-  if (props.mode == "neg") {
+  if (props.mode === "NegA") {
     return (
       <>
         <div className="OrariNegozioBox">
@@ -90,7 +90,7 @@ function Orari(props) {
         </div>
       </>
     );
-  } else {
+  } else if (props.mode === "ConA"){
     return (
       <>
         <div className="OrariNegozioBox">
