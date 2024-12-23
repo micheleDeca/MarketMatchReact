@@ -3,38 +3,36 @@ import GreenPointsCO2 from "../../Components/GreenPointsCO2/GreenPointsCO2.jsx";
 import OperationLongContainer from "../../Components/OperationLongContainer/OperationLongContainer.jsx";
 
 const operazioni = [
+
     {
-        tipoOperazione: "pointPlus",
-        punti: {
-            id: "Motivo Accredito 1",
-            reservationDate: "15/12/2024",
-            value: "23"
-        }
+        id: "Motivo Accredito 1",
+        reservationDate: "15/12/2024",
+        pointValue: "23",
+        pointType: "plus",
     },
+
+
     {
-        tipoOperazione: "pointMalus",
-        punti: {
-            id: "Motivo Accredito 2",
-            reservationDate: "16/12/2024",
-            value: "10"
-        }
+        id: "Motivo Accredito 2",
+        reservationDate: "16/12/2024",
+        pointValue: "10",
+        pointType: "minus",
     },
+
     {
-        tipoOperazione: "pointPlus",
-        punti: {
-            id: "Motivo Accredito 3",
-            reservationDate: "17/12/2024",
-            value: "35"
-        }
+        id: "Motivo Accredito 3",
+        reservationDate: "17/12/2024",
+        pointValue: "35",
+        pointType: "plus",
     },
+
     {
-        tipoOperazione: "pointMalus",
-        punti: {
-            id: "Motivo Accredito 4",
-            reservationDate: "18/12/2024",
-            value: "5"
-        }
-    }
+        id: "Motivo Accredito 4",
+        reservationDate: "18/12/2024",
+        pointValue: "5",
+        pointType: "minus",
+    },
+
 ];
 
 
@@ -45,8 +43,8 @@ function Punti() {
         <>
             <div className="PuntiBox">
                 <GreenPointsCO2 points={punti}/>
-                <OperationLongContainer />
-            </div>
+                <OperationLongContainer operations={operazioni} type={"point"} />
+                            </div>
         </>
     );
 }

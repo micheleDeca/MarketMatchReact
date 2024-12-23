@@ -40,8 +40,7 @@ import PlusIcon from './assets/plus.svg';
 /*
 Tipologia:
 -reservation;
--pointPlus
--pointMinus
+-point
 */
 
 const OperationLong = (props) => {
@@ -91,8 +90,8 @@ const OperationLong = (props) => {
                     d="M12 17C13.3833 17 14.5625 16.5125 15.5375 15.5375C16.5125 14.5625 17 13.3833 17 12C17 10.6167 16.5125 9.4375 15.5375 8.4625C14.5625 7.4875 13.3833 7 12 7C10.6167 7 9.4375 7.4875 8.4625 8.4625C7.4875 9.4375 7 10.6167 7 12C7 13.3833 7.4875 14.5625 8.4625 15.5375C9.4375 16.5125 10.6167 17 12 17ZM12 22C10.6167 22 9.31667 21.7375 8.1 21.2125C6.88333 20.6875 5.825 19.975 4.925 19.075C4.025 18.175 3.3125 17.1167 2.7875 15.9C2.2625 14.6833 2 13.3833 2 12C2 10.6167 2.2625 9.31667 2.7875 8.1C3.3125 6.88333 4.025 5.825 4.925 4.925C5.825 4.025 6.88333 3.3125 8.1 2.7875C9.31667 2.2625 10.6167 2 12 2C13.3833 2 14.6833 2.2625 15.9 2.7875C17.1167 3.3125 18.175 4.025 19.075 4.925C19.975 5.825 20.6875 6.88333 21.2125 8.1C21.7375 9.31667 22 10.6167 22 12C22 13.3833 21.7375 14.6833 21.2125 15.9C20.6875 17.1167 19.975 18.175 19.075 19.075C18.175 19.975 17.1167 20.6875 15.9 21.2125C14.6833 21.7375 13.3833 22 12 22ZM12 20C14.2333 20 16.125 19.225 17.675 17.675C19.225 16.125 20 14.2333 20 12C20 9.76667 19.225 7.875 17.675 6.325C16.125 4.775 14.2333 4 12 4C9.76667 4 7.875 4.775 6.325 6.325C4.775 7.875 4 9.76667 4 12C4 14.2333 4.775 16.125 6.325 17.675C7.875 19.225 9.76667 20 12 20Z"
                     fill={iconColor}
                 />
-            </svg>) : (isVisibleForOperationType("pointPlus") ? (<svg xmlns="http://www.w3.org/2000/svg" className='reservation-icon-long' fill="#41c562" viewBox="0 0 24 24" fill-rule="evenodd"><path fill-rule="evenodd" d="M 11 2 L 11 11 L 2 11 L 2 13 L 11 13 L 11 22 L 13 22 L 13 13 L 22 13 L 22 11 L 13 11 L 13 2 Z" /></svg>
-            ) : (isVisibleForOperationType("pointMinus") ? (<svg className='reservation-icon-long' viewBox="0 0 24 24" fill="#bf1515" xmlns="http://www.w3.org/2000/svg">
+            </svg>) : (operation.pointType === "plus" ? (<svg xmlns="http://www.w3.org/2000/svg" className='reservation-icon-long' fill="#41c562" viewBox="0 0 24 24" fill-rule="evenodd"><path fill-rule="evenodd" d="M 11 2 L 11 11 L 2 11 L 2 13 L 11 13 L 11 22 L 13 22 L 13 13 L 22 13 L 22 11 L 13 11 L 13 2 Z" /></svg>
+            ) : (operation.pointType === "minus" ? (<svg className='reservation-icon-long' viewBox="0 0 24 24" fill="#bf1515" xmlns="http://www.w3.org/2000/svg">
                 <path d="M6 12L18 12" stroke="#bf1515" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
             </svg>) : (<></>))
             )}
@@ -101,7 +100,7 @@ const OperationLong = (props) => {
                 to={
                     isVisibleForOperationType("reservation")
                         ? `/prenotazione/${operation.id}`
-                        : isVisibleForOperationType(["pointPlus", "pointMinus"])
+                        : isVisibleForOperationType(["point"])
                             ? `/greenPoint/${operation.id}`
                             : "#"
                 }
@@ -122,7 +121,7 @@ const OperationLong = (props) => {
                         {isVisibleForUserType(["AmmA", "NegA"]) && <span className="reservation-bigInfo-uno-long">Consumatore: {operation.customerId}</span>}
                         {isVisibleForUserType(["ConA", "AmmA"]) && <span className="reservation-bigInfo-due-long">Negozio: {operation.shopId}</span>}
                     </div>}
-                    {isVisibleForOperationType(["pointPlus", "pointMinus"]) && <div className="reservation-bigInfo-long">
+                    {isVisibleForOperationType(["point"]) && <div className="reservation-bigInfo-long">
                         <span className="reservation-bigInfo-points">{operation.value} Green Points</span>
                     </div>}
                 </div>
