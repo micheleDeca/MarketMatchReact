@@ -22,6 +22,7 @@ import LoginRegister from "./Pages/LoginRegister/LoginRegister.jsx";
 import Recipes from './Pages/Recipes/Recipes.jsx';
 import Stores from './Pages/Stores/Stores.jsx';
 import Carrello from './Pages/Carrello/Carrello.jsx';
+import Punti from "./Pages/Punti/Punti.jsx";
   
 
 /*
@@ -69,6 +70,7 @@ const App = () => {
         <Route path='/registerCons' element={<LoginRegister mode="Register"/>} />
         <Route path='/ricette' element={<Recipes/>} />
          <Route path='/carrello' element={<Carrello/>} />
+        <Route path='/punti' element={<Punti/>} />
        </Routes>
       <Footer />
     </div>
