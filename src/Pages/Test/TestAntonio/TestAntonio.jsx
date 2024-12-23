@@ -1,5 +1,7 @@
 import "./TestAntonio.css";
-import Counter from "../../../Components/Counter/Counter.jsx";
+//import Counter from "../../../Components/Counter/Counter.jsx";
+//import AddGood from "../../../Components/AddGood/AddGood.jsx";
+import CounterAddGood from "../../../Components/CounterAddGood/CounterAddGood.jsx";
 //import Login from "../../../Components/Login/Login.jsx";
 //import Register from "../../../Components/Register/Register.jsx";
 //import Login from "../../../Components/Login/Login.jsx";
@@ -17,8 +19,8 @@ import Counter from "../../../Components/Counter/Counter.jsx";
 
 const TestAntonio = () => {
   return (
-    <div className="AntonioTest">
-      <div className="gh"><Counter /></div>
+    <div className="TestAntonio">
+
     </div>
   );
 };

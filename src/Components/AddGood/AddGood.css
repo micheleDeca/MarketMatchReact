@@ -1,0 +1,8 @@
+.AddGoodButton{
+    width: 100%;
+    background-color: black;
+    color: white;
+    font-size: 90%;
+    border: 0;
+    max-width: 250px;
+}
