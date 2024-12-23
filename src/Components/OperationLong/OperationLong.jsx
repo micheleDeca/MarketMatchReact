@@ -101,8 +101,8 @@ const OperationLong = (props) => {
                     isVisibleForOperationType("reservation")
                         ? `/prenotazione/${operation.id}`
                         : isVisibleForOperationType(["point"])
-                            ? `/greenPoint/${operation.id}`
-                            : "#"
+                            ? ``
+                            : ``
                 }
                 className="reservation-link"
             >                <div className="reservation-info-long">
