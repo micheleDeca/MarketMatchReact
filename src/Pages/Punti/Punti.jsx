@@ -43,8 +43,8 @@ function Punti() {
         <>
             <div className="PuntiBox">
                 <GreenPointsCO2 points={punti}/>
-                <OperationLongContainer operations={operazioni} type={"point"} />
-                            </div>
+            </div>
+            <OperationLongContainer operations={operazioni} type={"point"}/>
         </>
     );
 }
