@@ -109,9 +109,10 @@ const Product = () => {
     return (
         <div className="products-page">
             <div className="product-header">
+                {userType === "NegA" && ( 
                 <div className="newProduct">
                     <Button name="Inserisci prodotto" function={goToProduct} />
-                </div>
+                </div>)}
                 <div className="searchBar">
                     <SearchBar />
                 </div>
