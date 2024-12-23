@@ -42,7 +42,7 @@ const Prenotazioni = () => {
     useEffect(() => {
         fetchPrenotations(currentPage);
     }, [currentPage]);
-
+    
     return (
         <>
             <div className="prenHeader">
@@ -52,7 +52,9 @@ const Prenotazioni = () => {
                 <PrenotationSearch first="Tutto" second="Accettato" third="Rifiutato" fourth="Prenotato" fifth="Da Ritirare" sixth="Ritirato" />
             </div>
             <div className="prenotations">
-                <OperationLongContainer operations={prenotations} type={"reservation"}/>
+                <OperationLongContainer operations={prenotations} type={"reservation"} />
+                
+
             </div>
             <div className="prenButton">
                 {currentPage >= 2 && (

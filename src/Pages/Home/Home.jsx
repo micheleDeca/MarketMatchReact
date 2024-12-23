@@ -7,6 +7,7 @@ import { useUserContext } from '../../Context/UserContext';
 import FeaturesComponent from './FeaturesComponent/FeaturesComponent';
 import PositionComponent from './PositionComponent/PositionComponent';
 import HighlightShops from './HighlightShops/HighlightShops';
+import FeaturesComponentShop from './FeaturesComponentShop/FeaturesComponentShop';
 
 
 const Home = (props) => {
@@ -58,8 +59,9 @@ const Home = (props) => {
           <>
             <CategoryCardList title="LE NOSTRE MIGLIORI CATEGORIE" categories={categories} />
             <WelcomeBanner />
-            <ProductList title="SCOPRI I NOSTRI PRODOTTI" products={products} buttonName={"Scopri"} />
-            <ProductList title="VICINO A TE" products={products} buttonName={"Scopri"} />
+            <ProductList title="SCOPRI I NOSTRI PRODOTTI" products={products} buttonName={"Scopri"} type={"product"}/>
+            <FeaturesComponent />
+            <ProductList title="VICINO A TE" products={products} buttonName={"Scopri"} type={"product"}/>
           </>
 
         ) : userType == "ConA" ? (
@@ -67,7 +69,6 @@ const Home = (props) => {
             <CategoryCardList title="LE TUE CATEGORIE PREFERITE" categories={categories} />
             <PositionComponent />
             <ProductList title="SCOPRI I NOSTRI PRODOTTI" products={products} buttonName={"Prenota"} type={"product"}/>
-
             <FeaturesComponent />
             <ProductList title="PRODOTTI VICINO A TE" products={products} buttonName={"Prenota"} type={"product"}/>
             <HighlightShops />
@@ -80,8 +81,9 @@ const Home = (props) => {
         ) : userType == "NegA" ? (
           <>
             <CategoryCardList title="CATEGORIE NEGOZIO" categories={categories} />
-            <ProductList title="PRODOTTI IN VENDITA" products={products} />
-            <ProductList title="PRODOTTI IN PROMOZIONE (verificare come)" products={products} buttonName={"Modifica"} />
+            <ProductList title="PRODOTTI IN VENDITA" products={products} type={"product"}/>
+            <FeaturesComponentShop />
+            <ProductList title="PRODOTTI IN PROMOZIONE (verificare come)" products={products} buttonName={"Modifica"} type={"product"}/>
             <ProductList title="LE TUE ULTIME PRENTOAZIONI (sviluppare)" products={products} buttonName={"Modifica"} />
             <ProductList title="STATISTICHE? (sviluppare)" products={products} buttonName={"mario"} />
           </>

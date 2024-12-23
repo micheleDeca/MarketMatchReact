@@ -1,0 +1,19 @@
+.PuntiBox{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 96%;
+    margin: 2%;
+    gap: 15px;
+}
+
+
+.point-operation-container{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-bottom: 2%;
+    padding-left: 2%;
+    width: 95%;
+}

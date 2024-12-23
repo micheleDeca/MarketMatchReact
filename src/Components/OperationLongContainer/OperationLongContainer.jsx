@@ -67,7 +67,8 @@ const OperationLongContainer = ({operations, type}) => {
                         shopId={operation.shopId} //Prenotazione
                         customerId={operation.customerId} //Prenotazione
                         value={operation.pointValue} //punti
-                        type={type} //reservation, pointPlus, pointMalus
+                        pointType={operation.pointType} //punti  plus, minus
+                        type={type} //reservation, point
                     />
                 ))}
 
