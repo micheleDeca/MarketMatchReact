@@ -40,7 +40,7 @@
 }
 
 
-@media (max-width: 950px){
+@media (max-width: 1370px){
     .titleLuogo h1, .titleOra h1{
         font-size: large;
     }
@@ -51,13 +51,10 @@
 
 }
 
-@media (max-width: 750px){
+@media (max-width: 855px){
     .luogoDataBox{
         flex-direction: column;
         gap: 40px;
     }
 
-    .luogoBox{
-
-    }
 }

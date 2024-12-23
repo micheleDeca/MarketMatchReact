@@ -11,7 +11,8 @@
     width: 100%;
     display: flex;
     justify-content: flex-start;
-    border-right: 2px solid rgb(219, 208, 208)
+    border-right: 2px solid rgb(219, 208, 208);
+    flex: 2;
 }
 
 .dateBox{
@@ -21,6 +22,7 @@
     padding-left: 2%;
     padding-right: 2%;
     padding-top: 4%;
+    flex: 1;
 }
 
 .totalBox{
@@ -65,18 +67,7 @@
     }
 }
 
-@media (max-width: 567px) and (min-width: 506px){
-    .prenoteButton input{
-        font-size: 12px;
-        width: 200px;
-    }
-
-    .totalBox h1{
-        font-size: 20px;
-    }
-}
-
-@media (max-width: 505px){
+@media (max-width: 530px){
     .totalBox{
         flex-direction: column;
         justify-content: flex-start;
