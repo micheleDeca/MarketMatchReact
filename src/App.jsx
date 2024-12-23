@@ -21,16 +21,8 @@ import Account from './Pages/Account/Account.jsx';
 import LoginRegister from "./Pages/LoginRegister/LoginRegister.jsx";
 import Recipes from './Pages/Recipes/Recipes.jsx';
 import Stores from './Pages/Stores/Stores.jsx';
-<<<<<<< Updated upstream
 import Carrello from './Pages/Carrello/Carrello.jsx';
-=======
-<<<<<<< HEAD
-import Punti from "./Pages/Punti/Punti.jsx";
-=======
-import Carrello from './Pages/Carrello/Carrello.jsx';
->>>>>>> 9a5c73a78488db6a505193435dcf395525aba70e
->>>>>>> Stashed changes
-
+  
 
 /*
 *    - "NoAccesso" (utente non loggato)
@@ -76,16 +68,8 @@ const App = () => {
         <Route path='/registerNeg' element={<LoginRegister mode="Register" tipo="neg"/>} />
         <Route path='/registerCons' element={<LoginRegister mode="Register"/>} />
         <Route path='/ricette' element={<Recipes/>} />
-<<<<<<< Updated upstream
-        <Route path='/carrello' element={<Carrello/>} />
-=======
-<<<<<<< HEAD
-        <Route path='/punti' element={<Punti/>} />
-=======
-        <Route path='/carrello' element={<Carrello/>} />
->>>>>>> 9a5c73a78488db6a505193435dcf395525aba70e
->>>>>>> Stashed changes
-      </Routes>
+         <Route path='/carrello' element={<Carrello/>} />
+       </Routes>
       <Footer />
     </div>
   )
