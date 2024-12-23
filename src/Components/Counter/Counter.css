@@ -1,0 +1,41 @@
+.CounterBox{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    border: 1px solid black;
+    width:97%;
+    padding-left: 1%;
+    padding-right: 1%;
+    padding-top: 0.2%;
+    padding-bottom: 0.2%;
+}
+
+.ImgCounter{
+    width: 25%;
+    aspect-ratio: 1/1;
+}
+
+.value{
+  width: 40%;
+    text-align: center;
+}
+
+@media (orientation: portrait) {
+    .CounterBox{
+        width:97%;
+        padding-left: 1%;
+        padding-right: 1%;
+        padding-top: 0.2%;
+        padding-bottom: 0.2%;
+    }
+
+    .ImgCounter{
+        width: 25%;
+    }
+
+    .value{
+        width: 40%;
+    }
+}

@@ -6,3 +6,13 @@
     align-items: center;
 }
 
+.gh{
+    width: 7%;
+}
+
+@media (orientation: portrait) {
+   .gh{
+       width: 25%;
+   }
+}
+
