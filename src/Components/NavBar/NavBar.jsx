@@ -118,12 +118,12 @@ const NavBar = () => {
                 {isVisibleForUserType(["AmmA"]) && <a href="#pagamenti" id="pagamentiNav" style={{ color: navColor }}>Pagamenti</a>}
                 {isVisibleForUserType(["NoAccesso"]) && <a href="#accedi" id="accediNav" style={{ color: navColor }}>Accedi/Registrati</a>}
                 <div className="cart-container">
-                    {isVisibleForUserType(["ConA"]) && <a href="#carrello" id="carrelloNav" style={{ color: navColor }} >
+                    {isVisibleForUserType(["ConA"]) && <Link to="/carrello" id="carrelloNav" style={{ color: navColor }} >
                         Carrello
                         {cartItems > 0 && (
                             <span hidden className="cart-quantity" style={{ color: navColor }}>({cartItems})</span>
                         )}
-                    </a>}
+                    </Link>}
                 </div>
             </div>
 

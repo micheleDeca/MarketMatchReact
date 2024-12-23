@@ -1,0 +1,57 @@
+.contentBox{
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row;
+    border-bottom: 2px solid rgb(219, 208, 208);
+    padding-bottom: 2%;
+}
+
+.productList{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    border-right: 2px solid rgb(219, 208, 208)
+}
+
+.dateBox{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-top: 4%;
+}
+
+.totalBox{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.totalBox h1{
+    padding-left: 3%;
+    padding-top: 1%;
+}
+
+.prenoteButton input{
+    padding-top: 5%;
+    padding-bottom: 5%;
+    font-size: 20px;
+    width: 310px;
+}
+
+.prenoteButton{
+    padding-right: 3%;
+    padding-top: 1%;
+}
+
+.prenotationBox{
+    border: 2px solid rgb(219, 208, 208);
+    border-radius: 20px;
+    padding-top: 2%;
+    padding-bottom: 1%;
+}
+
+
