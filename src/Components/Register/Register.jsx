@@ -42,29 +42,44 @@ function Register(props) {
     });
 
 const handleShopRegister = () => {
-    const inputs = document.querySelectorAll(".RegisterInput[required]");
-    const checkboxes = document.querySelectorAll(".rowCheck input[required]");
+    const inputs = document.querySelectorAll(".RegisterInput");
+    const checkboxes = document.querySelectorAll(".rowCheck input");
+    const inputsR = document.querySelectorAll(".RegisterInput[required]");
+    const checkboxesR = document.querySelectorAll(".rowCheck input[required]");
+    const labels = document.querySelectorAll(".rowCheck label");
     let isValid = true;
+    let isValid2 = true;
 
-    inputs.forEach((input) => {
+    inputsR.forEach((input) => {
         if (!input.value.trim()) {
             isValid = false;
-            input.classList.add("errorRegister");
+            input.classList.add("errorRegisterInput");
         } else {
-            input.classList.remove("errorRegister");
+            input.classList.remove("errorRegisterInput");
         }
     });
 
-    checkboxes.forEach((checkbox) => {
+    checkboxesR.forEach((checkbox, index) => {
         if (!checkbox.checked) {
             isValid = false;
-            checkbox.classList.add("errorRegister");
+            labels[index].classList.add("errorRegisterCheck");
         } else {
-            checkbox.classList.remove("errorRegister");
+            labels[index].classList.remove("errorRegisterCheck");
         }
     });
 
-    if (isValid) {
+    if(inputs[8].value !== inputs[9].value){
+        isValid2 = false;
+        inputs[8].classList.add("errorRegisterInputInequal");
+        inputs[9].classList.add("errorRegisterInputInequal");
+        alert("Le password non corrispondono");
+    }
+    else{
+        inputs[8].classList.remove("errorRegisterInputInequal");
+        inputs[9].classList.remove("errorRegisterInputInequal");
+    }
+
+    if (isValid && isValid2) {
         setregisterDataShop({
             ragioneSociale: inputs[0].value,
             pIva: inputs[1].value,
@@ -83,7 +98,8 @@ const handleShopRegister = () => {
             sconti: checkboxes[2].checked,
             prenotazione: checkboxes[3].checked,
         });
-    } else {
+        console.log(registerDataShop);
+    } else if(!isValid){
         alert("Per favore, compila tutti i campi richiesti.");
     }
 };
@@ -192,14 +208,14 @@ const handleConsumerRegister = () => {
                     <div className="rowLogin">
                         <div className="rowCheck">
                             <label>Generazione sconti</label>
-                            <input type="checkbox" name="option3" value="3" required/>
+                            <input type="checkbox" name="option3" value="3"/>
                         </div>
                         <div className="rowCheck">
                             <label>Utilizzo prenotazioni</label>
-                            <input type="checkbox" name="option4" value="4" required/>
+                            <input type="checkbox" name="option4" value="4"/>
                         </div>
                     </div>
-                    <input type="button" value="Register" className="buttonRegister"/>
+                    <input type="button" value="Register" className="buttonRegister" onClick={handleShopRegister}/>
                     <p className="word">Hai già un account?
                         <Link to="/login" className="link"> Accedi qui!</Link>
                     </p>
