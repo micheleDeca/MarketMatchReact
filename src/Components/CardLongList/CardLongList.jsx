@@ -21,6 +21,7 @@ const CardLongList = (props) => {
   }, [currentPage, props.shops, props.products, cardShop]);
 
   return (
+    <>
     <div className="product-long-list-container">
       <h2 className="product-long-list-title">{props.title}</h2>
       {!cardShop && <span className="product-list-long">
@@ -50,16 +51,16 @@ const CardLongList = (props) => {
           
         ))}
       </span>)}
-      <div className="pagination-container">
-        <Pagination
-          currentPage={currentPage}
-          totalItems={cardShop ? props.shops.length : props.products.length}
-          itemsPerPage={itemsPerPage}
-          onPageChange={(page) => setCurrentPage(page)}
-          pageNeighbours={1}
-        />
-      </div>
     </div>
+    <div className="pagination-container">
+    <Pagination
+      currentPage={currentPage}
+      totalItems={cardShop ? props.shops.length : props.products.length}
+      itemsPerPage={itemsPerPage}
+      onPageChange={(page) => setCurrentPage(page)}
+      pageNeighbours={1}
+    />
+  </div></>
   );
 };
 
