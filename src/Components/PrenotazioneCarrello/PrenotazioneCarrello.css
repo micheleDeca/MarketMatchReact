@@ -54,4 +54,50 @@
     padding-bottom: 1%;
 }
 
+@media (max-width: 950px){
+    .totalBox h1{
+        font-size: 25px;
+    }
 
+    .prenoteButton input{
+        font-size: 15px;
+        width: 250px;
+    }
+}
+
+@media (max-width: 567px) and (min-width: 506px){
+    .prenoteButton input{
+        font-size: 12px;
+        width: 200px;
+    }
+
+    .totalBox h1{
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 505px){
+    .totalBox{
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    .contentBox{
+        flex-direction: column;
+    }
+
+    .productList{
+        border-right: 0;
+    }
+}
+
+@media (max-width: 400px){
+    .prenoteButton input{
+        font-size: 12px;
+        width: 200px;
+    }
+
+    .totalBox h1{
+        font-size: 20px;
+    }
+}

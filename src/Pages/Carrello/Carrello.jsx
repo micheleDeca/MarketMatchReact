@@ -36,7 +36,7 @@ const Carrello = () => {
         provincia: 'BT',
         citta: 'Barletta',
         cap: '76121',
-        indirizzo: 'via bochicchio infame',
+        indirizzo: 'Via della Repubblica',
         civico: '12',
         contatti: '3279876573',
         data: '12/11/23',

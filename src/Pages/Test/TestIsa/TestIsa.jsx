@@ -25,8 +25,7 @@ const TestIsa = () => {
 
   return (
     <>
-      <PrenotazioneCarrello numNeg="1" provincia="BT" citta="Barletta" cap="76121" indirizzo="via bochicchio infame" civico="12" contatti="3279876573"
-        data="12/11/23" descrizione="3 giorni dalla preparazione dell'ordine" orari="9:00-16:00 dal lunedì al venerdì" />
+   
     </>
   )
 }

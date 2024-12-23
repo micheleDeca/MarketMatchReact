@@ -1,5 +1,5 @@
 
-.titleLuogo, .titleOra{
+.titleLuogo h1, .titleOra h1{
     padding-bottom: 5%;
 }
 
@@ -31,11 +31,33 @@
     width: 50%;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
 }
 
 .dataBox{
     width: 50%;
     display: flex;
     flex-direction: column;
+}
+
+
+@media (max-width: 950px){
+    .titleLuogo h1, .titleOra h1{
+        font-size: large;
+    }
+
+    .infoLuogo h2, h3, .infoOra h2, h3{
+        font-size: medium;
+    }
+
+}
+
+@media (max-width: 750px){
+    .luogoDataBox{
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .luogoBox{
+
+    }
 }
