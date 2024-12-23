@@ -8,7 +8,7 @@
 }
 
 .productList{
-    width: 100%;
+    width: 95%;
     display: flex;
     justify-content: flex-start;
     border-right: 2px solid rgb(219, 208, 208);
@@ -16,7 +16,7 @@
 }
 
 .dateBox{
-    width: 100%;
+    width: 90%;
     display: flex;
     justify-content: flex-end;
     padding-left: 20px;

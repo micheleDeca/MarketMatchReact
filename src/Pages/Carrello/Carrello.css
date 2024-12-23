@@ -13,4 +13,10 @@
     padding-left: 2%;
     padding-right: 2%;
     padding-bottom: 2.5%;
+    margin: 10px;
+}
+
+.container-prenotationsBox{
+    align-items: center;
+    width: 100%;
 }

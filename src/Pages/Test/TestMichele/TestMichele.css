@@ -15,7 +15,9 @@
     /* Abbassa la priorità della mappa */
 
 }
-
+.antonio-counter{
+    width: 5%;
+}
 .map-wrapper {
     display: flex;
     justify-content: center;

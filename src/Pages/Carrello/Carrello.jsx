@@ -43,17 +43,19 @@ const Carrello = () => {
         descrizione: '3 giorni dalla preparazione dell\'ordine',
         orari: '9:00-16:00 dal lunedì al venerdì'
     };
-    
+
 
     return (
         <>
             <div className="cartTitle">
                 <h1>Carrello</h1>
             </div>
-            <div className="prenotationsBox">
-                <PrenotazioneCarrello numNeg="1" products={products} luogoDataInfo={luogoDataInfo}/>
-                <PrenotazioneCarrello numNeg="3" products={products} luogoDataInfo={luogoDataInfo} />
-                <PrenotazioneCarrello numNeg="7" products={products} luogoDataInfo={luogoDataInfo} />
+            <div className="container-prenotationsBox">
+                <div className="prenotationsBox">
+                    <PrenotazioneCarrello numNeg="1" products={products} luogoDataInfo={luogoDataInfo} />
+                    <PrenotazioneCarrello numNeg="3" products={products} luogoDataInfo={luogoDataInfo} />
+                    <PrenotazioneCarrello numNeg="7" products={products} luogoDataInfo={luogoDataInfo} />
+                </div>
             </div>
         </>
     )

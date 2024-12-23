@@ -184,6 +184,7 @@ const Stores = () => {
        </svg>
      </div>
 
+     <div className="cards-shop-container">
      <CardLongList
        /*title={selectedStoreId
          ? `Negozi Vicini a "${stores.find((store) => store.id === selectedStoreId)?.name}"`
@@ -191,6 +192,7 @@ const Stores = () => {
        shops={sortedStores}
        type="shop"
      />
+     </div>
    </div>
  );
 };

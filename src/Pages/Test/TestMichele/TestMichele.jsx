@@ -4,6 +4,7 @@ import "./TestMichele.css";
 import CardLongList from "../../../Components/CardLongList/CardLongList";
 import SearchBar from "../../../Components/SearchBar/SearchBar";
 import ButtonFilter from "../../../Components/ButtonFilter/ButtonFilter";
+import Counter from "../../../Components/Counter/Counter";
 
 // Simulazione del database di negozi
 
@@ -164,6 +165,10 @@ const TestMichele = () => {
           />
         </div>
       </div>
+      <div className="antonio-counter">
+        <Counter />
+      </div>
+
       <div className="svg-divider-shops">
         <svg width="100%" height="2" xmlns="http://www.w3.org/2000/svg">
           <line x1="0" y1="1" x2="100%" y2="1" stroke="#CAC4D0" />
