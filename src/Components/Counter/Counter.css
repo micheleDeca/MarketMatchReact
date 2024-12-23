@@ -21,21 +21,3 @@
   width: 40%;
     text-align: center;
 }
-
-@media (orientation: portrait) {
-    .CounterBox{
-        width:97%;
-        padding-left: 1%;
-        padding-right: 1%;
-        padding-top: 0.2%;
-        padding-bottom: 0.2%;
-    }
-
-    .ImgCounter{
-        width: 25%;
-    }
-
-    .value{
-        width: 40%;
-    }
-}
