@@ -67,7 +67,7 @@ const Account = () => {
                 <Link to="/prenotazioni">
                 <SezioneAccount info={prenotazioni} />
                 </Link>
-                <Link to="/impostazioni">
+                <Link to="/impostazioni/negozio">
                 <SezioneAccount info={impostazioni} />
                 </Link>
             </div> )}
@@ -83,7 +83,7 @@ const Account = () => {
                 <Link to="/punti">
                 <SezioneAccount info={punti} />
                 </Link>
-                <Link to="/impostazioni">
+                <Link to="/impostazioni/consumatore">
                 <SezioneAccount info={impostazioni} />
                 </Link>
             </div> )}

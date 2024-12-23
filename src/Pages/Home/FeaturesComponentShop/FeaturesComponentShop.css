@@ -1,0 +1,73 @@
+.features-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #173f35; /* Verde scuro */
+    border-radius: 10px;
+    padding: 30px;
+    margin: 20px;
+    color: #ffffff; /* Testo bianco */
+     flex-wrap: wrap; /* Permette di andare su più righe */
+    justify-content: center;
+    gap: 15px; /* Spaziatura tra le card */
+  }
+  
+  .feature-box {
+    width: 30%;
+    text-align: center;
+    background-color: #1f4e41; /* Verde leggermente più chiaro */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+ 
+  .feature-box:hover {
+    transform: translateY(-10px); /* Effetto hover */
+  }
+  
+  .feature-animation {
+    width: 180px;
+    height: 180px;
+    margin: 0 auto;
+  }
+  
+  .feature-box h3 {
+    font-size: 25px;
+    margin-bottom: 10px;
+  }
+  
+  .feature-box p {
+    font-size: 15px;
+   }
+
+   
+  
+  
+  /* Media Query per Mobile */
+  @media (max-width: 768px) {
+     
+ 
+    .feature-box {
+        max-width: 350px; /* Imposta una larghezza massima */
+        text-align: center;
+        flex: 1 1 calc(100% - 30px); /* Per mobile: larghezza 100% meno il gap */
+      }
+      
+      .feature-box h3 {
+        font-size: 18px;
+      }
+      
+      .feature-box p {
+        font-size: 12px;
+       }
+
+      .feature-animation {
+        width: 110px;
+        height: 110px;
+      }
+      
+      
+  }
+  

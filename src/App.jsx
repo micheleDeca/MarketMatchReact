@@ -14,7 +14,8 @@ import Product from './Pages/Product/Product';
 import Negozio from './Pages/Negozio/Negozio';
 import Prodotto from './Pages/Prodotto/Prodotto';
 import Reservations from './Pages/Reservations/Reservations';
-import Settings from './Pages/Settings/Settings';
+import SettingsShop from './Pages/Settings/Shop/Settings.jsx';
+import SettingsConsumer from './Pages/Settings/Consumer/Settings.jsx';
 import Ricetta from "./Pages/Ricetta/Ricetta.jsx";
 import Account from './Pages/Account/Account.jsx';
 import LoginRegister from "./Pages/LoginRegister/LoginRegister.jsx";
@@ -58,7 +59,8 @@ const App = () => {
         <Route path='/prodotto' element={<Prodotto />}/>
         <Route path='/Ricetta' element={<Ricetta/>}/>
         <Route path='/stores' element={<Stores /> }/>
-        <Route path='/impostazioni' element={<Settings /> }/>
+        <Route path='/impostazioni/negozio' element={<SettingsShop /> }/>
+        <Route path='/impostazioni/consumatore' element={<SettingsConsumer /> }/>
         <Route path='*' element={<PageNotFound /> }/>
         <Route path='/account' element={<Account /> }/>
         <Route path='/login' element={<LoginRegister mode="Login"/>} />

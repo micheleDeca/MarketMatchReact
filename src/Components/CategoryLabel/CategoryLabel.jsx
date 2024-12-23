@@ -20,12 +20,13 @@ const Badge = (props) => {
 
   const labelSizeSmall = false;
   const categoryColors = {
-    bio: "#4caf50",
+    "bio": "#4caf50",
     "senza lattosio": "#039be5",
-    vegan: "#0adea5",
+    "vegan": "#0adea5",
+    "vegano": "#0adea5",
     "senza glutine": "#9c27b0",
-    km0: "#cddc39",
-    vegetariano: "#ff9800",
+    "km0": "#cddc39",
+    "vegetariano": "#ff9800",
     default: "darkslateblue", // Colore di default se la categoria non è nella mappa
   };
 

@@ -1,18 +1,44 @@
 import React, { useState, useEffect } from "react";
-import './Settings.css'
+import './Settings.css';
 
 const Settings = () => {
   const [activeSection, setActiveSection] = useState("Profilo");
   const [isMobileView, setIsMobileView] = useState(false);
   const [showSidebar, setShowSidebar] = useState(true);
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    vat: "",
+    name: "BioShop Tagine More",
+    surname: "12345687",
+    phone: "3332569874",
+    birth: "",
+    address: "Vendita al dettaglio di nani biologici",
+    email: "bioshop@mail.com",
+    password: "",
+    confirmPassword: "",
+    region: "",
+    province: "",
+    cap: "",
+    city: "",
+    preferenzaStatistiche: false,
+    consensoPrivacy: false,
+    consensoProfilazione: false,
+    consensoNewsletter: false,
+    categories: ["Bio", "Vegan"]
   });
 
-  // Gestione della vista mobile
+  // Recupera i dati iniziali dal database
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("/api/settings"); // Sostituisci con l'endpoint reale
+        const data = await response.json();
+        setFormData(data);
+      } catch (error) {
+        console.error("Errore nel recupero dei dati:", error);
+      }
+    };
+
+    fetchData();
+
     const handleResize = () => setIsMobileView(window.innerWidth <= 768);
     window.addEventListener("resize", handleResize);
     handleResize();
@@ -26,20 +52,45 @@ const Settings = () => {
 
   const goBackToSidebar = () => setShowSidebar(true);
 
-  // Gestione input e checkbox
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setFormData({
-      ...formData,
+    setFormData((prevState) => ({
+      ...prevState,
       [name]: type === "checkbox" ? checked : value,
+    }));
+  };
+
+  const handleCategoryChange = (e) => {
+    const { value, checked } = e.target;
+    setFormData((prevState) => {
+      const categories = prevState.categories;
+      if (checked) {
+        return { ...prevState, categories: [...categories, value] };
+      } else {
+        return { ...prevState, categories: categories.filter((cat) => cat !== value) };
+      }
     });
   };
 
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Dati inviati:", formData);
-    alert("Form inviato con successo!");
+    try {
+      const response = await fetch("/api/settings", {
+        method: "PUT", // Sostituisci con il metodo corretto
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      if (response.ok) {
+        alert("Modifiche salvate con successo!");
+      } else {
+        alert("Errore durante il salvataggio delle modifiche.");
+      }
+    } catch (error) {
+      console.error("Errore durante l'invio dei dati:", error);
+      alert("Errore durante l'invio dei dati.");
+    }
   };
 
   const renderContent = () => {
@@ -53,111 +104,137 @@ const Settings = () => {
           )}
           <h2>Impostazioni Profilo</h2>
           <form onSubmit={handleSubmit}>
-            {/* Ragione Sociale e P.IVA */}
             <div className="form-row">
               <div className="form-group">
-                <label>Ragione sociale *</label>
+                <label>Nome*</label>
                 <input
                   type="text"
-                  name="companyName"
-                  placeholder="BioShop Tagine More"
-                  value={formData.companyName || ""}
+                  name="name"
+                  value={formData.name}
                   onChange={handleInputChange}
-                  disabled
                 />
               </div>
               <div className="form-group">
-                <label>P. IVA *</label>
+                <label>Cognome *</label>
                 <input
                   type="text"
-                  name="vat"
-                  placeholder="123456789"
-                  value={formData.vat || ""}
+                  name="surname"
+                  value={formData.surname}
                   onChange={handleInputChange}
                 />
               </div>
             </div>
-  
-            {/* Cellulare e Informazioni Pagamento */}
+
             <div className="form-row">
               <div className="form-group">
                 <label>Cellulare *</label>
                 <input
                   type="tel"
                   name="phone"
-                  placeholder="+39 123 456 7894"
-                  value={formData.phone || ""}
+                  value={formData.phone}
                   onChange={handleInputChange}
                 />
               </div>
               <div className="form-group">
-                <label>Informazioni Pagamento</label>
+                <label>Data Nascita</label>
                 <input
                   type="text"
-                  name="paymentInfo"
-                  placeholder="Carta, contanti e app"
-                  value={formData.paymentInfo || ""}
+                  name="birth"
+                  value={formData.birth}
                   onChange={handleInputChange}
                 />
               </div>
             </div>
-  
-            {/* Descrizione */}
+
             <div className="form-row">
               <div className="form-group">
-                <label>Descrizione *</label>
+                <label>Regione *</label>
                 <input
                   type="text"
-                  name="description"
-                  placeholder="Descrizione negozio, Descrizione negozio, Descrizione negozio"
-                  value={formData.description || ""}
+                  name="region"
+                  value={formData.region}
                   onChange={handleInputChange}
-                  disabled
+                />
+              </div>
+              <div className="form-group">
+                <label>Provincia *</label>
+                <input
+                  type="text"
+                  name="province"
+                  value={formData.province}
+                  onChange={handleInputChange}
                 />
               </div>
             </div>
-  
-            {/* Mail */}
+
+            <div className="form-row">
+              <div className="form-group">
+                <label>CAP *</label>
+                <input
+                  type="text"
+                  name="cap"
+                  value={formData.cap}
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div className="form-group">
+                <label>Città *</label>
+                <input
+                  type="text"
+                  name="city"
+                  value={formData.city}
+                  onChange={handleInputChange}
+                />
+              </div>
+            </div>
+
+            <div className="form-row">
+              <div className="form-group">
+                <label>Indirizzo *</label>
+                <input
+                  type="text"
+                  name="address"
+                  value={formData.address}
+                  onChange={handleInputChange}
+                />
+              </div>
+            </div>
+
             <div className="form-row">
               <div className="form-group">
                 <label>Mail *</label>
                 <input
                   type="email"
                   name="email"
-                  placeholder="BioShop Tagine More"
-                  value={formData.email || ""}
+                  value={formData.email}
                   onChange={handleInputChange}
                   disabled
                 />
               </div>
             </div>
-  
-            {/* Password e Conferma Password */}
+
             <div className="form-row">
               <div className="form-group">
                 <label>Password *</label>
                 <input
                   type="password"
                   name="password"
-                  placeholder="Inserire password.."
-                  value={formData.password || ""}
+                  value={formData.password}
                   onChange={handleInputChange}
                 />
               </div>
-  
+
               <div className="form-group">
                 <label>Conferma Password *</label>
                 <input
                   type="password"
                   name="confirmPassword"
-                  placeholder="Conferma password.."
-                  value={formData.confirmPassword || ""}
+                  value={formData.confirmPassword}
                   onChange={handleInputChange}
                 />
               </div>
             </div>
-  
-            {/* Pulsante di aggiornamento */}
+
             <div className="form-row">
               <button type="submit" className="update-button">
                 Aggiorna informazioni
@@ -176,87 +253,15 @@ const Settings = () => {
           )}
           <h2>Impostazioni Negozio</h2>
           <form onSubmit={handleSubmit}>
-            {/* Regione e Provincia */}
-            <div className="form-row">
-              <div className="form-group">
-                <label>Regione *</label>
-                <input
-                  type="text"
-                  name="region"
-                  placeholder="Regione"
-                  value={formData.region || ""}
-                  onChange={handleInputChange}
-                  disabled
-                />
-                <small>Questa informazione si modifica dalla pagina Negozio</small>
-              </div>
-              <div className="form-group">
-                <label>Provincia *</label>
-                <input
-                  type="text"
-                  name="province"
-                  placeholder="Provincia"
-                  value={formData.province || ""}
-                  onChange={handleInputChange}
-                  disabled
-                />
-                <small>Questa informazione si modifica dalla pagina Negozio</small>
-              </div>
-            </div>
-            
-            {/* CAP e Città */}
-            <div className="form-row">
-              <div className="form-group">
-                <label>CAP *</label>
-                <input
-                  type="text"
-                  name="cap"
-                  placeholder="CAP"
-                  value={formData.cap || ""}
-                  onChange={handleInputChange}
-                  disabled
-                />
-                <small>Questa informazione si modifica dalla pagina Negozio</small>
-              </div>
-              <div className="form-group">
-                <label>Città *</label>
-                <input
-                  type="text"
-                  name="city"
-                  placeholder="Città"
-                  value={formData.city || ""}
-                  onChange={handleInputChange}
-                  disabled
-                />
-                <small>Questa informazione si modifica dalla pagina Negozio</small>
-              </div>
-            </div>
-  
-            {/* Indirizzo */}
-            <div className="form-row">
-              <div className="form-group">
-                <label>Indirizzo *</label>
-                <input
-                  type="text"
-                  name="address"
-                  placeholder="Indirizzo"
-                  value={formData.address || ""}
-                  onChange={handleInputChange}
-                  disabled
-                />
-                <small>Questa informazione si modifica dalla pagina Negozio</small>
-              </div>
-            </div>
-  
-            {/* Latitudine e Longitudine */}
+          
+
             <div className="form-row">
               <div className="form-group">
                 <label>Latitudine</label>
                 <input
                   type="text"
                   name="latitude"
-                  placeholder="Latitudine"
-                  value={formData.latitude || ""}
+                  value={formData.latitude}
                   onChange={handleInputChange}
                 />
               </div>
@@ -265,14 +270,12 @@ const Settings = () => {
                 <input
                   type="text"
                   name="longitude"
-                  placeholder="Longitudine"
-                  value={formData.longitude || ""}
+                  value={formData.longitude}
                   onChange={handleInputChange}
                 />
               </div>
             </div>
-  
-            {/* Pulsante di aggiornamento */}
+
             <div className="form-row">
               <button type="submit" className="update-button">
                 Aggiorna informazioni
@@ -291,28 +294,15 @@ const Settings = () => {
           )}
           <h2>Preferenze e Consensi</h2>
           <form onSubmit={handleSubmit}>
+             
             <div className="form-row">
               <div className="form-group">
-                <label>Preferenza Sconti</label>
+                <label>Preferenza Statistiche</label>
                 <label className="switch">
                   <input
                     type="checkbox"
-                    name="preferenzaSconti"
-                    checked={formData.preferenzaSconti}
-                    onChange={handleInputChange}
-                  />
-                  <span className="slider"></span>
-                </label>
-              </div>
-            </div>
-            <div className="form-row">
-              <div className="form-group">
-                <label>Preferenza Prenotazioni</label>
-                <label className="switch">
-                  <input
-                    type="checkbox"
-                    name="preferenzaPrenotazioni"
-                    checked={formData.preferenzaPrenotazioni}
+                    name="preferenzaStatistiche"
+                    checked={formData.preferenzaStatistiche}
                     onChange={handleInputChange}
                   />
                   <span className="slider"></span>
@@ -369,10 +359,100 @@ const Settings = () => {
           </form>
         </div>
       );
+    } else if (activeSection === "Categorie") {
+      return (
+        <div className="content-box">
+          {isMobileView && !showSidebar && (
+            <button className="back-button" onClick={goBackToSidebar}>
+              &#8592; Indietro
+            </button>
+          )}
+          <h2>Seleziona Categorie</h2>
+          <form onSubmit={handleSubmit}>
+            <div className="form-column">
+              <div className="form-group">
+                <label>Bio</label>
+                <label className="switch">
+                  <input
+                    type="checkbox"
+                    value="Bio"
+                    checked={formData.categories.includes("Bio")}
+                    onChange={handleCategoryChange}
+                  />
+                  <span className="slider"></span>
+                </label>
+              </div>
+              <div className="form-group">
+                <label>Vegan</label>
+                <label className="switch">
+                  <input
+                    type="checkbox"
+                    value="Vegan"
+                    checked={formData.categories.includes("Vegan")}
+                    onChange={handleCategoryChange}
+                  />
+                  <span className="slider"></span>
+                </label>
+              </div>
+              <div className="form-group">
+                <label>Vegetariano</label>
+                <label className="switch">
+                  <input
+                    type="checkbox"
+                    value="Vegetariano"
+                    checked={formData.categories.includes("Vegetariano")}
+                    onChange={handleCategoryChange}
+                  />
+                  <span className="slider"></span>
+                </label>
+              </div>
+              <div className="form-group">
+                <label>Km0</label>
+                <label className="switch">
+                  <input
+                    type="checkbox"
+                    value="Km0"
+                    checked={formData.categories.includes("Km0")}
+                    onChange={handleCategoryChange}
+                  />
+                  <span className="slider"></span>
+                </label>
+              </div>
+              <div className="form-group">
+                <label>Senza Lattosio</label>
+                <label className="switch">
+                  <input
+                    type="checkbox"
+                    value="Senza Lattosio"
+                    checked={formData.categories.includes("Senza Lattosio")}
+                    onChange={handleCategoryChange}
+                  />
+                  <span className="slider"></span>
+                </label>
+              </div>
+              <div className="form-group">
+                <label>Senza Glutine</label>
+                <label className="switch">
+                  <input
+                    type="checkbox"
+                    value="Senza Glutine"
+                    checked={formData.categories.includes("Senza Glutine")}
+                    onChange={handleCategoryChange}
+                  />
+                  <span className="slider"></span>
+                </label>
+              </div>
+            </div>
+            <div className="form-row">
+              <button type="submit" className="update-button">
+                Aggiorna Categorie
+              </button>
+            </div>
+          </form>
+        </div>
+      );
     }
   };
-  
-  
 
   return (
     <div className="settings-container">
@@ -398,18 +478,13 @@ const Settings = () => {
               <span className="arrow-icon">&gt;</span>
             </li>
             <div className="divider"></div>
-            <li onClick={() => handleSectionClick("Negozio")}>
-              <span>Impostazioni Negozio</span>
-              <span className="arrow-icon">&gt;</span>
-            </li>
-            <div className="divider"></div>
-            <li onClick={() => handleSectionClick("Abbonamento")}>
-              <span>Abbonamento</span>
-              <span className="arrow-icon">&gt;</span>
-            </li>
-            <div className="divider"></div>
             <li onClick={() => handleSectionClick("Consensi")}>
               <span>Preferenze e Consensi</span>
+              <span className="arrow-icon">&gt;</span>
+            </li>
+            <div className="divider"></div>
+            <li onClick={() => handleSectionClick("Categorie")}>
+              <span>Categorie</span>
               <span className="arrow-icon">&gt;</span>
             </li>
           </ul>
