@@ -19,8 +19,8 @@
     width: 100%;
     display: flex;
     justify-content: flex-end;
-    padding-left: 2%;
-    padding-right: 2%;
+    padding-left: 20px;
+    padding-right: 20px;
     padding-top: 4%;
     flex: 1;
 }
