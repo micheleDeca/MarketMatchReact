@@ -1,0 +1,15 @@
+.CounterAddGoodBox{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.counter{
+    width: 80px;
+}
+
+.AddGood{
+    width: 250px;
+}

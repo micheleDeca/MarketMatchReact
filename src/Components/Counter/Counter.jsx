@@ -25,7 +25,6 @@ function Counter({initialQuantity, getCounter}) {
                 <img src={Sub} alt="sub" className="ImgCounter" onClick={decrementa}/>
                 <p className="value">{contatore}</p>
                 <img src={Add} alt="add" className="ImgCounter" onClick={incrementa}/>
-
             </div>
         </>
     );

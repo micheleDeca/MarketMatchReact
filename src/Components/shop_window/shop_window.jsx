@@ -19,7 +19,7 @@ import BadgeContainer from "../CategoryLabelList/CategoryLabelList";
 
 function ShopWindow(props) {
 
-    if (props.mode != "neg") {
+    if (props.mode === "ConA") {
         return (
             <>
                 <div className="ShopWindowBox">
@@ -31,7 +31,7 @@ function ShopWindow(props) {
                         </div>
                     </div>
                     <div className="RightShopWindow">
-                        <div className="ShopWindowBox">
+                        <div className="nameBadge">
                             <div className="boxName">
                                 <p className="nome">{props.Name}</p>
                             </div>
@@ -69,7 +69,7 @@ function ShopWindow(props) {
                 </div>
             </>
         );
-    } else {
+    } else if (props.mode === "NegA") {
         return (
             <>
                 <div className="ShopWindowBox">
@@ -88,7 +88,7 @@ function ShopWindow(props) {
                         </ZigZag>
                     </div>
                     <div className="RightShopWindow">
-                        <div className="ShopWindowBox">
+                        <div className="nameBadge">
                             <ZigZag
                                 pulsante="Modifica Nome"
                                 modify={props.modify}
@@ -103,18 +103,18 @@ function ShopWindow(props) {
                             </ZigZag>
                         </div>
                         <div className="hidden-zig">
-                        <ZigZag
-                            pulsante="Modifica Immagine"
-                            modify={props.modify}
-                        >
-                            <div className="img">
-                                <img
-                                    src="https://www.archibio.com/wp-content/uploads/2021/03/come-aprire-un-negozio-BIO-in-Italia.jpg"
-                                    alt={props.ImageDescription}
-                                    className="Image"
-                                ></img>
-                            </div>
-                        </ZigZag>
+                            <ZigZag
+                                pulsante="Modifica Immagine"
+                                modify={props.modify}
+                            >
+                                <div className="img">
+                                    <img
+                                        src="https://www.archibio.com/wp-content/uploads/2021/03/come-aprire-un-negozio-BIO-in-Italia.jpg"
+                                        alt={props.ImageDescription}
+                                        className="Image"
+                                    ></img>
+                                </div>
+                            </ZigZag>
                         </div>
                         <ZigZag
                             pulsante="Modifica Descrizione"
@@ -130,17 +130,17 @@ function ShopWindow(props) {
                                 <p className="prezzo-ShopWindow">
                                     {props.originalPrice ? (
                                         <>
-                      <span className="current-price-card">
-                        {props.currentPrice}
-                      </span>
+                                          <span className="current-price-card">
+                                            {props.currentPrice}
+                                          </span>
                                             <span className="original-price-card">
-                        {props.originalPrice}
-                      </span>
+                                            {props.originalPrice}
+                                          </span>
                                         </>
                                     ) : (
                                         <span className="normal-price-card">
-                      {props.currentPrice}
-                    </span>
+                                          {props.currentPrice}
+                                        </span>
                                     )}
                                 </p>
                             </ZigZag>

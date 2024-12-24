@@ -42,6 +42,13 @@
     width: 10%;
 }
 
+.CarrelloProd{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
 @media (orientation: portrait){
     .boxProdotto{
         align-items: center;
@@ -53,5 +60,9 @@
     
     .spaceProdotto2{
         width: 40%;
+    }
+
+    .CarrelloProd{
+        justify-content: center;
     }
 }

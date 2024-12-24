@@ -4,8 +4,12 @@ import Caratteristiche from "../../Components/Caratteristiche/Caratteristiche";
 import ShopWindow from "../../Components/shop_window/shop_window";
 import "./Prodotto.css";
 import PopUpModify from "../../Components/PopUpModify/PopUpModify.jsx";
+import {useUserContext} from '../../Context/UserContext'
+import CounterAddGood from "../../Components/CounterAddGood/CounterAddGood.jsx";
 
-function Prodotto(props) {
+function Prodotto() {
+
+  const {userType} = useUserContext();
 
   const [prodottoInfo, setProdottoInfo] = useState({
     nome: "Latte di Mandorla Bio Senza Zuccheri Aggiunti",
@@ -46,14 +50,19 @@ function Prodotto(props) {
               originalPrice={prodottoInfo.prezzo.base + "€"}
               modify={setModify}
               badges={prodottoInfo.categorie}
-              mode={props.mode}
+              mode={userType}
            />
+          {userType === "ConA" && (
+              <div className="CarrelloProd">
+                <CounterAddGood />
+              </div>
+          )}
           <Caratteristiche peso={"Venduto in: " + prodottoInfo.caratteristiche.PesoDimensioniUnitaria}
                            quantita={prodottoInfo.caratteristiche.Quantità + " " + prodottoInfo.caratteristiche.PesoDimensioniUnitaria}
                            dimensioni={prodottoInfo.caratteristiche.DescrizioneUnita}
                            modify={setModify}
                            disponibile={prodottoInfo.caratteristiche.disponibile}
-                           tipo={props.mode}/>
+                           tipo={userType}/>
 
         </div>
       </>

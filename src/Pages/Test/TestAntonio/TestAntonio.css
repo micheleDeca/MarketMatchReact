@@ -1,18 +1,7 @@
 .AntonioTest{
     width: 100%;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.gh{
-    width: 7%;
-}
-
-@media (orientation: portrait) {
-   .gh{
-       width: 25%;
-   }
+    flex-direction: row;
+    justify-content: flex-end;
 }
 

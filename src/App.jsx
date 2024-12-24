@@ -42,8 +42,6 @@ const App = () => {
     setUserType(type);
   };
 
-
-
   setUserType("ConA");   //NON va settato qui. solo prove
 
   return (
@@ -57,7 +55,7 @@ const App = () => {
         <Route path='/antonio' element={<TestAntonio /> } />
         <Route path='/michele' element={<TestMichele/> } />
         <Route path='/isabella' element={<TestIsa /> } />
-        <Route path='/negozio' element={<Negozio mode="neg" />}/>
+        <Route path='/negozio' element={<Negozio/>}/>
         <Route path='/prodotto' element={<Prodotto />}/>
         <Route path='/Ricetta' element={<Ricetta/>}/>
         <Route path='/negozi' element={<Stores /> }/>

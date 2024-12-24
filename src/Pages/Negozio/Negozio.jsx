@@ -4,7 +4,8 @@ import ShopWindow from "../../Components/shop_window/shop_window";
 import Stelle from "../../Components/Stelle/Stelle";
 import "./Negozio.css";
 import PopUpModify from "../../Components/PopUpModify/PopUpModify";
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
+import {useUserContext} from '../../Context/UserContext'
 
 // Simula un database di prodotti
 const mockProducts = Array.from({length: 4}, (_, index) => {
@@ -39,7 +40,9 @@ const mockProducts = Array.from({length: 4}, (_, index) => {
     };
 });
 
-function Negozio(props) {
+function Negozio() {
+
+    const {userType} = useUserContext();
 
     const [negozioInfo, setNegozioInfo] = useState({
         nome: "Nome Negozio",
@@ -83,12 +86,12 @@ function Negozio(props) {
                     Description={negozioInfo.descrizione}
                     ImageDescription="immagine prodotto"
                     Name={negozioInfo.nome}
-                    mode={props.mode}
+                    mode={userType}
                     modify={setModify}
                     badges={negozioInfo.categorie}
                 />
                 <Orari
-                    mode={props.mode}
+                    mode={userType}
                     lunedi={negozioInfo.orari[0].orario}
                     martedi={negozioInfo.orari[1].orario}
                     mercoledi={negozioInfo.orari[2].orario}

@@ -1,43 +1,45 @@
 import "./Punti.css";
 import GreenPointsCO2 from "../../Components/GreenPointsCO2/GreenPointsCO2.jsx";
 import OperationLongContainer from "../../Components/OperationLongContainer/OperationLongContainer.jsx";
+import { useEffect, useState } from "react";
+import ButtonSucessivo from "../../Components/ButtonSucessivo/ButtonSucessivo.jsx";
+import ButtonPrecedente from "../../Components/ButtonPrecedente/ButtonPrecedente.jsx";
 
-const operazioni = [
+const mockOperations = [];
 
-    {
-        id: "Motivo Accredito 1",
-        reservationDate: "15/12/2024",
-        pointValue: "23",
-        pointType: "plus",
-    },
+const startDate = new Date(2024, 11, 15); // Months are 0-indexed in JavaScript
 
+for (let i = 0; i < 50; i++) {
+    const operation = {
+        id: `Motivo Accredito ${i + 1}`,
+        reservationDate: new Date(startDate.getTime() + i * 24 * 60 * 60 * 1000).toLocaleDateString("it-IT"),
+        pointValue: Math.floor(Math.random() * 50) + 1,
+        pointType: Math.random() > 0.5 ? "plus" : "minus",
+    };
 
-    {
-        id: "Motivo Accredito 2",
-        reservationDate: "16/12/2024",
-        pointValue: "10",
-        pointType: "minus",
-    },
-
-    {
-        id: "Motivo Accredito 3",
-        reservationDate: "17/12/2024",
-        pointValue: "35",
-        pointType: "plus",
-    },
-
-    {
-        id: "Motivo Accredito 4",
-        reservationDate: "18/12/2024",
-        pointValue: "5",
-        pointType: "minus",
-    },
-
-];
-
+    mockOperations.push(operation);
+}
 
 function Punti() {
     const punti = 1080;
+
+    const [operations, setOperations] = useState([]); 
+    const [currentPage, setCurrentPage] = useState(1); 
+    const operationsPerPage = 5; 
+
+    const fetchOperations = (page) => {
+        // Recupera le prenotazioni per la pagina attuale
+        const startIndex = (page - 1) * operationsPerPage;
+        const endIndex = startIndex + operationsPerPage;
+        const pageOperations = mockOperations.slice(startIndex, endIndex);
+
+        setOperations(pageOperations);
+    };
+
+
+    useEffect(() => {
+        fetchOperations(currentPage);
+    }, [currentPage]);
 
     return (
         <>
@@ -45,8 +47,18 @@ function Punti() {
                 <GreenPointsCO2 points={punti} />
             </div>
             <div className="point-operation-container" >
-                <OperationLongContainer operations={operazioni} type={"point"} />
+                <OperationLongContainer operations={operations} type={"point"} />
             </div>
+            <div className="prenButton">
+                {currentPage >= 2 && (
+                    <ButtonPrecedente onclick={() => setCurrentPage(currentPage - 1)} />
+                )}
+
+                {currentPage < (mockOperations.length / operationsPerPage) && (
+                    <ButtonSucessivo name="Successivo" onclick={() => setCurrentPage(currentPage + 1)} />
+                )}
+            </div>
+
         </>
     );
 }
