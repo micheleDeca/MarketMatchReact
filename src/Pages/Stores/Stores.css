@@ -1,8 +1,7 @@
 .map-container {
     width: 85%;
     /* Larghezza massima del contenitore */
-    height: 400px;
-    /* Altezza ridotta */
+     /* Altezza ridotta */
     border-radius: 25px;
     /* Angoli arrotondati */
     overflow: hidden;

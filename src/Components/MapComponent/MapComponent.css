@@ -43,8 +43,8 @@
 
 .reset-view-button {
   position: absolute;
-  bottom: 10px;
-  right: 10px;
+  top: 10px; /* Cambiato da bottom a top */
+  right: 10px; /* Rimane a destra */
   z-index: 1000;
   background-color: white;
   color: black;
@@ -56,20 +56,16 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-  transition: transform 0.2s ease;
-  transform: translateY(-820px);
-
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  transition: opacity 0.3s ease;
+  opacity: 1; /* Opacità di default */
 }
 
 .reset-view-button:hover {
-  opacity: 0.7; 
-
+  opacity: 0.7; /* Riduce l'opacità al passaggio del mouse */
 }
-
 
 .reset-view-icon {
   font-size: 18px;
   color: black;
 }
- 

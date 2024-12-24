@@ -47,7 +47,7 @@ const MapComponent = ({ userPosition, stores, onStoreClick, onMapMove, onMapZoom
       <MapContainer
         center={userPosition}
         zoom={14}
-        style={{ height: "100vh", width: "100%" }}
+        style={{ height: "50vh", width: "100%" }}
       >
         <TileLayer
           url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
@@ -64,7 +64,7 @@ const MapComponent = ({ userPosition, stores, onStoreClick, onMapMove, onMapZoom
             <span>📍 Sei qui</span>
           </Tooltip>
         </Marker>
-        {true && (<Marker position={mapPositiona} icon={userIcon} />)}
+        {false && (<Marker position={mapPositiona} icon={userIcon} />)}
 
         <MapEvents onMapMove={onMapMove} mapPosition={mapPosition} mapZoom={onMapZoom} />
 
