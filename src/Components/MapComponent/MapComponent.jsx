@@ -57,6 +57,8 @@ const MapComponent = ({ userPosition, stores, onStoreClick, onMapMove, onMapZoom
           stores={stores}
           userPosition={userPosition}
           onMarkerAction={handleMarkerAction}
+              closePopupOnClick={false} // Disabilita la chiusura dei popup al clic sulla mappa
+
         />
 
         <Marker position={userPosition} icon={userIcon}>
