@@ -12,7 +12,7 @@ const MapEvents = ({ onMapMove, mapPosition, mapZoom }) => {
             // Calcola il centro visibile (spostato verso il basso)
             const visibleCenter = map.containerPointToLatLng([
                 mapSize.x / 2, // Centro orizzontale
-                mapSize.y / 3, // Sposta il centro verticale (1/3 dall'alto)
+                mapSize.y / 5.5, // Sposta il centro verticale (1/3 dall'alto)
             ]);
 
             // Imposta il nuovo centro visibile

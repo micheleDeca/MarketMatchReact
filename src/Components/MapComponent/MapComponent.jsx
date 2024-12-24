@@ -64,6 +64,7 @@ const MapComponent = ({ userPosition, stores, onStoreClick, onMapMove, onMapZoom
             <span>📍 Sei qui</span>
           </Tooltip>
         </Marker>
+        {true && (<Marker position={mapPositiona} icon={userIcon} />)}
 
         <MapEvents onMapMove={onMapMove} mapPosition={mapPosition} mapZoom={onMapZoom} />
 

@@ -58,6 +58,7 @@
   cursor: pointer;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
   transition: transform 0.2s ease;
+  transform: translateY(-820px);
 
 }
 
@@ -71,11 +72,4 @@
   font-size: 18px;
   color: black;
 }
-
-
-@media  (min-width: 1200px) {
-  .reset-view-button {
-    transform: translateY(-210px);
-  }
  
-}
