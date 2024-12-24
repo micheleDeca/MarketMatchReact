@@ -23,6 +23,7 @@ import Recipes from './Pages/Recipes/Recipes.jsx';
 import Stores from './Pages/Stores/Stores.jsx';
 import Carrello from './Pages/Carrello/Carrello.jsx';
 import Punti from "./Pages/Punti/Punti.jsx";
+import ScrollToTopButton from './Components/ScrollToTopButton/ScrollToTopButton.jsx';
   
 
 /*
@@ -71,6 +72,8 @@ const App = () => {
         <Route path='/punti' element={<Punti/>} />
        </Routes>
       <Footer />
+
+      <ScrollToTopButton />
     </div>
   )
 }
