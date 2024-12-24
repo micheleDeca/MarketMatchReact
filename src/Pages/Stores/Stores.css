@@ -1,5 +1,6 @@
 .map-container {
     width: 85%;
+    height: auto;
     /* Larghezza massima del contenitore */
      /* Altezza ridotta */
     border-radius: 25px;
