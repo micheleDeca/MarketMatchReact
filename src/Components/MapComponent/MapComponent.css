@@ -72,4 +72,10 @@
   color: black;
 }
 
+
+@media  (min-width: 1200px) {
+  .reset-view-button {
+    transform: translateY(-210px);
+  }
  
+}
