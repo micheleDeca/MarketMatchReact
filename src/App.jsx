@@ -1,30 +1,46 @@
-import { useState, useContext } from 'react';  // Importazione separata
-
-import NavBar from './Components/NavBar/NavBar';
+import { useState } from 'react'; // Importazione separata
 import { Route, Routes } from 'react-router-dom';
-import Home from './Pages/Home/Home';
+import NavBar from './Components/NavBar/NavBar';
 import Footer from './Components/Footer/Footer';
 import { useUserContext } from './Context/UserContext';
-import Reservation from './Pages/Reservation/Reservation';
-import TestAntonio from './Pages/Test/TestAntonio/TestAntonio';
-import TestMichele from './Pages/Test/TestMichele/TestMichele';
-import TestIsa from './Pages/Test/TestIsa/TestIsa';
-import PageNotFound from './Pages/PageNotFound/PageNotFound';
-import Product from './Pages/Product/Product';
-import Negozio from './Pages/Negozio/Negozio';
-import Prodotto from './Pages/Prodotto/Prodotto';
-import Reservations from './Pages/Reservations/Reservations';
-import SettingsShop from './Pages/Settings/Shop/Settings.jsx';
-import SettingsConsumer from './Pages/Settings/Consumer/Settings.jsx';
-import Ricetta from "./Pages/Ricetta/Ricetta.jsx";
-import Account from './Pages/Account/Account.jsx';
-import LoginRegister from "./Pages/LoginRegister/LoginRegister.jsx";
-import Recipes from './Pages/Recipes/Recipes.jsx';
-import Stores from './Pages/Stores/Stores.jsx';
-import Carrello from './Pages/Carrello/Carrello.jsx';
-import Punti from "./Pages/Punti/Punti.jsx";
+import { useCategoryContext } from './Context/CategoryContex';
 import ScrollToTopButton from './Components/ScrollToTopButton/ScrollToTopButton.jsx';
-  
+import { Suspense, lazy } from 'react';
+
+/*
+ * React.lazy:
+ * React.lazy permette di caricare i componenti in modo "pigro" (lazy loading), ovvero solo quando necessario.
+ * Questo è utile per ridurre il tempo di caricamento iniziale dell'applicazione (bundle size) 
+ * e migliorare le performance, specialmente in applicazioni con molte pagine o componenti pesanti.
+ *
+ * Suspense:
+ * Suspense è un componente di React che serve a gestire il caricamento dei componenti lazy.
+ * Avvolge i componenti pigramente caricati (lazy-loaded) e mostra un contenuto di fallback 
+ * (es. "Loading...") fino a quando il componente non è pronto. 
+ * È essenziale utilizzare Suspense con React.lazy per garantire che l'utente non veda una pagina vuota durante il caricamento.
+ */
+
+
+// Lazy loading dei componenti
+const Home = lazy(() => import('./Pages/Home/Home'));
+const Reservation = lazy(() => import('./Pages/Reservation/Reservation'));
+const Reservations = lazy(() => import('./Pages/Reservations/Reservations'));
+const Product = lazy(() => import('./Pages/Product/Product'));
+const Negozio = lazy(() => import('./Pages/Negozio/Negozio'));
+const Prodotto = lazy(() => import('./Pages/Prodotto/Prodotto'));
+const Ricetta = lazy(() => import('./Pages/Ricetta/Ricetta.jsx'));
+const Stores = lazy(() => import('./Pages/Stores/Stores.jsx'));
+const SettingsShop = lazy(() => import('./Pages/Settings/Shop/Settings.jsx'));
+const SettingsConsumer = lazy(() => import('./Pages/Settings/Consumer/Settings.jsx'));
+const Account = lazy(() => import('./Pages/Account/Account.jsx'));
+const LoginRegister = lazy(() => import('./Pages/LoginRegister/LoginRegister.jsx'));
+const Recipes = lazy(() => import('./Pages/Recipes/Recipes.jsx'));
+const Carrello = lazy(() => import('./Pages/Carrello/Carrello.jsx'));
+const Punti = lazy(() => import('./Pages/Punti/Punti.jsx'));
+const TestAntonio = lazy(() => import('./Pages/Test/TestAntonio/TestAntonio'));
+const TestMichele = lazy(() => import('./Pages/Test/TestMichele/TestMichele'));
+const TestIsa = lazy(() => import('./Pages/Test/TestIsa/TestIsa'));
+const PageNotFound = lazy(() => import('./Pages/PageNotFound/PageNotFound'));
 
 /*
 *    - "NoAccesso" (utente non loggato)
@@ -37,45 +53,46 @@ const App = () => {
   const [navColorState, setNavColor] = useState("");
 
   const { userType, setUserType } = useUserContext();
+  const { category, setCategory } = useCategoryContext();
 
   // Simulazione login
   const handleLogin = (type) => {
     setUserType(type);
   };
-
-  setUserType("ConA");   //NON va settato qui. solo prove
+  setUserType("ConA"); // NON va settato qui. solo prove
 
   return (
     <div>
       <NavBar navColor={navColorState} />
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/prenotazioni' element={<Reservations/>} />
-        <Route path='/prenotazione' element={<Reservation/>} />
-        <Route path='/prodotti' element={<Product />} />
-        <Route path='/antonio' element={<TestAntonio /> } />
-        <Route path='/michele' element={<TestMichele/> } />
-        <Route path='/isabella' element={<TestIsa /> } />
-        <Route path='/negozio' element={<Negozio/>}/>
-        <Route path='/prodotto' element={<Prodotto />}/>
-        <Route path='/Ricetta' element={<Ricetta/>}/>
-        <Route path='/negozi' element={<Stores /> }/>
-        <Route path='/impostazioni/negozio' element={<SettingsShop /> }/>
-        <Route path='/impostazioni/consumatore' element={<SettingsConsumer /> }/>
-        <Route path='*' element={<PageNotFound /> }/>
-        <Route path='/account' element={<Account /> }/>
-        <Route path='/login' element={<LoginRegister mode="Login"/>} />
-        <Route path='/registerNeg' element={<LoginRegister mode="Register" tipo="neg"/>} />
-        <Route path='/registerCons' element={<LoginRegister mode="Register"/>} />
-        <Route path='/ricette' element={<Recipes/>} />
-         <Route path='/carrello' element={<Carrello/>} />
-        <Route path='/punti' element={<Punti/>} />
-       </Routes>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/prenotazioni' element={<Reservations />} />
+          <Route path='/prenotazione' element={<Reservation />} />
+          <Route path='/prodotti' element={<Product />} />
+          <Route path='/antonio' element={<TestAntonio />} />
+          <Route path='/michele' element={<TestMichele />} />
+          <Route path='/isabella' element={<TestIsa />} />
+          <Route path='/negozio' element={<Negozio />} />
+          <Route path='/prodotto' element={<Prodotto />} />
+          <Route path='/Ricetta' element={<Ricetta />} />
+          <Route path='/negozi' element={<Stores />} />
+          <Route path='/impostazioni/negozio' element={<SettingsShop />} />
+          <Route path='/impostazioni/consumatore' element={<SettingsConsumer />} />
+          <Route path='*' element={<PageNotFound />} />
+          <Route path='/account' element={<Account />} />
+          <Route path='/login' element={<LoginRegister mode="Login" />} />
+          <Route path='/registerNeg' element={<LoginRegister mode="Register" tipo="neg" />} />
+          <Route path='/registerCons' element={<LoginRegister mode="Register" />} />
+          <Route path='/ricette' element={<Recipes />} />
+          <Route path='/carrello' element={<Carrello />} />
+          <Route path='/punti' element={<Punti />} />
+        </Routes>
+      </Suspense>
       <Footer />
-
       <ScrollToTopButton />
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;

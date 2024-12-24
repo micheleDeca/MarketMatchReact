@@ -4,6 +4,8 @@ import ProductList from '../../Components/ProductList/ProductList';
 import CategoryCardList from '../../Components/CategoryCardList/CategoryCardList';
 import WelcomeBanner from '../../Components/WelcomeBanner/WelcomeBanner';
 import { useUserContext } from '../../Context/UserContext';
+import { useCategoryContext } from '../../Context/CategoryContex';
+
 import FeaturesComponent from './FeaturesComponent/FeaturesComponent';
 import PositionComponent from './PositionComponent/PositionComponent';
 import HighlightShops from './HighlightShops/HighlightShops';
@@ -34,7 +36,7 @@ const Home = (props) => {
 
 
   const { userType } = useUserContext();
-
+  const { category, setCategory } = useCategoryContext();
   /*
   useEffect(() => {
         props.setNavColor("white");
@@ -48,9 +50,8 @@ const Home = (props) => {
             setLoading(false);
         });
     }, []); */
-
-
-  console.log(userType);
+    console.log("Categoria",category);
+   console.log("Tipo Utente",userType);
   return (
     <>
       <div className="background"></div>
