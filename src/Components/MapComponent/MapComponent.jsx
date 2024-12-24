@@ -10,63 +10,67 @@ import "./MapComponent.css";
 import MarkerCluster from "./Component/MarkerCluster";
 import MapEvents from "./Component/MapEvents";
 
-
 const userIcon = new L.Icon({
-  iconUrl: "https://cdn-icons-png.flaticon.com/512/149/149059.png", // URL dell'icona
-  iconSize: [30, 30], // Dimensioni dell'icona
+  iconUrl: "https://cdn-icons-png.flaticon.com/512/149/149059.png",
+  iconSize: [30, 30],
 });
 
-  
+// Componente per spostare la mappa
+const ResetViewButton = ({ userPosition }) => {
+  const map = useMap();
 
+  const handleResetView = () => {
+    map.setView(userPosition, 14);
+  };
+
+  return (
+    <button className="reset-view-button" onClick={handleResetView}>
+      <span className="reset-view-icon">🏠</span>
+    </button>
+  );
+};
 
 // Componente principale della mappa
 const MapComponent = ({ userPosition, stores, onStoreClick, onMapMove, onMapZoom }) => {
-
-  // Funzione per gestire azioni sui marker
   const handleMarkerAction = (shopId) => {
     onStoreClick(shopId);
   };
+
   const [mapPositiona, setMapPositiona] = useState([41.1039637, 16.878227]);
 
   const mapPosition = (a) => {
     setMapPositiona(a);
   };
 
-
   return (
-    <MapContainer
-      center={userPosition} // Centro iniziale della mappa
-      zoom={14} // Livello di zoom iniziale
-      style={{ height: "50vh", width: "100%", }} // Dimensioni della mappa
-    >
+    <div>
+      <MapContainer
+        center={userPosition}
+        zoom={14}
+        style={{ height: "50vh", width: "100%" }}
+      >
+        <TileLayer
+          url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
+        />
 
-      {/* Layer della mappa */}
-      <TileLayer
-        url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
-      />
+        <MarkerCluster
+          stores={stores}
+          userPosition={userPosition}
+          onMarkerAction={handleMarkerAction}
+        />
 
-      {/* Marker cluster */}
-      <MarkerCluster
-        stores={stores} // Negozi da visualizzare
-        userPosition={userPosition} // Posizione dell'utente
-        onMarkerAction={handleMarkerAction}
+        <Marker position={userPosition} icon={userIcon}>
+          <Tooltip direction="top" offset={[0, -10]} className="custom-tooltip">
+            <span>📍 Sei qui</span>
+          </Tooltip>
+        </Marker>
 
-      />
-      {/* Marker per la posizione dell'utente */}
-      {false && (<Marker position={mapPositiona} icon={userIcon}>
-      </Marker>)}
+        <MapEvents onMapMove={onMapMove} mapPosition={mapPosition} mapZoom={onMapZoom} />
 
-      <Marker position={userPosition} icon={userIcon}>
-        <Tooltip permanent direction="top">
-          La tua posizione
-
-        </Tooltip>
-      </Marker>
-
-      {/* Eventi della mappa */}
-      <MapEvents onMapMove={onMapMove} mapPosition={mapPosition} mapZoom={onMapZoom} />
-
-    </MapContainer>
+        {/* Bottone Torna alla Home */}
+        <ResetViewButton userPosition={userPosition} />
+      </MapContainer>
+    </div>
   );
 };
 

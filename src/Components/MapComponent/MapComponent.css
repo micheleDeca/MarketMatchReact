@@ -41,4 +41,41 @@
   background-clip: padding-box;
 }
 
+.reset-view-button {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  z-index: 1000;
+  background-color: white;
+  color: black;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease;
+
+}
+
+.reset-view-button:hover {
+  opacity: 0.7; 
+
+}
+
+
+.reset-view-icon {
+  font-size: 18px;
+  color: black;
+}
+
+
+@media  (min-width: 1200px) {
+  .reset-view-button {
+    transform: translateY(-210px);
+  }
  
+}

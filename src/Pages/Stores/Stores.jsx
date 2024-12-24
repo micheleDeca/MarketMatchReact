@@ -94,9 +94,9 @@ const Stores = () => {
     let maxDistance;
 
     if (zoomLevel >= 16) {
-      maxDistance = 0.5;
-    } else if (zoomLevel >= 15) {
       maxDistance = 1;
+    } else if (zoomLevel >= 15) {
+      maxDistance = 2;
     } else if (zoomLevel >= 14) {
       maxDistance = 3;
     } else if (zoomLevel >= 13) {
