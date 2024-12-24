@@ -65,9 +65,10 @@ const MarkerCluster = ({ stores, userPosition, onMarkerAction }) => {
                 {
                     autoClose: true, // Chiude automaticamente altri popup
                     closeOnClick: false, //   chiude il popup quando clicchi su di esso
+                    autoPan: false, // Impedisce alla mappa di spostarsi automaticamente
+
                 }
             ).on("click", () => {
-
 
                 if (onMarkerAction) {
                     onMarkerAction(store.id); // Restituisci solo l'ID
