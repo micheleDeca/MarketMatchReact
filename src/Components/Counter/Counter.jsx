@@ -1,13 +1,23 @@
 import "./Counter.css";
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import Add from "./add.png";
 import Sub from "./sub.png";
 
-function Counter() {
+function Counter({initialQuantity, getCounter}) {
 
     const [contatore, setContatore] = useState(0);
     const incrementa = () => setContatore(contatore + 1);
     const decrementa = () => setContatore(contatore > 0 ? contatore - 1 : 0);
+
+    
+    useEffect(() =>{
+        setContatore(initialQuantity);
+     }, []);
+
+     useEffect(() =>{
+        getCounter(contatore);
+     }, [contatore]);
+     
 
     return (
         <>

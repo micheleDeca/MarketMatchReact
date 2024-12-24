@@ -164,10 +164,7 @@ const TestMichele = () => {
             onMapMove={handleMapMove} // Funzione da chiamare quando la mappa si sposta
           />
         </div>
-      </div>
-      <div className="antonio-counter">
-        <Counter />
-      </div>
+      </div> 
 
       <div className="svg-divider-shops">
         <svg width="100%" height="2" xmlns="http://www.w3.org/2000/svg">

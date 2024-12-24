@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './CardLong.css';
 import CategoryLabelList from '../CategoryLabelList/CategoryLabelList';
+import Counter from "../../Components/Counter/Counter";
 
 /**
  * Componente ProductLong
@@ -72,6 +73,9 @@ const CardLong = (props) => {
         };
     }, []);
 
+
+    
+    
     return (
         <div className="card-long">
             <img
@@ -91,15 +95,21 @@ const CardLong = (props) => {
                 <p className="card-detail-long">
                     {props.detail2}
                 </p>
-                <div className="price-container-long">
-                    {props.originalPrice ? (
-                        <>
-                            <span className="current-price-long">{props.currentPrice}</span>
-                            <span className="original-price-long">{props.originalPrice}</span>
-                        </>
-                    ) : (
-                        <span className="normal-price-long">{props.currentPrice}</span>
-                    )}
+                <div className="card-long-price-count-container">
+                    <div className="price-container-long">
+                        {props.originalPrice ? (
+                            <>
+                                <span className="current-price-long">{props.currentPrice}</span>
+                                <span className="original-price-long">{props.originalPrice}</span>
+                            </>
+                        ) : (
+                            <span className="normal-price-long">{props.currentPrice}</span>
+                        )}
+                    </div>
+                    {(props.getCounter != null) && <div className="count-container-card-long">
+                        <Counter initialQuantity={props.quantity} getCounter={props.getCounter}/>
+                    </div>}
+
                 </div>
             </div>
         </div>

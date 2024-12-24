@@ -60,7 +60,7 @@ const App = () => {
         <Route path='/negozio' element={<Negozio mode="neg" />}/>
         <Route path='/prodotto' element={<Prodotto />}/>
         <Route path='/Ricetta' element={<Ricetta/>}/>
-        <Route path='/stores' element={<Stores /> }/>
+        <Route path='/negozi' element={<Stores /> }/>
         <Route path='/impostazioni/negozio' element={<SettingsShop /> }/>
         <Route path='/impostazioni/consumatore' element={<SettingsConsumer /> }/>
         <Route path='*' element={<PageNotFound /> }/>

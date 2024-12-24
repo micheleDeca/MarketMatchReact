@@ -23,7 +23,7 @@ const Carrello = () => {
         },
         {
             image: 'https://via.placeholder.com/100',
-            quantity: 1,
+            quantity: 8,
             productName: 'Prodotto 3',
             detail: 'Descrizione Pro asdasdasdas das das dasdsa dasdotto, Descrsaaaaaaaaa aaaaaaaaaaaaaaaaaaaa aaaaaaaaas izione Prodotto, Descrizione Prodotto',
             currentPrice: "5.99€",

@@ -6,12 +6,16 @@ import './PrenotazioneCarrello.css'
 
 export default function PrenotazioneCarrello(value) {
 
+    const getCounter = (aa) =>{
+        console.log(aa);
+    }
+    
     return (
         <>
             <div className="prenotationBox">
                 <div className="contentBox">
                     <div className="productList">
-                        <CardLongList title={"Negozio " + value.numNeg} products={value.products}/>
+                        <CardLongList title={"Negozio " + value.numNeg} products={value.products} getCounter={getCounter}/>
                     </div>
 
                     <div className="dateBox">

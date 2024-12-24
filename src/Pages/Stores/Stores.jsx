@@ -11,8 +11,8 @@ import "./Stores.css";
 // con informazioni come id, nome, posizione geografica (latitudine, longitudine),
 // punteggio (rating), indirizzo e categorie di appartenenza.
 const allStores = [
-  { id: 1, name: "Vegan Café La Sorgente", latitude: 41.125, longitude: 16.868, rating: 4.5, address: "Corso Vittorio Emanuele II, 10", city: "Bari", categories: ["Vegan", "Bio"], image: "https://via.placeholder.com/150" },
-  { id: 2, name: "Green Bites Bistro", latitude: 41.128, longitude: 16.871, rating: 4.2, address: "Piazza San Nicola, 15", city: "Bari", categories: ["Vegetariano", "Bio"], image: "https://via.placeholder.com/150" },
+  { id: 1, name: "Vegan Café La Sorgente", latitude: 41.125, longitude: 16.868, rating: 4.5, address: "Corso Vittorio Emanuele II, 10", city: "Bari", categories: ["Vegan", "Bio"], image: "http://4.232.65.20/assets/negozio/2.jpg" },
+  { id: 2, name: "Green Bites Bistro", latitude: 41.128, longitude: 16.871, rating: 4.2, address: "Piazza San Nicola, 15", city: "Bari", categories: ["Vegetariano", "Bio"], image: "http://4.232.65.20/assets/negozio/9.webp" },
   { id: 3, name: "Bio e Vegan Delights", latitude: 41.123, longitude: 16.873, rating: 4.7, address: "Via Sparano, 30", city: "Bari", categories: ["Senza Glutine", "Bio"], image: "https://via.placeholder.com/150" },
   { id: 4, name: "Naturalia Market", latitude: 41.121, longitude: 16.869, rating: 4.8, address: "Via Argiro, 15", city: "Bari", categories: ["Vegano", "Ecologico"], image: "https://via.placeholder.com/150" },
   { id: 5, name: "Puro Organic Food", latitude: 41.116, longitude: 16.874, rating: 4.6, address: "Piazza Garibaldi, 20", city: "Bari", categories: ["Biologico", "Km0"], image: "https://via.placeholder.com/150" },
@@ -46,7 +46,6 @@ const allStores = [
   { id: 33, name: "Eco Bio Store", latitude: 41.119, longitude: 16.869, rating: 4.8, address: "Corso Vittorio Emanuele, 22", city: "Bari", categories: ["Bio", "Naturale"], image: "https://via.placeholder.com/150" },
   { id: 34, name: "Vegan Friendly", latitude: 41.120, longitude: 16.873, rating: 4.9, address: "Via Argiro, 50", city: "Bari", categories: ["Vegan", "Bio"], image: "https://via.placeholder.com/150" },
   { id: 35, name: "Sapori Senza Confini", latitude: 41.118, longitude: 16.867, rating: 4.8, address: "Via Sparano, 18", city: "Bari", categories: ["Km0", "Vegan"], image: "https://via.placeholder.com/150" },
-  { id: 36, name: "Fasano Vegan Spot", latitude: 40.9793809, longitude: 17.366667, rating: 4.5, address: "Via Roma 5", city: "Fasano", categories: ["Vegan", "Km0"], image: "https://via.placeholder.com/150" },
   { id: 37, name: "Bio Fasano Market", latitude: 40.835000, longitude: 17.368500, rating: 4.2, address: "Via Bari 10", city: "Fasano", categories: ["Bio", "Vegetariano"], image: "https://via.placeholder.com/150" },
   { id: 38, name: "Green Fasano Bistro", latitude: 40.837000, longitude: 17.370000, rating: 4.8, address: "Via Lecce 15", city: "Fasano", categories: ["Bio", "Senza Glutine"], image: "https://via.placeholder.com/150" },
   { id: 39, name: "Fasano Organic Place", latitude: 40.830000, longitude: 17.362000, rating: 4.6, address: "Via Napoli 20", city: "Fasano", categories: ["Bio", "Km0"], image: "https://via.placeholder.com/150" },
@@ -75,126 +74,132 @@ const calculateDistance = (lat1, lon1, lat2, lon2) => {
   return R * c; // Distanza in km
 };
 
-// Funzione per filtrare i negozi vicini a una posizione specifica entro una distanza massima (5 km di default)
-const fetchStoresNearby = (center, maxDistance = 5) => {
-  return allStores
-    .map((store) => ({
-      ...store, // Copia i dati del negozio
-      distance: calculateDistance(
-        center[0], // Latitudine del centro
-        center[1], // Longitudine del centro
-        store.latitude, // Latitudine del negozio
-        store.longitude // Longitudine del negozio
-      ), // Calcola la distanza tra il centro e il negozio
-    }))
-    .filter((store) => store.distance <= maxDistance); // Ritorna solo i negozi entro la distanza massima
-};
+
 const Stores = () => {
- // Stato per memorizzare la posizione dell'utente
- const [userPosition, setUserPosition] = useState([41.1039637, 16.878227]);
- // Stato per memorizzare il centro attuale della mappa
- const [mapCenter, setMapCenter] = useState([41.1039637, 16.878227]);
- // Stato per i negozi vicini al centro della mappa
- const [stores, setStores] = useState([]);
- // Stato per memorizzare l'id del negozio selezionato
- const [selectedStoreId, setSelectedStoreId] = useState(null);
- // Stato per memorizzare i negozi ordinati per distanza (dal centro o dal negozio selezionato)
- const [sortedStores, setSortedStores] = useState([]);
+  // Stato per memorizzare la posizione dell'utente
+  const [userPosition, setUserPosition] = useState([41.1039637, 16.878227]);
+  // Stato per memorizzare il centro attuale della mappa
+  const [mapCenter, setMapCenter] = useState([41.1039637, 16.878227]);
+  // Stato per i negozi vicini al centro della mappa
+  const [stores, setStores] = useState([]);
+  // Stato per memorizzare l'id del negozio selezionato
+  const [selectedStoreId, setSelectedStoreId] = useState(null);
+  // Stato per memorizzare i negozi ordinati per distanza (dal centro o dal negozio selezionato)
+  const [sortedStores, setSortedStores] = useState([]);
+
+  const [zoomLevel, setZoomLevel] = useState("13");
+  // Effetto che si attiva ogni volta che cambia il centro della mappa
+  useEffect(() => {
+
+    let maxDistance;
+
+    if (zoomLevel >= 16) {
+      maxDistance = 0.5;
+    } else if (zoomLevel >= 15) {
+      maxDistance = 1;
+    } else if (zoomLevel >= 14) {
+      maxDistance = 3;
+    } else if (zoomLevel >= 13) {
+      maxDistance = 5;
+    } else if (zoomLevel >= 10) {
+      maxDistance = 100;
+    } else {
+      maxDistance = 150;
+    }
+
+    const nearbyStores = allStores
+      .map((store) => ({
+        ...store, // Copia i dati del negozio
+        distanceFromCenter: calculateDistance(
+          mapCenter[0], // Latitudine del centro
+          mapCenter[1], // Longitudine del centro
+          store.latitude, // Latitudine del negozio
+          store.longitude // Longitudine del negozio
+        ), // Calcola la distanza tra il centro e il negozio
+        distance: calculateDistance(
+          userPosition[0], // Latitudine dell'utente
+          userPosition[1], // Longitudine dell'utente
+          store.latitude, // Latitudine del negozio
+          store.longitude // Longitudine del negozio
+        ), // Calcola la distanza tra l'utente e il negozio
+      }))
+      .filter((store) => store.distanceFromCenter <= maxDistance) // Ritorna solo i negozi entro la distanza massima dal centro
+      .sort((a, b) => a.distanceFromCenter - b.distanceFromCenter); // Ordina per distanza dal centro
+
+    setStores(nearbyStores); // Aggiorna lo stato dei negozi vicini
+    setSortedStores(nearbyStores); // Aggiorna lo stato dei negozi ordinati
+
+
+  }, [mapCenter, zoomLevel]); // Dipendenza: mapCenter (si aggiorna quando cambia)
 
 
 
- // Effetto che si attiva ogni volta che cambia il centro della mappa
- useEffect(() => {
-   // Ottieni i negozi vicini al centro della mappa
-   const nearbyStores = fetchStoresNearby(mapCenter, 5);
-   setStores(nearbyStores); // Aggiorna lo stato dei negozi vicini
 
-   // Ordina i negozi per distanza crescente
-   const sortedByDistance = [...nearbyStores].sort((a, b) => a.distance - b.distance);
-   setSortedStores(sortedByDistance); // Aggiorna lo stato dei negozi ordinati
- }, [mapCenter]); // Dipendenza: mapCenter (si aggiorna quando cambia)
 
- // Effetto che si attiva ogni volta che cambia il negozio selezionato
- useEffect(() => {
-   if (selectedStoreId) {
-     // Trova il negozio selezionato
-     const selectedStore = stores.find((store) => store.id === selectedStoreId);
-     if (selectedStore) {
-       // Calcola i negozi vicini al negozio selezionato
-       const nearbyStores = stores
-         .filter((store) => store.id !== selectedStoreId) // Escludi il negozio selezionato
-         .map((store) => ({
-           ...store, // Copia i dati del negozio
-           distance: calculateDistance(
-             selectedStore.latitude,
-             selectedStore.longitude,
-             store.latitude,
-             store.longitude
-           ), // Calcola la distanza dal negozio selezionato
-         }))
-         .sort((a, b) => a.distance - b.distance); // Ordina per distanza crescente
+  // Funzione per gestire il clic su un negozio (aggiorna lo stato del negozio selezionato)
+  const handleStoreClick = (id) => {
+    console.log("sad", id);
+  };
 
-       setSortedStores(nearbyStores); // Aggiorna lo stato con i negozi ordinati
-     }
-   }
- }, [selectedStoreId, stores]); // Dipendenze: selectedStoreId, stores
 
- // Funzione per gestire il clic su un negozio (aggiorna lo stato del negozio selezionato)
- const handleStoreClick = (id) => {
-   setSelectedStoreId(id); // Imposta l'id del negozio selezionato
- };
+  const handleMapZoom = (zoomLevel) => {
+    console.log("Livello di zoom aggiornato:", zoomLevel);
+    setZoomLevel(zoomLevel);
+  };
 
- // Funzione per gestire lo spostamento della mappa (aggiorna il centro della mappa)
- const handleMapMove = (newCenter) => {
-   console.log("Nuovo centro mappa:", newCenter); // Log del nuovo centro della mappa
-   setMapCenter(newCenter); // Aggiorna lo stato del centro della mappa
- };
+  // Funzione per gestire lo spostamento della mappa (aggiorna il centro della mappa)
+  const handleMapMove = (newCenter) => {
+    console.log("Nuovo centro mappa:", newCenter); // Log del nuovo centro della mappa
+    setMapCenter(newCenter); // Aggiorna lo stato del centro della mappa
+    console.log("posizione utente", userPosition);
+  };
 
- const orderNames = ["Nome", "Rilevanza", "Valutazione"];
- const filterNames = ["Bio", "Senza Lattosio", "Senza Glutine", "Vegetariano", "Vegan", "Km0"];
+  const orderNames = ["Nome", "Rilevanza", "Valutazione"];
+  const filterNames = ["Bio", "Senza Lattosio", "Senza Glutine", "Vegetariano", "Vegan", "Km0"];
 
- return (
-   <div>
-     <div className="shops-header">
-       <h1>Negozi</h1>
-     </div>
-     <div className="shop-header">
-       <div className="searchBar">
-         <SearchBar />
-       </div>
-       <div className="filterButton">
-         <ButtonFilter order={orderNames} filter={filterNames} type="ConA, Neg" />
-       </div>
-     </div>
+  return (
+    <div>
+      <div className="shops-header">
+        <h1>Negozi</h1>
+      </div>
+      <div className="shop-header">
+        <div className="searchBar">
+          <SearchBar />
+        </div>
+        <div className="filterButton">
+          <ButtonFilter order={orderNames} filter={filterNames} type="ConA, Neg" />
+        </div>
+      </div>
 
-     {/* Wrapper per la mappa */}
-     <div className="map-wrapper">
-       <div className="map-container">
-         <MapComponent
-           userPosition={userPosition} // Passa la posizione dell'utente al componente mappa
-           stores={stores} // Passa i negozi vicini al componente mappa
-           onStoreClick={handleStoreClick} // Funzione da chiamare quando si clicca su un negozio
-           onMapMove={handleMapMove} // Funzione da chiamare quando la mappa si sposta
-         />
-       </div>
-     </div>
-     <div className="svg-divider-shops">
-       <svg width="100%" height="2" xmlns="http://www.w3.org/2000/svg">
-         <line x1="0" y1="1" x2="100%" y2="1" stroke="#CAC4D0" />
-       </svg>
-     </div>
+      {/* Wrapper per la mappa */}
+      <div className="map-wrapper">
+        <div className="map-container">
+          <MapComponent
+            userPosition={userPosition} // Passa la posizione dell'utente al componente mappa
+            stores={stores} // Passa i negozi vicini al componente mappa
+            onStoreClick={handleStoreClick} // Funzione da chiamare quando si clicca su un negozio
+            onMapMove={handleMapMove} // Funzione da chiamare quando la mappa si sposta
+            onMapZoom={handleMapZoom} // Funzione per aggiornare il livello di zoom
+          />
+        </div>
+      </div>
+      <div className="svg-divider-shops">
+        <svg width="100%" height="2" xmlns="http://www.w3.org/2000/svg">
+          <line x1="0" y1="1" x2="100%" y2="1" stroke="#CAC4D0" />
+        </svg>
+      </div>
 
-     <div className="cards-shop-container">
-     <CardLongList
-       /*title={selectedStoreId
-         ? `Negozi Vicini a "${stores.find((store) => store.id === selectedStoreId)?.name}"`
-         : "Negozi Vicini al Centro della Mappa"} */
-       shops={sortedStores}
-       type="shop"
-     />
-     </div>
-   </div>
- );
+      <div className="cards-shop-container">
+        <CardLongList
+          /*title={selectedStoreId
+            ? `Negozi Vicini a "${stores.find((store) => store.id === selectedStoreId)?.name}"`
+            : "Negozi Vicini al Centro della Mappa"} */
+          shops={sortedStores}
+          type="shop"
+        />
+      </div>
+    </div>
+  );
 };
 
 export default Stores
@@ -204,6 +209,8 @@ export default Stores
 quando fai richiesta al db, fai richiesta con cordinate di ne4j, per vicinanza, ma metti limite di quantita negozi dopo aver ordinato
 
 Quando cerchi un negozio, da quary fai restituire coordinate e non direttamente negozio
+
+Se riesci, quando clicchi negozio su lista, ti appare in mappa
 */
 
 /*

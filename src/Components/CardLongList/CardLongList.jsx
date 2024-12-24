@@ -35,6 +35,7 @@ const CardLongList = (props) => {
             currentPrice={product.currentPrice}
             originalPrice={product.originalPrice}
             badges={product.badges}
+            getCounter={props.getCounter}
           />
         ))}
       </span>}
