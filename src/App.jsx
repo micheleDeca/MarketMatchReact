@@ -43,6 +43,7 @@ const TestAntonio = lazy(() => import('./Pages/Test/TestAntonio/TestAntonio'));
 const TestMichele = lazy(() => import('./Pages/Test/TestMichele/TestMichele'));
 const TestIsa = lazy(() => import('./Pages/Test/TestIsa/TestIsa'));
 const PageNotFound = lazy(() => import('./Pages/PageNotFound/PageNotFound'));
+const RetardPage = lazy(() => import( './Components/CardBrutto/RetardPage/RetardPage.jsx'));
 
 /*
 *    - "NoAccesso" (utente non loggato)
@@ -52,6 +53,8 @@ const PageNotFound = lazy(() => import('./Pages/PageNotFound/PageNotFound'));
 */
 
 const App = () => {
+
+  
  
   // PER MODIFICARE UTENTE, recarsi in componente "UserUpdater", puoi cliccare control+click qui sott
   return (
@@ -82,6 +85,7 @@ const App = () => {
           <Route path='/ricette' element={<Recipes />} />
           <Route path='/carrello' element={<Carrello />} />
           <Route path='/punti' element={<Punti />} />
+          <Route path='/retard' element={<RetardPage />} />
         </Routes>
       </Suspense>
       <Footer />
