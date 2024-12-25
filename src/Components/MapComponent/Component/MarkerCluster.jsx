@@ -45,11 +45,14 @@ const MarkerCluster = ({ stores, userPosition, onMarkerAction }) => {
                 store.longitude // Longitudine del negozio
             );
 
+            /* ReactDOMServer NON supporta i contex
             // Genera dinamicamente la lista delle categorie come stringa HTML
             const categoryListHTML = ReactDOMServer.renderToString(
                 <CategoryLabelList badges={store.categories} size={"small"} />
             );
 
+            ${categoryListHTML}
+        */
             // Crea il marker per il negozio
             const marker = L.marker([store.latitude, store.longitude], { icon: customIcon });
 
@@ -60,7 +63,7 @@ const MarkerCluster = ({ stores, userPosition, onMarkerAction }) => {
           ⭐ <span>${store.rating}/5</span><br/>
           📍 <span>${store.address}, ${store.city}</span><br/>
           🚶‍♂️ <span>Distanza: ${distance.toFixed(2)} km</span><br/>
-          ${categoryListHTML}
+          
         </div>`,
                 {
                     autoClose: true, // Chiude automaticamente altri popup

@@ -83,6 +83,7 @@ const ProductList = (props) => {
                     {props.products.map((product) => (
                         <SwiperSlide key={product.id}>
                             <ProductCard
+                            
                                 straight="true"
                                 id={product.id}
                                 name={product.name}
@@ -100,6 +101,7 @@ const ProductList = (props) => {
                 <div className="product-list">
                     {props.products.map((product) => (
                         <ProductCard
+                            key={product.id}
                             straight="false"   /*false impaginato in riga */
                             id={product.id}
                             name={product.name}

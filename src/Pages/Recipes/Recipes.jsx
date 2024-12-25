@@ -9,7 +9,7 @@ import { Pagination } from 'react-pagination-bar';
 const generateCategories = () => {
     const categoriesList = [
         "Bio",
-        "Vegan",
+        "Vegano",
         "Vegetariano",
         "Senza glutine",
         "Senza lattosio",
@@ -24,8 +24,8 @@ const generateCategories = () => {
 
     // Aggiungi "Vegan" o "Vegetariano" (non entrambi)
     if (Math.random() > 0.5 && !selectedCategories.includes("Vegetariano")) {
-        selectedCategories.push("Vegan");
-    } else if (!selectedCategories.includes("Vegan")) {
+        selectedCategories.push("Vegano");
+    } else if (!selectedCategories.includes("Vegano")) {
         selectedCategories.push("Vegetariano");
     }
 

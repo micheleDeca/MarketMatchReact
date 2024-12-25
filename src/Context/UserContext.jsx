@@ -14,7 +14,7 @@ export const UserProvider = ({ children }) => {
     );
 };
 
-// Hook per accedere facilmente al contesto
+// accedere facilmente al contesto
 export const useUserContext = () => {
     return useContext(UserContext);
 };

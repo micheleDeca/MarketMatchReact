@@ -11,18 +11,19 @@ import { useUserContext } from '../../Context/UserContext';
 
 const categoriesList = [
     "Bio",
-    "Vegan",
+    "Vegano",
     "Vegetariano",
     "Senza glutine",
     "Senza lattosio",
     "Km0",
+    "Sostenibile",
 ];
 
 // Funzione per generare categorie casuali rispettando le regole
 const generateCategories = () => {
     // Filtra categorie incompatibili
     const possibleCategories = categoriesList.filter((category) => {
-        return !(category === "Vegan" || category === "Vegetariano");
+        return !(category === "Vegano" || category === "Vegetariano");
     });
 
     // Numero casuale di categorie da assegnare (tra 1 e 4)
@@ -33,8 +34,8 @@ const generateCategories = () => {
 
     // Aggiungi "Vegan" o "Vegetariano" (non entrambi)
     if (Math.random() > 0.5 && !selectedCategories.includes("Vegetariano")) {
-        selectedCategories.push("Vegan");
-    } else if (!selectedCategories.includes("Vegan")) {
+        selectedCategories.push("Vegano");
+    } else if (!selectedCategories.includes("Vegano")) {
         selectedCategories.push("Vegetariano");
     }
 

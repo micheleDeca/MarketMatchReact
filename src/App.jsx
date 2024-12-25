@@ -3,9 +3,11 @@ import { Route, Routes } from 'react-router-dom';
 import NavBar from './Components/NavBar/NavBar';
 import Footer from './Components/Footer/Footer';
 import { useUserContext } from './Context/UserContext';
-import { useCategoryContext } from './Context/CategoryContex';
 import ScrollToTopButton from './Components/ScrollToTopButton/ScrollToTopButton.jsx';
 import { Suspense, lazy } from 'react';
+import CategoryUpdater from './Context/Updater/CategoryUpdater.jsx';
+import LoadingPage from './Pages/LoadingPage/LoadingPage.jsx';
+import UserUpdater from './Context/Updater/UserUpdater.jsx';
 
 /*
  * React.lazy:
@@ -50,21 +52,14 @@ const PageNotFound = lazy(() => import('./Pages/PageNotFound/PageNotFound'));
 */
 
 const App = () => {
-  const [navColorState, setNavColor] = useState("");
-
-  const { userType, setUserType } = useUserContext();
-  const { category, setCategory } = useCategoryContext();
-
-  // Simulazione login
-  const handleLogin = (type) => {
-    setUserType(type);
-  };
-  setUserType("ConA"); // NON va settato qui. solo prove
-
+ 
+  // PER MODIFICARE UTENTE, recarsi in componente "UserUpdater", puoi cliccare control+click qui sott
   return (
     <div>
-      <NavBar navColor={navColorState} />
-      <Suspense fallback={<div>Loading...</div>}>
+      <CategoryUpdater />
+      <UserUpdater />  
+      <NavBar />
+      <Suspense fallback={<LoadingPage/>}>
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/prenotazioni' element={<Reservations />} />

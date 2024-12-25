@@ -8,6 +8,7 @@ import CostIcon from '../Card/assets/costo.svg';
 import DifficultyIcon from '../Card/assets/difficolta.svg';
 import CookingTimeIcon from '../Card/assets/tempoCottura.svg';
 import PreparationTimeIcon from '../Card/assets/tempoPreparazione.svg';
+import { useCategoryContext } from "../../Context/CategoryContex";
 
 /**
  * 
@@ -38,6 +39,7 @@ Tipologia Card (type)
 const Card = (props) => {
 
     const isProduct = props.type === "product";
+    const { category: categoryList } = useCategoryContext();
 
     const handleAddClick = () => {
 
@@ -50,20 +52,21 @@ const Card = (props) => {
         }, 2000);
     };
 
-    // Mappa dei colori per le categorie
-    const categoryColors = {
-        bio: "#4caf50",
-        "senza lattosio": "#039be5",
-        vegan: "#0adea5",
-        "senza glutine": "#9c27b0",
-        km0: "#cddc39",
-        vegetariano: "#ff9800",
-        default: "#607d8b", // Colore di default se la categoria non è nella mappa
-    };
+    // Funzione per ottenere il colore di una categoria
+    const getColorForCategory = (categoryName) => {
+        if (!categoryList || categoryList.length === 0) {
+            console.warn("CategoryList non è disponibile o è vuoto");
+            return "darkslateblue"; // Colore di default
+        }
 
-    // Funzione per ottenere il colore della categoria
-    const getColorForCategory = (category) => {
-        return categoryColors[category.toLowerCase()] || categoryColors.default;
+        const normalizedCategory = categoryName.toLowerCase();
+        console.log(normalizedCategory);
+        // Cerca la categoria nell'array
+        const categoryItem = categoryList.find(
+            (cat) => cat.categoryName.toLowerCase() === normalizedCategory
+        );
+
+        return categoryItem ? categoryItem.categoryColor : "darkslateblue"; // Default se non trovato
     };
 
     const [notification, setNotification] = useState(null); // Stato per la notifica
@@ -78,13 +81,13 @@ const Card = (props) => {
                     flexDirection: props.straight === "false" ? "" : "column",
                 }}
             >
-                <Link to={isProduct? `/prodotto/${props.id}` : `/ricetta/${props.id}`} className="product-link">
+                <Link to={isProduct ? `/prodotto/${props.id}` : `/ricetta/${props.id}`} className="product-link">
                     <img className="card-image" src={props.image} />
                 </Link>
 
                 <div className="card-info">
                     <Link
-                        to={isProduct? `/prodotto/${props.id}` : `/ricetta/${props.id}`}  className="product-link">
+                        to={isProduct ? `/prodotto/${props.id}` : `/ricetta/${props.id}`} className="product-link">
                         <h3 className="card-name">{props.name}</h3>
                     </Link>
 
@@ -115,7 +118,7 @@ const Card = (props) => {
 
                     {!isProduct && (<div className='recipe-icon-container'>
                         <div className="card-recipe-icon-text">
-                            <span className='icon-recipe' data-tooltip-id={`cost-tooltip`} data-tooltip-content="Costo"><img src={CostIcon}/></span><span className='text-icon-recipe' >: {props.cost}</span>
+                            <span className='icon-recipe' data-tooltip-id={`cost-tooltip`} data-tooltip-content="Costo"><img src={CostIcon} /></span><span className='text-icon-recipe' >: {props.cost}</span>
                             <span className='icon-recipe' data-tooltip-id={`difficulty-tooltip`} data-tooltip-content="Difficoltà"><img src={DifficultyIcon} /></span><span className='text-icon-recipe' >: {props.difficulty}</span>
                         </div>
                         <div className="card-recipe-icon-text">
