@@ -5,7 +5,14 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
   server: {
-    port: 5173, // Specifica la porta
+    port: 3000, // Specifica la porta
     host: true, // Rende il server accessibile da altri dispositivi
+    proxy: {
+      '/api': { // Sostituisci con il prefisso che usi per le chiamate al backend
+        target: 'http://localhost:1337', // URL del tuo server Strapi
+        changeOrigin: true, // Cambia l'origine per evitare problemi di CORS
+        rewrite: (path) => path.replace(/^\/api/, ''), // Rimuovi il prefisso /api, se necessario
+      },
+    },
   },
 });

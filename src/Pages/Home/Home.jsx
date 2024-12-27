@@ -11,7 +11,7 @@ import PositionComponent from './PositionComponent/PositionComponent';
 import HighlightShops from './HighlightShops/HighlightShops';
 import FeaturesComponentShop from './FeaturesComponentShop/FeaturesComponentShop';
 
-
+ 
 const Home = (props) => {
 
   const products = [
@@ -52,6 +52,7 @@ const Home = (props) => {
     }, []); */
     console.log("Categoria",category);
    console.log("Tipo Utente",userType);
+   
   return (
     <>
       <div className="background"></div>

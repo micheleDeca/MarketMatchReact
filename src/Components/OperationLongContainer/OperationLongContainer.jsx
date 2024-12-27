@@ -60,6 +60,7 @@ const OperationLongContainer = ({operations, type}) => {
 
                 {operations.map((operation) => (
                     <OperationLong
+                        key={operation.id} 
                         status={operation.status} //Prenotazione
                         id={operation.id} //Prenotazione e Motivo accredito punti
                         operationDate={operation.reservationDate} //Prenotazione e punti
