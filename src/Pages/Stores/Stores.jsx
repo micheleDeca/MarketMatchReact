@@ -4,7 +4,7 @@ import CardLongList from "../../Components/CardLongList/CardLongList";
 import SearchBar from "../../Components/SearchBar/SearchBar";
 import ButtonFilter from "../../Components/ButtonFilter/ButtonFilter";
 import "./Stores.css";
-
+ 
 // Simulazione del database di negozi
 
 // Simulazione del database di negozi: un array di oggetti rappresenta i negozi

@@ -4,6 +4,7 @@ import './CardLongList.css';
 import { Pagination } from 'react-pagination-bar';
 import 'react-pagination-bar/dist/index.css';
 import '../../ExternalContent/PaginationBar.css';
+import '../../ExternalContent/PaginationBar.css';
 
 const CardLongList = (props) => {
   const cardShop = props.type === "shop";
