@@ -227,6 +227,7 @@
 @media (max-width: 480px) {
   .card {
     width: calc(100% - 20px);
+    gap:10px
   }
 
   .current-price-card {
