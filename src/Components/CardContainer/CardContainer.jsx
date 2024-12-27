@@ -14,7 +14,7 @@ const CardContainer = (props) => {
                     straight={isMobile ? "false" : "false"}
                     name={card.name}
                     detail={card.detail}
-                    currentPrice={card.currentPrice + "€"}
+                    currentPrice={(card.currentPrice)? card.currentPrice+"€" : ""}
                     originalPrice={(card.originalPrice)? card.originalPrice+"€" : ""}
                     image={"http://4.232.65.20/assets/"+card.image}
                     button={props.button}

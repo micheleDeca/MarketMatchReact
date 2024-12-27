@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import ProductContainer from '../../Components/CardContainer/CardContainer';
 import './Product.css';
-import '../../ExternalContent/PaginationBar.css';
 import { Pagination } from 'react-pagination-bar';
+import '../../ExternalContent/PaginationBar.css';
+
 import SearchBar from '../../Components/SearchBar/SearchBar';
 import ButtonFilter from '../../Components/ButtonFilter/ButtonFilter';
 import Button from '../../Components/Button/Button';
