@@ -136,7 +136,10 @@ const Product = () => {
                         currentPage={currentPage}
                         totalItems={totalItems}
                         itemsPerPage={productsPerPage}
-                        onPageChange={(page) => setCurrentPage(page)}
+                        onPageChange={(page) => {
+                            setCurrentPage(page);
+                            window.scrollTo({ top: 0, behavior: 'smooth' }); // Porta la pagina in alto
+                        }}
                         pageNeighbours={1}
                     />
                 </div>
