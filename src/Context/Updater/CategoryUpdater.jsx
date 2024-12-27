@@ -34,7 +34,7 @@ const CategoryUpdater = () => {
                     { categoryName: 'Vegetariano', categoryColor: '#FF9800' },  
                     { categoryName: 'Senza glutine', categoryColor: '#812B9B' },  
                     { categoryName: 'Senza lattosio', categoryColor: '#039BE5' },  
-                    { categoryName: 'Bio', categoryColor: '#4CAF50' }, 
+                    { categoryName: 'Bio', categoryColor: 'red' }, 
                     { categoryName: 'Km0', categoryColor: '#CDDC39' },  
                     { categoryName: 'Sostenibile', categoryColor: '#cb4f3e' }
                 ]);
