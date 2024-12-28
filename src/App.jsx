@@ -10,7 +10,7 @@ import LoadingPage from './Pages/LoadingPage/LoadingPage.jsx';
 import UserUpdater from './Context/Updater/UserUpdater.jsx';
 
 /*
- * React.lazy:
+ * React.lazy:  
  * React.lazy permette di caricare i componenti in modo "pigro" (lazy loading), ovvero solo quando necessario.
  * Questo è utile per ridurre il tempo di caricamento iniziale dell'applicazione (bundle size) 
  * e migliorare le performance, specialmente in applicazioni con molte pagine o componenti pesanti.
