@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import CardLong from '../CardLong/CardLong';
 import './CardLongList.css';
 import { Pagination } from 'react-pagination-bar';
-import 'react-pagination-bar/dist/index.css';
-import '../../ExternalContent/PaginationBar.css';
+//import 'react-pagination-bar/dist/index.css';
 import '../../ExternalContent/PaginationBar.css';
 
 const CardLongList = (props) => {
