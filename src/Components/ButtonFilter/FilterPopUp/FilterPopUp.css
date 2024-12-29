@@ -44,12 +44,10 @@
   font-weight: 500;
 }
 
+
 .filterSwiper {
   display: flex;
-  justify-content: center;
-  /* Centra tutti gli elementi */
-  flex-wrap: wrap;
-  /* Permette il wrapping su più righe se necessario */
+  flex-direction: row;
   width: 95%;
   /* Assicura che utilizzi tutta la larghezza disponibile */
   padding-bottom: 5%;
@@ -63,10 +61,14 @@
   width: 100%;
   /* Usa tutta la larghezza del contenitore */
   display: flex;
+  flex-direction: row;
   justify-content: center;
-  /* Centra il contenitore */
 }
 
+.swiper-slide{
+    margin-bottom: 20px;
+    margin-top: 5px;
+}
 
 .range-slider {
   position: relative;

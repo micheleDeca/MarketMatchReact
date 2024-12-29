@@ -47,6 +47,7 @@
 .card-name-long {
   font-size: 23px;
   font-weight: bold;
+  min-width: 150px;
 }
 
 .card-detail-long {

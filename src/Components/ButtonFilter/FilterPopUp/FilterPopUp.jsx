@@ -6,6 +6,7 @@ import PositionButton from "./PositionButton/PositionButton";
 import ShowButton from "./ShowButton/ShowButton";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
+import '../../../../node_modules/swiper/swiper-bundle.min.css';
 
 export default function FilterPopUp(elements) {
 
@@ -81,9 +82,9 @@ export default function FilterPopUp(elements) {
             <div className="orderTitle">
                 <h2>Ordina per:</h2>
             </div>
-            <Swiper
+             <Swiper
                 modules={[Pagination]}
-                spaceBetween={10}
+                spaceBetween={20}
                 slidesPerView="3"
                 pagination={{ clickable: true }}
                 breakpoints={{
@@ -99,14 +100,14 @@ export default function FilterPopUp(elements) {
                     </SwiperSlide>
                 ))}
             </Swiper>
-
+ 
             {/* Slider Filtra */}
             <div className="filterTitle">
                 <h2>Filtra per:</h2>
             </div>
             <Swiper
                 modules={[Pagination]}
-                spaceBetween={10}
+                spaceBetween={20}
                 slidesPerView="3"
                 pagination={{ clickable: true }}
                 breakpoints={{
