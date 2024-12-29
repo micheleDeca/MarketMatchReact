@@ -80,13 +80,23 @@ const Card = (props) => {
                     flexDirection: props.straight === "false" ? "" : "column",
                 }}
             >
-                <Link to={isProduct ? `/prodotto/${props.id}` : `/ricetta/${props.id}`} className="product-link">
+                <Link to={isProduct ? {
+                    pathname: "/prodotto",
+                    state: { id: props.id }
+                } :
+                    `/ricetta/${props.id}`}
+                    className="product-link">
                     <img className="card-image" src={props.image} />
                 </Link>
 
                 <div className="card-info">
                     <Link
-                        to={isProduct ? `/prodotto/${props.id}` : `/ricetta/${props.id}`} className="product-link">
+                        to={isProduct ? {
+                            pathname: "/prodotto",
+                            state: { id: props.id }
+                        } :
+                            `/ricetta/${props.id}`}
+                        className="product-link">
                         <h3 className="card-name">{props.name}</h3>
                     </Link>
 
@@ -104,7 +114,7 @@ const Card = (props) => {
                             ))}
                         </div>
                     )}
-                    
+
                     <p className="card-detail">{props.detail}</p>
                     {isProduct && <p className="card-detail">{props.distanceKm} Km</p>}
                     <p className="price-container-card">{props.originalPrice ? (
