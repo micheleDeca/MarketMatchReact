@@ -43,11 +43,11 @@ export default function DettaglioPrenotazione(value) {
                 </div>
                 </div>
                 <div className="info">
-                    #{value.codice}
-                    <img src="src\Components\DettaglioPrenotazione\assets\line-xl-svgrepo-com.svg" width="20" height="20" />
-                    {value.client}
-                    <img src="src\Components\DettaglioPrenotazione\assets\line-xl-svgrepo-com.svg" width="20" height="20" />
-                    {value.date}
+                    <p>#{value.codice}</p>
+                    |
+                    <p>{value.client}</p>
+                    |
+                    <p>{value.date}</p>
                 </div>
             </div>
 

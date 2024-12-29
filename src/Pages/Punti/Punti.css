@@ -17,3 +17,12 @@
     padding-left: 2%;
     width: 95%;
 }
+
+.prenButton{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding-bottom: 2%;
+    padding-right: 3.5%;
+    gap: 5%;
+}

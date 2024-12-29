@@ -29,11 +29,13 @@
 
 .info {
     display: flex;
+    flex-direction: row;
     align-items: flex-start;
     align-items: center;
     width: 100%;
     font-size: 120%;
     font-weight: bold;
+    gap: 1%;
 }
 
 .info img {
