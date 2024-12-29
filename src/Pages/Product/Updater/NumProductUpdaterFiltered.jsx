@@ -3,7 +3,10 @@ import { BASE_URL, IS_MOCKKED } from '../../../config';
 import { getToken } from '../../../LocalStorage/TokenStorage';
 
 
-export const getNumberProductUnfiltered = async () => {
+export const getNumberProductFiltered = async (props) => {
+
+    const requestParam = props;
+
     if (IS_MOCKKED) {
         // Simula un ritardo per i dati mock
         return new Promise((resolve) => {
@@ -15,13 +18,27 @@ export const getNumberProductUnfiltered = async () => {
         const token = getToken();
         
         try {
-            const response = await axios.get(`${BASE_URL}/api/product/numberUnfiltered`, {
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                },
-            });
+            const response = await axios.post(
+                `${BASE_URL}/api/product/numberFiltered`,
+                {
+                    minPrezzo: requestParam.minPrezzo,
+                    maxPrezzo: requestParam.maxPrezzo,
+                    filterPrezzoOfferta: requestParam.filterPrezzoOfferta,
+                    categories: requestParam.categories,
+                    userLatitude: requestParam.userLatitude,
+                    userLongitude: requestParam.userLongitude,
+                    maxDistance: requestParam.maxDistance,
+                    searchName: requestParam.searchName
 
-            return response.data.totalItems.low;
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`, // Token di autenticazione
+                    },
+                }
+            );;
+
+            return response.data.totalItems;
         } catch (error) {
             console.error('Errore durante il recupero dei prodotti:', error);
             throw error;

@@ -12,6 +12,8 @@ import { useUserContext } from '../../Context/UserContext';
 import { fetchProductUpdater } from './Updater/ProductUpdater';
 import LoadingPage from '../LoadingPage/LoadingPage';
 import { getNumberProductUnfiltered } from './Updater/NumProductUpdater';
+import { fetchProductFilteredUpdater } from './Updater/ProductUpdaterFiltered';
+import { getNumberProductFiltered } from './Updater/NumProductUpdaterFiltered';
 
 const Product = () => {
 
@@ -35,7 +37,21 @@ const Product = () => {
 
     const productsPerPage = 15; // Numero di prodotti per pagina
 
-
+    //IMPOSTARE come default sempre RILEVANZA
+    //MOLTO IMPORTANTE @Isabella, quando si cambiano i filtri, impostare paginaCorrente = 1
+    const [requestParams, setRequestParams] = useState({
+        minPrezzo: null,
+        maxPrezzo: null,
+        filterPrezzoOfferta: null,
+        categories: null,           //Es. ["Vegano", "Bio"]
+        sortOrder: [null, null],    //sortOrder[0] = prezzoCrescente/prezzoDecrescente/null
+                                    //sortOrder[1] = nome/rilevanza/vicinanza/null
+                                    //Possibile combinare prezzo e uno tra nome e rilevanza
+        userLatitude: 41.1090642,   //Posizione utente, impostare una standard globale se utente non concede posizione/permessi
+        userLongitude: 16.8719847,
+        maxDistance: 500,     //distanza tra utente e prodotto in Km 
+        searchName: null   //Filtro ricerca
+        });
 
     // Effetto per richiedere quantità prodotti per pagination
     useEffect(() => {
@@ -43,7 +59,7 @@ const Product = () => {
 
         const getNumProducts = async () => {
             try {
-                const productsData = await getNumberProductUnfiltered(); // Usa la funzione dal modulo
+                const productsData = await getNumberProductFiltered(requestParams); // Usa la funzione dal modulo
                 if (isMounted) {
                     setTotalItems(productsData); // Aggiorna lo stato
                 }
@@ -71,7 +87,7 @@ const Product = () => {
 
         const getProducts = async () => {
             try {
-                const productsData = await fetchProductUpdater(currentPage, productsPerPage); // Usa la funzione dal modulo
+                const productsData = await fetchProductFilteredUpdater(currentPage, productsPerPage,requestParams); // Usa la funzione dal modulo
                 if (isMounted) {
                     setProducts(productsData); // Aggiorna lo stato
                     setLoading(false); // Ferma il caricamento

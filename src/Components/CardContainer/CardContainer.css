@@ -6,5 +6,12 @@
 }
 
 .container-product .card {
-    min-width: 350px; /* Imposta una larghezza minima per ogni card */
+    min-width: 380px; /* Imposta una larghezza minima per ogni card */
+ }
+
+
+ @media (max-width: 480px) {
+    .container-product .card {
+        min-width: 320px; /* Imposta una larghezza minima per ogni card */
+     }
  }

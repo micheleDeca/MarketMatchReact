@@ -4,7 +4,6 @@ import Card from '../Card/Card'
  
 const CardContainer = (props) => {
     const isMobile = window.innerWidth <= 768; // Controlla se lo schermo è mobile
-
     return (
         <div className="container-product">
             {props.card.map((card) => (
@@ -23,7 +22,9 @@ const CardContainer = (props) => {
                     prepTime={card.prepTime}
                     cookTime={card.cookTime}
                     cost={card.cost}
+                    distanceKm={card.distanceKm}
                     type={props.type}
+                    
                 />
             ))}
         </div>

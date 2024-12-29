@@ -104,8 +104,9 @@ const Card = (props) => {
                             ))}
                         </div>
                     )}
-
-                    <p className="card-detail">{props.detail}</p>
+                    
+                    <p className="cards-detail">{props.detail}</p>
+                    {isProduct && <p className="card-detail">{props.distanceKm} Km</p>}
                     <p className="price-container-card">{props.originalPrice ? (
                         <>
                             <span className="current-price-card">{props.currentPrice}</span>

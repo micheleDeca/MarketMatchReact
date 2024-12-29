@@ -20,7 +20,7 @@ const CardLongList = (props) => {
     setPaginatedItems(items.slice(startIndex, endIndex));
   }, [currentPage, props.shops, props.products, cardShop]);
 
-  return (
+   return (
     <>
     <div className="product-long-list-container">
       <h2 className="product-long-list-title">{props.title}</h2>
