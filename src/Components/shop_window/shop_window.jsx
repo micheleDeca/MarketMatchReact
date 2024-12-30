@@ -26,7 +26,7 @@ function ShopWindow(props) {
                     <div className="LeftShopWindow">
                         <div className="ShopWindowBox">
                             <img
-                                src="https://www.archibio.com/wp-content/uploads/2021/03/come-aprire-un-negozio-BIO-in-Italia.jpg"
+                                src={`http://4.232.65.20/assets${props.ImageDescription}`}
                                 alt={props.ImageDescription} className="Image"></img>
                         </div>
                     </div>
@@ -41,13 +41,13 @@ function ShopWindow(props) {
                         </div>
                         <div className="img">
                             <img
-                                src="https://www.archibio.com/wp-content/uploads/2021/03/come-aprire-un-negozio-BIO-in-Italia.jpg"
+                                src={`http://4.232.65.20/assets${props.ImageDescription}`}
                                 alt={props.ImageDescription} className="Image"></img>
                         </div>
                         <div className="boxDescription">
                             <p className="descrizione">{props.Description}</p>
                         </div>
-                        {props.tipo == "prodotto" && (
+                        {props.tipo == "prodotto" && props.currentPrice != "" && (
                             <p className="prezzo-ShopWindow">
                                 {props.originalPrice ? (
                                     <>
@@ -60,7 +60,7 @@ function ShopWindow(props) {
                                     </>
                                 ) : (
                                     <span className="normal-price-card">
-                                        {props.currentPrice}
+                                        {props.originalPrice}
                                         </span>
                                 )}
                             </p>
@@ -80,7 +80,7 @@ function ShopWindow(props) {
                         >
                             <div className="ShopWindowBox">
                                 <img
-                                    src="https://www.archibio.com/wp-content/uploads/2021/03/come-aprire-un-negozio-BIO-in-Italia.jpg"
+                                    src={`http://4.232.65.20/assets${props.ImageDescription}`}
                                     alt={props.ImageDescription}
                                     className="Image"
                                 ></img>
@@ -109,7 +109,7 @@ function ShopWindow(props) {
                             >
                                 <div className="img">
                                     <img
-                                        src="https://www.archibio.com/wp-content/uploads/2021/03/come-aprire-un-negozio-BIO-in-Italia.jpg"
+                                        src={`http://4.232.65.20/assets${props.ImageDescription}`}
                                         alt={props.ImageDescription}
                                         className="Image"
                                     ></img>
