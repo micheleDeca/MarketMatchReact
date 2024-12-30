@@ -4,6 +4,7 @@ import SearchBar from "../../Components/SearchBar/SearchBar"
 import './Recipes.css'
 import React, { useState, useEffect } from 'react';
 import { Pagination } from 'react-pagination-bar';
+import { useCategoryContext } from "../../Context/CategoryContex";
 
 // Funzione per generare categorie casuali rispettando le regole
 const generateCategories = () => {
@@ -54,11 +55,15 @@ const mockRecipes = Array.from({ length: 50 }, (_, index) => {
 console.log(mockRecipes);
 
 
-const orderNames = ["Prezzo crescente", "Prezzo decrescente", "Nome", "Rilevanza", "Cottura Crescente", "Cottura Decrescente",
-    "Preparazione Crescente", "Preparazione Decrescente", "Difficoltà Crescente", "Difficoltà Decrescente"];
-const filterNames = ["Bio", "Senza Lattosio", "Senza Glutine", "Vegetariano", "Vegan", "Km0"];
 
 const Recipes = () => {
+
+    const { category: categoryList } = useCategoryContext();
+
+    const orderNames = ["Prezzo crescente", "Prezzo decrescente", "Nome", "Rilevanza", "Cottura Crescente", "Cottura Decrescente",
+        "Preparazione Crescente", "Preparazione Decrescente", "Difficoltà Crescente", "Difficoltà Decrescente"];
+    const filterNames = [...categoryList.map((cat) => cat.categoryName)];
+
     const [recipes, setRecipes] = useState([]); // Stato per le ricette
     const [currentPage, setCurrentPage] = useState(() => {
         // Recupera la pagina corrente da sessionStorage, di default 1
@@ -101,7 +106,7 @@ const Recipes = () => {
 
             <div className="content-container">
                 <div className="container-product">
-                    <CardContainer card={recipes} type={"recipe"}/>
+                    <CardContainer card={recipes} type={"recipe"} />
                 </div>
                 <div className="pagination-container">
                     <Pagination

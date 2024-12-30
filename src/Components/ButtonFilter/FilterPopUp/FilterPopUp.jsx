@@ -64,6 +64,40 @@ export default function FilterPopUp(elements) {
     const priceTypes = ["ConA, Prod", "ConA, Ric", "Neg, Prod"];
     const distanceTypes = ["ConA, Prod", "ConA, Neg"];
 
+    const [selectedFilters, setSelectedFilters] = useState({
+        ordinamenti: [], // array per i filtri di ordinamento
+        filtri: [] // array per gli altri filtri
+    }); // Stato per i filtri selezionati
+
+    // Funzione per gestire la selezione dei filtri
+    const handleFilterClick = (filterName) => {
+        setSelectedFilters((prev) => {
+            // Inizializziamo una variabile per il nuovo stato, con oggetto che contiene ordinamenti e filtri
+            const newState = {
+                ordinamenti: [...prev.ordinamenti],
+                filtri: [...prev.filtri]
+            };
+
+            // Se il filtro è uno di quelli relativi all'ordinamento (prezzo, nome/rilevanza, quantità), escludiamo gli altri
+            if (elements.order.includes(filterName)) {
+                // Se uno di questi filtri è selezionato, rimuoviamo gli altri filtri di ordinamento
+                newState.ordinamenti = newState.ordinamenti.filter(item => !elements.order.includes(item));
+                // Aggiungiamo il filtro ordinamento selezionato
+                newState.ordinamenti.push(filterName); // Aggiungiamo solo il filtro selezionato
+            } else {
+                // Gestione degli altri filtri (non di ordinamento), aggiungiamo o rimuoviamo senza restrizioni
+                if (newState.filtri.includes(filterName)) {
+                    newState.filtri = newState.filtri.filter((name) => name !== filterName); // Rimuoviamo il filtro se è già selezionato
+                } else {
+                    newState.filtri.push(filterName); // Aggiungiamo il filtro se non è già selezionato
+                }
+            }
+
+            return newState; // Restituiamo l'oggetto con gli ordinamenti e i filtri separati
+        });
+    };
+
+    const activeOrder = selectedFilters.ordinamenti[0]; // Seleziona l'ordinamento esclusivo attivo
 
     return (
         <div className="popUpContainer">
@@ -82,7 +116,7 @@ export default function FilterPopUp(elements) {
             <div className="orderTitle">
                 <h2>Ordina per:</h2>
             </div>
-             <Swiper
+            <Swiper
                 modules={[Pagination]}
                 spaceBetween={20}
                 slidesPerView="3"
@@ -95,12 +129,13 @@ export default function FilterPopUp(elements) {
                 {elements.order.map((item, index) => (
                     <SwiperSlide key={index}>
                         <div className="swiper-slide">
-                            <FilterElement name={item} />
+                            <FilterElement name={item} onFilterClick={() => handleFilterClick(item)} selectedOrder={activeOrder}
+                            order={elements.order} />
                         </div>
                     </SwiperSlide>
                 ))}
             </Swiper>
- 
+
             {/* Slider Filtra */}
             <div className="filterTitle">
                 <h2>Filtra per:</h2>
@@ -118,7 +153,8 @@ export default function FilterPopUp(elements) {
                 {elements.filter.map((item, index) => (
                     <SwiperSlide key={index}>
                         <div className="swiper-slide">
-                            <FilterElement name={item} />
+                            <FilterElement name={item} onFilterClick={() => handleFilterClick(item)} selectedFilters={selectedFilters.filtri}
+                            order={elements.order}/>
                         </div>
                     </SwiperSlide>
                 ))}
@@ -155,7 +191,7 @@ export default function FilterPopUp(elements) {
                         <div
                             className="slider-track"
                             style={{
-                                left: `${((minValue - 1) / (isWideRange ? 99 - 1 : 4)) * 100 }%`,
+                                left: `${((minValue - 1) / (isWideRange ? 99 - 1 : 4)) * 100}%`,
                                 right: `${100 - ((maxValue - 1) / (isWideRange ? 99 - 1 : 4)) * 100 + 1}%`
                             }}
                         ></div>

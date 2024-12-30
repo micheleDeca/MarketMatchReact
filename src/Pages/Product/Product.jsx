@@ -14,6 +14,7 @@ import LoadingPage from '../LoadingPage/LoadingPage';
 import { getNumberProductUnfiltered } from './Updater/NumProductUpdater';
 import { fetchProductFilteredUpdater } from './Updater/ProductUpdaterFiltered';
 import { getNumberProductFiltered } from './Updater/NumProductUpdaterFiltered';
+import { useCategoryContext } from '../../Context/CategoryContex';
 
 const Product = () => {
 
@@ -117,13 +118,15 @@ const Product = () => {
 
     let orderNames = [];
     let filterNames = [];
+    
+    const { category: categoryList } = useCategoryContext();
 
     if (userType === "NegA") {
         orderNames = ["Prezzo crescente", "Prezzo decrescente", "Quantità", "Nome", "Rilevanza"];
-        filterNames = ["Bio", "Senza Lattosio", "Senza Glutine", "Vegetariano", "Vegan", "Km0", "In promozione"];
+        filterNames = [...categoryList.map((cat) => cat.categoryName), "In promozione"];
     } else if (userType === "ConA") {
         orderNames = ["Prezzo crescente", "Prezzo decrescente", "Quantità", "Nome", "Rilevanza"];
-        filterNames = ["Bio", "Senza Lattosio", "Senza Glutine", "Vegetariano", "Vegan", "Km0", "In promozione", "Più vicini a Te"];
+        filterNames = [...categoryList.map((cat) => cat.categoryName), "In promozione", "Più vicini a Te"];
     }
 
     if (loading) return <div><LoadingPage /></div>;

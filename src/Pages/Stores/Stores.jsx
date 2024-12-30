@@ -4,6 +4,7 @@ import CardLongList from "../../Components/CardLongList/CardLongList";
 import SearchBar from "../../Components/SearchBar/SearchBar";
 import ButtonFilter from "../../Components/ButtonFilter/ButtonFilter";
 import "./Stores.css";
+import { useCategoryContext } from "../../Context/CategoryContex";
  
 // Simulazione del database di negozi
 
@@ -154,8 +155,9 @@ const Stores = () => {
     console.log("posizione utente", userPosition);
   };
 
+  const { category: categoryList } = useCategoryContext();
   const orderNames = ["Nome", "Rilevanza", "Valutazione"];
-  const filterNames = ["Bio", "Senza Lattosio", "Senza Glutine", "Vegetariano", "Vegan", "Km0"];
+  const filterNames = [...categoryList.map((cat) => cat.categoryName)];
 
   return (
     <div>
