@@ -47,9 +47,9 @@ function ShopWindow(props) {
                         <div className="boxDescription">
                             <p className="descrizione">{props.Description}</p>
                         </div>
-                        {props.tipo == "prodotto" && props.currentPrice != "" && (
+                        {props.tipo == "prodotto" && (
                             <p className="prezzo-ShopWindow">
-                                {props.originalPrice ? (
+                                {props.currentPrice != "" ? (
                                     <>
                                         <span className="current-price-card">
                                           {props.currentPrice}
@@ -128,7 +128,7 @@ function ShopWindow(props) {
                                 modify={props.modify}
                             >
                                 <p className="prezzo-ShopWindow">
-                                    {props.originalPrice ? (
+                                    {props.originalPrice != "" ? (
                                         <>
                                           <span className="current-price-card">
                                             {props.currentPrice}
