@@ -9,6 +9,7 @@ import DifficultyIcon from '../Card/assets/difficolta.svg';
 import CookingTimeIcon from '../Card/assets/tempoCottura.svg';
 import PreparationTimeIcon from '../Card/assets/tempoPreparazione.svg';
 import { useCategoryContext } from "../../Context/CategoryContex";
+import { useNavigate } from "react-router-dom";
 
 /**
  * 
@@ -37,6 +38,7 @@ Tipologia Card (type)
 */
 
 const Card = (props) => {
+    const navigate = useNavigate();
 
     const isProduct = props.type === "product";
     const { category: categoryList } = useCategoryContext();
@@ -72,15 +74,16 @@ const Card = (props) => {
 
 
     const straightContent = props.straight === true;
-    return (
-        <>
-            <div
-                className="card"
-                style={{
-                    flexDirection: props.straight === "false" ? "" : "column",
-                }}
-            >
-                <Link to={isProduct ? {
+
+
+    const handleClickCard = () => {
+        let linkType = null;
+        isProduct ? linkType = "/prodotto" : linkType = "/ricetta"
+        navigate(linkType, { state: { id: props.id } });
+    };
+
+    /*
+    <Link to={isProduct ? {
                     pathname: "/prodotto",
                     state: { id: props.id }
                 } :
@@ -88,17 +91,27 @@ const Card = (props) => {
                     className="product-link">
                     <img className="card-image" src={props.image} />
                 </Link>
+    */
+
+    return (
+        <>
+            <div
+                className="card"
+                style={{
+                    flexDirection: props.straight === "false" ? "" : "column",
+                }}
+
+
+            >
+                <div onClick={handleClickCard} className='cliccable-link'>
+                    <img className="card-image" src={props.image} />
+                </div>
+
 
                 <div className="card-info">
-                    <Link
-                        to={isProduct ? {
-                            pathname: "/prodotto",
-                            state: { id: props.id }
-                        } :
-                            `/ricetta/${props.id}`}
-                        className="product-link">
-                        <h3 className="card-name">{props.name}</h3>
-                    </Link>
+
+                    <div onClick={handleClickCard} className='cliccable-link'>
+                        <h3 className="card-name" >{props.name}</h3></div>
 
                     {/* Sezione categorie */}
                     {props.categories && props.categories.length > 0 && (

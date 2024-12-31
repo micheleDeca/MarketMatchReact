@@ -18,6 +18,9 @@
 
 
 }
+.cliccable-link{
+  cursor: pointer;
+}
 
 .card-image {
   width: 170px;

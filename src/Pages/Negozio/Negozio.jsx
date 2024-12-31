@@ -49,7 +49,7 @@ function Negozio() {
         foto: "url_della_foto.jpg",
         descrizione:
             "Descrizione Negozio, Descrizione Negozio, Descrizione Negozio...",
-        categorie: ["Bio", "Senza lattosio", "Vegan", "Senza glutine", "Km0", "Vegetariano"],
+        categorie: ["Bio", "Senza lattosio", "Vegano", "Senza glutine", "Km0", "Vegetariano","Sostenibile"],
         orari: [
             {giorno: "Lunedì", orario: "09:00 - 13:00 / 15:30 - 19:30"},
             {giorno: "Martedì", orario: "09:00 - 13:00 / 15:30 - 19:30"},

@@ -9,12 +9,15 @@ import { BASE_URL, IS_MOCKKED } from "../../config.js";
 import { useState, useEffect } from "react";
 import { getToken } from "../../LocalStorage/TokenStorage.jsx";
 import { useUserContext } from "../../Context/UserContext";
+import { useLocation } from "react-router-dom";
 
 function Prodotto() {
   const { userType } = useUserContext();
   const [modify, setModify] = useState("");
-  const { id } = location.state || {}; // fallback per evitare errori se `state` è null
-  console.log("ID", id);
+  
+  const location = useLocation();
+    const { id } = location.state || {}; // Fallback se `state` è null
+    console.log("ID", id);
   /*
   const [prodottoInfo, setProdottoInfo] = useState({
     "Quantità": {
