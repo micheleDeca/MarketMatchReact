@@ -48,7 +48,7 @@ function Prodotto() {
         const response = await axios.post(
           `${BASE_URL}/api/product/getProduct`,
           {
-            productId: "a1283b0a-d738-43f9-82b5-643fb0fc08ab",
+            productId: id,
             userLatitude: 41.1090642,
             userLongitude: 16.8719847,
           },
@@ -67,14 +67,13 @@ function Prodotto() {
 
     getProduct();
   }, []); //inserire prossimamente, aggiornamento in base ai filtri scelti
-
+  /*
   useEffect(() => {
     console.log("AAAA",prodottoInfo);
        },[prodottoInfo]);
-
+  */
   return (
     <>
-    
       <div
         className={`popup-edit${modify === "" ? "" : "-active"}` /*AGGIUNTO*/}
       >
@@ -86,19 +85,23 @@ function Prodotto() {
         />
       </div>
       <div className="boxProdotto">
-        <div className="containerProdotto">
-          <span className="spaceProdotto"></span>
-          <span className="spaceProdotto2">
-            <Button name="Elimina Prodotto" />
-          </span>
-        </div>
+        {userType === "NegA" && (
+          <div className="containerProdotto">
+            <span className="spaceProdotto"></span>
+            <span className="spaceProdotto2">
+              <Button name="Elimina Prodotto" />
+            </span>
+          </div>
+        )}
         <ShopWindow
           Description={prodottoInfo.Descrizione}
           ImageDescription={prodottoInfo.Foto}
           Name={prodottoInfo.Nome}
           tipo="prodotto"
-          currentPrice={prodottoInfo.PrezzoOfferta ? prodottoInfo.PrezzoOfferta + "€" : ""}
-          originalPrice={prodottoInfo.Prezzo+"€"}
+          currentPrice={
+            prodottoInfo.PrezzoOfferta ? prodottoInfo.PrezzoOfferta + "€" : ""
+          }
+          originalPrice={prodottoInfo.Prezzo + "€"}
           modify={setModify}
           badges={prodottoInfo.Categorie}
           mode={userType}
@@ -111,19 +114,14 @@ function Prodotto() {
         )}
           */}
         <Caratteristiche
-          peso={
-            "Venduto in: " + prodottoInfo.PesoDimensioniUnitaria
-          }
-          quantita={
-            prodottoInfo.Quantità
-          }
+          peso={"Venduto in: " + prodottoInfo.PesoDimensioniUnitaria}
+          quantita={prodottoInfo.Quantità}
           dimensioni={prodottoInfo.DescrizioneUnita}
           modify={setModify}
           disponibile={prodottoInfo.Disponibile}
           tipo={userType}
         />
       </div>
-    
     </>
   );
 }
