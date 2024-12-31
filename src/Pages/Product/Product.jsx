@@ -54,6 +54,7 @@ const Product = () => {
         searchName: null   //Filtro ricerca
         });
 
+
     // Effetto per richiedere quantità prodotti per pagination
     useEffect(() => {
         let isMounted = true; // Flag per evitare aggiornamenti su componenti smontati
@@ -80,7 +81,7 @@ const Product = () => {
 
 
  
-    }, []); //inserire prossimamente, aggiornamento in base ai filtri scelti
+    }, [requestParams]); //inserire prossimamente, aggiornamento in base ai filtri scelti
 
     // Effetto per caricare i prodotti quando cambia la pagina
     useEffect(() => {
@@ -114,7 +115,7 @@ const Product = () => {
 
         //fetchProducts(currentPage);
 
-    }, [currentPage]);
+    }, [currentPage, requestParams]);
 
     let orderNames = [];
     let filterNames = [];

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./SearchBar.css";
 import SearchIcon from './search.svg';
 
@@ -9,10 +10,20 @@ import SearchIcon from './search.svg';
  */
 
 function SearchBar(props) {
+
+  const [inputValue, setInputValue] = useState("");
+
+    // Funzione per gestire il cambiamento dell'input
+    const handleInputChange = (event) => {
+        setInputValue(event.target.value); // Aggiorna lo stato con il valore corrente dell'input
+        console.log("Valore aggiornato:", event.target.value); // Stampa in console per debug
+    };
+
   return (
     <>
       <div className="SearchBarBox">
-        <input type="text" className="SearchBarInput" placeholder={props.placeholder || "Cerca..."}/>
+        <input type="text" className="SearchBarInput" placeholder={props.placeholder || "Cerca..."} value={inputValue} 
+         onChange={handleInputChange}/>
         <img src={SearchIcon} alt="search" className="SearchBarImg"/>
       </div>
     </>
