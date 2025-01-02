@@ -3,86 +3,238 @@ import PopUpModify from "../../Components/PopUpModify/PopUpModify.jsx";
 import ShopWindow from "../../Components/shop_window/shop_window.jsx";
 import RecipesInformation from "../../Components/RecipesInformation/RecipesInformation.jsx";
 import Ingredients from "../../Components/Ingredients/Ingredients.jsx";
-import React, {useState} from "react";
 import ProductLongList from "../../Components/CardLongList/CardLongList.jsx";
+import axios from "axios";
+import { BASE_URL, IS_MOCKKED } from "../../config.js";
+import { useState, useEffect } from "react";
+import { getToken } from "../../LocalStorage/TokenStorage.jsx";
+import { useUserContext } from "../../Context/UserContext";
+import { useLocation } from "react-router-dom";
+import LoadingPage from "../LoadingPage/LoadingPage.jsx";
 
 function Ricetta() {
+  const { userType } = useUserContext();
+  const [modify, setModify] = useState("");
+  const location = useLocation();
+  const { id } = location.state || {}; // Fallback se `state` è null
+  const [ricettaInfo, setRicettaInfo] = useState([]);
+  const token = getToken();
+  const [loading, setLoading] = useState(true); // Stato per il caricamento
+  const [error, setError] = useState(null);
 
-    const [ricettaInfo, setRicettaInfo] = useState({
-        nome: "Risotto ai Funghi Porcini Bio",
-        foto: "url_della_foto.jpg",
-        descrizione: "Un cremoso risotto preparato con funghi porcini freschi e ingredienti biologici, ideale per una cena raffinata e salutare.",
-        categorie: ["Bio", "Senza lattosio", "Vegan", "Senza glutine", "Km0", "Vegetariano"],
-        badgeInformativi: {
-            difficolta: "1",
-            tempoPreparazione: "4",
-            tempoCottura: "3",
-            costo: "2",
-            porzioni: "6",
-        },
+  useEffect(() => {
+    console.log("ID", id);
+    if (!IS_MOCKKED) {
+      const getRecipe = async () => {
+        try {
+          const response = await axios.post(
+            `${BASE_URL}/api/recipe/getRecipe`,
+            {
+              recipeId: "fb8f2ed1-e0e2-4a99-aeee-4cff7d0906af",
+            },
+            {
+              headers: {
+                Authorization: `Bearer ${token}`, // Token di autenticazione
+              },
+            }
+          );
+          setRicettaInfo(response.data);
+          setLoading(false);
+        } catch (error) {
+          setError(error.message); // Gestisci l'errore
+          setLoading(false);
+        }
+      };
+      getRecipe();
+    } else {
+      setRicettaInfo({
+        TempoCottura: 30,
+        Costo: 3,
+        Descrizione:
+          "Una zuppa nutriente e salutare a base di lenticchie e quinoa, arricchita con verdure fresche e spezie, ideale per i mesi più freddi.",
         Ingredienti: [
-            {Nome: "Riso Carnaroli bio", Quantita: "320g"},
-            {Nome: "Funghi porcini freschi bio", Quantita: "400g"},
-            {Nome: "Brodo vegetale bio", Quantita: "1,5L"},
-            {Nome: "Cipolla bio", Quantita: "1 media"},
-            {Nome: "Olio extravergine d'oliva bio", Quantita: "3 cucchiai"},
-            {Nome: "Vino bianco bio", Quantita: "100ml"},
-            {Nome: "Parmigiano Reggiano bio", Quantita: "50g"},
-            {Nome: "Prezzemolo fresco bio", Quantita: "q.b."}
+          {
+            Quantita: "200g",
+            Nome: "Pomodori pelati bio",
+          },
+          {
+            Quantita: "200g",
+            Nome: "Lenticchie bio",
+          },
+          {
+            Quantita: "q.b.",
+            Nome: "Sale e pepe",
+          },
+          {
+            Quantita: "1 gambo",
+            Nome: "Sedano bio",
+          },
+          {
+            Quantita: "100g",
+            Nome: "Quinoa bio",
+          },
+          {
+            Quantita: "1L",
+            Nome: "Brodo vegetale bio",
+          },
+          {
+            Quantita: "2 medie",
+            Nome: "Carote bio",
+          },
+          {
+            Quantita: "2 cucchiai",
+            Nome: "Olio extravergine d'oliva bio",
+          },
+          {
+            Quantita: "1 cucchiaino",
+            Nome: "Curcuma in polvere bio",
+          },
+          {
+            Quantita: "1 media",
+            Nome: "Cipolla bio",
+          },
         ],
+        TempoPreparazione: 10,
         Passaggi: [
-            {
-                productName: "Preparare i funghi porcini",
-                detail: "Pulire accuratamente i funghi porcini con un panno umido per rimuovere ogni residuo di terra e tagliarli a fette sottili.",
-                image: "risotto_funghi/1.png"
+          {
+            NumeroPassaggio: {
+              low: 8,
+              high: 0,
             },
-            {
-                productName: "Soffriggere la cipolla",
-                detail: "Tritare finemente la cipolla e soffriggerla a fuoco medio in una padella con olio extravergine d'oliva fino a doratura leggera.",
-                image: "risotto_funghi/2.png"
+            Descrizione:
+              "Servire la zuppa calda, guarnita con un filo d'olio a crudo.",
+            Foto: "zuppa_lenticchie_quinoa/8.png",
+            Titolo: "Servire",
+          },
+          {
+            NumeroPassaggio: {
+              low: 6,
+              high: 0,
             },
-            {
-                productName: "Cuocere i funghi",
-                detail: "Aggiungere i funghi porcini nella padella con la cipolla e cuocere per circa 5 minuti, mescolando di tanto in tanto.",
-                image: "risotto_funghi/3.png"
+            Descrizione:
+              "Unire la quinoa sciacquata e la curcuma, continuando la cottura per altri 10 minuti.",
+            Foto: "zuppa_lenticchie_quinoa/6.png",
+            Titolo: "Aggiungere la quinoa",
+          },
+          {
+            NumeroPassaggio: {
+              low: 3,
+              high: 0,
             },
+            Descrizione:
+              "Unire le lenticchie alle verdure soffritte e mescolare per insaporire.",
+            Foto: "zuppa_lenticchie_quinoa/3.png",
+            Titolo: "Aggiungere le lenticchie",
+          },
+          {
+            NumeroPassaggio: {
+              low: 5,
+              high: 0,
+            },
+            Descrizione:
+              "Cuocere a fuoco medio per circa 20 minuti, mescolando di tanto in tanto.",
+            Foto: "zuppa_lenticchie_quinoa/5.png",
+            Titolo: "Cuocere le lenticchie",
+          },
+          {
+            NumeroPassaggio: {
+              low: 7,
+              high: 0,
+            },
+            Descrizione: "Aggiustare di sale e pepe secondo il gusto.",
+            Foto: "zuppa_lenticchie_quinoa/7.png",
+            Titolo: "Regolare di sale e pepe",
+          },
+          {
+            NumeroPassaggio: {
+              low: 4,
+              high: 0,
+            },
+            Descrizione:
+              "Aggiungere il brodo vegetale caldo e i pomodori pelati, quindi portare a ebollizione.",
+            Foto: "zuppa_lenticchie_quinoa/4.png",
+            Titolo: "Versare il brodo",
+          },
+          {
+            NumeroPassaggio: {
+              low: 1,
+              high: 0,
+            },
+            Descrizione:
+              "Tagliare a cubetti le carote, il sedano e la cipolla.",
+            Foto: "zuppa_lenticchie_quinoa/1.png",
+            Titolo: "Preparare le verdure",
+          },
+          {
+            NumeroPassaggio: {
+              low: 2,
+              high: 0,
+            },
+            Descrizione:
+              "In una pentola, scaldare l'olio e soffriggere carote, sedano e cipolla per 5 minuti.",
+            Foto: "zuppa_lenticchie_quinoa/2.png",
+            Titolo: "Soffriggere le verdure",
+          },
         ],
-    });
+        FotoRicetta: "zuppa_lenticchie_quinoa/zuppa_finale.png",
+        Nome: "Zuppa di Lenticchie e Quinoa Bio",
+        Difficoltà: 2,
+        Porzioni: 4,
+      });
+      setLoading(false);
+    }
+  }, []);
 
-    const [modify, setModify] = useState("");
-
+  if (loading)
     return (
-
-        <>
-            <div className={`popup-edit${modify === "" ? "" : "-active"}`  /*AGGIUNTO*/}>
-                <PopUpModify modify={modify} setModify={setModify} negozioInfo={ricettaInfo}
-                             setNegozioInfo={setRicettaInfo}/>
-            </div>
-            <div className="boxRicetta">
-                <ShopWindow
-                    Description={ricettaInfo.descrizione}
-                    ImageDescription={ricettaInfo.foto}
-                    Name={ricettaInfo.nome}
-                    modify={setModify}
-                    badges={ricettaInfo.categorie}
-                    mode={"ConA"}
-                />
-                <div className="Informazioni">
-                    <RecipesInformation
-                        difficolta={ricettaInfo.badgeInformativi.difficolta}
-                        preparazione={ricettaInfo.badgeInformativi.tempoPreparazione + " min"}
-                        cottura={ricettaInfo.badgeInformativi.tempoCottura + " min"}
-                        costo={ricettaInfo.badgeInformativi.costo + "€"}/>
-                </div>
-                <div className="Ingredienti">
-                    <Ingredients ingredienti={ricettaInfo.Ingredienti} name="Prenota prodotti"/>
-                </div>
-                <ProductLongList
-                    title="Preparazione"
-                    products={ricettaInfo.Passaggi}/>
-            </div>
-        </>
+      <div>
+        <LoadingPage />
+      </div>
     );
+
+  if (error) return <div>Errore: {error}</div>;
+
+  return (
+    <>
+      <div
+        className={`popup-edit${modify === "" ? "" : "-active"}` /*AGGIUNTO*/}
+      >
+        <PopUpModify
+          modify={modify}
+          setModify={setModify}
+          negozioInfo={ricettaInfo}
+          setNegozioInfo={setRicettaInfo}
+        />
+      </div>
+      <div className="boxRicetta">
+        <ShopWindow
+          Description={ricettaInfo.Descrizione}
+          ImageDescription={ricettaInfo.FotoRicetta}
+          Name={ricettaInfo.Nome}
+          modify={setModify}
+          badges={ricettaInfo.categorie}
+          mode={"ConA"}
+        />
+        <div className="Informazioni">
+          <RecipesInformation
+            difficolta={ricettaInfo.Difficoltà}
+            preparazione={ricettaInfo.TempoPreparazione + " min"}
+            cottura={ricettaInfo.TempoCottura + " min"}
+            costo={ricettaInfo.Costo + "€"}
+          />
+        </div>
+        <div className="Ingredienti">
+          <Ingredients
+            ingredienti={ricettaInfo.Ingredienti}
+            name="Prenota prodotti"
+          />
+        </div>
+        {/*
+        <ProductLongList title="Preparazione" products={ricettaInfo.Passaggi} />
+        */}
+      </div>
+    </>
+  );
 }
 
 export default Ricetta;

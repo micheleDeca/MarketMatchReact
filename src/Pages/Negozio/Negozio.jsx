@@ -63,7 +63,7 @@ function Negozio() {
           const response = await axios.post(
             `${BASE_URL}/api/store/getShop`,
             {
-              negozioUuid: 'e9fddc4f-87f8-40b7-abaf-df67f1817ea3',
+              negozioUuid: 'bd0afb3c-8ff2-4d35-91ea-8af2290cf775',
               userLatitude: 41.1090642,
               userLongitude: 16.8719847,
             },
@@ -171,7 +171,7 @@ function Negozio() {
           <Stelle starNumber={1} />
         </div>
         <ShopWindow
-          ImageDescription="/prodotto/10.jpg"
+          ImageDescription={negozioInfo.Logo}
           Description={negozioInfo.Descrizione}
           Name={negozioInfo.RagioneSociale}
           mode={userType}
