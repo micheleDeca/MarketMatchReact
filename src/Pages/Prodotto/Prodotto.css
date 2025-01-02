@@ -31,6 +31,7 @@
 }
 
 .spaceProdotto{
+    color: darkslateblue;
     width: 80%;
 }
 
@@ -65,4 +66,11 @@
     .CarrelloProd{
         justify-content: center;
     }
+}
+
+@media (orientation: portrait) and (max-width: 358px){
+    .spaceProdotto{
+        font-size: 14px;
+    }
+
 }

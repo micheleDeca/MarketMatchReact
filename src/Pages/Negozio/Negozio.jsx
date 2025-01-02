@@ -109,14 +109,14 @@ function Negozio() {
         {
           productName: "Pane Integrale Bio",
           detail: "Pane 100% integrale con ingredienti biologici.",
-          originalPrice: 3.5,
+          currentPrice: 3.5,
           image: "test/2.webp",
           badges: ["Bio"],
         },
         {
           productName: "Yogurt Bio con Mirtilli",
           detail: "Yogurt biologico con mirtilli freschi, senza lattosio.",
-          originalPrice: 2.5,
+          currentPrice: 2.5,
           image: "test/4.jpeg",
           badges: ["Vegano", "Bio", "Vegetariano"],
         },
@@ -124,7 +124,7 @@ function Negozio() {
           productName: "Burger Vegetale Proteinico",
           detail:
             "Burger vegetale ad alto contenuto proteico, perfetto per sportivi.",
-          originalPrice: 4.99,
+          currentPrice: 4.99,
           image: "test/5.webp",
           badges: ["Vegano"],
         },
