@@ -189,7 +189,7 @@ function Negozio() {
           contatti={negozioInfo.Cellulare + ", " + negozioInfo.Mail}
           modify={setModify}
         />
-        {/*<ProductLongList title="Prodotti in vendita" products={prodottiInfo} />*/}
+        {<ProductLongList title="Prodotti in vendita" products={prodottiInfo} type={"product"} />}
       </div>
     </>
   );

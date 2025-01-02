@@ -13,7 +13,6 @@ const Badge = (props) => {
     }
 
     const normalizedCategory = categoryName.toLowerCase();
-    console.log(normalizedCategory);
     // Cerca la categoria nell'array
     const categoryItem = categoryList.find(
       (cat) => cat.categoryName.toLowerCase() === normalizedCategory
