@@ -13,7 +13,9 @@
 
 
 }
-
+.cliccable-link{
+  cursor: pointer;
+}
 .card-image-long {
   display: flex;
   /* Disposizione orizzontale */

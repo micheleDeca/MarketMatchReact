@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './CardLong.css';
 import CategoryLabelList from '../CategoryLabelList/CategoryLabelList';
 import Counter from "../../Components/Counter/Counter";
+import { useNavigate } from "react-router-dom";
 
 /**
  * Componente ProductLong
@@ -47,6 +48,9 @@ const CardLong = (props) => {
     const maxLength = 130;
     const maxLengthMobile = 50;
 
+    const navigate = useNavigate();
+    const isStore = props.type === "shop";
+    const isProduct = props.type === "product";
 
     // Funzione per troncare il testo
     const truncateText = (text) => {
@@ -74,19 +78,27 @@ const CardLong = (props) => {
     }, []);
 
 
-    
-    
+    const handleClickCard = () => {
+        let linkType = null;
+        isStore ? linkType = "/negozio" : (isProduct ? linkType = "/prodotto" : linkType = "");
+        
+        navigate(linkType, { state: { id: props.id } });
+    };
+
     return (
         <div className="card-long">
-            <img
-                className="card-image-long"
-                src={props.image}
-            />
+            <div onClick={handleClickCard} className='cliccable-link'>
+
+                <img
+                    className="card-image-long"
+                    src={props.image}
+                />
+            </div>
             <div className="card-info-long">
                 <div className="card-name-category-long">
-                    <h3 className="card-name-long">
+                    <div onClick={handleClickCard} className='cliccable-link'>  <h3 className="card-name-long">
                         {props.quantity ? `${props.quantity} x ` : ''}{props.productName}
-                    </h3>
+                    </h3> </div>
                     <CategoryLabelList badges={props.badges} />
                 </div>
                 <p className="card-detail-long">
@@ -107,7 +119,7 @@ const CardLong = (props) => {
                         )}
                     </div>
                     {(props.getCounter != null) && <div className="count-container-card-long">
-                        <Counter initialQuantity={props.quantity} getCounter={props.getCounter}/>
+                        <Counter initialQuantity={props.quantity} getCounter={props.getCounter} />
                     </div>}
 
                 </div>

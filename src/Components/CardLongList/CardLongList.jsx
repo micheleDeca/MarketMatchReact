@@ -34,7 +34,8 @@ const CardLongList = (props) => {
       {cardProduct && <span className="product-list-long">
         {paginatedItems.map((product, index) => (
           <CardLong
-            key={index}
+            key={product.id}
+            id={product.id}
             image={product.image}
             quantity={product.quantity}
             productName={product.productName}
@@ -43,18 +44,21 @@ const CardLongList = (props) => {
             originalPrice={product.originalPrice}
             badges={product.badges}
             getCounter={props.getCounter}
+            type={props.type}
           />
         ))}
       </span>}
       {cardShop && (<span className="product-list-long">
         {paginatedItems.map((shop, index) => (
           <CardLong
-            key={index}
+            key={shop.id}
+            id={shop.id}
             image={"http://4.232.65.20/assets/"+shop.image}
             productName={shop.name}
             detail={"Distante: " + shop.distance.toFixed(2) + " Km"}
             detail2={shop.city + ", " + shop.address}
             badges={shop.categories}
+            type={props.type}
           />
           
         ))}
