@@ -14,6 +14,7 @@ export default function ButtonFilter(value) {
     setIsPopupOpen((prev) => !prev);
   };
 
+
   return (
     <>
       <button className="filter" onClick={togglePopup}>
@@ -21,7 +22,8 @@ export default function ButtonFilter(value) {
       </button>
 
         {isPopupOpen &&
-          (<div className='filter-popup-container'><FilterPopUp order={orderNames} filter={filterNames} type={value.type} 
+          (<div className='filter-popup-container'><FilterPopUp onStateChange={value.onStateChange} order={orderNames} filter={filterNames}
+             type={value.type} 
             setState={setIsPopupOpen} /></div>)
         }
 

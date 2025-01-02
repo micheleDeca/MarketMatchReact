@@ -94,10 +94,6 @@
   /*z-index gestisce la sovrapposizione tra gli elementi -> 1 starà sotto al 2 */
 }
 
-.range-slider input[type="range"].slider-min {
-  z-index: 2;
-  cursor: pointer;
-}
 
 .range-slider input[type="range"].slider-max {
   z-index: 2;

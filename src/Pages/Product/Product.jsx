@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import ProductContainer from '../../Components/CardContainer/CardContainer';
 import './Product.css';
 import { Pagination } from 'react-pagination-bar';
@@ -52,8 +52,49 @@ const Product = () => {
         userLongitude: 16.8719847,
         maxDistance: 500,     //distanza tra utente e prodotto in Km 
         searchName: null   //Filtro ricerca
-        });
+    });
 
+    const handleSearchStateChange = (key, value) => {
+        setRequestParams((prevState) => ({
+            ...prevState,
+            [key]: value, // Aggiorna dinamicamente ogni parametro dei filtri con il valore fornito
+        }));
+    };
+
+    const handleFilterStateChange = (() => {
+
+    const intialParams = {
+            minPrezzo: null,
+            maxPrezzo: null,
+            filterPrezzoOfferta: null,
+            categories: null,
+            sortOrder: [null, null],
+            userLatitude: 41.1090642,
+            userLongitude: 16.8719847,
+            maxDistance: 500,
+            searchName: null
+        }  // valori di default dei filtri
+
+        let tempParams = intialParams; // Variabile temporanea per memorizzare le coppie chiave-valore fino al send
+
+
+        return (key, value) => {
+            if (key === "send" && value === true) {
+                // Quando si verifica la coppia `send: true`, aggiorna lo stato
+                setRequestParams((prevState) => ({
+                    ...tempParams // Applica tutte le coppie memorizzate
+                }));
+
+                tempParams = intialParams; // Resetta i parametri temporanei
+
+            } else {
+                // Memorizza la coppia chiave-valore senza aggiornare lo stato
+                tempParams[key] = value;
+            }
+        };
+    })();
+
+    console.log(requestParams);
 
     // Effetto per richiedere quantità prodotti per pagination
     useEffect(() => {
@@ -73,14 +114,14 @@ const Product = () => {
         };
 
         getNumProducts();
- 
+
         // Cleanup: evita aggiornamenti su componenti smontati
         return () => {
             isMounted = false;
         };
 
 
- 
+
     }, [requestParams]); //inserire prossimamente, aggiornamento in base ai filtri scelti
 
     // Effetto per caricare i prodotti quando cambia la pagina
@@ -89,7 +130,7 @@ const Product = () => {
 
         const getProducts = async () => {
             try {
-                const productsData = await fetchProductFilteredUpdater(currentPage, productsPerPage,requestParams); // Usa la funzione dal modulo
+                const productsData = await fetchProductFilteredUpdater(currentPage, productsPerPage, requestParams); // Usa la funzione dal modulo
                 if (isMounted) {
                     setProducts(productsData); // Aggiorna lo stato
                     setLoading(false); // Ferma il caricamento
@@ -106,7 +147,7 @@ const Product = () => {
 
         // Salva la pagina corrente nel sessionStorage
         sessionStorage.setItem('currentPage', currentPage);
-        
+
         // Cleanup: evita aggiornamenti su componenti smontati
         return () => {
             isMounted = false;
@@ -119,7 +160,7 @@ const Product = () => {
 
     let orderNames = [];
     let filterNames = [];
-    
+
     const { category: categoryList } = useCategoryContext();
 
     if (userType === "NegA") {
@@ -133,6 +174,7 @@ const Product = () => {
     if (loading) return <div><LoadingPage /></div>;
     if (error) return <div>Errore: {error}</div>;
 
+
     return (
         <div className="products-page">
             <div className="product-header">
@@ -141,10 +183,10 @@ const Product = () => {
                         <Button name="Inserisci prodotto" function={goToProduct} />
                     </div>)}
                 <div className="searchBar">
-                    <SearchBar />
+                    <SearchBar type="ricerca" onStateChange={handleSearchStateChange} />
                 </div>
                 <div className="filterButton">
-                    <ButtonFilter order={orderNames} filter={filterNames} type={userType === "NegA" ? "Neg, Prod" : "ConA, Prod"}
+                    <ButtonFilter onStateChange={handleFilterStateChange} order={orderNames} filter={filterNames} type={userType === "NegA" ? "Neg, Prod" : "ConA, Prod"}
                     />
                 </div>
             </div>
