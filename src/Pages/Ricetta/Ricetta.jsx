@@ -229,9 +229,9 @@ function Ricetta() {
             name="Prenota prodotti"
           />
         </div>
-        {/*
-        <ProductLongList title="Preparazione" products={ricettaInfo.Passaggi} />
-        */}
+        {
+        <ProductLongList title="Preparazione" products={ricettaInfo.Passaggi} type={"recipe"}/>
+        }
       </div>
     </>
   );
