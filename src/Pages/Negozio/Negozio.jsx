@@ -133,66 +133,67 @@ function Negozio() {
     }
   }, []);
 
-  if (loading)
+  if (loading) {
     return (
       <div>
         <LoadingPage />
       </div>
     );
-
-  if (error) return <div>Errore: {error}</div>;
-
-  return (
-    <>
-      <div
-        className={`popup-edit${modify === "" ? "" : "-active"}` /*AGGIUNTO*/}
-      >
-        <PopUpModify
-          modify={modify}
-          setModify={setModify}
-          negozioInfo={negozioInfo}
-          setNegozioInfo={setNegozioInfo}
-        />
-      </div>
-      <div className="boxNegozio">
-        <div className="star">
-          <Stelle starNumber={1} />
+  } else if (error) {
+    return <div>Errore: {error}</div>;
+  } else {
+    return (
+      <>
+        <div
+          className={`popup-edit${modify === "" ? "" : "-active"}` /*AGGIUNTO*/}
+        >
+          <PopUpModify
+            modify={modify}
+            setModify={setModify}
+            negozioInfo={negozioInfo}
+            setNegozioInfo={setNegozioInfo}
+          />
         </div>
-        <ShopWindow
-          ImageDescription={negozioInfo.Logo}
-          Description={negozioInfo.Descrizione}
-          Name={negozioInfo.RagioneSociale}
-          mode={userType}
-          modify={setModify}
-          badges={negozioInfo.Categorie}
-        />
-        <Orari
-          mode={userType}
-          lunedi={negozioInfo.OrarioNegozio[0]}
-          martedi={negozioInfo.OrarioNegozio[1]}
-          mercoledi={negozioInfo.OrarioNegozio[2]}
-          giovedi={negozioInfo.OrarioNegozio[3]}
-          venerdi={negozioInfo.OrarioNegozio[4]}
-          sabato={negozioInfo.OrarioNegozio[5]}
-          domenica={negozioInfo.OrarioNegozio[6]}
-          posizione={
-            negozioInfo.Regione +
-            ", " +
-            negozioInfo.Provincia +
-            ", " +
-            negozioInfo.Città +
-            ", " +
-            negozioInfo.Cap +
-            ", " +
-            negozioInfo.Indirizzo
-          }
-          contatti={negozioInfo.Cellulare + ", " + negozioInfo.Mail}
-          modify={setModify}
-        />
-        {<ProductLongList title="Prodotti in vendita" products={prodottiInfo} type={"product"} />}
-      </div>
-    </>
-  );
+        <div className="boxNegozio">
+          <div className="star">
+            <Stelle starNumber={1} />
+          </div>
+          <ShopWindow
+            ImageDescription={negozioInfo.Logo}
+            Description={negozioInfo.Descrizione}
+            Name={negozioInfo.RagioneSociale}
+            mode={userType}
+            modify={setModify}
+            badges={negozioInfo.Categorie}
+          />
+          <Orari
+            mode={userType}
+            lunedi={negozioInfo.OrarioNegozio[0]}
+            martedi={negozioInfo.OrarioNegozio[1]}
+            mercoledi={negozioInfo.OrarioNegozio[2]}
+            giovedi={negozioInfo.OrarioNegozio[3]}
+            venerdi={negozioInfo.OrarioNegozio[4]}
+            sabato={negozioInfo.OrarioNegozio[5]}
+            domenica={negozioInfo.OrarioNegozio[6]}
+            posizione={
+              negozioInfo.Regione +
+              ", " +
+              negozioInfo.Provincia +
+              ", " +
+              negozioInfo.Città +
+              ", " +
+              negozioInfo.Cap +
+              ", " +
+              negozioInfo.Indirizzo
+            }
+            contatti={negozioInfo.Cellulare + ", " + negozioInfo.Mail}
+            modify={setModify}
+          />
+          <ProductLongList title="Prodotti in vendita" products={prodottiInfo} type={"product"} />
+        </div>
+      </>
+    );
+  }
 }
 
 export default Negozio;
