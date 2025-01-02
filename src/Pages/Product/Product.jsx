@@ -45,9 +45,8 @@ const Product = () => {
         maxPrezzo: null,
         filterPrezzoOfferta: null,
         categories: null,           //Es. ["Vegano", "Bio"]
-        sortOrder: [null, null],    //sortOrder[0] = prezzoCrescente/prezzoDecrescente/null
-                                    //sortOrder[1] = nome/rilevanza/vicinanza/null
-                                    //Possibile combinare prezzo e uno tra nome e rilevanza
+        sortOrder: null,    //sortOrder  = prezzoCrescente/prezzoDecrescente/nome/rilevanza/vicinanza/null
+                                     //Possibile combinare prezzo e uno tra nome e rilevanza
         userLatitude: 41.1090642,   //Posizione utente, impostare una standard globale se utente non concede posizione/permessi
         userLongitude: 16.8719847,
         maxDistance: 500,     //distanza tra utente e prodotto in Km 
