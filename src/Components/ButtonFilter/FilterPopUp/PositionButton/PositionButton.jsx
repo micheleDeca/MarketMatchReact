@@ -1,7 +1,7 @@
 import { useState } from "react";
 import './PositionButton.css'
 
-export default function PositionButton() {
+export default function PositionButton(props) {
 
   const [location, setLocation] = useState(null);
   const [error, setError] = useState(null);
@@ -19,11 +19,14 @@ export default function PositionButton() {
         const { latitude, longitude } = position.coords; // Estrae latitudine e longitudine dall'oggetto position.coords
         setLocation({ latitude, longitude });
         setError(""); // Resetta eventuali errori
+        props.onPosChange('userLatitude', latitude);
+        props.onPosChange('userLongitude', longitude);
       },
       (err) => {
         setError("Consenti i permessi per la geolocalizzazione nel browser.");
       }
     );
+
   };
 
 

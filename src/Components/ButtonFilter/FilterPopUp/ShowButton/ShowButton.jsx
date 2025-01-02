@@ -1,8 +1,21 @@
+import { useState } from 'react';
 import './ShowButton.css'
 
-export default function ShowButton(value){
-    return(
-        <button type="submit" className="showButton" onClick={value.onclick}>  {/* quando si aggiungerà il submit vero fare un handler che
+export default function ShowButton(value) {
+    const [isSend, setIsSend] = useState(false);
+
+    const sendHandler = () => {
+        // Aggiorna lo stato di `isSend`
+        setIsSend((prev) => {
+            const newIsSend = !prev; // Calcola il nuovo valore
+            value.onSendChange('send', newIsSend); // Passa il valore aggiornato al genitore
+            value.onclick();
+            return newIsSend; // Aggiorna lo stato
+        })
+    }
+
+    return (
+        <button type="submit" className="showButton" onClick={sendHandler}>  {/* quando si aggiungerà il submit vero fare un handler che
                                                                                     chiude il popUp e manda i dati */}
             Mostra tutti i risultati
         </button>

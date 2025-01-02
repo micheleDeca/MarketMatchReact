@@ -24,7 +24,7 @@ export default function FilterPopUp(elements) {
     const [maxValue, setMaxValue] = useState(isWideRange ? 100 : 5); // Valore massimo
 
     /* Gestione dello Slider per la distanza */
-    const [minValueDistance, setMinValueDistance] = useState(0.1); // Valore minimo
+    const [minValueDistance] = useState(0.0); // Valore minimo
     const [maxValueDistance, setMaxValueDistance] = useState(10); // Valore massimo
 
     // Event handler per i valori di prezzo
@@ -34,6 +34,7 @@ export default function FilterPopUp(elements) {
             value = maxValue - 1; // Impedisce che il minimo superi il massimo
         }
         setMinValue(value);
+        elements.onStateChange('minPrezzo', value); // Passa chiave e valore per notificare il padre della modifica dell'input
     };
 
     const handleMaxChange = (event) => {
@@ -42,62 +43,76 @@ export default function FilterPopUp(elements) {
             value = minValue + 1; // Impedisce che il massimo vada sotto il minimo
         }
         setMaxValue(value);
+        elements.onStateChange('maxPrezzo', value); // Passa chiave e valore per notificare il padre della modifica dell'input
     };
 
     // Event handler per i valori di distanza
-    const handleMinChangeDistance = (event) => {
-        let value = parseFloat(event.target.value); // Usa parseFloat per supportare i decimali
-        if (value >= maxValueDistance - 0.1) {
-            value = maxValueDistance - 0.1;
-        }
-        setMinValueDistance(parseFloat(value.toFixed(1))); // Arrotonda a 1 decimale
-    };
-
     const handleMaxChangeDistance = (event) => {
         let value = parseFloat(event.target.value); // Usa parseFloat per supportare i decimali
         if (value <= minValueDistance + 0.1) {
             value = minValueDistance + 0.1;
         }
         setMaxValueDistance(parseFloat(value.toFixed(1))); // Arrotonda a 1 decimale
+        elements.onStateChange('maxDistance', parseFloat(value.toFixed(1))); // Passa chiave e valore per notificare il padre della modifica dell'input
     };
 
     const priceTypes = ["ConA, Prod", "ConA, Ric", "Neg, Prod"];
     const distanceTypes = ["ConA, Prod", "ConA, Neg"];
 
     const [selectedFilters, setSelectedFilters] = useState({
-        ordinamenti: [], // array per i filtri di ordinamento
+        ordinamento: "", // array per i filtri di ordinamento
         filtri: [] // array per gli altri filtri
     }); // Stato per i filtri selezionati
 
+    const [filterVicinoAte, setFilterVicinoAte] = useState(false); // Stato per il filtro "Più vicini a te"
+
     // Funzione per gestire la selezione dei filtri
     const handleFilterClick = (filterName) => {
+
         setSelectedFilters((prev) => {
             // Inizializziamo una variabile per il nuovo stato, con oggetto che contiene ordinamenti e filtri
             const newState = {
-                ordinamenti: [...prev.ordinamenti],
+                ordinamento: prev.ordinamento,
                 filtri: [...prev.filtri]
             };
 
             // Se il filtro è uno di quelli relativi all'ordinamento (prezzo, nome/rilevanza, quantità), escludiamo gli altri
             if (elements.order.includes(filterName)) {
-                // Se uno di questi filtri è selezionato, rimuoviamo gli altri filtri di ordinamento
-                newState.ordinamenti = newState.ordinamenti.filter(item => !elements.order.includes(item));
-                // Aggiungiamo il filtro ordinamento selezionato
-                newState.ordinamenti.push(filterName); // Aggiungiamo solo il filtro selezionato
+                if (newState.ordinamento === filterName) {
+                    newState.ordinamento = ""; // se l'ordinamento era già selezionato, lo si deseleziona
+                } else {
+                    // Se non è selezionato, Aggiungiamo il filtro ordinamento selezionato
+                    newState.ordinamento = filterName;
+                }
+
+                elements.onStateChange('sortOrder', newState.ordinamento); // Passa chiave e valore per notificare il padre della modifica dell'input
+
             } else {
                 // Gestione degli altri filtri (non di ordinamento), aggiungiamo o rimuoviamo senza restrizioni
                 if (newState.filtri.includes(filterName)) {
                     newState.filtri = newState.filtri.filter((name) => name !== filterName); // Rimuoviamo il filtro se è già selezionato
                 } else {
-                    newState.filtri.push(filterName); // Aggiungiamo il filtro se non è già selezionato
+                    if(filterName === "Più vicini a Te"){
+                        setFilterVicinoAte(true);  // Attiviamo il filtro "Più vicini a Te"
+                    } else {
+                        newState.filtri.push(filterName); // Aggiungiamo il filtro se non è già selezionato
+                    }
+                }
+
+                if (newState.filtri.includes("In promozione")) {
+                    elements.onStateChange('filterPrezzoOfferta', true); // Imposta il filtro per i prodotti in promozione
+                } else {
+                    elements.onStateChange('categories', newState.filtri); // Passa chiave e valore per notificare il padre della modifica dell'input
                 }
             }
-
             return newState; // Restituiamo l'oggetto con gli ordinamenti e i filtri separati
         });
+
     };
 
-    const activeOrder = selectedFilters.ordinamenti[0]; // Seleziona l'ordinamento esclusivo attivo
+    console.log(selectedFilters);
+    //console.log(minValueDistance, maxValueDistance);
+
 
     return (
         <div className="popUpContainer">
@@ -129,8 +144,8 @@ export default function FilterPopUp(elements) {
                 {elements.order.map((item, index) => (
                     <SwiperSlide key={index}>
                         <div className="swiper-slide">
-                            <FilterElement name={item} onFilterClick={() => handleFilterClick(item)} selectedOrder={activeOrder}
-                            order={elements.order} />
+                            <FilterElement name={item} onFilterClick={() => handleFilterClick(item)} selectedOrder={selectedFilters.ordinamento}
+                                order={elements.order} />
                         </div>
                     </SwiperSlide>
                 ))}
@@ -154,7 +169,7 @@ export default function FilterPopUp(elements) {
                     <SwiperSlide key={index}>
                         <div className="swiper-slide">
                             <FilterElement name={item} onFilterClick={() => handleFilterClick(item)} selectedFilters={selectedFilters.filtri}
-                            order={elements.order}/>
+                                order={elements.order} />
                         </div>
                     </SwiperSlide>
                 ))}
@@ -200,7 +215,7 @@ export default function FilterPopUp(elements) {
             )}
 
             {/* Filtri distanza */}
-            {distanceTypes.includes(elements.type) && (
+            {distanceTypes.includes(elements.type) && (filterVicinoAte === true) && (
                 <>
                     <div className="distanceTitle">
                         <h2>Distanza:</h2>
@@ -214,15 +229,6 @@ export default function FilterPopUp(elements) {
                         <input
                             type="range"
                             min="0.1"
-                            max="9"
-                            step="0.1"
-                            value={minValueDistance}
-                            onChange={handleMinChangeDistance}
-                            className="slider-min"
-                        />
-                        <input
-                            type="range"
-                            min="0.2"
                             max="10"
                             step="0.1"
                             value={maxValueDistance}
@@ -232,8 +238,8 @@ export default function FilterPopUp(elements) {
                         <div
                             className="slider-track"
                             style={{
-                                left: `${((minValueDistance - 0.1) / (10 - 0.1)) * 100}%`,
-                                width: `${((maxValueDistance - minValueDistance) / (10 - 0.1)) * 100}%`
+                                left: `${((minValueDistance - 0.1) / (10 - 0.1)) * 100 + 1}%`,
+                                width: `${((maxValueDistance - minValueDistance) / (10 - 0.1)) * 100 - 1}%`
                             }}
                         ></div>
                     </div>
@@ -241,17 +247,17 @@ export default function FilterPopUp(elements) {
                     {/* Posizione */}
                     <div className="position">
                         <div className="manualPosition">
-                            <SearchBar placeholder="Inserisci l'indirizzo" />
+                            <SearchBar onStateChange={elements.onStateChange} placeholder="Inserisci l'indirizzo" type="posizione"/>
                         </div>
                         <div className="autoPosition">
-                            <PositionButton />
+                            <PositionButton onPosChange={elements.onStateChange} />
                         </div>
                     </div>
                 </>)}
 
             {/* Bottone finale */}
             <div className="finalButton">
-                <ShowButton onclick={closePopup} />
+                <ShowButton onSendChange={elements.onStateChange} onclick={closePopup} />
             </div>
         </div>
     );
