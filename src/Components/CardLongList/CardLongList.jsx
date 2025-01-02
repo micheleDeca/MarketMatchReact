@@ -37,7 +37,7 @@ const CardLongList = (props) => {
           <CardLong
             key={product.id}
             id={product.id}
-            image={product.image}
+            image={"http://4.232.65.20/assets/"+product.image}
             quantity={product.quantity}
             productName={product.productName}
             detail={product.detail}
