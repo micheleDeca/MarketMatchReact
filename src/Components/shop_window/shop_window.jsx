@@ -26,7 +26,7 @@ function ShopWindow(props) {
                     <div className="LeftShopWindow">
                         <div className="ShopWindowBox">
                             <img
-                                src={`http://4.232.65.20/assets${props.ImageDescription}`}
+                                src={`http://4.232.65.20/assets/${props.ImageDescription}`}
                                 alt={props.ImageDescription} className="Image"></img>
                         </div>
                     </div>
@@ -41,7 +41,7 @@ function ShopWindow(props) {
                         </div>
                         <div className="img">
                             <img
-                                src={`http://4.232.65.20/assets${props.ImageDescription}`}
+                                src={`http://4.232.65.20/assets/${props.ImageDescription}`}
                                 alt={props.ImageDescription} className="Image"></img>
                         </div>
                         <div className="boxDescription">
@@ -80,7 +80,7 @@ function ShopWindow(props) {
                         >
                             <div className="ShopWindowBox">
                                 <img
-                                    src={`http://4.232.65.20/assets${props.ImageDescription}`}
+                                    src={`http://4.232.65.20/assets/${props.ImageDescription}`}
                                     alt={props.ImageDescription}
                                     className="Image"
                                 ></img>
@@ -109,7 +109,7 @@ function ShopWindow(props) {
                             >
                                 <div className="img">
                                     <img
-                                        src={`http://4.232.65.20/assets${props.ImageDescription}`}
+                                        src={`http://4.232.65.20/assets/${props.ImageDescription}`}
                                         alt={props.ImageDescription}
                                         className="Image"
                                     ></img>

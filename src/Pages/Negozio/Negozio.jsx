@@ -31,7 +31,7 @@ function Negozio() {
           const response = await axios.post(
             `${BASE_URL}/api/store/getShop`,
             {
-              negozioUuid: "bd0afb3c-8ff2-4d35-91ea-8af2290cf775",
+              negozioUuid: id,
               userLatitude: 41.1090642,
               userLongitude: 16.8719847,
             },
@@ -86,7 +86,7 @@ function Negozio() {
           const response = await axios.post(
             `${BASE_URL}/api/store/getShopProducts`,
             {
-              negozioUuid: "bd0afb3c-8ff2-4d35-91ea-8af2290cf775",
+              negozioUuid: id,
               userLatitude: 41.1090642,
               userLongitude: 16.8719847,
             },
