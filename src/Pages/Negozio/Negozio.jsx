@@ -17,8 +17,10 @@ function Negozio() {
   const [modify, setModify] = useState("");
   const location = useLocation();
   const { id } = location.state || {}; // Fallback se `state` è null
-  const [negozioInfo, setNegozioInfo] = useState([]);
-  const [prodottiInfo, setProdottiInfo] = useState([]);
+  const [negozioInfo, setNegozioInfo] = useState({
+    OrarioNegozio: [], // Preimpostazione per prevenire errori
+  });
+  const [prodottiInfo, setProdottiInfo] = useState({});
   const token = getToken();
   const [loading, setLoading] = useState(true); // Stato per il caricamento
   const [error, setError] = useState(null);
@@ -31,7 +33,7 @@ function Negozio() {
           const response = await axios.post(
             `${BASE_URL}/api/store/getShop`,
             {
-              negozioUuid: "bd0afb3c-8ff2-4d35-91ea-8af2290cf775",
+              negozioUuid: id,
               userLatitude: 41.1090642,
               userLongitude: 16.8719847,
             },
@@ -42,7 +44,6 @@ function Negozio() {
             }
           );
           setNegozioInfo(response.data);
-          setLoading(false);
         } catch (error) {
           setError(error.message); // Gestisci l'errore
           setLoading(false);
@@ -71,14 +72,18 @@ function Negozio() {
           "08:00-20:00",
           "08:00-20:00",
           "08:00-20:00",
-          "09:30-12:30",
+          "09:30-12:30"
         ],
         Provincia: "BA",
       });
-      setLoading(false);
     }
   }, []);
 
+  {/*}
+  useEffect(() => {
+    console.log(negozioInfo.OrarioNegozio[0]);
+  }, [negozioInfo]);
+  */}
   useEffect(() => {
     if (!IS_MOCKKED) {
       const getProductShop = async () => {
@@ -86,9 +91,7 @@ function Negozio() {
           const response = await axios.post(
             `${BASE_URL}/api/store/getShopProducts`,
             {
-              negozioUuid: "bd0afb3c-8ff2-4d35-91ea-8af2290cf775",
-              userLatitude: 41.1090642,
-              userLongitude: 16.8719847,
+              negozioUuid: id,
             },
             {
               headers: {
@@ -97,7 +100,6 @@ function Negozio() {
             }
           );
           setProdottiInfo(response.data);
-          setLoading(false);
         } catch (error) {
           setError(error.message); // Gestisci l'errore
           setLoading(false);
@@ -129,9 +131,23 @@ function Negozio() {
           badges: ["Vegano"],
         },
       ]);
-      setLoading(false);
     }
   }, []);
+  {/*
+  useEffect(() => {
+    console.log("BBBB", prodottiInfo);
+  }, [prodottiInfo]);
+  */}
+  useEffect(() => {
+    if (prodottiInfo) {
+      const timer = setTimeout(() => {
+        setLoading(false);
+      }, 1000); // 1000 ms = 1 secondo
+  
+      // Pulizia del timer in caso di cambiamenti rapidi
+      return () => clearTimeout(timer);
+    }
+  }, [prodottiInfo]);
 
   if (loading) {
     return (
@@ -189,7 +205,13 @@ function Negozio() {
             contatti={negozioInfo.Cellulare + ", " + negozioInfo.Mail}
             modify={setModify}
           />
-          <ProductLongList title="Prodotti in vendita" products={prodottiInfo} type={"product"} />
+     
+          <ProductLongList
+            title="Prodotti in vendita"
+            products={prodottiInfo}
+            type={"product"}
+          />
+        
         </div>
       </>
     );
