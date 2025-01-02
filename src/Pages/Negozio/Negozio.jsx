@@ -12,45 +12,13 @@ import { useUserContext } from "../../Context/UserContext";
 import { useLocation } from "react-router-dom";
 import LoadingPage from "../LoadingPage/LoadingPage.jsx";
 
-// Simula un database di prodotti
-const mockProducts = Array.from({ length: 4 }, (_, index) => {
-  const hasDiscount = Math.random() > 0.4; // 50% di probabilità di avere uno sconto
-
-  // Funzione per generare badge casuali
-  const generateBadges = () => {
-    const possibleBadges = [
-      { text: "Bio", backgroundColor: "#4caf50" },
-      { text: "Senza lattosio", backgroundColor: "#2196f3" },
-      { text: "Vegan", backgroundColor: "#ff9800" },
-      { text: "Senza glutine", backgroundColor: "#9c27b0" },
-    ];
-
-    // Numero casuale di badge (1-3)
-    const badgeCount = Math.floor(Math.random() * 3) + 1;
-
-    // Seleziona casualmente `badgeCount` badge unici
-    return possibleBadges.sort(() => 0.5 - Math.random()).slice(0, badgeCount);
-  };
-
-  return {
-    id: index + 1,
-    productName: `Prodotto ${index + 1}`,
-    detail: `Dettaglio del prodotto ${index + 1}`,
-    currentPrice: (Math.random() * 100).toFixed(2) + "€",
-    originalPrice: hasDiscount
-      ? (Math.random() * 100 + 100).toFixed(2) + "€"
-      : null, // Solo se ha sconto
-    image: `https://via.placeholder.com/150?text=Prodotto+${index + 1}`,
-    badges: generateBadges(), // Aggiunge i badge generati
-  };
-});
-
 function Negozio() {
   const { userType } = useUserContext();
   const [modify, setModify] = useState("");
   const location = useLocation();
   const { id } = location.state || {}; // Fallback se `state` è null
   const [negozioInfo, setNegozioInfo] = useState([]);
+  const [prodottiInfo, setProdottiInfo] = useState([]);
   const token = getToken();
   const [loading, setLoading] = useState(true); // Stato per il caricamento
   const [error, setError] = useState(null);
@@ -63,7 +31,7 @@ function Negozio() {
           const response = await axios.post(
             `${BASE_URL}/api/store/getShop`,
             {
-              negozioUuid: 'bd0afb3c-8ff2-4d35-91ea-8af2290cf775',
+              negozioUuid: "bd0afb3c-8ff2-4d35-91ea-8af2290cf775",
               userLatitude: 41.1090642,
               userLongitude: 16.8719847,
             },
@@ -110,40 +78,60 @@ function Negozio() {
       setLoading(false);
     }
   }, []);
-/*
-  useEffect(() => {
-    if (!IS_MOCKKED) {
-        const getProductShop = async () => {
-            try {
-              const response = await axios.post(
-                `${BASE_URL}/api/store/getShop`,
-                {
-                  negozioUuid: 'e9fddc4f-87f8-40b7-abaf-df67f1817ea3',
-                  userLatitude: 41.1090642,
-                  userLongitude: 16.8719847,
-                },
-                {
-                  headers: {
-                    Authorization: `Bearer ${token}`, // Token di autenticazione
-                  },
-                }
-              );
-              setNegozioInfo(response.data);
-              setLoading(false);
-            } catch (error) {
-              setError(error.message); // Gestisci l'errore
-              setLoading(false);
-            }
-          };
-          getShop();
-    } else {
-    }
-         },[]);
-*/
 
   useEffect(() => {
-    console.log("AAAA",negozioInfo);
-       },[negozioInfo]);
+    if (!IS_MOCKKED) {
+      const getProductShop = async () => {
+        try {
+          const response = await axios.post(
+            `${BASE_URL}/api/store/getShopProducts`,
+            {
+              negozioUuid: "bd0afb3c-8ff2-4d35-91ea-8af2290cf775",
+              userLatitude: 41.1090642,
+              userLongitude: 16.8719847,
+            },
+            {
+              headers: {
+                Authorization: `Bearer ${token}`, // Token di autenticazione
+              },
+            }
+          );
+          setProdottiInfo(response.data);
+          setLoading(false);
+        } catch (error) {
+          setError(error.message); // Gestisci l'errore
+          setLoading(false);
+        }
+      };
+      getProductShop();
+    } else {
+      setProdottiInfo([
+        {
+          productName: "Pane Integrale Bio",
+          detail: "Pane 100% integrale con ingredienti biologici.",
+          originalPrice: 3.5,
+          image: "test/2.webp",
+          badges: ["Bio"],
+        },
+        {
+          productName: "Yogurt Bio con Mirtilli",
+          detail: "Yogurt biologico con mirtilli freschi, senza lattosio.",
+          originalPrice: 2.5,
+          image: "test/4.jpeg",
+          badges: ["Vegano", "Bio", "Vegetariano"],
+        },
+        {
+          productName: "Burger Vegetale Proteinico",
+          detail:
+            "Burger vegetale ad alto contenuto proteico, perfetto per sportivi.",
+          originalPrice: 4.99,
+          image: "test/5.webp",
+          badges: ["Vegano"],
+        },
+      ]);
+      setLoading(false);
+    }
+  }, []);
 
   if (loading)
     return (
@@ -198,12 +186,10 @@ function Negozio() {
             ", " +
             negozioInfo.Indirizzo
           }
-          contatti={
-            negozioInfo.Cellulare + ", " + negozioInfo.Mail
-          }
+          contatti={negozioInfo.Cellulare + ", " + negozioInfo.Mail}
           modify={setModify}
         />
-        <ProductLongList title="Prodotti in vendita" products={mockProducts} />
+        {/*<ProductLongList title="Prodotti in vendita" products={prodottiInfo} />*/}
       </div>
     </>
   );

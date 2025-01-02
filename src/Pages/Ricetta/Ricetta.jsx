@@ -50,136 +50,96 @@ function Ricetta() {
       setRicettaInfo({
         TempoCottura: 30,
         Costo: 3,
-        Descrizione:
-          "Una zuppa nutriente e salutare a base di lenticchie e quinoa, arricchita con verdure fresche e spezie, ideale per i mesi più freddi.",
+        Descrizione: "Una zuppa nutriente e salutare a base di lenticchie e quinoa, arricchita con verdure fresche e spezie, ideale per i mesi più freddi.",
         Ingredienti: [
-          {
-            Quantita: "200g",
-            Nome: "Pomodori pelati bio",
-          },
-          {
-            Quantita: "200g",
-            Nome: "Lenticchie bio",
-          },
-          {
-            Quantita: "q.b.",
-            Nome: "Sale e pepe",
-          },
-          {
-            Quantita: "1 gambo",
-            Nome: "Sedano bio",
-          },
-          {
-            Quantita: "100g",
-            Nome: "Quinoa bio",
-          },
-          {
-            Quantita: "1L",
-            Nome: "Brodo vegetale bio",
-          },
-          {
-            Quantita: "2 medie",
-            Nome: "Carote bio",
-          },
-          {
-            Quantita: "2 cucchiai",
-            Nome: "Olio extravergine d'oliva bio",
-          },
-          {
-            Quantita: "1 cucchiaino",
-            Nome: "Curcuma in polvere bio",
-          },
-          {
-            Quantita: "1 media",
-            Nome: "Cipolla bio",
-          },
+            {
+                Quantita: "200g",
+                Nome: "Pomodori pelati bio"
+            },
+            {
+                Quantita: "200g",
+                Nome: "Lenticchie bio"
+            },
+            {
+                Quantita: "q.b.",
+                Nome: "Sale e pepe"
+            },
+            {
+                Quantita: "1 gambo",
+                Nome: "Sedano bio"
+            },
+            {
+                Quantita: "100g",
+                Nome: "Quinoa bio"
+            },
+            {
+                Quantita: "1L",
+                Nome: "Brodo vegetale bio"
+            },
+            {
+                Quantita: "2 medie",
+                Nome: "Carote bio"
+            },
+            {
+                Quantita: "2 cucchiai",
+                Nome: "Olio extravergine d'oliva bio"
+            },
+            {
+                Quantita: "1 cucchiaino",
+                Nome: "Curcuma in polvere bio"
+            },
+            {
+                Quantita: "1 media",
+                Nome: "Cipolla bio"
+            }
         ],
         TempoPreparazione: 10,
         Passaggi: [
-          {
-            NumeroPassaggio: {
-              low: 8,
-              high: 0,
+            {
+                Foto: "zuppa_lenticchie_quinoa/1.png",
+                Titolo: "Preparare le verdure",
+                Descrizione: "Tagliare a cubetti le carote, il sedano e la cipolla."
             },
-            Descrizione:
-              "Servire la zuppa calda, guarnita con un filo d'olio a crudo.",
-            Foto: "zuppa_lenticchie_quinoa/8.png",
-            Titolo: "Servire",
-          },
-          {
-            NumeroPassaggio: {
-              low: 6,
-              high: 0,
+            {
+                Foto: "zuppa_lenticchie_quinoa/2.png",
+                Titolo: "Soffriggere le verdure",
+                Descrizione: "In una pentola, scaldare l'olio e soffriggere carote, sedano e cipolla per 5 minuti."
             },
-            Descrizione:
-              "Unire la quinoa sciacquata e la curcuma, continuando la cottura per altri 10 minuti.",
-            Foto: "zuppa_lenticchie_quinoa/6.png",
-            Titolo: "Aggiungere la quinoa",
-          },
-          {
-            NumeroPassaggio: {
-              low: 3,
-              high: 0,
+            {
+                Foto: "zuppa_lenticchie_quinoa/3.png",
+                Titolo: "Aggiungere le lenticchie",
+                Descrizione: "Unire le lenticchie alle verdure soffritte e mescolare per insaporire."
             },
-            Descrizione:
-              "Unire le lenticchie alle verdure soffritte e mescolare per insaporire.",
-            Foto: "zuppa_lenticchie_quinoa/3.png",
-            Titolo: "Aggiungere le lenticchie",
-          },
-          {
-            NumeroPassaggio: {
-              low: 5,
-              high: 0,
+            {
+                Foto: "zuppa_lenticchie_quinoa/4.png",
+                Titolo: "Versare il brodo",
+                Descrizione: "Aggiungere il brodo vegetale caldo e i pomodori pelati, quindi portare a ebollizione."
             },
-            Descrizione:
-              "Cuocere a fuoco medio per circa 20 minuti, mescolando di tanto in tanto.",
-            Foto: "zuppa_lenticchie_quinoa/5.png",
-            Titolo: "Cuocere le lenticchie",
-          },
-          {
-            NumeroPassaggio: {
-              low: 7,
-              high: 0,
+            {
+                Foto: "zuppa_lenticchie_quinoa/5.png",
+                Titolo: "Cuocere le lenticchie",
+                Descrizione: "Cuocere a fuoco medio per circa 20 minuti, mescolando di tanto in tanto."
             },
-            Descrizione: "Aggiustare di sale e pepe secondo il gusto.",
-            Foto: "zuppa_lenticchie_quinoa/7.png",
-            Titolo: "Regolare di sale e pepe",
-          },
-          {
-            NumeroPassaggio: {
-              low: 4,
-              high: 0,
+            {
+                Foto: "zuppa_lenticchie_quinoa/6.png",
+                Titolo: "Aggiungere la quinoa",
+                Descrizione: "Unire la quinoa sciacquata e la curcuma, continuando la cottura per altri 10 minuti."
             },
-            Descrizione:
-              "Aggiungere il brodo vegetale caldo e i pomodori pelati, quindi portare a ebollizione.",
-            Foto: "zuppa_lenticchie_quinoa/4.png",
-            Titolo: "Versare il brodo",
-          },
-          {
-            NumeroPassaggio: {
-              low: 1,
-              high: 0,
+            {
+                Foto: "zuppa_lenticchie_quinoa/7.png",
+                Titolo: "Regolare di sale e pepe",
+                Descrizione: "Aggiustare di sale e pepe secondo il gusto."
             },
-            Descrizione:
-              "Tagliare a cubetti le carote, il sedano e la cipolla.",
-            Foto: "zuppa_lenticchie_quinoa/1.png",
-            Titolo: "Preparare le verdure",
-          },
-          {
-            NumeroPassaggio: {
-              low: 2,
-              high: 0,
-            },
-            Descrizione:
-              "In una pentola, scaldare l'olio e soffriggere carote, sedano e cipolla per 5 minuti.",
-            Foto: "zuppa_lenticchie_quinoa/2.png",
-            Titolo: "Soffriggere le verdure",
-          },
+            {
+                Foto: "zuppa_lenticchie_quinoa/8.png",
+                Titolo: "Servire",
+                Descrizione: "Servire la zuppa calda, guarnita con un filo d'olio a crudo."
+            }
         ],
         FotoRicetta: "zuppa_lenticchie_quinoa/zuppa_finale.png",
         Nome: "Zuppa di Lenticchie e Quinoa Bio",
         Difficoltà: 2,
-        Porzioni: 4,
+        Porzioni: 4
       });
       setLoading(false);
     }
