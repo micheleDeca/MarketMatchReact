@@ -93,6 +93,14 @@ function Prodotto() {
         />
       </div>
       <div className="boxProdotto">
+        {userType === "ConA" && (
+          <div className="containerProdotto">
+            <span className="spaceProdotto">
+              {`${prodottoInfo.NomeNegozio} (${prodottoInfo.DistanzaKm.toFixed(2)} km)`}
+            </span>
+            <span className="spaceProdotto2"></span>
+          </div>
+        )}
         {userType === "NegA" && (
           <div className="containerProdotto">
             <span className="spaceProdotto"></span>
