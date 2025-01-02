@@ -23,6 +23,10 @@ const CardLongList = (props) => {
     setPaginatedItems(items.slice(startIndex, endIndex));
   }, [currentPage, props.shops, props.products, cardShop]);
  
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [props.shops, props.products]);
+
    return (
     <>
     <div className="product-long-list-container">
@@ -46,7 +50,7 @@ const CardLongList = (props) => {
         {paginatedItems.map((shop, index) => (
           <CardLong
             key={index}
-            image={shop.image}
+            image={"http://4.232.65.20/assets/"+shop.image}
             productName={shop.name}
             detail={"Distante: " + shop.distance.toFixed(2) + " Km"}
             detail2={shop.city + ", " + shop.address}

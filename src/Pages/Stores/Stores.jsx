@@ -5,7 +5,8 @@ import SearchBar from "../../Components/SearchBar/SearchBar";
 import ButtonFilter from "../../Components/ButtonFilter/ButtonFilter";
 import "./Stores.css";
 import { useCategoryContext } from "../../Context/CategoryContex";
- 
+import { fetchStore } from "./Updater/StoreUpdater";
+import LoadingPage from "../LoadingPage/LoadingPage";
 // Simulazione del database di negozi
 
 // Simulazione del database di negozi: un array di oggetti rappresenta i negozi
@@ -88,26 +89,43 @@ const Stores = () => {
   // Stato per memorizzare i negozi ordinati per distanza (dal centro o dal negozio selezionato)
   const [sortedStores, setSortedStores] = useState([]);
 
+
+  const [loading, setLoading] = useState(true); // Stato per il caricamento
+  const [error, setError] = useState(null); // Stato per gli errori
+
+  const [requestParams, setRequestParams] = useState({
+    minPrezzo: null,
+    maxPrezzo: null,
+    filterPrezzoOfferta: null,
+    categories: null,           //Es. ["Vegano", "Bio"]
+    sortOrder: [null, null],    //sortOrder[0] = prezzoCrescente/prezzoDecrescente/null
+    //sortOrder[1] = nome/rilevanza/vicinanza/null
+    //Possibile combinare prezzo e uno tra nome e rilevanza
+
+    maxDistance: 2,
+  });
+
   const [zoomLevel, setZoomLevel] = useState("13");
   // Effetto che si attiva ogni volta che cambia il centro della mappa
   useEffect(() => {
 
-    let maxDistance;
+    let maxDistanceLimit;
 
     if (zoomLevel >= 16) {
-      maxDistance = 1;
+      maxDistanceLimit = 1;
     } else if (zoomLevel >= 15) {
-      maxDistance = 2;
+      maxDistanceLimit = 2;
     } else if (zoomLevel >= 14) {
-      maxDistance = 3;
+      maxDistanceLimit = 3;
     } else if (zoomLevel >= 13) {
-      maxDistance = 5;
+      maxDistanceLimit = 5;
     } else if (zoomLevel >= 10) {
-      maxDistance = 100;
+      maxDistanceLimit = 100;
     } else {
-      maxDistance = 150;
+      maxDistanceLimit = 150;
     }
 
+    /*
     const nearbyStores = allStores
       .map((store) => ({
         ...store, // Copia i dati del negozio
@@ -126,15 +144,47 @@ const Stores = () => {
       }))
       .filter((store) => store.distanceFromCenter <= maxDistance) // Ritorna solo i negozi entro la distanza massima dal centro
       .sort((a, b) => a.distanceFromCenter - b.distanceFromCenter); // Ordina per distanza dal centro
+*/
 
-    setStores(nearbyStores); // Aggiorna lo stato dei negozi vicini
-    setSortedStores(nearbyStores); // Aggiorna lo stato dei negozi ordinati
+    let isMounted = true; // Flag per evitare aggiornamenti su componenti smontati
+
+    const getStore = async () => {
+      try {
+        const storeData = await fetchStore(userPosition, mapCenter, maxDistanceLimit); // Usa la funzione dal modulo
+        if (isMounted) {
+          setStores(storeData); // Aggiorna lo stato dei negozi vicini
+          setSortedStores(storeData); // Aggiorna lo stato dei negozi ordinati
+          setLoading(false); // Ferma il caricamento
+
+        }
+      } catch (err) {
+        if (isMounted) {
+          setError(err.message); // Gestisci l'errore
+          setLoading(false);
+        }
+      }
+    };
+
+    getStore();
+
+    // Salva la pagina corrente nel sessionStorage
+    // sessionStorage.setItem('currentPage', currentPage);
+
+    // Cleanup: evita aggiornamenti su componenti smontati
+    return () => {
+      isMounted = false;
+    };
+
+
+
 
 
   }, [mapCenter, zoomLevel]); // Dipendenza: mapCenter (si aggiorna quando cambia)
 
 
-
+  useEffect(() => {
+    console.log("da store", stores);
+  }, [stores]);
 
 
   // Funzione per gestire il clic su un negozio (aggiorna lo stato del negozio selezionato)
@@ -158,6 +208,9 @@ const Stores = () => {
   const { category: categoryList } = useCategoryContext();
   const orderNames = ["Nome", "Rilevanza", "Valutazione"];
   const filterNames = [...categoryList.map((cat) => cat.categoryName)];
+
+  if (loading) return <div> <LoadingPage /> </div>;
+  if (error) return <div>Errore: {error}</div>;
 
   return (
     <div>
