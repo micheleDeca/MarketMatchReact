@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import ProductContainer from '../../Components/CardContainer/CardContainer';
 import './Product.css';
 import { Pagination } from 'react-pagination-bar';
@@ -46,6 +46,7 @@ const Product = () => {
         filterPrezzoOfferta: null,
         categories: null,           //Es. ["Vegano", "Bio"]
         sortOrder: null, 
+        sortOrder: [null, null],
         userLatitude: 41.1090642,   //Posizione utente, impostare una standard globale se utente non concede posizione/permessi
         userLongitude: 16.8719847,
         maxDistance: 500,     //distanza tra utente e prodotto in Km 
