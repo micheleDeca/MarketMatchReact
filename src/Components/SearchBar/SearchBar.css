@@ -21,6 +21,10 @@
     background-color: #f1f1f1;
     font-size: 90%;
 }
+.SearchBarInput:focus {
+    outline: none; /* Rimuove la linea marcata */
+    box-shadow: none; /* Rimuove eventuali effetti di ombra */
+}
 
 @media (orientation: portrait) and (max-width: 480px) {
     

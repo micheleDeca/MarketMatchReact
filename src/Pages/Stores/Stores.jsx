@@ -30,7 +30,7 @@ const Stores = () => {
 
   const [requestParams, setRequestParams] = useState({   //ATTENZIONE @isabella posizione utente impostarla nello stato "userPosition"
     categories: null,           //Es. ["Vegano", "Bio"]
-    sortOrder: "rilevanza",    //rilevanza/nome/valutazione
+    sortOrder: "",    //rilevanza/nome/valutazione
     searchName:"", 
     maxDistance: 66,     //se superiore alla distanza massima di visualizzazione, perde di validità
   });
