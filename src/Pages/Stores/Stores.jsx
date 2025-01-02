@@ -28,16 +28,11 @@ const Stores = () => {
   const [loading, setLoading] = useState(true); // Stato per il caricamento
   const [error, setError] = useState(null); // Stato per gli errori
 
-  const [requestParams, setRequestParams] = useState({
-    minPrezzo: null,
-    maxPrezzo: null,
-    filterPrezzoOfferta: null,
+  const [requestParams, setRequestParams] = useState({   //ATTENZIONE @isabella posizione utente impostarla nello stato "userPosition"
     categories: null,           //Es. ["Vegano", "Bio"]
-    sortOrder: [null, null],    //sortOrder[0] = prezzoCrescente/prezzoDecrescente/null
-    //sortOrder[1] = nome/rilevanza/vicinanza/null
-    //Possibile combinare prezzo e uno tra nome e rilevanza
-
-    maxDistance: 2,
+    sortOrder: "rilevanza",    //rilevanza/nome/valutazione
+    searchName:"", 
+    maxDistance: 66,     //se superiore alla distanza massima di visualizzazione, perde di validità
   });
 
   const [zoomLevel, setZoomLevel] = useState("13");
@@ -65,7 +60,7 @@ const Stores = () => {
 
     const getStore = async () => {
       try {
-        const storeData = await fetchStore(userPosition, mapCenter, maxDistanceLimit); // Usa la funzione dal modulo
+        const storeData = await fetchStore(userPosition, mapCenter, maxDistanceLimit, requestParams); // Usa la funzione dal modulo
         if (isMounted) {
           setStores(storeData); // Aggiorna lo stato dei negozi vicini
           setSortedStores(storeData); // Aggiorna lo stato dei negozi ordinati

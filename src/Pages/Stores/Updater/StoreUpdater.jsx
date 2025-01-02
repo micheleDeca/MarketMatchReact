@@ -71,7 +71,7 @@ const calculateDistance = (lat1, lon1, lat2, lon2) => {
 
 
 // Funzione per ottenere i prodotti (mock o database)
-export const fetchStore = async (userCordinate, mapCordinate, maxDistanceLimit) => {
+export const fetchStore = async (userCordinate, mapCordinate, maxDistanceLimit, requestParams) => {
     if (IS_MOCKKED) {
 
         const nearbyStores = allStores
@@ -101,16 +101,19 @@ export const fetchStore = async (userCordinate, mapCordinate, maxDistanceLimit) 
         });
     } else {
         const token = getToken();
-
+        console.log("dasdasd",requestParams.categories);
         try {
             const response = await axios.post(
                 `${BASE_URL}/api/store/filtered`,
                 {
                     userLatitude: userCordinate[0],
                     userLongitude: userCordinate[1],
-                    maxDistance: maxDistanceLimit,
+                    maxDistance: (requestParams.maxDistance > maxDistanceLimit) ? maxDistanceLimit : requestParams.maxDistance,
                     mapLatitude: mapCordinate[0],
                     mapLongitude: mapCordinate[1],
+                    categories: requestParams.categories,
+                    sortOrder: requestParams.sortOrder,
+                    searchName: requestParams.searchName,
 
                 },
                 {
@@ -121,7 +124,7 @@ export const fetchStore = async (userCordinate, mapCordinate, maxDistanceLimit) 
             );
 
             const filteredData = response.data.filter((item) => item.name);
-            console.log(filteredData);
+            console.log("afa",filteredData);
             return filteredData;
         } catch (error) {
             console.error('Errore durante il recupero dei prodotti:', error);
