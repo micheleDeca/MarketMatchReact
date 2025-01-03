@@ -51,7 +51,8 @@ const CardLong = (props) => {
     const navigate = useNavigate();
     const isStore = props.type === "shop";
     const isProduct = props.type === "product";
-
+    const isRecipe = props.type === "recipe";
+    
     // Funzione per troncare il testo
     const truncateText = (text) => {
         if (isMobile) {
@@ -102,7 +103,7 @@ const CardLong = (props) => {
                     <CategoryLabelList badges={props.badges} />
                 </div>
                 <p className="card-detail-long">
-                    {truncateText(props.detail)}
+                    {isRecipe? props.detail : truncateText(props.detail)}
                 </p>
                 <p className="card-detail-long">
                     {props.detail2}

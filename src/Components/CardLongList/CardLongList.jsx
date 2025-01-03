@@ -71,6 +71,7 @@ const CardLongList = (props) => {
           image={"http://4.232.65.20/assets/"+recipe.Foto}
           productName={recipe.Titolo}
           detail={recipe.Descrizione}
+          type={props.type}
           />
           
         ))}

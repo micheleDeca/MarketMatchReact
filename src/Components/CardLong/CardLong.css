@@ -59,11 +59,7 @@
   color: #555;
   margin-bottom: 5px;
   max-width: 600px;
-  /* Limita la larghezza massima a 100px */
-  word-wrap: break-word;
-  /* Permette di andare a capo se necessario */
-  overflow-wrap: break-word;
-  /* Compatibile con browser moderni */
+   
 }
 
 
