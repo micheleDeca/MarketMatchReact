@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { BASE_URL, IS_MOCKKED } from '../../../config';
 import { getToken } from '../../../LocalStorage/TokenStorage';
+import { useUserContext } from '../../../Context/UserContext';
 
 
 
@@ -56,7 +57,7 @@ const getMockProductsByPage = (page, productsPerPage) => {
 
 
 // Funzione per ottenere i prodotti (mock o database)
-export const fetchProductFilteredUpdater = async (currentPage, productsPerPage, props) => {
+export const fetchProductFilteredUpdater = async (currentPage, productsPerPage, props,uuidParam) => {
     const requestParam = props;
 
     
@@ -70,7 +71,7 @@ export const fetchProductFilteredUpdater = async (currentPage, productsPerPage, 
         });
     } else {
         const token = getToken();
-
+        
         try {
             const response = await axios.post(
                 `${BASE_URL}/api/product/filtered`,
@@ -85,7 +86,8 @@ export const fetchProductFilteredUpdater = async (currentPage, productsPerPage, 
                     userLatitude: requestParam.userLatitude,
                     userLongitude: requestParam.userLongitude,
                     maxDistance: requestParam.maxDistance,
-                    searchName: requestParam.searchName
+                    searchName: requestParam.searchName,
+                    uuidNegozio: uuidParam
 
                 },
                 {

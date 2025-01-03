@@ -18,7 +18,7 @@ import { useCategoryContext } from '../../Context/CategoryContex';
 
 const Product = () => {
 
-    const { userType } = useUserContext();
+    const {databaseKey, userType}= useUserContext();
 
     const navigate = useNavigate();
 
@@ -102,10 +102,10 @@ const Product = () => {
     // Effetto per richiedere quantità prodotti per pagination
     useEffect(() => {
         let isMounted = true; // Flag per evitare aggiornamenti su componenti smontati
-
+        const uuidParam = (userType === "NegA")? databaseKey : "";
         const getNumProducts = async () => {
             try {
-                const productsData = await getNumberProductFiltered(requestParams); // Usa la funzione dal modulo
+                const productsData = await getNumberProductFiltered(requestParams, uuidParam); // Usa la funzione dal modulo
                 if (isMounted) {
                     setTotalItems(productsData); // Aggiorna lo stato
                 }
@@ -130,10 +130,11 @@ const Product = () => {
     // Effetto per caricare i prodotti quando cambia la pagina
     useEffect(() => {
         let isMounted = true; // Flag per evitare aggiornamenti su componenti smontati
+        const uuidParam = (userType === "NegA")? databaseKey : "";
 
         const getProducts = async () => {
             try {
-                const productsData = await fetchProductFilteredUpdater(currentPage, productsPerPage, requestParams); // Usa la funzione dal modulo
+                const productsData = await fetchProductFilteredUpdater(currentPage, productsPerPage, requestParams, uuidParam); // Usa la funzione dal modulo
                 if (isMounted) {
                     setProducts(productsData); // Aggiorna lo stato
                     setLoading(false); // Ferma il caricamento

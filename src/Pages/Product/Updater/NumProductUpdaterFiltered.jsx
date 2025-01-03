@@ -3,7 +3,7 @@ import { BASE_URL, IS_MOCKKED } from '../../../config';
 import { getToken } from '../../../LocalStorage/TokenStorage';
 
 
-export const getNumberProductFiltered = async (props) => {
+export const getNumberProductFiltered = async (props,uuidParam) => {
 
     const requestParam = props;
 
@@ -28,7 +28,8 @@ export const getNumberProductFiltered = async (props) => {
                     userLatitude: requestParam.userLatitude,
                     userLongitude: requestParam.userLongitude,
                     maxDistance: requestParam.maxDistance,
-                    searchName: requestParam.searchName
+                    searchName: requestParam.searchName,
+                    uuidNegozio: uuidParam
 
                 },
                 {
