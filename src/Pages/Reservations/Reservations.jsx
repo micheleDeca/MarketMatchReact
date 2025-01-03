@@ -42,6 +42,10 @@ const Prenotazioni = () => {
     useEffect(() => {
         fetchPrenotations(currentPage);
     }, [currentPage]);
+
+    const handleStatusChange = () => {
+
+    }
     
     return (
         <>
@@ -49,7 +53,7 @@ const Prenotazioni = () => {
                 <h1>Prenotazioni</h1>
             </div>
             <div className="prenBar">
-                <PrenotationSearch first="Tutto" second="Accettato" third="Rifiutato" fourth="Prenotato" fifth="Da Ritirare" sixth="Ritirato" />
+                <PrenotationSearch onChange={handleStatusChange} first="Tutto" second="Accettato" third="Rifiutato" fourth="Prenotato" fifth="Da Ritirare" sixth="Ritirato" />
             </div>
             <div className="prenotations">
                 <OperationLongContainer operations={prenotations} type={"reservation"} />

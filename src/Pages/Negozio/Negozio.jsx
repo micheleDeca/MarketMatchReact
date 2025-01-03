@@ -72,18 +72,17 @@ function Negozio() {
           "08:00-20:00",
           "08:00-20:00",
           "08:00-20:00",
-          "09:30-12:30"
+          "09:30-12:30",
         ],
         Provincia: "BA",
       });
     }
   }, []);
 
-  {/*}
   useEffect(() => {
-    console.log(negozioInfo.OrarioNegozio[0]);
+    console.log("AAAA", negozioInfo);
   }, [negozioInfo]);
-  */}
+
   useEffect(() => {
     if (!IS_MOCKKED) {
       const getProductShop = async () => {
@@ -133,17 +132,17 @@ function Negozio() {
       ]);
     }
   }, []);
-  {/*
+
   useEffect(() => {
     console.log("BBBB", prodottiInfo);
   }, [prodottiInfo]);
-  */}
+
   useEffect(() => {
     if (prodottiInfo) {
       const timer = setTimeout(() => {
         setLoading(false);
       }, 1000); // 1000 ms = 1 secondo
-  
+
       // Pulizia del timer in caso di cambiamenti rapidi
       return () => clearTimeout(timer);
     }
@@ -205,13 +204,12 @@ function Negozio() {
             contatti={negozioInfo.Cellulare + ", " + negozioInfo.Mail}
             modify={setModify}
           />
-     
+
           <ProductLongList
             title="Prodotti in vendita"
             products={prodottiInfo}
             type={"product"}
           />
-        
         </div>
       </>
     );

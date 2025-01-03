@@ -21,6 +21,7 @@ function PrenotationSearch(props) {
     <>
       <div className="PrenotationSearchBox">
         <PrenStatusFilter
+        onChange={props.onChange}
           first={props.first}
           second={props.second}
           third={props.third}
