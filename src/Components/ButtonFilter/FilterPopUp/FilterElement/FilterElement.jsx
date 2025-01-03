@@ -15,7 +15,7 @@ export default function FilterElement({ name, onFilterClick, selectedOrder, sele
 
     const getColorForCategory = (category) => {
         if (typeof category !== "string") {
-            console.warn("Categoria non valida:", category); // Log per debugging
+            console.warn("Categoria non valida:", category); // Log per debugging ,
             return categoryColors.default;
         }
         const normalizedCategory = category.trim().toLowerCase();

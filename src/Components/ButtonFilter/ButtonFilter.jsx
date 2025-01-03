@@ -9,7 +9,7 @@ export default function ButtonFilter(value) {
 
   const [isPopupOpen, setIsPopupOpen] = useState(false); // Stato per gestire la visibilità della popup
 
-  // Funzione per aprire/chiudere la popup
+  // Funzione per aprire/chiudere la popup ,
   const togglePopup = () => {
     setIsPopupOpen((prev) => !prev);
   };
@@ -17,7 +17,7 @@ export default function ButtonFilter(value) {
 
   return (
     <>
-      <button className="filter" onClick={togglePopup}>
+      <button className="filter" onClick={togglePopup}> 
         Filtra i contenuti
       </button>
 

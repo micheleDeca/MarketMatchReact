@@ -70,7 +70,7 @@ function SearchBar(props) {
     }
   };
 
-    // Esegui quando le coordinate cambiano (useEffect)
+    // Esegui quando le coordinate cambiano
     useEffect(() => {
       if (coordinates) {
         // Passa le coordinate solo quando sono state aggiornate

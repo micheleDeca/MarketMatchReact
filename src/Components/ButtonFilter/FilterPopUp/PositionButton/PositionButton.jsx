@@ -19,7 +19,7 @@ export default function PositionButton(props) {
         const { latitude, longitude } = position.coords; // Estrae latitudine e longitudine dall'oggetto position.coords
         setLocation({ latitude, longitude });
         setError(""); // Resetta eventuali errori
-        props.onPosChange('userLatitude', latitude);
+        props.onPosChange('userLatitude', latitude); // Passa le coordinate al padre
         props.onPosChange('userLongitude', longitude);
       },
       (err) => {

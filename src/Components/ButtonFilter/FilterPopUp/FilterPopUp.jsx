@@ -10,7 +10,6 @@ import '../../../../node_modules/swiper/swiper-bundle.min.css';
 
 export default function FilterPopUp(elements) {
 
-    //ISA FORSE lo slider per la posizione, deve apparire quando si seleziona il filtro "più vicino a te"
 
     const isWideRange = elements.type == "Neg, Prod" || elements.type == "ConA, Prod";  //range per il prezzo
 
