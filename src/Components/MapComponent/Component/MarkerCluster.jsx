@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useMap } from "react-leaflet";
 import ReactDOMServer from "react-dom/server";
 import CategoryLabelList from "../../CategoryLabelList/CategoryLabelList";
-
+import "./MarkerCluster.css";
 // Funzione per calcolare la distanza tra due coordinate geografiche
 const calculateDistance = (lat1, lon1, lat2, lon2) => {
     const toRad = (value) => (value * Math.PI) / 180; // Conversione in radianti
@@ -58,13 +58,12 @@ const MarkerCluster = ({ stores, userPosition, onMarkerAction }) => {
 
             // Aggiungi un popup al marker con informazioni sul negozio
             marker.bindPopup(
-                `<div>
-          <b>${store.name}</b><br/>
-          ⭐ <span>${store.rating}/5</span><br/>
-          📍 <span>${store.address}, ${store.city}</span><br/>
-          🚶‍♂️ <span>Distanza: ${distance.toFixed(2)} km</span><br/>
-          
-        </div>`,
+                `<div class="popup-content">
+                    <b>${store.name}</b><br/>
+                    ⭐ <span>${store.rating}/5</span><br/>
+                    📍 <span>${store.address}, ${store.city}</span><br/>
+                    🚶‍♂️ <span>Distanza: ${distance.toFixed(2)} km</span><br/>
+                 </div>`,
                 {
                     autoClose: true, // Chiude automaticamente altri popup
                     closeOnClick: false, //   chiude il popup quando clicchi su di esso

@@ -1,0 +1,9 @@
+.popup-content {
+    font-size: 0.9rem; /* Riduce la dimensione del font */
+}
+
+@media (max-width: 768px) {
+    .popup-content {
+        font-size: 0.7rem; /* Font ancora più piccolo per mobile */
+     }
+}

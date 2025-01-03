@@ -13,9 +13,11 @@
 
 
 }
-.cliccable-link{
+
+.cliccable-link {
   cursor: pointer;
 }
+
 .card-image-long {
   display: flex;
   /* Disposizione orizzontale */
@@ -29,8 +31,8 @@
   /* Spazio tra immagine e informazioni */
   padding: 5px;
   background-color: #ffffff;
-  max-width: 120px;
-  max-height: 120px;
+  width: 120px;
+  height: 120px;
   border: 1px solid rgba(0, 0, 0, 0.2);
   /* Micro bordo nero con opacità al 20% */
 
@@ -220,7 +222,7 @@
 
   .count-container-card-long {
     width: 65px;
-   }
+  }
 
   .price-container-long {
     margin-right: 12px;

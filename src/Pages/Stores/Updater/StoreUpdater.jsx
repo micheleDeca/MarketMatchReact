@@ -101,7 +101,6 @@ export const fetchStore = async (userCordinate, mapCordinate, maxDistanceLimit, 
         });
     } else {
         const token = getToken();
-        console.log("dasdasd",requestParams.categories);
         try {
             const response = await axios.post(
                 `${BASE_URL}/api/store/filtered`,
@@ -124,7 +123,6 @@ export const fetchStore = async (userCordinate, mapCordinate, maxDistanceLimit, 
             );
 
             const filteredData = response.data.filter((item) => item.name);
-            console.log("afa",filteredData);
             return filteredData;
         } catch (error) {
             console.error('Errore durante il recupero dei prodotti:', error);

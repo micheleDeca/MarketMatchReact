@@ -27,7 +27,6 @@ const CardLongList = (props) => {
     setCurrentPage(1);
   }, [props.shops, props.products]);
 
-  console.log("da cardLong",props.products);
    return (
     <>
     <div className="product-long-list-container">
@@ -40,9 +39,9 @@ const CardLongList = (props) => {
             image={"http://4.232.65.20/assets/"+product.image}
             quantity={product.quantity}
             productName={product.productName}
-            detail={product.detail}
-            currentPrice={product.currentPrice}
-            originalPrice={product.originalPrice}
+            detail={product.detail} 
+            currentPrice={(product.currentPrice)? product.currentPrice+"€" : ""}
+            originalPrice={(product.originalPrice)? product.originalPrice+"€" : ""}
             badges={["bio"]}
             getCounter={props.getCounter}
             type={props.type}
