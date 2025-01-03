@@ -25,7 +25,6 @@ function Prodotto() {
   console.log("utente",userType);
 
   useEffect(() => {
-    console.log("ID", id);
     if (!IS_MOCKKED) {
       const getProduct = async () => {
         try {
@@ -43,10 +42,8 @@ function Prodotto() {
             }
           );
           setProdottoInfo(response.data);
-          setLoading(false);
         } catch (error) {
           setError(error.message); // Gestisci l'errore
-          setLoading(false);
         }
       };
       getProduct();
@@ -65,14 +62,45 @@ function Prodotto() {
         PesoDimensioniUnitaria: "pacchetto",
         NomeNegozio: "Bio e Vegan Delights",
       });
-      setLoading(false);
     }
   }, []); //inserire prossimamente, aggiornamento in base ai filtri scelti
-  /*
+
   useEffect(() => {
-    console.log("AAAA",prodottoInfo);
-       },[prodottoInfo]);
-  */
+    if (prodottoInfo) {
+      const timer = setTimeout(() => {
+        setLoading(false);
+      }, 1000); // 1000 ms = 1 secondo
+
+      // Pulizia del timer in caso di cambiamenti rapidi
+      return () => clearTimeout(timer);
+    }
+  }, [prodottoInfo]);
+
+  useEffect(() => {
+    if (!loading) {
+      console.log("Michele de Carolis");
+      const updateProduct = async () => {
+        try {
+          const response = await axios.post(
+            `${BASE_URL}/api/product/UpdateProduct`,
+            {
+              productId: id,
+              input: prodottoInfo,
+            },
+            {
+              headers: {
+                Authorization: `Bearer ${token}`, // Token di autenticazione
+              },
+            }
+          );
+        } catch (error) {
+          setError(error.message); // Gestisci l'errore
+        }
+      };
+      updateProduct();
+    }
+  }, [prodottoInfo]);
+
   if (loading)
     return (
       <div>
@@ -98,7 +126,9 @@ function Prodotto() {
         {userType === "ConA" && (
           <div className="containerProdotto">
             <span className="spaceProdotto">
-              {`${prodottoInfo.NomeNegozio} (${prodottoInfo.DistanzaKm.toFixed(2)} km)`}
+              {`${prodottoInfo.NomeNegozio} (${prodottoInfo.DistanzaKm.toFixed(
+                2
+              )} km)`}
             </span>
             <span className="spaceProdotto2"></span>
           </div>
