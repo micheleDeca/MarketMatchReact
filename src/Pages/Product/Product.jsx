@@ -86,7 +86,6 @@ const Product = () => {
 
                 tempParams = intialParams; // Resetta i parametri temporanei
                 setCurrentPage(1);
-
             } else {
                 // Memorizza la coppia chiave-valore senza aggiornare lo stato
                 tempParams[key] = value;
