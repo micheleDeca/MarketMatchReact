@@ -113,7 +113,7 @@ const Stores = () => {
           setStores(storeData); // Aggiorna lo stato dei negozi vicini
           setSortedStores(storeData); // Aggiorna lo stato dei negozi ordinati
           setLoading(false); // Ferma il caricamento
-          console.log("modificato");
+          console.log("modificato", userPosition);
         }
       } catch (err) {
         if (isMounted) {

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./Prenotation_status_filter.css";
 
 /**
@@ -21,9 +22,21 @@ function PrenStatusFilter(props) {
     const span = document.querySelectorAll(".PrenStatusFilterSpan");
   };
 
+  // Stato per memorizzare l'opzione selezionata
+  const [selectedOption, setSelectedOption] = useState("");
+
+  // Funzione per gestire il cambio dell'opzione selezionata
+  const handleChange = (event) => {
+    const value = event.target.value; // Valore dell'opzione selezionata
+    setSelectedOption(value); // Aggiorna lo stato
+    if (props.onChange) {
+      props.onChange(value); // Notifica il padre se è stata passata una funzione onChange
+    }
+  };
+
   return (
     <>
-      <select className="SelectFilter">
+      <select className="SelectFilter" value={selectedOption} onChange={handleChange} >
         <option className="option1">{props.first}</option>
         {props.second && <option>{props.second}</option>}
         {props.third && <option>{props.third}</option>}

@@ -17,18 +17,17 @@ function SearchBar(props) {
   const [inputValue, setInputValue] = useState("");
   const [address, setAddress] = useState('');
 
-  // Funzione per gestire il cambiamento dell'input della ricerca
-  const handleInputChange = (event) => {
-    setInputValue(event.target.value); // Aggiorna lo stato con il valore corrente dell'input
-    props.onStateChange('searchName', event.target.value); // Passa chiave e valore per notificare il padre della modifica dell'input
-  }
-
-  // Funzione per gestire il cambiamento della posizione 
-  const handlePositionChange = (e) => {
-    setAddress(e.target.value)
-    fetchCoordinates();
-  
-  }
+  const handleSearchClick = async () => {
+    if (type === "posizione") {
+      if (!address) {
+        setError("Inserisci un indirizzo valido");
+        return;
+      }
+      await fetchCoordinates();
+    } else {
+      props.onStateChange("searchName", inputValue);
+    }
+  };
 
   const [coordinates, setCoordinates] = useState(null);
   const [error, setError] = useState(null);
@@ -84,8 +83,12 @@ function SearchBar(props) {
       <div className="SearchBarBox">
         <input type="text" className="SearchBarInput" placeholder={props.placeholder || "Cerca..."}
           value={type === "posizione" ? address : inputValue}
-          onChange={type === "posizione" ? handlePositionChange : handleInputChange} />
-        <img src={SearchIcon} alt="search" className="SearchBarImg" />
+          onChange={(e) =>
+            type === "posizione"
+              ? setAddress(e.target.value)
+              : setInputValue(e.target.value)
+          } />
+        <img src={SearchIcon} alt="search" className="SearchBarImg" onClick={handleSearchClick} />
       </div>
 
       {type === "posizione" && (
