@@ -46,7 +46,6 @@ const Product = () => {
         filterPrezzoOfferta: null,
         categories: null,           //Es. ["Vegano", "Bio"]
         sortOrder: null, 
-        sortOrder: [null, null],
         userLatitude: 41.1090642,   //Posizione utente, impostare una standard globale se utente non concede posizione/permessi
         userLongitude: 16.8719847,
         maxDistance: 500,     //distanza tra utente e prodotto in Km 
@@ -58,6 +57,7 @@ const Product = () => {
             ...prevState,
             [key]: value, // Aggiorna dinamicamente ogni parametro dei filtri con il valore fornito
         }));
+        setCurrentPage(1);
     };
 
     const handleFilterStateChange = (() => {
@@ -67,7 +67,7 @@ const Product = () => {
             maxPrezzo: null,
             filterPrezzoOfferta: null,
             categories: null,
-            sortOrder: [null, null],
+            sortOrder: null,
             userLatitude: 41.1090642,
             userLongitude: 16.8719847,
             maxDistance: 500,
