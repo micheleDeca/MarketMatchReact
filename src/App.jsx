@@ -54,9 +54,9 @@ import { getToken, saveToken } from './LocalStorage/TokenStorage.jsx';
 */
 
 const App = () => {
-
-  
-  saveToken("3dce594f8266d24d7ba7c2a28cc05495f4780afd1b04bf42618bbd09e24a26ca6eee28483f6c0929168e4a4715d042c2a959f8dc76392b3fc68ad1bf2eef2cfdcc7100e81b0f2500f0646d6fd72e1167eca126653ad5890d1a70a12a31c5fb089476a397696cb21a9990985678e8bf9c3880d4e83f495a072631509290b20366",30); //NON FARLO ASSOLUTAMENTE COSì IN PRODUZIONE
+  const tokenConsumer = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzM1OTA1OTMwLCJleHAiOjE3Mzg0OTc5MzB9.gesJC06LITDftvzQAC5PAywbr49pEy523sAgikMkBfk";
+  const tokenStore = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzM1OTE5MzQxLCJleHAiOjE3Mzg1MTEzNDF9.BKPA6V5xJsj-peErhycpUe_2-ClygTdCuc04GhTaIMU"; 
+  saveToken(tokenConsumer,30); //NON FARLO ASSOLUTAMENTE COSì IN PRODUZIONE
   // PER MODIFICARE UTENTE, recarsi in componente "UserUpdater", puoi cliccare control+click qui sott
   return (
     <div>

@@ -45,7 +45,7 @@ const Product = () => {
         maxPrezzo: null,
         filterPrezzoOfferta: null,
         categories: null,           //Es. ["Vegano", "Bio"]
-        sortOrder: "Rilevanza", 
+        sortOrder: "vicinanza", 
         userLatitude: 41.1090642,   //Posizione utente, impostare una standard globale se utente non concede posizione/permessi
         userLongitude: 16.8719847,
         maxDistance: 500,     //distanza tra utente e prodotto in Km 
@@ -67,7 +67,7 @@ const Product = () => {
             maxPrezzo: null,
             filterPrezzoOfferta: null,
             categories: null,
-            sortOrder: "Rilevanza",
+            sortOrder: "vicinanza",
             userLatitude: 41.1090642,
             userLongitude: 16.8719847,
             maxDistance: 500,
@@ -94,6 +94,10 @@ const Product = () => {
     })();
 
     console.log(requestParams);
+
+
+
+
 
     // Effetto per richiedere quantità prodotti per pagination
     useEffect(() => {

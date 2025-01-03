@@ -18,6 +18,10 @@
 
 
 }
+
+.home-section .card{
+  width: 360px;
+}
 .cliccable-link{
   cursor: pointer;
 }

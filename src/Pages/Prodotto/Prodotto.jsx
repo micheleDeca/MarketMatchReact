@@ -22,6 +22,8 @@ function Prodotto() {
   const [loading, setLoading] = useState(true); // Stato per il caricamento
   const [error, setError] = useState(null);
 
+  console.log("utente",userType);
+
   useEffect(() => {
     console.log("ID", id);
     if (!IS_MOCKKED) {
