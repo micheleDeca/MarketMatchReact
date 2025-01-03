@@ -68,7 +68,7 @@ const CardLongList = (props) => {
         {paginatedItems.map((recipe, index) => (
           <CardLong
           key={index}
-          image={recipe.Foto}
+          image={"http://4.232.65.20/assets/"+recipe.Foto}
           productName={recipe.Titolo}
           detail={recipe.Descrizione}
           />
