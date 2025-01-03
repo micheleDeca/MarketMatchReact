@@ -40,7 +40,6 @@ const Stores = () => {
       ...prevState,
       [key]: value, // Aggiorna dinamicamente ogni parametro dei filtri con il valore fornito
     }));
-    console.log("ad");
   };
 
   const handleFilterStateChange = (() => {
@@ -53,14 +52,14 @@ const Stores = () => {
     }  // valori di default dei filtri
 
     let tempParams = intialParams; // Variabile temporanea per memorizzare le coppie chiave-valore fino al send
-    let tempUserPos = userPosition;  // Variabile temporanea per memorizzare la posizione dell'utente fino al send
+    let tempUserPos = [...userPosition];  // Variabile temporanea per memorizzare la posizione dell'utente fino al send
 
     return (key, value) => {
       if (key === "send" && value === true) {
         // Quando si verifica la coppia `send: true`, aggiorna lo stato
 
         if (tempUserPos != userPosition) {
-          setUserPosition(tempUserPos);
+          setUserPosition([...tempUserPos]);
         }
 
         setRequestParams(() => ({
@@ -79,6 +78,10 @@ const Stores = () => {
       }
     };
   })();
+
+  useEffect(() => {
+  console.log("pos cambiata", userPosition);
+  }, [userPosition]);
 
   const [zoomLevel, setZoomLevel] = useState("13");
   // Effetto che si attiva ogni volta che cambia il centro della mappa
@@ -110,7 +113,7 @@ const Stores = () => {
           setStores(storeData); // Aggiorna lo stato dei negozi vicini
           setSortedStores(storeData); // Aggiorna lo stato dei negozi ordinati
           setLoading(false); // Ferma il caricamento
-
+          console.log("modificato");
         }
       } catch (err) {
         if (isMounted) {
@@ -168,7 +171,6 @@ const Stores = () => {
   if (error) return <div>Errore: {error}</div>;
 
   console.log(requestParams);
-  console.log(userPosition);
 
   return (
     <div>
