@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FilterElement from "./FilterElement/FilterElement";
 import "./FilterPopUp.css";
 import SearchBar from "../../SearchBar/SearchBar";
@@ -65,6 +65,12 @@ export default function FilterPopUp(elements) {
     }); // Stato per i filtri selezionati
 
     const [filterVicinoAte, setFilterVicinoAte] = useState(false); // Stato per il filtro "Più vicini a te"
+
+    useEffect(() => {
+        if (elements.type === "ConA, Neg") {
+            setFilterVicinoAte(true);
+        }
+    }, [elements.type]); // L'effetto viene eseguito solo quando cambia `elements.type`
 
     // Funzione per gestire la selezione dei filtri
     const handleFilterClick = (filterName) => {

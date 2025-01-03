@@ -6,7 +6,7 @@ import ButtonFilter from "../../Components/ButtonFilter/ButtonFilter";
 import "./Stores.css";
 import { useCategoryContext } from "../../Context/CategoryContex";
 import { fetchStore } from "./Updater/StoreUpdater";
-import LoadingPage from "../LoadingPage/LoadingPage"; 
+import LoadingPage from "../LoadingPage/LoadingPage";
 
 
 
@@ -31,9 +31,54 @@ const Stores = () => {
   const [requestParams, setRequestParams] = useState({   //ATTENZIONE @isabella posizione utente impostarla nello stato "userPosition"
     categories: null,           //Es. ["Vegano", "Bio"]
     sortOrder: "",    //rilevanza/nome/valutazione
-    searchName:"", 
+    searchName: "",
     maxDistance: 66,     //se superiore alla distanza massima di visualizzazione, perde di validità
   });
+
+  const handleSearchStateChange = (key, value) => {
+    setRequestParams((prevState) => ({
+      ...prevState,
+      [key]: value, // Aggiorna dinamicamente ogni parametro dei filtri con il valore fornito
+    }));
+    console.log("ad");
+  };
+
+  const handleFilterStateChange = (() => {
+
+    const intialParams = {
+      categories: null,
+      sortOrder: "",
+      searchName: "",
+      maxDistance: 66,
+    }  // valori di default dei filtri
+
+    let tempParams = intialParams; // Variabile temporanea per memorizzare le coppie chiave-valore fino al send
+    let tempUserPos = userPosition;  // Variabile temporanea per memorizzare la posizione dell'utente fino al send
+
+    return (key, value) => {
+      if (key === "send" && value === true) {
+        // Quando si verifica la coppia `send: true`, aggiorna lo stato
+
+        if (tempUserPos != userPosition) {
+          setUserPosition(tempUserPos);
+        }
+
+        setRequestParams(() => ({
+          ...tempParams // Applica tutte le coppie memorizzate
+        }));
+
+        tempParams = intialParams; // Resetta i parametri temporanei
+
+      } else if (key === "userLatitude" || key === "userLongitude") {
+
+        const index = key === "userLatitude" ? 0 : 1;
+        tempUserPos[index] = value; // Aggiorna la latitudine o la longitudine
+      } else {
+        // Memorizza la coppia chiave-valore nei parametri temporanei
+        tempParams[key] = value;
+      }
+    };
+  })();
 
   const [zoomLevel, setZoomLevel] = useState("13");
   // Effetto che si attiva ogni volta che cambia il centro della mappa
@@ -54,7 +99,7 @@ const Stores = () => {
     } else {
       maxDistanceLimit = 150;
     }
- 
+
 
     let isMounted = true; // Flag per evitare aggiornamenti su componenti smontati
 
@@ -89,7 +134,7 @@ const Stores = () => {
 
 
 
-  }, [mapCenter, zoomLevel]); // Dipendenza: mapCenter (si aggiorna quando cambia)
+  }, [mapCenter, zoomLevel, requestParams, userPosition]); // Dipendenza: mapCenter (si aggiorna quando cambia)
 
 
   useEffect(() => {
@@ -122,6 +167,9 @@ const Stores = () => {
   if (loading) return <div> <LoadingPage /> </div>;
   if (error) return <div>Errore: {error}</div>;
 
+  console.log(requestParams);
+  console.log(userPosition);
+
   return (
     <div>
       <div className="shops-header">
@@ -129,10 +177,10 @@ const Stores = () => {
       </div>
       <div className="shop-header">
         <div className="searchBar">
-          <SearchBar />
+          <SearchBar type="ricerca" onStateChange={handleSearchStateChange} />
         </div>
         <div className="filterButton">
-          <ButtonFilter order={orderNames} filter={filterNames} type="ConA, Neg" />
+          <ButtonFilter onStateChange={handleFilterStateChange} order={orderNames} filter={filterNames} type="ConA, Neg" />
         </div>
       </div>
 
