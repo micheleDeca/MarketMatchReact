@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { MapContainer, TileLayer, Marker, Tooltip, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import "leaflet.markercluster/dist/MarkerCluster.css";
@@ -15,9 +15,13 @@ const userIcon = new L.Icon({
   iconSize: [30, 30],
 });
 
+ 
+
 // Componente per spostare la mappa
 const ResetViewButton = ({ userPosition }) => {
   const map = useMap();
+
+
 
   const handleResetView = () => {
     map.setView(userPosition, 14);
@@ -30,8 +34,23 @@ const ResetViewButton = ({ userPosition }) => {
   );
 };
 
+const SetNewView = ({ userPosition }) => {
+  const map = useMap();
+
+  useEffect(()=>{
+    map.setView(userPosition, 14);
+  },[userPosition])
+
+  return (
+    <></>
+  );
+};
+
 // Componente principale della mappa
 const MapComponent = ({ userPosition, stores, onStoreClick, onMapMove, onMapZoom }) => {
+  const mapRef = useRef(null);
+
+
   const handleMarkerAction = (shopId) => {
     onStoreClick(shopId);
   };
@@ -42,6 +61,7 @@ const MapComponent = ({ userPosition, stores, onStoreClick, onMapMove, onMapZoom
     setMapPositiona(a);
   };
 
+   
   return (
     <div>
       <MapContainer
@@ -70,6 +90,8 @@ const MapComponent = ({ userPosition, stores, onStoreClick, onMapMove, onMapZoom
 
         {/* Bottone Torna alla Home */}
         <ResetViewButton userPosition={userPosition} />
+        <SetNewView userPosition={userPosition} />
+
       </MapContainer>
     </div>
   );

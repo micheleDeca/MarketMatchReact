@@ -26,6 +26,7 @@ const NavBar = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const [cartItems, setCartItems] = useState(5);
     const { userType } = useUserContext();   // Contesto dell'utente, determina userType
+    const {databaseKey}= useUserContext();
     const [navColor, setNavColor] = useState("");    // Stato per il colore dinamico della navbar
     const location = useLocation();
     const [isStyleActive, setIsStyleActive] = useState(false); // Stato per applicare uno stile speciale alla navbar nella home
@@ -34,7 +35,7 @@ const NavBar = () => {
 
     const sidebarRef = useRef(null); // Riferimento per la sidebar, usato per controllare i click esterni
     const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
-
+ 
     // Funzione che chiude la sidebar se si clicca fuori da essa
     const handleClickOutside = (event) => {
         if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
@@ -105,7 +106,7 @@ const NavBar = () => {
                 <div className="nav-left flex-div">
                     {isVisibleForUserType(["NoAccesso", "ConA", "AmmA", "NegA"]) && <Link to="/prodotti" id="prodottiNav" style={{ color: navColor }} >Prodotti</Link>}
                     {isVisibleForUserType(["ConA", "AmmA"]) && <Link to="/negozi"  id="negoziNav" style={{ color: navColor }}>Negozi</Link>}
-                    {isVisibleForUserType(["NegA"]) && <a href="#negozio" id="negozioNav" style={{ color: navColor }}>Negozio</a>}
+                    {isVisibleForUserType(["NegA"]) && <Link to="/negozio"  id="negozioNav" style={{ color: navColor }}>Negozio</Link>}
                     {isVisibleForUserType(["ConA", "AmmA"]) && <Link to="/ricette" id="ricetteNav" style={{ color: navColor }}>Ricette</Link>}
                     {isVisibleForUserType(["NoAccesso", "ConA", "AmmA", "NegA"]) && <a href="#chiSiamo" id="chiSiamoNav" style={{ color: navColor }}>Chi Siamo</a>}
                 </div>
@@ -134,7 +135,7 @@ const NavBar = () => {
                     <div onClick={toggleSidebar}>
                         {isVisibleForUserType(["NoAccesso", "ConA", "AmmA", "NegA"]) && <Link to="/prodotti">Prodotti</Link>}
                         {isVisibleForUserType(["ConA", "AmmA"]) && <Link to="/negozi" >Negozi</Link>}
-                        {isVisibleForUserType(["NegA"]) && <a href="#negozio">Negozio</a>}
+                        {isVisibleForUserType(["NegA"]) && <Link to="/negozio" >Negozio</Link>}
                         {isVisibleForUserType(["ConA", "AmmA"]) && <Link to="ricette">Ricette</Link>}
                         {isVisibleForUserType(["NoAccesso", "ConA", "AmmA", "NegA"]) && <a href="#chiSiamo">Chi Siamo</a>}
                         {isVisibleForUserType(["ConA", "AmmA", "NegA"]) && <Link to="/prenotazioni">Prenotazioni</Link>}
