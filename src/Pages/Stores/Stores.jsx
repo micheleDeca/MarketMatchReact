@@ -58,7 +58,7 @@ const Stores = () => {
       if (key === "send" && value === true) {
         // Quando si verifica la coppia `send: true`, aggiorna lo stato
 
-        if (tempUserPos != userPosition) {
+        if (tempUserPos[0] !== userPosition[0] || tempUserPos[1] !== userPosition[1]) {
           setUserPosition([...tempUserPos]);
         }
 
