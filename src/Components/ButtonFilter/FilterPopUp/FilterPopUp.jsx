@@ -274,7 +274,7 @@ export default function FilterPopUp(elements) {
                         className="slider-track"
                         style={{
                             left: `${((DiffMin - 1) / (4)) * 100}%`,
-                            right: `${100 - ((maxValue - 1) / (4)) * 100 + 1}%`
+                            right: `${100 - ((DiffMax - 1) / (4)) * 100 + 1}%`
                         }}
                     ></div>
                 </div>
