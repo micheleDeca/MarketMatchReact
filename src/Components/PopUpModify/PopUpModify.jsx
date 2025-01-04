@@ -35,7 +35,7 @@ function PopUpModify(props) {
     }
     if (type === "Nome") {
       const nome = document.getElementsByClassName("input")[0];
-      props.setNegozioInfo({ ...props.negozioInfo, Nome: nome.value });
+      props.setNegozioInfo({ ...props.negozioInfo, Nome: nome.value, RagioneSociale: nome.value });
     }
     if (type === "Descrizione") {
       const descrizione = document.getElementsByClassName("input")[0];
@@ -52,21 +52,28 @@ function PopUpModify(props) {
           newCategorie.push(categorie[i].value);
         }
       }
-      //props.setNegozioInfo({ ...props.negozioInfo, Categorie: newCategorie });
+      props.setNegozioInfo({ ...props.negozioInfo, Categorie: newCategorie });
     }
     if (type === "Prezzo") {
       const prezzo = document.getElementsByClassName("input");
-      if (prezzo[0].value !== "") {
+      if (prezzo[0].value !== "" && prezzo[1].value === "") {
         props.setNegozioInfo({
           ...props.negozioInfo,
-          PrezzoOfferta: parseFloat(prezzo[0].value).toFixed(2),
+          currentPrice: parseFloat(prezzo[0].value).toFixed(2),
+          originalPrice: null,
+          Offerta: false,
         });
       }
-      if (prezzo[1].value !== "") {
+      else if (prezzo[1].value !== "" && prezzo[0].value !== "") {
         props.setNegozioInfo({
           ...props.negozioInfo,
-          Prezzo: parseFloat(prezzo[1].value).toFixed(2),
+          currentPrice: parseFloat(prezzo[1].value).toFixed(2),
+          originalPrice: parseFloat(prezzo[0].value).toFixed(2),
+          Offerta: true,
         });
+      }
+      else{
+        window.alert("Inserire il prezzo normale e il prezzo in offerta o solo il prezzo normale!");
       }
     }
     if (type === "Caratteristiche") {
@@ -303,7 +310,7 @@ function PopUpModify(props) {
                   <input
                     type="checkbox"
                     name="option"
-                    value="Senza lattosio"
+                    value="Senza Lattosio"
                     defaultChecked={props.negozioInfo.Categorie.includes(
                       "Senza Lattosio"
                     )}
@@ -316,7 +323,7 @@ function PopUpModify(props) {
                   <input
                     type="checkbox"
                     name="option"
-                    value="Vegan"
+                    value="Vegano"
                     defaultChecked={props.negozioInfo.Categorie.includes(
                       "Vegano"
                     )}
@@ -342,7 +349,7 @@ function PopUpModify(props) {
                   <input
                     type="checkbox"
                     name="option"
-                    value="Senza glutine"
+                    value="Senza Glutine"
                     defaultChecked={props.negozioInfo.Categorie.includes(
                       "Senza Glutine"
                     )}
@@ -355,8 +362,19 @@ function PopUpModify(props) {
                   <input
                     type="checkbox"
                     name="option"
-                    value="km0"
+                    value="Km0"
                     defaultChecked={props.negozioInfo.Categorie.includes("Km0")}
+                  />
+                </div>
+              </div>
+              <div className="ColumnPopUp">
+                <div className="RowPopUp">
+                  <CategoryLabel category="Sostenibile" />
+                  <input
+                    type="checkbox"
+                    name="option"
+                    value="Sostenibile"
+                    defaultChecked={props.negozioInfo.Categorie.includes("Sostenibile")}
                   />
                 </div>
               </div>
@@ -376,22 +394,26 @@ function PopUpModify(props) {
             <>
               <div className="ColumnPopUp">
                 <label htmlFor="textInput" style={{ color: "darkslateblue" }}>
-                  Prezzo Originale
+                  Prezzo
                 </label>
                 <input
                   type="text"
                   className="input"
-                  defaultValue={props.negozioInfo.PrezzoOfferta}
+                  defaultValue={props.negozioInfo.originalPrice 
+                    ? props.negozioInfo.originalPrice
+                    : props.negozioInfo.currentPrice}
                 />
               </div>
               <div className="ColumnPopUp">
                 <label htmlFor="textInput" style={{ color: "darkslateblue" }}>
-                  Prezzo Corrente
+                  Prezzo in offerta
                 </label>
                 <input
                   type="text"
                   className="input"
-                  defaultValue={props.negozioInfo.Prezzo}
+                  defaultValue={props.negozioInfo.originalPrice 
+                    ? props.negozioInfo.currentPrice
+                    : ""}
                 />
               </div>
               <div className="popUpRight">
