@@ -103,7 +103,8 @@ const CardLong = (props) => {
                     <CategoryLabelList badges={props.badges} />
                 </div>
                 <p className="card-detail-long">
-                    {isRecipe? props.detail : truncateText(props.detail)}
+                {isRecipe? props.detail : truncateText(props.detail)}
+                     {/* {isRecipe? props.detail : truncateText(props.detail)} */}
                 </p>
                 <p className="card-detail-long">
                     {props.detail2}

@@ -56,7 +56,7 @@ const OperationLong = (props) => {
         switch (status) {
             case "ritirato":
                 return { iconColor: "#4CAF50", colorDate: "", text: "Ritirato il:", meaning: "La prenotazione è stata ritirata." }; // Verde
-            case "daRitirare":
+            case "da_ritirare":
                 return { iconColor: "#FF9800", colorDate: "#F44336", text: "Da ritirare entro:", meaning: "La prenotazione è pronta per essere ritirata." }; // Arancione
             case "accettato":
                 return { iconColor: "#2196F3", colorDate: "", text: "Accettato il:", meaning: "La prenotazione è stata accettata dal negozio." }; // Blu
@@ -64,7 +64,7 @@ const OperationLong = (props) => {
                 return { iconColor: "#F3D700", colorDate: "", text: "Prenotato il:", meaning: "La prenotazione è stata creata." }; // Giallo
             case "rifiutato":
                 return { iconColor: "#F44336", colorDate: "", text: "Rifiutato il:", meaning: "La prenotazione è stata rifiutata." }; // Rosso
-            case "scaduto":
+            case "annullato":
                 return { iconColor: "#8000af", colorDate: "", text: "Annullato il:", meaning: "La prenotazione è scaduta." }; // Viola
             default:
                 return { iconColor: "#9E9E9E", colorDate: "", text: "Sconosciuto", meaning: "Stato della prenotazione non riconosciuto." }; // Grigio

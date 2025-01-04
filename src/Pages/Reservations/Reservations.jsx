@@ -4,6 +4,9 @@ import PrenotationSearch from '../../Components/PrenotationSearch/PrenotationSea
 import ButtonPrecedente from '../../Components/ButtonPrecedente/ButtonPrecedente';
 import ButtonSucessivo from '../../Components/ButtonSucessivo/ButtonSucessivo';
 import OperationLongContainer from '../../Components/OperationLongContainer/OperationLongContainer';
+import { fetchReservationFilteredUpdater } from './Updater/ReservationUpdater';
+import LoadingPage from '../LoadingPage/LoadingPage';
+import { useUserContext } from '../../Context/UserContext';
 
 const mockPrenotations = Array.from({ length: 50 }, (_, index) => {
     const reservationStatuses = ["prenotato", "accettato", "rifiutato", "daRitirare", "ritirato", "scaduto"];
@@ -25,28 +28,58 @@ const mockPrenotations = Array.from({ length: 50 }, (_, index) => {
 
 const Prenotazioni = () => {
 
-    const [prenotations, setPrenotations] = useState([]); // Stato per le prenotazioni
+    const [reservation, setReservation] = useState([]); // Stato per le prenotazioni
     const [currentPage, setCurrentPage] = useState(1); // Stato per la pagina attuale
-    const prenotationsPerPage = 5; // Numero di prenotazioni per pagina
+    const reservationPerPage = 5; // Numero di prenotazioni per pagina
+    const [loading, setLoading] = useState(true); // Stato per il caricamento
+    const [error, setError] = useState(null); // Stato per gli errori
+    const [totalItems, setTotalItems] = useState(0); // Aggiunto in modo stabile
+    const [requestParams, setRequestParams] = useState({
+        state: null,
+        searchReservation: null,
+    });
+    const { databaseKey, userType } = useUserContext();
+    const uuidParamStore = (userType === "NegA") ? databaseKey : "";
+    const uuidParamConsumer = (userType === "ConA") ? databaseKey : "";
 
-    const fetchPrenotations = (page) => {
-        // Recupera le prenotazioni per la pagina attuale
-        const startIndex = (page - 1) * prenotationsPerPage;
-        const endIndex = startIndex + prenotationsPerPage;
-        const pagePrenotations = mockPrenotations.slice(startIndex, endIndex);
-
-        setPrenotations(pagePrenotations);
-    };
-
-    // Effetto per caricare le prenotazioni quando cambia la pagina
+    // Effetto per caricare le ricette quando cambia la pagina
     useEffect(() => {
-        fetchPrenotations(currentPage);
-    }, [currentPage]);
+        let isMounted = true; // Flag per evitare aggiornamenti su componenti smontati
+
+        const getReservation = async () => {
+            try {
+                const reservationData = await fetchReservationFilteredUpdater(currentPage, reservationPerPage, requestParams, uuidParamStore, uuidParamConsumer); // Usa la funzione dal modulo
+                if (isMounted) {
+                    setReservation(reservationData); // Aggiorna lo stato
+                    setLoading(false); // Ferma il caricamento
+                }
+            } catch (err) {
+                if (isMounted) {
+                    setError(err.message); // Gestisci l'errore
+                    setLoading(false);
+                }
+            }
+        };
+
+        getReservation();
+
+        // Salva la pagina corrente nel sessionStorage
+
+        // Cleanup: evita aggiornamenti su componenti smontati
+        return () => {
+            isMounted = false;
+        };
+
+
+    }, [currentPage, requestParams]);
 
     const handleStatusChange = () => {
 
     }
-    
+
+    if (loading) return <div><LoadingPage /></div>;
+    if (error) return <div>Errore: {error}</div>;
+
     return (
         <>
             <div className="prenHeader">
@@ -56,8 +89,8 @@ const Prenotazioni = () => {
                 <PrenotationSearch onChange={handleStatusChange} first="Tutto" second="Accettato" third="Rifiutato" fourth="Prenotato" fifth="Da Ritirare" sixth="Ritirato" />
             </div>
             <div className="prenotations">
-                <OperationLongContainer operations={prenotations} type={"reservation"} />
-                
+                <OperationLongContainer operations={reservation} type={"reservation"} />
+
 
             </div>
             <div className="prenButton">
@@ -65,7 +98,7 @@ const Prenotazioni = () => {
                     <ButtonPrecedente onclick={() => setCurrentPage(currentPage - 1)} />
                 )}
 
-                {currentPage < (mockPrenotations.length / prenotationsPerPage) && (
+                {currentPage < (mockPrenotations.length / reservationPerPage) && (
                     <ButtonSucessivo name="Successivo" onclick={() => setCurrentPage(currentPage + 1)} />
                 )}
             </div>

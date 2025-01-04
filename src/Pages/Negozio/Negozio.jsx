@@ -168,6 +168,7 @@ function Negozio() {
             negozioInfo={negozioInfo}
             setNegozioInfo={setNegozioInfo}
           />
+          {id}
         </div>
         <div className="boxNegozio">
           <div className="star">
