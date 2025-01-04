@@ -42,7 +42,7 @@ const CardLongList = (props) => {
             detail={product.detail} 
             currentPrice={(product.currentPrice)? product.currentPrice+"€" : ""}
             originalPrice={(product.originalPrice)? product.originalPrice+"€" : ""}
-            badges={["bio"]}
+            badges={product.badges}
             getCounter={props.getCounter}
             type={props.type}
             

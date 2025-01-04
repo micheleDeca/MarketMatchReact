@@ -22,7 +22,7 @@ function Prodotto() {
   const [loading, setLoading] = useState(true); // Stato per il caricamento
   const [error, setError] = useState(null);
 
-  console.log("utente",userType);
+  console.log("utente", userType);
 
   useEffect(() => {
     if (!IS_MOCKKED) {
@@ -61,9 +61,10 @@ function Prodotto() {
         PrezzoOfferta: "2.00",
         PesoDimensioniUnitaria: "pacchetto",
         NomeNegozio: "Bio e Vegan Delights",
+        Offerta: true,
       });
     }
-  }, []); //inserire prossimamente, aggiornamento in base ai filtri scelti
+  }, []);
 
   useEffect(() => {
     if (prodottoInfo) {
@@ -101,77 +102,101 @@ function Prodotto() {
     }
   }, [prodottoInfo]);
 
-  if (loading)
+  useEffect(() => {
+    if (!loading) {
+      console.log("Isabella");
+      const updateProductCategories = async () => {
+        try {
+          const response = await axios.post(
+            `${BASE_URL}/api/product/UpdateProductCategories`,
+            {
+              productId: id,
+              newCategories: prodottoInfo.Categorie,
+            },
+            {
+              headers: {
+                Authorization: `Bearer ${token}`, // Token di autenticazione
+              },
+            }
+          );
+        } catch (error) {
+          setError(error.message); // Gestisci l'errore
+        }
+      };
+      updateProductCategories();
+    }
+  }, [prodottoInfo]);
+
+  if (loading) {
     return (
       <div>
         <LoadingPage />
       </div>
     );
-
-  if (error) return <div>Errore: {error}</div>;
-
-  return (
-    <>
-      <div
-        className={`popup-edit${modify === "" ? "" : "-active"}` /*AGGIUNTO*/}
-      >
-        <PopUpModify
-          modify={modify}
-          setModify={setModify}
-          negozioInfo={prodottoInfo}
-          setNegozioInfo={setProdottoInfo}
-        />
-      </div>
-      <div className="boxProdotto">
-        {userType === "ConA" && (
-          <div className="containerProdotto">
-            <span className="spaceProdotto">
-              {`${prodottoInfo.NomeNegozio} (${prodottoInfo.DistanzaKm.toFixed(
-                2
-              )} km)`}
-            </span>
-            <span className="spaceProdotto2"></span>
-          </div>
-        )}
-        {userType === "NegA" && (
-          <div className="containerProdotto">
-            <span className="spaceProdotto"></span>
-            <span className="spaceProdotto2">
-              <Button name="Elimina Prodotto" />
-            </span>
-          </div>
-        )}
-        <ShopWindow
-          Description={prodottoInfo.Descrizione}
-          ImageDescription={prodottoInfo.Foto}
-          Name={prodottoInfo.Nome}
-          tipo="prodotto"
-          currentPrice={
-            prodottoInfo.PrezzoOfferta ? prodottoInfo.PrezzoOfferta + "€" : ""
-          }
-          originalPrice={prodottoInfo.Prezzo + "€"}
-          modify={setModify}
-          badges={prodottoInfo.Categorie}
-          mode={userType}
-        />
-        {/*
+  } else if (error) {
+    return <div>Errore: {error}</div>;
+  } else {
+    return (
+      <>
+        <div
+          className={`popup-edit${modify === "" ? "" : "-active"}` /*AGGIUNTO*/}
+        >
+          <PopUpModify
+            modify={modify}
+            setModify={setModify}
+            negozioInfo={prodottoInfo}
+            setNegozioInfo={setProdottoInfo}
+          />
+        </div>
+        <div className="boxProdotto">
+          {userType === "ConA" && (
+            <div className="containerProdotto">
+              <span className="spaceProdotto">
+                {`${
+                  prodottoInfo.NomeNegozio
+                } (${prodottoInfo.DistanzaKm.toFixed(2)} km)`}
+              </span>
+              <span className="spaceProdotto2"></span>
+            </div>
+          )}
+          {userType === "NegA" && (
+            <div className="containerProdotto">
+              <span className="spaceProdotto"></span>
+              <span className="spaceProdotto2">
+                <Button name="Elimina Prodotto" />
+              </span>
+            </div>
+          )}
+          <ShopWindow
+            Description={prodottoInfo.Descrizione}
+            ImageDescription={prodottoInfo.Foto}
+            Name={prodottoInfo.Nome}
+            tipo="prodotto"
+            currentPrice={prodottoInfo.currentPrice}
+            originalPrice={prodottoInfo.originalPrice}
+            modify={setModify}
+            badges={prodottoInfo.Categorie}
+            mode={userType}
+          />
+          {/*
         {userType === "ConA" && (
           <div className="CarrelloProd">
             <CounterAddGood />
           </div>
         )}
           */}
-        <Caratteristiche
-          peso={"Venduto in: " + prodottoInfo.PesoDimensioniUnitaria}
-          quantita={prodottoInfo.Quantità}
-          dimensioni={prodottoInfo.DescrizioneUnita}
-          modify={setModify}
-          disponibile={prodottoInfo.Disponibile}
-          tipo={userType}
-        />
-      </div>
-    </>
-  );
+          <Caratteristiche
+            peso={"Venduto in: " + prodottoInfo.PesoDimensioniUnitaria}
+            quantita={prodottoInfo.Quantità}
+            dimensioni={prodottoInfo.DescrizioneUnita}
+            modify={setModify}
+            disponibile={prodottoInfo.Disponibile}
+            tipo={userType}
+          />
+        </div>
+      </>
+    );
+  }
 }
 
 export default Prodotto;
