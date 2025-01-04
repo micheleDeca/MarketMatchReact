@@ -17,17 +17,18 @@ function SearchBar(props) {
   const [inputValue, setInputValue] = useState("");
   const [address, setAddress] = useState('');
 
-  const handleSearchClick = async () => {
-    if (type === "posizione") {
+  const handlePositionClick = async () => {
       if (!address) {
         setError("Inserisci un indirizzo valido");
         return;
       }
       await fetchCoordinates();
-    } else {
-      props.onStateChange("searchName", inputValue);
-    }
   };
+
+  const handleSearchValue = (value) => {
+    setInputValue(value);
+    props.onStateChange('searchName', value);
+  }
 
   const [coordinates, setCoordinates] = useState(null);
   const [error, setError] = useState(null);
@@ -86,9 +87,9 @@ function SearchBar(props) {
           onChange={(e) =>
             type === "posizione"
               ? setAddress(e.target.value)
-              : setInputValue(e.target.value)
+              : handleSearchValue(e.target.value)
           } />
-        <img src={SearchIcon} alt="search" className="SearchBarImg" onClick={handleSearchClick} />
+        <img src={SearchIcon} alt="search" className="SearchBarImg" onClick={type === "posizione" ? handlePositionClick : null} />
       </div>
 
       {type === "posizione" && (
