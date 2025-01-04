@@ -55,10 +55,10 @@ const Carrello = () => {
         const token = getToken();
 
         console.log(databaseKey);
-    if (!token || !databaseKey) {
-        console.error("Token o databaseKey mancanti");
-        return;
-    }
+        if (!token || !databaseKey) {
+            console.error("Token o databaseKey mancanti");
+            return;
+        }
 
         try {
             const response = await axios.get(`${BASE_URL}/api/cart/products`, {
@@ -69,6 +69,7 @@ const Carrello = () => {
             });
 
             const products = response.data;
+            console.log(products);
             return products;
         } catch (error) {
             console.error('Errore durante il recupero dei prodotti:', error);
@@ -82,7 +83,7 @@ const Carrello = () => {
                 <h1>Carrello</h1>
             </div>
             <div>
-            {fetchProductInCart()};
+                {fetchProductInCart}
             </div>
         </>
     )
