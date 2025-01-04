@@ -30,7 +30,6 @@
 
 .newProduct{
     width: 95%;
-    position: absolute;
     display: flex;
     justify-content: flex-end;
 }

@@ -19,7 +19,7 @@ const Recipes = () => {
 
     const { category: categoryList } = useCategoryContext();
 
-    const orderNames = ["Prezzo crescente", "Prezzo decrescente", "Nome", "Rilevanza", "Cottura Crescente", "Cottura Decrescente",
+    const orderNames = ["Prezzo Crescente", "Prezzo Decrescente", "Nome", "Rilevanza", "Cottura Crescente", "Cottura Decrescente",
         "Preparazione Crescente", "Preparazione Decrescente", "Difficoltà Crescente", "Difficoltà Decrescente"];
     const filterNames = [...categoryList.map((cat) => cat.categoryName)];
 
@@ -36,15 +36,55 @@ const Recipes = () => {
     const [totalItems, setTotalItems] = useState(0);
     const [requestParams, setRequestParams] = useState({
         categories: null,
-        minCost: null,
-        maxCost: null,
+        minPrezzo: null,
+        maxPrezzo: null,
         minDifficulty: null,
         maxDifficulty: null,
-        sortOrder: "PrezzoDecrescente",
+        sortOrder: "Prezzo Decrescente",
         currentPage: 1,
         recipesPerPage: 15,
         searchName: null
     });
+
+    const handleSearchStateChange = (key, value) => {
+        setRequestParams((prevState) => ({
+            ...prevState,
+            [key]: value, // Aggiorna dinamicamente ogni parametro dei filtri con il valore fornito
+        }));
+    };
+
+    const handleFilterStateChange = (() => {
+
+        const intialParams = {
+            categories: null,
+            minPrezzo: null,
+            maxPrezzo: null,
+            minDifficulty: null,
+            maxDifficulty: null,
+            sortOrder: "Prezzo Decrescente",
+            currentPage: 1,
+            recipesPerPage: 15,
+            searchName: null
+        }  // valori di default dei filtri
+
+        let tempParams = intialParams; // Variabile temporanea per memorizzare le coppie chiave-valore fino al send
+
+
+        return (key, value) => {
+            if (key === "send" && value === true) {
+                // Quando si verifica la coppia `send: true`, aggiorna lo stato
+                setRequestParams(() => ({
+                    ...tempParams // Applica tutte le coppie memorizzate
+                }));
+
+                tempParams = intialParams; // Resetta i parametri temporanei
+                setCurrentPage(1);
+            } else {
+                // Memorizza la coppia chiave-valore senza aggiornare lo stato
+                tempParams[key] = value;
+            }
+        };
+    })();
 
     const recipesPerPage = 15; // Numero di ricette per pagina
 
@@ -117,10 +157,10 @@ const Recipes = () => {
             </div>
             <div className="recipes-header">
                 <div className="searchBar">
-                    <SearchBar />
+                    <SearchBar type="ricerca" onStateChange={handleSearchStateChange} />
                 </div>
                 <div className="filterButton">
-                    <ButtonFilter order={orderNames} filter={filterNames} type="ConA, Ric" />
+                    <ButtonFilter onStateChange={handleFilterStateChange} order={orderNames} filter={filterNames} type="ConA, Ric" />
                 </div>
             </div>
 

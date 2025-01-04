@@ -22,6 +22,10 @@ export default function FilterPopUp(elements) {
     const [minValue, setMinValue] = useState(1); // Valore minimo
     const [maxValue, setMaxValue] = useState(isWideRange ? 100 : 5); // Valore massimo
 
+    /* Gestione dello Slider per la difficoltà */
+    const [DiffMin, setDiffMin] = useState(1); // Valore minimo
+    const [DiffMax, setDiffMax] = useState(5); // Valore massimo
+
     /* Gestione dello Slider per la distanza */
     const [minValueDistance] = useState(0.0); // Valore minimo
     const [maxValueDistance, setMaxValueDistance] = useState(10); // Valore massimo
@@ -45,6 +49,25 @@ export default function FilterPopUp(elements) {
         elements.onStateChange('maxPrezzo', value); // Passa chiave e valore per notificare il padre della modifica dell'input
     };
 
+      // Event handler per i valori di difficoltà
+      const handleDiffMinChange = (event) => {
+        let value = Number(event.target.value);
+        if (value >= DiffMax) {
+            value = DiffMax - 1; // Impedisce che il minimo superi il massimo
+        }
+        setDiffMin(value);
+        elements.onStateChange('minDifficulty', value); // Passa chiave e valore per notificare il padre della modifica dell'input
+    };
+
+    const handleDiffMaxChange = (event) => {
+        let value = Number(event.target.value);
+        if (value <= DiffMin) {
+            value = DiffMin + 1; // Impedisce che il massimo vada sotto il minimo
+        }
+        setDiffMax(value);
+        elements.onStateChange('maxDifficulty', value); // Passa chiave e valore per notificare il padre della modifica dell'input
+    };
+
     // Event handler per i valori di distanza
     const handleMaxChangeDistance = (event) => {
         let value = parseFloat(event.target.value); // Usa parseFloat per supportare i decimali
@@ -66,7 +89,7 @@ export default function FilterPopUp(elements) {
     const [filterVicinoAte, setFilterVicinoAte] = useState(false); // Stato per il filtro "Più vicini a te"
 
     useEffect(() => {
-        if (elements.type === "ConA, Neg") {
+        if (elements.type === "ConA, Neg" || elements.type === "ConA, Ric") {
             setFilterVicinoAte(true);
         }
     }, [elements.type]); // L'effetto viene eseguito solo quando cambia `elements.type`
@@ -217,6 +240,45 @@ export default function FilterPopUp(elements) {
                         ></div>
                     </div>
                 </>
+            )}
+
+            {/*Slider per la difficoltà*/}
+            {elements.type === "ConA, Ric" && (
+                <>
+                <div className="diffTitle">
+                    <h2>Difficoltà:</h2>
+                    <div className="slider-values">
+                        <h3>
+                            {DiffMin} - {DiffMax}
+                        </h3>
+                    </div>
+                </div>
+                <div className="range-slider">
+                    <input
+                        type="range"
+                        min="1"
+                        max="4"
+                        value={DiffMin}
+                        onChange={handleDiffMinChange}
+                        className="slider-min"
+                    />
+                    <input
+                        type="range"
+                        min="2"
+                        max="5"
+                        value={DiffMax}
+                        onChange={handleDiffMaxChange}
+                        className="slider-max"
+                    />
+                    <div
+                        className="slider-track"
+                        style={{
+                            left: `${((DiffMin - 1) / (4)) * 100}%`,
+                            right: `${100 - ((maxValue - 1) / (4)) * 100 + 1}%`
+                        }}
+                    ></div>
+                </div>
+            </>
             )}
 
             {/* Filtri distanza */}

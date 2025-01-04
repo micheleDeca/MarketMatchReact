@@ -39,7 +39,8 @@
 .orderTitle h2,
 .filterTitle h2,
 .distanceTitle h2,
-.priceTitle h2 {
+.priceTitle h2,
+.diffTitle h2 {
   font-size: 20px;
   font-weight: 500;
 }
@@ -165,6 +166,10 @@
   flex-direction: row;
   justify-content: center;
   padding-top: 8%;
+}
+
+.diffTitle{
+  padding-top: 40px;
 }
 
 

@@ -168,10 +168,10 @@ const Product = () => {
     const { category: categoryList } = useCategoryContext();
 
     if (userType === "NegA") {
-        orderNames = ["Prezzo crescente", "Prezzo decrescente", "Quantità", "Nome", "Rilevanza"];
+        orderNames = ["Prezzo Crescente", "Prezzo Decrescente", "Quantità", "Nome", "Rilevanza"];
         filterNames = [...categoryList.map((cat) => cat.categoryName), "In promozione"];
     } else if (userType === "ConA") {
-        orderNames = ["Prezzo crescente", "Prezzo decrescente", "Quantità", "Nome", "Rilevanza"];
+        orderNames = ["Prezzo Crescente", "Prezzo Decrescente", "Quantità", "Nome", "Rilevanza"];
         filterNames = [...categoryList.map((cat) => cat.categoryName), "In promozione", "Più vicini a Te"];
     }
 
