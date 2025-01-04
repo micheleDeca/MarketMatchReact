@@ -79,8 +79,8 @@ export const fetchRecipeFilteredUpdater = async (currentPage, productsPerPage, p
                 `${BASE_URL}/api/recipe/filtered`,
                 {
                     categories: requestParam.categories,
-                    minCost: requestParam.minCost,
-                    maxCost: requestParam.maxCost,
+                    minCost: requestParam.minPrezzo,
+                    maxCost: requestParam.maxPrezzo,
                     minDifficulty: requestParam.minDifficulty,
                     maxDifficulty: requestParam.maxDifficulty,
                     sortOrder: requestParam.sortOrder,
