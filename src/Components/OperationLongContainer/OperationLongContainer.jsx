@@ -62,7 +62,7 @@ const OperationLongContainer = ({operations, type}) => {
                     <OperationLong
                         key={operation.id} 
                         status={operation.status} //Prenotazione
-                        id={(type === "reservation"? "#":"") + operation.id} //Prenotazione e Motivo accredito punti
+                        id={operation.id} //Prenotazione e Motivo accredito punti
                         operationDate={operation.reservationDate} //Prenotazione e punti
                         infoDate={operation.infoDate} //Prenotazione
                         shopId={operation.storeName} //Prenotazione

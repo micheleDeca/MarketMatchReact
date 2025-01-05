@@ -48,7 +48,7 @@ export const fetchReservationFilteredUpdater = async (currentPage, productsPerPa
           uuidConsumer: uuidParamConsumer,
           uuidStore: uuidParamStore,
           state: requestParam.state,
-          searchReservation: requestParam.searchReservation,
+          searchName: requestParam.searchName,
           currentPage: currentPage,
           recipesPerPage: productsPerPage,
 

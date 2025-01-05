@@ -48,7 +48,7 @@ const OperationLong = (props) => {
     const { userType } = useUserContext();
     const operation = props;
     const navigate = useNavigate();
-
+    const isReservation = operation.type === "reservation";
 
     const isVisibleForUserType = (types) => types.includes(userType);
     const isVisibleForOperationType = (types) => types.includes(operation.type);
@@ -72,6 +72,8 @@ const OperationLong = (props) => {
                 return { iconColor: "#9E9E9E", colorDate: "", text: "Sconosciuto", meaning: "Stato della prenotazione non riconosciuto." }; // Grigio
         }
     };
+
+    
 
     // Ottieni il colore e il testo in base ai props
     const { iconColor, colorDate, text, meaning } = getStylesByStatus(operation.status);
@@ -108,7 +110,7 @@ const OperationLong = (props) => {
                 className="reservation-link"
             >                <div className="reservation-info-long">
                     <div className="reservation-name-date-long">
-                        <span className="reservation-name-long">{operation.id}</span>
+                        <span className="reservation-name-long">{(isReservation? "#":"") + operation.id}</span>
                         <span className="reservation-date-long"> - {operation.operationDate}</span>
                     </div>
                     {isVisibleForOperationType("reservation") && <div className="reservation-state-date-long">

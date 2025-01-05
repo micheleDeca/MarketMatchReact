@@ -149,8 +149,7 @@ const Recipes = () => {
 
     if (loading) return <div><LoadingPage /></div>;
     if (error) return <div>Errore: {error}</div>;
-
-    console.log(requestParams);
+     
 
     return (
         <div className="recipes-page">

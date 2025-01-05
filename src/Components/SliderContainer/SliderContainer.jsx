@@ -130,7 +130,7 @@ const SliderContainer = () => {
 
     return (
         <div className="slider-wrapper">
-            <span className='slider-text'><h4>Trascina la pallina sullo stato desiderato</h4></span>
+            <span hidden className='slider-text'><h4>Trascina la pallina sullo stato desiderato</h4></span>
             <Slider
                 mainValue={mainValue}
                 mainStates={mainStates}

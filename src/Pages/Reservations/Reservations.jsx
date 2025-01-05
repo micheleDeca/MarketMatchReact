@@ -22,7 +22,7 @@ const Prenotazioni = () => {
     const [totalItems, setTotalItems] = useState(0); // Aggiunto in modo stabile
     const [requestParams, setRequestParams] = useState({
         state: null,
-        searchReservation: null,
+        searchName: "80ceae",
     });
     const { databaseKey, userType } = useUserContext();
     const uuidParamStore = (userType === "NegA") ? databaseKey : "";
