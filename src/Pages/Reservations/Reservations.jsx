@@ -22,7 +22,7 @@ const Prenotazioni = () => {
     const [totalItems, setTotalItems] = useState(0); // Aggiunto in modo stabile
     const [requestParams, setRequestParams] = useState({
         state: null,
-        searchName: "80ceae",
+        searchName: null,
     });
     const { databaseKey, userType } = useUserContext();
     const uuidParamStore = (userType === "NegA") ? databaseKey : "";
@@ -82,13 +82,42 @@ const Prenotazioni = () => {
         };
     }, [requestParams]); //inserire prossimamente, aggiornamento in base ai filtri scelti
 
+    const handleStatusChange = (key, value) => {
 
-    const handleStatusChange = () => {
+        const getStylesByStatus = (status) => {
+            switch (status) {
+                case "Ritirato":
+                    return  "ritirato"; 
+                case "Da Ritirare":
+                    return "da_ritirare"; 
+                case "Accettato":
+                    return "accettato"; 
+                case "Prenotato":
+                    return "prenotato"; 
+                case "Rifiutato":
+                    return "rifiutato";
+                case "Annullato":
+                    return "annullato"; 
+                case "Tutto":
+                    return null; 
+                default:
+                    return null;
+                }
+        };
 
-    }
+        if(key === "state"){
+            value = getStylesByStatus(value);
+        }
+        setRequestParams((prevState) => ({
+            ...prevState,
+            [key]: value, // Aggiorna dinamicamente ogni parametro dei filtri con il valore fornito
+        }));
+    };
 
     if (loading) return <div><LoadingPage /></div>;
     if (error) return <div>Errore: {error}</div>;
+
+    console.log(requestParams);
 
     return (
         <>
@@ -96,7 +125,7 @@ const Prenotazioni = () => {
                 <h1>Prenotazioni</h1>
             </div>
             <div className="prenBar">
-                <PrenotationSearch onChange={handleStatusChange} first="Tutto" second="Accettato" third="Rifiutato" fourth="Prenotato" fifth="Da Ritirare" sixth="Ritirato" />
+                <PrenotationSearch onSearchChange={handleStatusChange} onStateChange={handleStatusChange} first="Tutto" second="Accettato" third="Rifiutato" fourth="Prenotato" fifth="Da Ritirare" sixth="Ritirato" />
             </div>
             <div className="prenotations">
                 <OperationLongContainer operations={reservation} type={"reservation"} />
