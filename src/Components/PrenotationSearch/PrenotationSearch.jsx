@@ -21,7 +21,7 @@ function PrenotationSearch(props) {
     <>
       <div className="PrenotationSearchBox">
         <PrenStatusFilter
-          onChange={props.onChange}
+          onChange={props.onStateChange}
           first={props.first}
           second={props.second}
           third={props.third}
@@ -31,7 +31,7 @@ function PrenotationSearch(props) {
           seventh={props.seventh}
         />
         <span className="PrenotationSearchSpan"></span>
-        <span className="SearchBarWidth"><SearchBar /></span>
+        <span className="SearchBarWidth"><SearchBar type="ricerca" onStateChange={props.onSearchChange}/></span>
       </div>
     </>
   );

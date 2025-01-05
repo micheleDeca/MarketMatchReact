@@ -13,6 +13,7 @@ const Carrello = () => {
     const [stores, setStores] = useState([]); // Stato per i prodotti nel carrello
     const [loading, setLoading] = useState(true); // Stato per il caricamento
     const [error, setError] = useState(null); // Stato per gli errori
+    const [quantity, setQuantity] = useState(null); // Stato per le quantità
 
     /*const products = [
         {
@@ -57,6 +58,10 @@ const Carrello = () => {
 
     const { databaseKey } = useUserContext();
 
+    const updateQuantity = (newQuantity) => {
+        setQuantity(newQuantity);  
+      };
+
     const fetchProductInCart = async () => {
         const token = getToken();
 
@@ -100,7 +105,7 @@ const Carrello = () => {
     };
 
 
-    // Effetto per caricare le prenotazioni
+    // Effetto per caricare i prodotti nel carrello
     useEffect(() => {
         let isMounted = true; // Flag per evitare aggiornamenti su componenti smontati
 
@@ -130,7 +135,7 @@ const Carrello = () => {
         };
 
 
-    }, []);
+    }, [quantity]);
 
     if (loading) return <div><LoadingPage /></div>;
     if (error) return <div>Errore: {error}</div>;
@@ -148,6 +153,7 @@ const Carrello = () => {
                             nameNeg={store.name}
                             products={products.filter((product) => product.id === store.uuid).flatMap((product) => product.products)}
                             luogoDataInfo={store}
+                            onChangeQuantity={updateQuantity}
                         />
                     ))}
                 </div>

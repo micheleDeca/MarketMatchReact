@@ -5,9 +5,11 @@ import Sub from "./sub.png";
 import { getToken } from "../../LocalStorage/TokenStorage";
 import { useUserContext } from "../../Context/UserContext";
 import LoadingPage from "../../Pages/LoadingPage/LoadingPage";
+import axios from "axios";
+import { BASE_URL } from "../../config";
 
 
-function Counter({productId, initialQuantity, getCounter}) {
+function Counter({productId, initialQuantity, getCounter, onChangeQuantity}) {
     const { databaseKey } = useUserContext();
     const [loading, setLoading] = useState(true); // Stato per il caricamento
     const [error, setError] = useState(null); // Stato per gli errori
@@ -23,7 +25,7 @@ function Counter({productId, initialQuantity, getCounter}) {
         if (!token || !databaseKey) {
             throw new Error("Token o databaseKey mancanti");
         }
-
+        
         try {
             const response = await axios.post(
                 `${BASE_URL}/api/cart/setQuantity`,
@@ -38,10 +40,8 @@ function Counter({productId, initialQuantity, getCounter}) {
                 }
             );
 
-            const {idProduct, newQuantity} = response.data;
-
-            // Ritorna un oggetto con stores e products
-            return newQuantity;
+            const data = response.data;
+            return data;
         } catch (error) {
             console.error("Errore durante il recupero dei prodotti:", error);
             throw error; // Propaga l'errore
@@ -54,13 +54,13 @@ function Counter({productId, initialQuantity, getCounter}) {
 
      useEffect(() =>{
         getCounter(contatore);
+        onChangeQuantity(contatore);
         
         let isMounted = true; // Flag per evitare aggiornamenti su componenti smontati
         const modifyQuantity = async () => {
             try {
-                const { idProduct, newQuantity } = await updateQuantity(); // Usa la funzione per l'aggiornamento della quantità
-                console.log("idProduct", idProduct);
-                console.log("newQuantity",newQuantity);
+                const result = await updateQuantity(); // Usa la funzione per l'aggiornamento della quantità
+                console.log(result);
                 if (isMounted) {
                     setLoading(false); // Ferma il caricamento
                 }

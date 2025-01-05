@@ -86,6 +86,7 @@ const CardLong = (props) => {
         navigate(linkType, { state: { id: props.id } });
     };
 
+
     return (
         <div className="card-long">
             <div onClick={handleClickCard} className='cliccable-link'>
@@ -121,7 +122,8 @@ const CardLong = (props) => {
                         )}
                     </div>
                     {(props.getCounter != null) && <div className="count-container-card-long">
-                        <Counter initialQuantity={props.quantity} getCounter={props.getCounter} />
+                        <Counter productId={props.id} initialQuantity={props.quantity} getCounter={props.getCounter}
+                        onChangeQuantity={props.onChangeQuantity} />
                     </div>}
 
                 </div>

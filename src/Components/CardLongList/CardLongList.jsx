@@ -45,6 +45,7 @@ const CardLongList = (props) => {
             badges={product.badges}
             getCounter={props.getCounter}
             type={props.type}
+            onChangeQuantity={props.onChangeQuantity}
             
           />
         ))}

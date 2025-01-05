@@ -29,9 +29,7 @@ function PrenStatusFilter(props) {
   const handleChange = (event) => {
     const value = event.target.value; // Valore dell'opzione selezionata
     setSelectedOption(value); // Aggiorna lo stato
-    if (props.onChange) {
-      props.onChange(value); // Notifica il padre se è stata passata una funzione onChange
-    }
+    props.onChange('state', value); // Notifica il padre del cambio stato
   };
 
   return (
