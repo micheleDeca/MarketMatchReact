@@ -27,6 +27,7 @@ const CardLongList = (props) => {
     setCurrentPage(1);
   }, [props.shops, props.products]);
 
+
    return (
     <>
     <div className="product-long-list-container">
@@ -34,15 +35,15 @@ const CardLongList = (props) => {
       {cardProduct && <span className="product-list-long">
         {paginatedItems.map((product, index) => (
           <CardLong
-            key={product.id}
-            id={product.id}
-            image={"http://4.232.65.20/assets/"+product.image}
-            quantity={product.quantity}
-            productName={product.productName}
-            detail={product.detail} 
-            currentPrice={(product.currentPrice)? product.currentPrice+"€" : ""}
-            originalPrice={(product.originalPrice)? product.originalPrice+"€" : ""}
-            badges={product.badges}
+            key={product.product.id}
+            id={product.product.id}
+            image={"http://4.232.65.20/assets/"+product.product.image}
+            quantity={product.product.quantity}
+            productName={product.product.productName}
+            detail={product.product.detail} 
+            currentPrice={(product.product.currentPrice)? product.product.currentPrice+"€" : ""}
+            originalPrice={(product.product.originalPrice)? product.product.originalPrice+"€" : ""}
+            badges={product.product.badges}
             getCounter={props.getCounter}
             type={props.type}
             

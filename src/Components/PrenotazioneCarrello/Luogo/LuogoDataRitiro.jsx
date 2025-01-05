@@ -8,20 +8,19 @@ export default function LuogoDataRitiro(value) {
                     <h1>Luogo Ritiro</h1>
                 </div>
                 <div className="infoLuogo">
-                    <h2>Negozio {value.numNeg}</h2>
+                    <h2>{value.nameNeg}</h2>
                     <h3>{value.provincia} - {value.citta} - {value.cap}</h3>
-                    <h3>{value.indirizzo} - {value.civico}</h3>
+                    <h3>{value.indirizzo}</h3>
                     <h3>{value.contatti}</h3>
                 </div>
             </div>
             <div className="dataBox">
                 <div className="titleOra">
-                    <h1>Data Ritiro</h1>
+                    <h1>Orari Ritiro</h1>
                 </div>
                 <div className="infoOra">
-                    <h2>{value.data}</h2>
-                    <h3>{value.descrizione}</h3>
-                    <h3>{value.orari}</h3>
+                    {value.orari.map((orario)=>(
+                        <h3>{orario}</h3>))}
                 </div>
             </div>
         </div>

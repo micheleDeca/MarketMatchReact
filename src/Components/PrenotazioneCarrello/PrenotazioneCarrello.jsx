@@ -15,20 +15,20 @@ export default function PrenotazioneCarrello(value) {
             <div className="prenotationBox">
                 <div className="contentBox">
                     <div className="productList">
-                        <CardLongList title={"Negozio " + value.numNeg} products={value.products} getCounter={getCounter} type={"product"}/>
+                        <CardLongList title={value.nameNeg} products={value.products} getCounter={getCounter} type={"product"}/>
                     </div>
 
                     <div className="dateBox">
-                        <LuogoDataRitiro numNeg={value.numNeg} provincia={value.luogoDataInfo.provincia} citta={value.luogoDataInfo.citta} 
-                        cap={value.luogoDataInfo.cap} indirizzo={value.luogoDataInfo.indirizzo} civico={value.luogoDataInfo.civico} 
-                        contatti={value.luogoDataInfo.contatti} data={value.luogoDataInfo.data} descrizione={value.luogoDataInfo.descrizione}
-                        orari={value.luogoDataInfo.orari} />
+                        <LuogoDataRitiro nameNeg={value.nameNeg} provincia={value.luogoDataInfo.province} citta={value.luogoDataInfo.city} 
+                        cap={value.luogoDataInfo.cap} indirizzo={value.luogoDataInfo.address}
+                        contatti={value.luogoDataInfo.cell}
+                        orari={value.luogoDataInfo.storeHours} />
                     </div>
                 </div>
                 <div className="totalBox">
-                    <h1>TOTALE: 20.98 € </h1>
+                    <h1>TOTALE: { value.luogoDataInfo.totalPrice } €</h1>
                     <div className="prenoteButton">
-                        <ButtonSave name={"PRENOTA ordine NEGOZIO " + value.numNeg}/>
+                        <ButtonSave name={"PRENOTA ordine " + value.nameNeg}/>
                     </div>
                 </div>
             </div>
