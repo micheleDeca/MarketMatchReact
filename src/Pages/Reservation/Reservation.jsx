@@ -102,7 +102,7 @@ const Reservation = () => {
                 <div className="user-reservation-state">Stato: {getStylesByStatus(reservationData.status).text}</div>
                 <div className="user-reservation-date">{getStylesByStatus(reservationData.status).date + reservationData.infoDate}</div>
             </div>
-            <SliderContainer />
+            <SliderContainer reservationData={reservationData} />
 
             <div className="store-info-reservation">
                 <LuogoDataRitiro nameNeg={reservationData.storeName}
@@ -113,15 +113,17 @@ const Reservation = () => {
                     contatti={reservationData.mail + " - " + reservationData.cellulare}
                     orari={reservationData.orario} />
             </div>
-            <div className="store-code-reservation-container">
-                <div className="user-reservation-code">Codice Ritiro: {getStylesByStatus(reservationData.status).text}</div>
-            </div>
-            <div className="codice-ritiro-container">
+           
+
+            {reservationData.status === "da_ritirare" && isConsumer && <div className="codice-ritiro-container">
                 <span className="codice-ritiro-label">Codice ritiro:</span>
+                <div className="codice-ritiro-box-container">
                 <div className="codice-ritiro-box">
-                    <span className="codice-ritiro">AABBGG</span>
+                    <span className="codice-ritiro">{reservationData.codiceReservation}</span>
                 </div>
-            </div>
+                </div>
+            </div>}
+
 
             {isStore && <div className="dataLabel-reservation">
                 <DataRitiro />

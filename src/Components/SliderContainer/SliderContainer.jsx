@@ -4,6 +4,7 @@ import './SliderContainer.css';
 import Popup from '../Popup/Popup';
 import { useUserContext } from '../../Context/UserContext';
 import { useLocation } from 'react-router-dom';
+import LoadingPage from '../../Pages/LoadingPage/LoadingPage';
 
 /**
  * Componente SliderContainer:
@@ -46,16 +47,12 @@ import { useLocation } from 'react-router-dom';
  * <SliderContainer />
  */
 
-const SliderContainer = () => {
+const SliderContainer = (reservationData) => {
+
 
     const [mainValue, setMainValue] = useState(0);
-    const [mainStates, setMainStates] = useState([
-        { key: 'prenotato', label: 'Prenotato', date: "12/11/2024, 11:36" },
-        { key: 'accettato', label: 'Accettato', date: null },
-        { key: 'da_ritirare', label: 'Da ritirare', date: null },
-        { key: 'ritirato', label: 'Ritirato', date: null },
-    ]);
-
+    const [totalData, setTotalData] = useState([]);
+    const [mainStates, setMainStates] = useState([]);
     const { userType } = useUserContext();   // Contesto dell'utente, determina userType
 
     const [showPopupReject, setshowPopupReject] = useState(false);
@@ -68,6 +65,68 @@ const SliderContainer = () => {
 
     const [showPopupAccept, setshowPopupAccept] = useState(false);
     const [responseAccept, setResponseAccept] = useState(null);
+
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        console.log("Dati arrivati in slider");
+        setTotalData(reservationData.reservationData);
+    }, [reservationData]);
+
+    const getMainValueFromStatus = (status) => {
+        const statusToValueMap = {
+            prenotato: 0,
+            accettato: 1,
+            da_ritirare: 2,
+            ritirato: 3,
+            annullato: 3,
+            rifiutato: 1,
+        };
+
+        return statusToValueMap[status] || 0;
+    };
+
+
+    // Funzione per popolare `mainStates` in base ai dati ricevuti
+    useEffect(() => {
+
+        const value = getMainValueFromStatus(totalData.status);
+
+        let states = [];
+        switch (totalData.status) {
+            case 'annullato':
+                states = [
+                    { key: 'prenotato', label: 'Prenotato', date: totalData.reservationDate },
+                    { key: 'accettato', label: 'Accettato', date: totalData.confirmationDate },
+                    { key: 'da_ritirare', label: 'Da ritirare', date: totalData.expectedPickupDate },
+                    { key: 'annullato', label: 'Cancellato', date: totalData.expirationDate },
+                ];
+                break;
+
+            case 'rifiutato':
+                states = [
+                    { key: 'prenotato', label: 'Prenotato', date: totalData.reservationDate },
+                    { key: 'rifiutato', label: 'Rifiutato', date: totalData.expirationDate },
+                ];
+                break;
+
+            default:
+                states = [
+                    { key: 'prenotato', label: 'Prenotato', date: totalData.reservationDate },
+                    { key: 'accettato', label: 'Accettato', date: totalData.confirmationDate },
+                    { key: 'da_ritirare', label: 'Da ritirare', date: totalData.expectedPickupDate },
+                    { key: 'ritirato', label: 'Ritirato', date: totalData.actualPickupDate },
+                ];
+                break;
+        }
+        setMainStates(states);
+        setMainValue(value);
+        if (states)
+            setLoading(false);
+
+    }, [totalData]);
+
 
 
     const handlePopupClose = (result) => {
@@ -126,7 +185,8 @@ const SliderContainer = () => {
     }, [responseConsumer]); // Osserva il valore di mainValue
 
 
-    
+    if (loading) return <div><LoadingPage /></div>;
+    if (error) return <div>Errore: {error}</div>;
 
     return (
         <div className="slider-wrapper">
@@ -153,7 +213,7 @@ const SliderContainer = () => {
             <span className="slider-button">
                 {(!responseConsumer &&
                     buttonVisibilityConsumer &&
-                    (userType === "ConA")&& 
+                    (userType === "ConA") &&
                     mainValue === 0) &&
                     (<button className="refuse-button" onClick={() => { setshowPopupRejectConsumer(true) }}>Annulla prenotazione</button>)}
             </span>

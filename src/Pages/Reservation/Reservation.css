@@ -16,7 +16,7 @@
     padding-right: 2%;
 }
 
-.user-reservation-state{
+.user-reservation-state {
     font-size: 25px;
     font-weight: bold;
     margin-bottom: 3px;
@@ -24,83 +24,94 @@
 }
 
 
-.user-reservation-date{
+.user-reservation-date {
     font-size: 20px;
 }
 
-.user-reservation-state-info{
+.user-reservation-state-info {
     padding-left: 25px;
     padding-top: 10px;
-   
-}
-.user-reservation-code{
-    font-size: 40px;
-    font-weight: bold;
-    margin-bottom: 3px;
 
 }
 
-.store-code-reservation-container{
-    padding-left: 25px;
-    padding-top: 10px;
-   
-}
 
-.store-info-reservation{
+.store-info-reservation {
     padding-left: 25px;
 }
 
 
-.store-info-reservation .luogoBox, .dataBox {
+.store-info-reservation .luogoBox,
+.dataBox {
     display: flex;
-    align-items: flex-start; /* Allinea il contenuto a sinistra */
+    align-items: flex-start;
+    /* Allinea il contenuto a sinistra */
 }
- 
- 
+
+
 .store-info-reservation .titleOra {
     padding-left: 40px;
 }
 
 
-.store-info-reservation .infoLuogo h2, .infoOra h2{
+.store-info-reservation .infoLuogo h2,
+.infoOra h2 {
     padding-left: 4px;
 }
 
-.store-info-reservation .infoLuogo h3, .infoOra h3{
+.store-info-reservation .infoLuogo h3,
+.infoOra h3 {
     padding-left: 4px;
 }
 
- /* Contenitore principale */
+@media (max-width: 855px){
+    .store-info-reservation .luogoDataBox{
+        flex-direction: row;
+        gap: 40px;
+    }
+
+    .store-info-reservation .titleOra {
+        padding-left: 0px;
+    }
+    
+
+}
+
 .codice-ritiro-container {
-  display: flex;
-  align-items: center; /* Allinea verticalmente */
-  gap: 20px; /* Spaziatura tra il label e il box */
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    flex-direction: column;
+    padding-top: 20px;
+    
 }
 
-/* Etichetta "Codice ritiro:" */
 .codice-ritiro-label {
-  font-size: 16px;
-  font-weight: 400; /* Peso normale */
-  color: #333; /* Colore del testo */
+    font-size: 25px;
+    font-weight: bold;
+    margin-left: 25px;
 }
 
-/* Box del codice */
 .codice-ritiro-box {
-  background-color: #4CAF50; /* Verde dello sfondo */
-  border-radius: 12px; /* Angoli arrotondati */
-  padding: 10px 20px; /* Spaziatura interna */
-  display: flex;
-  align-items: center; /* Centra verticalmente il testo */
-  justify-content: center; /* Centra orizzontalmente il testo */
-  min-width: 120px; /* Larghezza minima per mantenere proporzioni */
-  height: 40px; /* Altezza fissa */
+
+    background-color: #03684D;
+    border-radius: 12px;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 140px;
+    height: 45px;
 }
 
-/* Testo del codice */
 .codice-ritiro {
-  font-size: 18px; /* Dimensione del testo */
-  font-weight: bold; /* Testo grassetto */
-  color: #fff; /* Colore bianco */
-  text-transform: uppercase; /* Tutto maiuscolo */
-  letter-spacing: 2px; /* Spaziatura tra lettere */
+    font-size: 25px;
+    font-weight: bold;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.codice-ritiro-box-container {
+    display: flex;
+    justify-content: center;
 }
