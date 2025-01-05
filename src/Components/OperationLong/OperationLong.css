@@ -31,7 +31,6 @@
     flex: 1; /* Occupa lo spazio disponibile */
     margin-left: 10px; /* Spazio tra icona e informazioni */
 }
-
 .reservation-name-date-long {
     display: flex; /* Posiziona gli elementi in linea */
     align-items: center; /* Allinea verticalmente al centro */
@@ -50,12 +49,12 @@
 
 .reservation-state-long{
     font-weight: 800;  
-    font-size: 15px;
+    font-size: 24px;
 }
 
 .reservation-date-state-long{
     font-weight: 500;  
-    font-size: 15px;
+    font-size: 24px;
 }
 
 
@@ -63,8 +62,9 @@
     display: flex;
     align-items: center; /* Allinea verticalmente al centro */    
     gap: 5px; /* Spazio tra gli elementi */
-
+    padding-top: 5px;
 }
+
 .reservation-bigInfo-long {
     display: flex;
     align-items: center; /* Allinea verticalmente al centro */    
@@ -73,6 +73,13 @@
 }
 .reservation-bigInfo-uno-long {
     font-weight: bold; /* Prezzo in evidenza */
+    color: #111;
+    font-size: 18px;
+    margin-top: 5px;
+}
+
+.reservation-bigInfoSmall-uno-long{
+    font-weight: normal;
     color: #111;
     font-size: 18px;
     margin-top: 5px;
@@ -146,3 +153,23 @@
         padding-top: 5px;
     }
 }
+
+@media (max-width: 768px) {
+    .reservation-name-date-long {
+      display: flex;
+      flex-direction: column; /* Cambia la disposizione degli elementi in colonna */
+      align-items: flex-start; /* Allinea gli elementi a sinistra */
+    }
+  
+    .reservation-state-long{  
+        font-size: 15px;
+    }
+    
+    .reservation-date-state-long{
+        font-size: 15px;
+    }
+
+    
+     
+  }
+  

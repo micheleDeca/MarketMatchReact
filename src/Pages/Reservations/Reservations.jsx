@@ -7,24 +7,10 @@ import OperationLongContainer from '../../Components/OperationLongContainer/Oper
 import { fetchReservationFilteredUpdater } from './Updater/ReservationUpdater';
 import LoadingPage from '../LoadingPage/LoadingPage';
 import { useUserContext } from '../../Context/UserContext';
+import { getNumberReservationFiltered } from './Updater/NumReservationUpdater';
 
-const mockPrenotations = Array.from({ length: 50 }, (_, index) => {
-    const reservationStatuses = ["prenotato", "accettato", "rifiutato", "daRitirare", "ritirato", "scaduto"];
-    const randomStatus = reservationStatuses[Math.floor(Math.random() * reservationStatuses.length)];
-    const randomDate = (offset = 0) => {
-        const date = new Date();
-        date.setDate(date.getDate() + offset);
-        return date.toLocaleDateString("it-IT");
-    };
-    return {
-        id: `#${100000 + index}`, // ID univoco
-        status: randomStatus, // Stato casuale
-        reservationDate: randomDate(-index), // Data prenotazione (retroattiva rispetto all'indice)
-        infoDate: randomDate(-(index - 1)), // Data info successiva
-        shopId: `${Math.floor(Math.random() * 10) + 1}`, // ID negozio casuale
-        customerId: `${Math.floor(Math.random() * 10) + 1}`, // ID negozio casuale
-    };
-});
+
+
 
 const Prenotazioni = () => {
 
@@ -63,7 +49,6 @@ const Prenotazioni = () => {
 
         getReservation();
 
-        // Salva la pagina corrente nel sessionStorage
 
         // Cleanup: evita aggiornamenti su componenti smontati
         return () => {
@@ -72,6 +57,31 @@ const Prenotazioni = () => {
 
 
     }, [currentPage, requestParams]);
+
+    // Effetto per richiedere quantità ricette per pagination
+    useEffect(() => {
+        let isMounted = true; // Flag per evitare aggiornamenti su componenti smontati
+        const getNumReservation = async () => {
+            try {
+                const recipesData = await getNumberReservationFiltered(requestParams, uuidParamStore, uuidParamConsumer); // Usa la funzione dal modulo
+                if (isMounted) {
+                    setTotalItems(recipesData); // Aggiorna lo stato
+                }
+            } catch (err) {
+                if (isMounted) {
+                    setError(err.message); // Gestisci l'errore
+                }
+            }
+        };
+
+        getNumReservation();
+
+        // Cleanup: evita aggiornamenti su componenti smontati
+        return () => {
+            isMounted = false;
+        };
+    }, [requestParams]); //inserire prossimamente, aggiornamento in base ai filtri scelti
+
 
     const handleStatusChange = () => {
 
@@ -98,7 +108,7 @@ const Prenotazioni = () => {
                     <ButtonPrecedente onclick={() => setCurrentPage(currentPage - 1)} />
                 )}
 
-                {currentPage < (mockPrenotations.length / reservationPerPage) && (
+                {currentPage < (totalItems / reservationPerPage) && (
                     <ButtonSucessivo name="Successivo" onclick={() => setCurrentPage(currentPage + 1)} />
                 )}
             </div>
