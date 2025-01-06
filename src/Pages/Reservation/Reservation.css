@@ -76,6 +76,16 @@
 
 }
 
+@media (max-width: 450px){
+    .store-info-reservation .luogoDataBox{
+        flex-direction: column;
+        gap: 40px;
+    }
+ 
+    
+
+}
+
 .codice-ritiro-container {
     display: flex;
     gap: 20px;
