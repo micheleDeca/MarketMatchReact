@@ -1,6 +1,8 @@
 import './LuogoDataRitiro.css'
 
 export default function LuogoDataRitiro(value) {
+    const days = ["Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato", "Domenica"];
+
     return (
         <div className="luogoDataBox">
             <div className="luogoBox">
@@ -19,9 +21,11 @@ export default function LuogoDataRitiro(value) {
                     <h1>Orari Ritiro</h1>
                 </div>
                 <div className="infoOra">
-                    {value.orari.map((orario)=>(
-                        <h3>{orario}</h3>))}
- 
+                    {value.orari.map((orario, index) => (
+                        <h3 key={index}>
+                            <span className="giorno">{days[index]}</span>: {orario}
+                        </h3>
+                    ))}
                 </div>
             </div>
         </div>

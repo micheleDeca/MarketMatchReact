@@ -13,7 +13,7 @@ import { useLocation } from "react-router-dom";
 import LoadingPage from "../LoadingPage/LoadingPage.jsx";
 
 function Negozio() {
-  const { userType } = useUserContext();
+  const {databaseKey, userType}= useUserContext();
   const [modify, setModify] = useState("");
   const location = useLocation();
   const { id } = location.state || {}; // Fallback se `state` è null
@@ -33,7 +33,7 @@ function Negozio() {
           const response = await axios.post(
             `${BASE_URL}/api/store/getShop`,
             {
-              negozioUuid: id,
+              negozioUuid: id || databaseKey,
               userLatitude: 41.1090642,
               userLongitude: 16.8719847,
             },
@@ -78,11 +78,11 @@ function Negozio() {
       });
     }
   }, []);
-
+  {/*
   useEffect(() => {
     console.log("AAAA", negozioInfo);
   }, [negozioInfo]);
-
+  */}
   useEffect(() => {
     if (!IS_MOCKKED) {
       const getProductShop = async () => {
@@ -90,7 +90,7 @@ function Negozio() {
           const response = await axios.post(
             `${BASE_URL}/api/store/getShopProducts`,
             {
-              negozioUuid: id,
+              negozioUuid: id || databaseKey,
             },
             {
               headers: {
@@ -132,11 +132,11 @@ function Negozio() {
       ]);
     }
   }, []);
-
+  {/*
   useEffect(() => {
     console.log("BBBB", prodottiInfo);
   }, [prodottiInfo]);
-
+  */}
   useEffect(() => {
     if (prodottiInfo) {
       const timer = setTimeout(() => {
@@ -147,6 +147,56 @@ function Negozio() {
       return () => clearTimeout(timer);
     }
   }, [prodottiInfo]);
+
+  useEffect(() => {
+    if (!loading) {
+      console.log("Michele de Carolis");
+      const updateStore = async () => {
+        try {
+          const response = await axios.post(
+            `${BASE_URL}/api/store/UpdateStore`,
+            {
+              negozioUuid: id || databaseKey,
+              input: negozioInfo,
+            },
+            {
+              headers: {
+                Authorization: `Bearer ${token}`, // Token di autenticazione
+              },
+            }
+          );
+        } catch (error) {
+          setError(error.message); // Gestisci l'errore
+        }
+      };
+      updateStore();
+    }
+  }, [negozioInfo]);
+
+  useEffect(() => {
+    if (!loading) {
+      console.log("Isabella");
+      const updateStoreCategories = async () => {
+        try {
+          const response = await axios.post(
+            `${BASE_URL}/api/store/UpdateStoreCategories`,
+            {
+              negozioUuid: id || databaseKey,
+              newCategories: negozioInfo.Categorie,
+            },
+            {
+              headers: {
+                Authorization: `Bearer ${token}`, // Token di autenticazione
+              },
+            }
+          );
+        } catch (error) {
+          setError(error.message); // Gestisci l'errore
+        }
+      };
+      updateStoreCategories();
+    }
+  }, [negozioInfo]);
 
   if (loading) {
     return (
@@ -168,7 +218,6 @@ function Negozio() {
             negozioInfo={negozioInfo}
             setNegozioInfo={setNegozioInfo}
           />
-          {id}
         </div>
         <div className="boxNegozio">
           <div className="star">

@@ -20,6 +20,10 @@
     padding-left: 10%;
 }
 
+.giorno{
+    font-weight: 500;
+}
+
 .luogoDataBox{
     width: 100%;
     display: flex;
