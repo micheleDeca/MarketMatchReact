@@ -19,7 +19,7 @@ function RecipesInformation(props) {
         />
         <CategoryLabel
           color="darkslateblue"
-          category={`Costo medio: ${props.costo}`}
+          category={`Costo: ${props.costo}`}
         />
       </div>
     </>

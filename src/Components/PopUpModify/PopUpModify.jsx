@@ -1,6 +1,7 @@
 import "./PopUpModify.css";
 import close from "./close.svg";
 import CategoryLabel from "../CategoryLabel/CategoryLabel.jsx";
+import Button from "../Button/Button.jsx";
 
 function PopUpModify(props) {
   const closeForm = () => {
@@ -9,6 +10,10 @@ function PopUpModify(props) {
   };
 
   const save = (type) => {
+    if (type === "Elimina") {
+      props.setNegozioInfo({ ...props.negozioInfo, Eliminato: true });
+      window.location.href = "/prodotti";
+    }
     if (type === "Orari") {
       const orari = document.getElementsByClassName("input");
       const newOrari = [];
@@ -27,10 +32,11 @@ function PopUpModify(props) {
         ...props.negozioInfo,
         Regione: informazioni[0].value,
         Provincia: informazioni[1].value,
-        Cap: informazioni[2].value,
-        Indirizzo: informazioni[3].value,
-        Cellulare: informazioni[4].value,
-        Mail: informazioni[5].value,
+        Città: informazioni[2].value,
+        Cap: informazioni[3].value,
+        Indirizzo: informazioni[4].value,
+        Cellulare: informazioni[5].value,
+        Mail: informazioni[6].value,
       });
     }
     if (type === "Nome") {
@@ -186,6 +192,16 @@ function PopUpModify(props) {
                 <input
                   type="text"
                   defaultValue={props.negozioInfo.Provincia}
+                  className="input"
+                />
+              </div>
+              <div className="ColumnPopUp">
+                <label for="textInput" style={{ color: "darkslateblue" }}>
+                  Città
+                </label>
+                <input
+                  type="text"
+                  defaultValue={props.negozioInfo.Città}
                   className="input"
                 />
               </div>
@@ -480,6 +496,32 @@ function PopUpModify(props) {
                   value="Salva"
                   className="popUpbtn"
                   onClick={() => save("Caratteristiche")}
+                />
+              </div>
+            </>
+          ) : (
+            <></>
+          )}
+          {props.modify === "Elimina Prodotto" ? (
+            <>
+              <div className="ColumnPopUp">
+                <label style={{ color: "darkslateblue" }}>
+                  Vuoi eliminare questo prodotto?
+                </label>
+              </div>
+              <div className="popUpRight">
+                <input
+                  type="submit"
+                  value="Si"
+                  className="popUpbtn"
+                  onClick={() => save("Elimina")}
+                />
+                <span>&nbsp;&nbsp;&nbsp;</span>
+                <input
+                  type="submit"
+                  value="No"
+                  className="popUpbtn"
+                  onClick={() => closeForm()}
                 />
               </div>
             </>

@@ -9,11 +9,11 @@ import { BASE_URL, IS_MOCKKED } from "../../config.js";
 import { useState, useEffect } from "react";
 import { getToken } from "../../LocalStorage/TokenStorage.jsx";
 import { useUserContext } from "../../Context/UserContext";
-import { useLocation } from "react-router-dom";
+import { data, useLocation } from "react-router-dom";
 import LoadingPage from "../LoadingPage/LoadingPage.jsx";
 
 function Prodotto() {
-  const { userType } = useUserContext();
+  const {databaseKey, userType}= useUserContext();
   const [modify, setModify] = useState("");
   const location = useLocation();
   const { id } = location.state || {}; // Fallback se `state` è null
@@ -22,10 +22,8 @@ function Prodotto() {
   const [loading, setLoading] = useState(true); // Stato per il caricamento
   const [error, setError] = useState(null);
 
-  console.log("utente", userType);
-
   useEffect(() => {
-    if (!IS_MOCKKED) {
+    if (!IS_MOCKKED && id != '4366c62e-d77b-4cdd-b27e-09a12656f4a9') {
       const getProduct = async () => {
         try {
           const response = await axios.post(
@@ -57,8 +55,8 @@ function Prodotto() {
         Foto: "/prodotto/10.jpg",
         Disponibile: true,
         DistanzaKm: 1.5536619549214765,
-        Prezzo: "3.20",
-        PrezzoOfferta: "2.00",
+        originalPrice: parseFloat("3.20"),
+        currentPrice: parseFloat("2.00"),
         PesoDimensioniUnitaria: "pacchetto",
         NomeNegozio: "Bio e Vegan Delights",
         Offerta: true,
@@ -78,8 +76,7 @@ function Prodotto() {
   }, [prodottoInfo]);
 
   useEffect(() => {
-    if (!loading) {
-      console.log("Michele de Carolis");
+    if (!loading && id != '4366c62e-d77b-4cdd-b27e-09a12656f4a9') {
       const updateProduct = async () => {
         try {
           const response = await axios.post(
@@ -103,8 +100,7 @@ function Prodotto() {
   }, [prodottoInfo]);
 
   useEffect(() => {
-    if (!loading) {
-      console.log("Isabella");
+    if (!loading && id != '4366c62e-d77b-4cdd-b27e-09a12656f4a9') {
       const updateProductCategories = async () => {
         try {
           const response = await axios.post(
@@ -126,6 +122,45 @@ function Prodotto() {
       updateProductCategories();
     }
   }, [prodottoInfo]);
+
+  useEffect(() => {
+    console.log(databaseKey);
+    if (id == '4366c62e-d77b-4cdd-b27e-09a12656f4a9') {
+      setProdottoInfo({
+        Quantità: 0,
+        DescrizioneUnita: "Inserisci descrizione unità",
+        Descrizione: "Inserisci descrizione prodotto",
+        Categorie: ["Inserisci categoria"],
+        Nome: "Inserisci nome prodotto",
+        Foto: "Inserisci foto prodotto",
+        Disponibile: false,
+        currentPrice: parseFloat("0.0"),
+        PesoDimensioniUnitaria: "Inserisci peso/dimensioni unità",
+        Offerta: false,
+      });
+    }
+  }, []);
+
+  const CreateProduct = async () => {
+    try {
+      const response = await axios.post(
+        `${BASE_URL}/api/product/CreateProduct`,
+        {
+          product: prodottoInfo,
+          newCategories: prodottoInfo.Categorie,
+          shop: databaseKey,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // Token di autenticazione
+          },
+        }
+      );
+      window.alert("Prodotto inserito con successo");
+    } catch (error) {
+      setError(error.message); // Gestisci l'errore
+    }
+  };
 
   if (loading) {
     return (
@@ -159,11 +194,19 @@ function Prodotto() {
               <span className="spaceProdotto2"></span>
             </div>
           )}
-          {userType === "NegA" && (
+          {userType === "NegA" && id != '4366c62e-d77b-4cdd-b27e-09a12656f4a9' && (
             <div className="containerProdotto">
               <span className="spaceProdotto"></span>
               <span className="spaceProdotto2">
-                <Button name="Elimina Prodotto" />
+                <Button name="Elimina Prodotto" modify={setModify}/>
+              </span>
+            </div>
+          )}
+          {userType === "NegA" && id == '4366c62e-d77b-4cdd-b27e-09a12656f4a9' && (
+            <div className="containerProdotto">
+              <span className="spaceProdotto"></span>
+              <span className="spaceProdotto2">
+                <Button name="Salva" function={CreateProduct}/>
               </span>
             </div>
           )}
