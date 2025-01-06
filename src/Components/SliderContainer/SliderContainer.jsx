@@ -226,7 +226,7 @@ const SliderContainer = ({reservationData, onPageUpdater}) => {
                         importantText="Sei sicuro di voler RIFIUTARE la prenotazione?"
                         subText="Questa azione è irreversibile."
                         confirmText="RIFIUTA"
-                        cancelText="Annulla"
+                        cancelText="Torna indietro"
                         onClose={handlePopupClose}
                     />
                 )}
@@ -236,7 +236,7 @@ const SliderContainer = ({reservationData, onPageUpdater}) => {
                         importantText="Sei sicuro di voler ACCETTARE la prenotazione?"
                         subText="Questa azione è irreversibile."
                         confirmText="ACCETTA"
-                        cancelText="Annulla"
+                        cancelText="Torna indietro"
                         onClose={handlePopupAcceptClose}
                     />
                 )}
@@ -246,7 +246,7 @@ const SliderContainer = ({reservationData, onPageUpdater}) => {
                         importantText="Sei sicuro di voler ANNULLARE la prenotazione?"
                         subText="Questa azione è irreversibile."
                         confirmText="ANNULLARE"
-                        cancelText="Annulla"
+                        cancelText="Torna indietro"
                         onClose={handleRejectConsumer}
                     />
                 )}
