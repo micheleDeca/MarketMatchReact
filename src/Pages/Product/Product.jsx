@@ -23,7 +23,7 @@ const Product = () => {
     const navigate = useNavigate();
 
     const goToProduct = () => {
-        navigate('/prodotto');
+        navigate('/prodotto', { state: { id: '4366c62e-d77b-4cdd-b27e-09a12656f4a9' } });
     };
 
     const [products, setProducts] = useState([]); // Stato per i prodotti

@@ -30,7 +30,7 @@ function Ricetta() {
           const response = await axios.post(
             `${BASE_URL}/api/recipe/getRecipe`,
             {
-              recipeId: "fb8f2ed1-e0e2-4a99-aeee-4cff7d0906af",
+              recipeId: id,
             },
             {
               headers: {
@@ -180,7 +180,7 @@ function Ricetta() {
             difficolta={ricettaInfo.Difficoltà}
             preparazione={ricettaInfo.TempoPreparazione + " min"}
             cottura={ricettaInfo.TempoCottura + " min"}
-            costo={ricettaInfo.Costo + "€"}
+            costo={ricettaInfo.Costo}
           />
         </div>
         <div className="Ingredienti">
