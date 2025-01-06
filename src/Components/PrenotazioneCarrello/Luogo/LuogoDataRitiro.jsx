@@ -21,6 +21,7 @@ export default function LuogoDataRitiro(value) {
                 <div className="infoOra">
                     {value.orari.map((orario)=>(
                         <h3>{orario}</h3>))}
+ 
                 </div>
             </div>
         </div>

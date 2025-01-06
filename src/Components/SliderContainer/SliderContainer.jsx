@@ -5,7 +5,7 @@ import Popup from '../Popup/Popup';
 import { useUserContext } from '../../Context/UserContext';
 import { useLocation } from 'react-router-dom';
 import LoadingPage from '../../Pages/LoadingPage/LoadingPage';
-
+import { cancelReservationUpdater } from './UpdaterOperation/CancelReservation';
 /**
  * Componente SliderContainer:
  * 
@@ -47,7 +47,7 @@ import LoadingPage from '../../Pages/LoadingPage/LoadingPage';
  * <SliderContainer />
  */
 
-const SliderContainer = (reservationData) => {
+const SliderContainer = ({reservationData, onPageUpdater}) => {
 
 
     const [mainValue, setMainValue] = useState(0);
@@ -68,10 +68,9 @@ const SliderContainer = (reservationData) => {
 
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-
     useEffect(() => {
         console.log("Dati arrivati in slider");
-        setTotalData(reservationData.reservationData);
+        setTotalData(reservationData);
     }, [reservationData]);
 
     const getMainValueFromStatus = (status) => {
@@ -141,6 +140,7 @@ const SliderContainer = (reservationData) => {
 
     // Funzione per gestire il rifiuto
     const handleReject = () => {
+
         setMainStates((prevStates) => [
             prevStates[0], // Mantiene solo il primo record
             { key: 'rifiutato', label: 'Rifiutato', date: null } // Aggiunge il nuovo record
@@ -155,6 +155,7 @@ const SliderContainer = (reservationData) => {
 
     // Funzione per gestire annulla (sistema)
     const handleCancel = () => {
+
         setMainStates((prevStates) => [
             ...prevStates.slice(0, 3), // Mantiene i primi tre step
             { key: 'annullato', label: 'Cancellato', date: null } // Aggiunge il nuovo record
@@ -175,6 +176,7 @@ const SliderContainer = (reservationData) => {
     // useEffect per reagire ai cambiamenti di consumatore annulla prenotazione
     useEffect(() => {
         if (responseConsumer) {
+            cancelReservationUpdater(totalData.id, onPageUpdater);
             setbuttonVisibilityConsumer(false);
             setMainStates((prevStates) => [
                 ...prevStates.slice(0, 3), // Mantiene i primi tre step

@@ -15,12 +15,17 @@ const Reservation = () => {
     const [products, setProducts] = useState([]); // Lista dei prodotti
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [updatePage, setUpdatePage] = useState(false);
     const { databaseKey, userType } = useUserContext();
 
     const isConsumer = userType === "ConA";
     const isStore = userType === "NegA";
     const location = useLocation();
     const { id } = location.state || {}; // Fallback se `state` è null
+
+    const pageUpdater = () =>{
+        setUpdatePage((prev) => !prev);  
+    };
 
     useEffect(() => {
         let isMounted = true; // Flag per evitare aggiornamenti su componenti smontati
@@ -43,14 +48,13 @@ const Reservation = () => {
         };
 
         getReservation();
-
         // Cleanup: evita aggiornamenti su componenti smontati
         return () => {
             isMounted = false;
         };
 
 
-    }, []);
+    }, [updatePage]);
 
     useEffect(() => {
         console.log(reservationData);
@@ -102,7 +106,7 @@ const Reservation = () => {
                 <div className="user-reservation-state">Stato: {getStylesByStatus(reservationData.status).text}</div>
                 <div className="user-reservation-date">{getStylesByStatus(reservationData.status).date + reservationData.infoDate}</div>
             </div>
-            <SliderContainer reservationData={reservationData} />
+            <SliderContainer reservationData={reservationData} onPageUpdater={pageUpdater}/>
 
             <div className="store-info-reservation">
                 <LuogoDataRitiro nameNeg={reservationData.storeName}

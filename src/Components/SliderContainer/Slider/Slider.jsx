@@ -65,35 +65,35 @@ const Slider = (props) => {
             console.log("Non puoi saltare stati!");
             return;
         }
-    
+
         // Se canGoBack è false e si tenta di tornare indietro, impedisce il movimento
         if (!props.canGoBack && val < mainValue) {
             console.log("Non è permesso tornare indietro!");
             return;
         }
-    
+
         // Se canGoForward è false e si tenta di andare avanti, impedisce il movimento
         if (props.canGoForward === false && val > mainValue) {
             console.log("Non è permesso andare avanti!");
             return;
         }
-    
+
         if (props.canGoBack && val < mainValue && props.maxValueGoBack === (val + 1)) {
             console.log("Non è permesso tornare indietro!");
             return;
         }
-    
+
         // Quando lo stato è "rifiutato", mostra il popup
         if (mainStates[val].key === "rifiutato") {
             props.showPopupReject(true);
             return; // Esci dalla funzione per aspettare la risposta del popup
         }
-    
+
         if ((mainStates[val].key === "accettato") && (mainValue < 1)) {
             props.showPopupAccept(true);
             return; // Esci dalla funzione per aspettare la risposta del popup
         }
-    
+
         // Se si sposta indietro, cancella la data del campo associato
         if (val < mainValue) {
             props.onStateChange((prevStates) =>
@@ -108,10 +108,10 @@ const Slider = (props) => {
                 })
             );
         }
-    
+
         // Aggiorna il valore dello slider
         props.onValueChange(val);
-    
+
         // Aggiorna gli stati con la data corrente
         props.onStateChange((prevStates) =>
             prevStates.map((state, idx) => {
@@ -130,10 +130,10 @@ const Slider = (props) => {
                 return state;
             })
         );
-    
+
         console.log(`Aggiornamento DB per stato: ${val}`);
     };
-    
+
 
     useEffect(() => {
         if (props.popUpResponseReject === true) {
@@ -193,19 +193,34 @@ const Slider = (props) => {
             <div className="main-track">
                 <ReactSlider
                     className="horizontal-slider" // Classe CSS per lo stile dello slider
-                    thumbClassName={`thumb-horizontal thumb-${((mainStates.length === 2) && (mainValue === 1)) ? '4' : (((mainStates[mainStates.length - 1].key === "annullato") && (mainValue === (mainStates.length - 1))) ? '5' : mainValue)}`} // Stile per il "thumb" (indicatore) 
+                    thumbClassName={`thumb-horizontal thumb-${mainStates.length === 2 && mainValue === 1
+                            ? '4'
+                            : mainStates[mainStates.length - 1].key === "annullato" && mainValue === mainStates.length - 1
+                                ? '5'
+                                : mainValue
+                        }`} // Stile per il "thumb" (indicatore)
                     trackClassName={`track-horizontal ${mainValue > 0 ? `filled-${mainValue}` : ''}`} // Stile per il "track" (barra dello slider)
                     min={0} // Valore minimo dello slider
                     max={mainStates.length - 1} // Valore massimo basato sul numero di stati
                     value={mainValue} // Valore attuale dello slider
                     onChange={handleMainChange} // Funzione chiamata al cambio di valore
-                    renderTrack={(props, state) => (
+                    renderTrack={({ key, ...rest }, state) => (
                         <div
-                            {...props}
-                            className={`track-horizontal ${state.index === 0 && mainValue > 0 ? `filled-${((mainStates.length === 2) && (mainValue === 1)) ? '4' : (((mainStates[mainStates.length - 1].key === "annullato") && (mainValue === (mainStates.length - 1))) ? '5' : mainValue)}` : ''}`}
+                            key={key} // Passiamo esplicitamente il key
+                            {...rest} // Spread degli altri props
+                            className={`track-horizontal ${state.index === 0 && mainValue > 0
+                                    ? `filled-${mainStates.length === 2 && mainValue === 1
+                                        ? '4'
+                                        : mainStates[mainStates.length - 1].key === "annullato" && mainValue === mainStates.length - 1
+                                            ? '5'
+                                            : mainValue
+                                    }`
+                                    : ''
+                                }`}
                         />
                     )} // Personalizzazione del "track"
                 />
+
 
                 {/* Contenitore delle etichette */}
                 <div className="labels-container">
