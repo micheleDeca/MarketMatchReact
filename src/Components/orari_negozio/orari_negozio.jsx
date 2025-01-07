@@ -66,8 +66,6 @@ function Orari(props) {
               </div>
             </div>
           </ZigZag>
-          <span className="space"></span>
-          <span className="VerticalSpace"></span>
           <ZigZag pulsante="Modifica Informazioni" modify={props.modify}>
             <div className="OrariNegozioContainer">
               <div className="OrariNegozioRowTitle">
@@ -133,8 +131,6 @@ function Orari(props) {
               </div>
             </div>
           </div>
-          <span className="space"></span>
-          <span className="VerticalSpace"></span>
           <div className="OrariNegozioContainer">
             <div className="OrariNegozioRowTitle">
               <p className="OrariNegozioTitle">Informazioni Negozio</p>
