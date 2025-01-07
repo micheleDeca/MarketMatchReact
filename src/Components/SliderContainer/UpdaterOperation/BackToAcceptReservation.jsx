@@ -4,14 +4,14 @@ import { getToken } from '../../../LocalStorage/TokenStorage';
 
 
 // Funzione per ottenere i prodotti (mock o database)
-export const cancelReservationUpdater = async (reservationUuid, setUpdatePage) => {
+export const backToAcceptReservationUpdater = async (reservationUuid, setUpdatePage) => {
 
         const token = getToken();
 
         try {
             const response = await axios.get(
-                `${BASE_URL}/api/reservation/cancelReservation`,
-                  
+                `${BASE_URL}/api/reservation/backToAcceptReservation`,
+                    
                     {
                         headers: {
                             Authorization: `Bearer ${token}`,
@@ -24,7 +24,7 @@ export const cancelReservationUpdater = async (reservationUuid, setUpdatePage) =
 
             const data = response.data;
             
-            if(data.successCode === "RESERVATION_CANCELLED")
+            if(data.successCode === "RESERVATION_ACCEPTED")
                 setUpdatePage();
 
         } catch (error) {

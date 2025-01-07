@@ -1,41 +1,38 @@
-/**
- * Componente DataRitiro
- * 
- * Descrizione:
- * Il componente `DataRitiro` fornisce un'interfaccia per configurare la data, l'ora di ritiro e il tempo massimo per effettuare una prenotazione.
- * Include un modulo con campi descritti da etichette (`Label`) e pulsanti per salvare le configurazioni (`ButtonSave`).
- * 
- * Props:
- * - `submitFunction` {Object}: Un oggetto contenente la funzione `submit` da eseguire al momento del submit del modulo. (es. `{ submit: () => { ... } }`)
- * 
- * Comportamento:
- * - Ogni sezione del modulo è composta da un'etichetta (`Label`) e un pulsante di salvataggio (`ButtonSave`).
- * - Il modulo è stilizzato utilizzando la classe CSS `formDate`.
- * - Alla sottomissione del modulo, viene invocata la funzione `submitFunction.submit` (anche se nell'implementazione attuale sembra non eseguire correttamente la funzione).
- * 
- * Struttura del Modulo:
- * - **Data ritiro:** Campo associato all'etichetta "Data ritiro" con pulsante "Save".
- * - **Ora ritiro:** Campo associato all'etichetta "Ora ritiro" con pulsante "Save".
- * - **Tempo max prenotazione:** Campo associato all'etichetta "Tempo max prenotazione" con pulsante "Save".
- * 
- * Esempio di utilizzo:
- * ```jsx
- * import DataRitiro from './DataRitiro';
- * 
- * const submitFunction = {
- *   submit: () => {
- *     console.log('Modulo inviato!');
- *   },
- * };
- * 
- * <DataRitiro submitFunction={submitFunction} />
- * ```
- */
-import ButtonSave from '../ButtonSave/ButtonSave';
-import Label from "./Label/Label";
-import './DataRitiro.css'
+import React, { useState } from 'react';
+import './DataRitiro.css';
 
-export default function DataRitiro(submitFunction) {
+export default function DataRitiro({ onChange }) {
+    // Stati locali per gestire i valori dei campi
+    const [date, setDate] = useState('');
+    const [time, setTime] = useState('');
+    const [maxBookingTime, setMaxBookingTime] = useState('');
+
+    // Funzione per formattare la data in GG/MM/YYYY
+    const formatDateToDDMMYYYY = (dateString) => {
+        const [year, month, day] = dateString.split('-');
+        return `${day}/${month}/${year}`;
+    };
+
+    // Funzione per aggiornare il padre ogni volta che un campo cambia
+    const handleUpdate = (field, value) => {
+        let formattedValue = value;
+
+        if (field === 'date') {
+            setDate(value);
+            formattedValue = formatDateToDDMMYYYY(value); // Converte la data
+        }
+
+        if (field === 'time') setTime(value);
+        if (field === 'maxBookingTime') setMaxBookingTime(value);
+
+        // Invia i dati aggiornati al componente padre
+        onChange({
+            date: field === 'date' ? formattedValue : formatDateToDDMMYYYY(date),
+            time: field === 'time' ? value : time,
+            maxBookingTime: field === 'maxBookingTime' ? value : maxBookingTime,
+        });
+    };
+
 
     return (
         <>
@@ -43,22 +40,51 @@ export default function DataRitiro(submitFunction) {
                 <h1>Data e ora ritiro</h1>
             </div>
             <div>
-                <form className="formDate" onSubmit={ () => {submitFunction.submit}}>
+                <div className="formDate">
+                    {/* Campo per la data */}
                     <div className="labelBox">
-                    <Label text="Data ritiro" />
-                    <ButtonSave name="Save"  />
+                        <label htmlFor="dateInput" className="inputLabel">
+                            Data ritiro
+                        </label>
+                        <input
+                            id="dateInput"
+                            type="date"
+                            value={date}
+                            onChange={(e) => handleUpdate('date', e.target.value)}
+                            className="inputField"
+                        />
                     </div>
+
+                    {/* Campo per l'ora */}
                     <div className="labelBox">
-                    <Label text="Ora ritiro" />
-                    <ButtonSave name="Save" />
+                        <label htmlFor="timeInput" className="inputLabel">
+                            Ora ritiro
+                        </label>
+                        <input
+                            id="timeInput"
+                            type="time"
+                            value={time}
+                            onChange={(e) => handleUpdate('time', e.target.value)}
+                            className="inputField"
+                        />
                     </div>
+
+                    {/* Campo per il tempo massimo di prenotazione */}
                     <div className="labelBox">
-                    <Label text="Tempo max prenotazione" />
-                    <ButtonSave name="Save" />
+                        <label htmlFor="maxBookingTimeInput" className="inputLabel">
+                            Tempo massimo prenotazione (giorni)
+                        </label>
+                        <input
+                            id="maxBookingTimeInput"
+                            type="number"
+                            placeholder="Inserisci il tempo massimo"
+                            value={maxBookingTime}
+                            onChange={(e) => handleUpdate('maxBookingTime', e.target.value)}
+                            className="inputField"
+                        />
                     </div>
-                </form>
+                </div>
             </div>
         </>
-    )
+    );
 }
-

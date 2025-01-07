@@ -20,12 +20,11 @@
     font-size: 30px;
     font-weight: bold;
      color: #333;
+     width: 100%;
+    padding-left: 40px;
+    padding-top: 30px;
 }
-
-.slider-text {
-    width: 95%;
-}
-
+ 
 
 .slider-button {
     display: flex;

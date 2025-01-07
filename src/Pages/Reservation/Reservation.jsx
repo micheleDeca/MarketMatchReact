@@ -9,6 +9,7 @@ import LoadingPage from '../LoadingPage/LoadingPage';
 import { useUserContext } from '../../Context/UserContext';
 import { useLocation } from "react-router-dom";
 import LuogoDataRitiro from '../../Components/PrenotazioneCarrello/Luogo/LuogoDataRitiro';
+import CodeInput from '../../Components/CodeInput/CodeInput';
 
 const Reservation = () => {
     const [reservationData, setReservationData] = useState([]); // Dati della prenotazione
@@ -18,15 +19,24 @@ const Reservation = () => {
     const [updatePage, setUpdatePage] = useState(false);
     const { databaseKey, userType } = useUserContext();
 
+    const [dataRitiro, setDataRitiro] = useState({
+        date: '',
+        time: '',
+        maxBookingTime: '',
+    });
+    const [reservationCode, setReservationCode] = useState("");
+
+
     const isConsumer = userType === "ConA";
     const isStore = userType === "NegA";
     const location = useLocation();
     const { id } = location.state || {}; // Fallback se `state` è null
 
-    const pageUpdater = () =>{
-        setUpdatePage((prev) => !prev);  
+    const pageUpdater = () => {
+        setUpdatePage((prev) => !prev);
     };
-
+    
+    
     useEffect(() => {
         let isMounted = true; // Flag per evitare aggiornamenti su componenti smontati
         const getReservation = async () => {
@@ -56,18 +66,25 @@ const Reservation = () => {
 
     }, [updatePage]);
 
-    useEffect(() => {
-        console.log(reservationData);
 
-        console.log(products);
-    }, [products])
+
+    const handleDataRitiroChange = (updatedData) => {
+        console.log('Dati aggiornati:', updatedData);
+        setDataRitiro(updatedData);
+    };
+
+
+    const handleCodeChange = (newCode) => {
+        console.log("Codice aggiornato:", newCode);
+        setReservationCode(newCode);
+    };
 
     const getStylesByStatus = (status) => {
         switch (status) {
             case "ritirato":
                 return { text: "RITIRATO", date: "In data: " };
             case "da_ritirare":
-                return { text: "DA RITIRARE", date: "Entro: " };
+                return { text: "DA RITIRARE", date: "Dal: ", date2: "Fino: " };
             case "accettato":
                 return { text: "ACCETTATO", date: "In data: " };
             case "prenotato":
@@ -105,10 +122,17 @@ const Reservation = () => {
             <div className="user-reservation-state-info">
                 <div className="user-reservation-state">Stato: {getStylesByStatus(reservationData.status).text}</div>
                 <div className="user-reservation-date">{getStylesByStatus(reservationData.status).date + reservationData.infoDate}</div>
-            </div>
-            <SliderContainer reservationData={reservationData} onPageUpdater={pageUpdater}/>
+                {reservationData.status=== "da_ritirare" && <div className="user-reservation-date">{getStylesByStatus(reservationData.status).date2 + reservationData.maxTimeExpedition}</div>}
 
-            <div className="store-info-reservation">
+            </div>
+            <SliderContainer
+                reservationData={reservationData}
+                onPageUpdater={pageUpdater} 
+                pickupDate={dataRitiro}
+                reservationCode={reservationCode}
+                />
+
+            {isConsumer && <div className="store-info-reservation">
                 <LuogoDataRitiro nameNeg={reservationData.storeName}
                     provincia={reservationData.provincia}
                     citta={reservationData.citta}
@@ -116,22 +140,28 @@ const Reservation = () => {
                     indirizzo={reservationData.indirizzo}
                     contatti={reservationData.mail + " - " + reservationData.cellulare}
                     orari={reservationData.orario} />
-            </div>
-           
+            </div>}
+
 
             {reservationData.status === "da_ritirare" && isConsumer && <div className="codice-ritiro-container">
                 <span className="codice-ritiro-label">Codice ritiro:</span>
                 <div className="codice-ritiro-box-container">
-                <div className="codice-ritiro-box">
-                    <span className="codice-ritiro">{reservationData.codiceReservation}</span>
-                </div>
+                    <div className="codice-ritiro-box">
+                        <span className="codice-ritiro">{reservationData.codiceReservation}</span>
+                    </div>
                 </div>
             </div>}
 
 
-            {isStore && <div className="dataLabel-reservation">
-                <DataRitiro />
+            {reservationData.status === "accettato" && isStore && <div className="dataLabel-reservation">
+                <DataRitiro onChange={handleDataRitiroChange} />
             </div>}
+
+            {reservationData.status === "da_ritirare" && isStore && <div className="dataLabel-reservation">
+                <CodeInput onChange={handleCodeChange} />
+            </div>} 
+
+
             <div className="svg-divider">
                 <svg width="100%" height="2" xmlns="http://www.w3.org/2000/svg">
                     <line x1="0" y1="1" x2="100%" y2="1" stroke="#CAC4D0" />

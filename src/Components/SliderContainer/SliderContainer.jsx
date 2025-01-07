@@ -6,6 +6,14 @@ import { useUserContext } from '../../Context/UserContext';
 import { useLocation } from 'react-router-dom';
 import LoadingPage from '../../Pages/LoadingPage/LoadingPage';
 import { cancelReservationUpdater } from './UpdaterOperation/CancelReservation';
+import { refuseReservationUpdater } from './UpdaterOperation/RefuseReservation';
+import { acceptReservationUpdater } from './UpdaterOperation/AcceptReservation';
+import PopupError from '../PopupError/PopupError';
+import { pickUpReservationUpdater } from './UpdaterOperation/PikUpReservation';
+import { deliverReservationUpdater } from './UpdaterOperation/DeliverReservation';
+import { backToPickUpReservationUpdater } from './UpdaterOperation/BackToPickUpReservation';
+import { backToAcceptReservationUpdater } from './UpdaterOperation/BackToAcceptReservation';
+
 /**
  * Componente SliderContainer:
  * 
@@ -47,7 +55,7 @@ import { cancelReservationUpdater } from './UpdaterOperation/CancelReservation';
  * <SliderContainer />
  */
 
-const SliderContainer = ({reservationData, onPageUpdater}) => {
+const SliderContainer = ({ reservationData, onPageUpdater, pickupDate, reservationCode}) => {
 
 
     const [mainValue, setMainValue] = useState(0);
@@ -62,6 +70,9 @@ const SliderContainer = ({reservationData, onPageUpdater}) => {
     const [showPopupRejectConsumer, setshowPopupRejectConsumer] = useState(false);
     const [responseConsumer, setResponseConsumer] = useState(false);
     const [buttonVisibilityConsumer, setbuttonVisibilityConsumer] = useState(true);
+
+    const [showPopupError, setShowPopupError] = useState(false);
+    const [contentPopupError, setContentPopupError] = useState([]);
 
     const [showPopupAccept, setshowPopupAccept] = useState(false);
     const [responseAccept, setResponseAccept] = useState(null);
@@ -91,7 +102,7 @@ const SliderContainer = ({reservationData, onPageUpdater}) => {
     useEffect(() => {
 
         const value = getMainValueFromStatus(totalData.status);
-
+        console.log(totalData);
         let states = [];
         switch (totalData.status) {
             case 'annullato':
@@ -130,17 +141,23 @@ const SliderContainer = ({reservationData, onPageUpdater}) => {
 
     const handlePopupClose = (result) => {
         setResponse(result);
+        if (result)
+            refuseReservationUpdater(totalData.id, onPageUpdater);
+
+
         setshowPopupReject(false);
     };
 
     const handlePopupAcceptClose = (result) => {
         setResponseAccept(result);
+
+        if (result)
+            acceptReservationUpdater(totalData.id, onPageUpdater);
         setshowPopupAccept(false);
     };
 
     // Funzione per gestire il rifiuto
     const handleReject = () => {
-
         setMainStates((prevStates) => [
             prevStates[0], // Mantiene solo il primo record
             { key: 'rifiutato', label: 'Rifiutato', date: null } // Aggiunge il nuovo record
@@ -151,7 +168,84 @@ const SliderContainer = ({reservationData, onPageUpdater}) => {
         setResponseConsumer(result);
         setshowPopupRejectConsumer(false);
 
+
     };
+
+    const updateSecureState = (state) => {
+        console.log("stato ARRIVATO:", state);
+    
+        if (state === "da_ritirare") {
+            const today = new Date(); // Data di oggi
+            const [day, month, year] = pickupDate.date.split("/").map((val) => parseInt(val, 10)); // Converte la data in componenti numerici
+            const selectedDate = new Date(year, month - 1, day); // Crea un oggetto Date dalla data selezionata
+    
+            // Controlla se uno dei campi è vuoto
+            if (!pickupDate.date || !pickupDate.time || !pickupDate.maxBookingTime) {
+                setContentPopupError({
+                    mainText: "Errore: Compila tutti i campi richiesti!",
+                    secondText: "Per favore, verifica che tutti i campi siano completi e riprova."
+                });
+                setShowPopupError(true);  
+            } 
+            // Controlla se la data è inferiore a oggi
+            else if (selectedDate < today) {
+                setContentPopupError({
+                    mainText: "La data non può essere inferiore a quella di oggi!",
+                    secondText: "Per favore, verifica che tutti i campi siano completi e riprova."
+                });
+                setShowPopupError(true);
+             } 
+            // Controlla se i giorni sono negativi
+            else if (pickupDate.maxBookingTime < 0) {
+                setContentPopupError({
+                    mainText: "I giorni non possono essere negativi!",
+                    secondText: "Per favore, verifica che tutti i campi siano completi e riprova."
+                });
+                setShowPopupError(true);
+            } 
+            else {
+                // Esegui l'operazione di aggiornamento se tutti i controlli sono validi
+                pickUpReservationUpdater(
+                    {
+                        reservationUuid: totalData.id,
+                        data: pickupDate.date,
+                        ora: pickupDate.time,
+                        giorni: pickupDate.maxBookingTime,
+                    },
+                    onPageUpdater
+                );
+            }
+        }
+        else if (state === "ritirato") {
+            if(reservationCode.length !== 6){
+                setContentPopupError({
+                    mainText: "Il codice deve essere di 6 caratteri!",
+                    secondText: "Per favore, verifica che tutti il campo codice ritiro sia corretto."
+                });
+                setShowPopupError(true);
+            }
+            else{
+                deliverReservationUpdater(
+                    {
+                        reservationUuid: totalData.id,
+                        reservationCode: reservationCode,
+                    },
+                    onPageUpdater
+                );
+            }
+        }
+        else if (state === "da_ritirareS"){
+            backToPickUpReservationUpdater(totalData.id, onPageUpdater);
+        }
+        else if (state === "accettatoS"){
+            backToAcceptReservationUpdater(totalData.id, onPageUpdater);
+        }
+    };
+    
+
+    const popuopErrorDateHandleClose = () =>{
+        setShowPopupError(false);
+    }
 
     // Funzione per gestire annulla (sistema)
     const handleCancel = () => {
@@ -192,7 +286,7 @@ const SliderContainer = ({reservationData, onPageUpdater}) => {
 
     return (
         <div className="slider-wrapper">
-            <span hidden className='slider-text'><h4>Trascina la pallina sullo stato desiderato</h4></span>
+            {userType === "NegA" && <span className='slider-text'><h4>Trascina la pallina sullo stato desiderato</h4></span>}
             <Slider
                 mainValue={mainValue}
                 mainStates={mainStates}
@@ -202,6 +296,7 @@ const SliderContainer = ({reservationData, onPageUpdater}) => {
                 popUpResponseReject={response}
                 showPopupAccept={setshowPopupAccept}
                 popUpResponseAccept={responseAccept}
+                updateSecureState={updateSecureState}
                 canGoBack={userType === "ConA" ? false : (userType === "NegA" ? true : false)}
                 canGoForward={userType === "ConA" ? false : (userType === "NegA" ? true : false)}
                 maxValueGoBack={1}
@@ -250,6 +345,12 @@ const SliderContainer = ({reservationData, onPageUpdater}) => {
                         onClose={handleRejectConsumer}
                     />
                 )}
+
+                {showPopupError && <PopupError
+                    errorMessage={contentPopupError.mainText}
+                    subText={contentPopupError.secondText}
+                    handleClose = {popuopErrorDateHandleClose}
+                />}
 
             </div>
         </div>

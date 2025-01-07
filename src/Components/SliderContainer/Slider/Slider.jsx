@@ -89,29 +89,28 @@ const Slider = (props) => {
             return; // Esci dalla funzione per aspettare la risposta del popup
         }
 
+
         if ((mainStates[val].key === "accettato") && (mainValue < 1)) {
             props.showPopupAccept(true);
             return; // Esci dalla funzione per aspettare la risposta del popup
         }
 
+        
+
         // Se si sposta indietro, cancella la data del campo associato
         if (val < mainValue) {
-            props.onStateChange((prevStates) =>
-                prevStates.map((state, idx) => {
-                    if (idx > val && idx <= mainValue) {
-                        return {
-                            ...state,
-                            date: null, // Rimuove la data
-                        };
-                    }
-                    return state;
-                })
-            );
+           console.log("indietro");
+           props.updateSecureState(mainStates[val].key + "S");
+
+        }
+        else{
+            props.updateSecureState(mainStates[val].key);
         }
 
         // Aggiorna il valore dello slider
-        props.onValueChange(val);
+        //props.onValueChange(val);
 
+        /*
         // Aggiorna gli stati con la data corrente
         props.onStateChange((prevStates) =>
             prevStates.map((state, idx) => {
@@ -129,8 +128,7 @@ const Slider = (props) => {
                 }
                 return state;
             })
-        );
-
+        ); */
         console.log(`Aggiornamento DB per stato: ${val}`);
     };
 
@@ -194,10 +192,10 @@ const Slider = (props) => {
                 <ReactSlider
                     className="horizontal-slider" // Classe CSS per lo stile dello slider
                     thumbClassName={`thumb-horizontal thumb-${mainStates.length === 2 && mainValue === 1
-                            ? '4'
-                            : mainStates[mainStates.length - 1].key === "annullato" && mainValue === mainStates.length - 1
-                                ? '5'
-                                : mainValue
+                        ? '4'
+                        : mainStates[mainStates.length - 1].key === "annullato" && mainValue === mainStates.length - 1
+                            ? '5'
+                            : mainValue
                         }`} // Stile per il "thumb" (indicatore)
                     trackClassName={`track-horizontal ${mainValue > 0 ? `filled-${mainValue}` : ''}`} // Stile per il "track" (barra dello slider)
                     min={0} // Valore minimo dello slider
@@ -209,13 +207,13 @@ const Slider = (props) => {
                             key={key} // Passiamo esplicitamente il key
                             {...rest} // Spread degli altri props
                             className={`track-horizontal ${state.index === 0 && mainValue > 0
-                                    ? `filled-${mainStates.length === 2 && mainValue === 1
-                                        ? '4'
-                                        : mainStates[mainStates.length - 1].key === "annullato" && mainValue === mainStates.length - 1
-                                            ? '5'
-                                            : mainValue
-                                    }`
-                                    : ''
+                                ? `filled-${mainStates.length === 2 && mainValue === 1
+                                    ? '4'
+                                    : mainStates[mainStates.length - 1].key === "annullato" && mainValue === mainStates.length - 1
+                                        ? '5'
+                                        : mainValue
+                                }`
+                                : ''
                                 }`}
                         />
                     )} // Personalizzazione del "track"

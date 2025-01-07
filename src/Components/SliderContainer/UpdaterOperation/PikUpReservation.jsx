@@ -1,37 +1,42 @@
+
 import axios from 'axios';
 import { BASE_URL, IS_MOCKKED } from '../../../config';
 import { getToken } from '../../../LocalStorage/TokenStorage';
 
 
 // Funzione per ottenere i prodotti (mock o database)
-export const cancelReservationUpdater = async (reservationUuid, setUpdatePage) => {
+export const pickUpReservationUpdater = async (props, setUpdatePage) => {
 
-        const token = getToken();
+    const token = getToken();
 
-        try {
-            const response = await axios.get(
-                `${BASE_URL}/api/reservation/cancelReservation`,
-                  
-                    {
-                        headers: {
-                            Authorization: `Bearer ${token}`,
-                            'reservation-uuid': reservationUuid,
-                        },
-                    }
-                
-            );
+    try {
+        const response = await axios.post(
+            `${BASE_URL}/api/reservation/readyForPickupReservation`,
+            {
+                reservationUuid: props.reservationUuid,
+                data: props.data,
+                ora: props.ora,
+                giorni: props.giorni
+            },
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            }
+
+        );
 
 
-            const data = response.data;
-            
-            if(data.successCode === "RESERVATION_CANCELLED")
-                setUpdatePage();
+        const data = response.data;
 
-        } catch (error) {
-            console.error('Errore durante annullamneto operazione:', error);
-            throw error;
-        }
-    
+        if (data.successCode === "RESERVATION_READY")
+            setUpdatePage();
+
+    } catch (error) {
+        console.error('Errore durante annullamneto operazione:', error);
+        throw error;
+    }
+
 };
 
 

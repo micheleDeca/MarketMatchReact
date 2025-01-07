@@ -35,6 +35,7 @@
 .popup-buttons {
     display: flex;
     justify-content: space-around;
+    gap: 15px;
 }
 
 .popup-confirm-button, .popup-cancel-button {
