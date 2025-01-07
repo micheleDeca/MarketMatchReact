@@ -26,7 +26,6 @@ function Negozio() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    console.log("ID", id);
     if (!IS_MOCKKED) {
       const getShop = async () => {
         try {
@@ -150,7 +149,6 @@ function Negozio() {
 
   useEffect(() => {
     if (!loading) {
-      console.log("Michele de Carolis");
       const updateStore = async () => {
         try {
           const response = await axios.post(
@@ -175,7 +173,6 @@ function Negozio() {
 
   useEffect(() => {
     if (!loading) {
-      console.log("Isabella");
       const updateStoreCategories = async () => {
         try {
           const response = await axios.post(

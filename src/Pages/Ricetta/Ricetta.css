@@ -21,29 +21,10 @@
     z-index: 1000;
 }
 
-.Informazioni{
-    margin-left: 1%;
-    width: 99%;
-}
-
-.Ingredienti{
-    margin-left: 1%;
-    width: 99%;
-}
-
 @media (orientation: portrait) {
 
     .boxRicetta{
         gap: 15px;
-    }
-
-    .Informazioni{
-        margin-left: 0px;
-        margin-bottom:1%;
-    }
-
-    .Ingredienti{
-        margin-left: 0px;
     }
 
 }

@@ -13,6 +13,10 @@
 
 .input {
   width: 60%; /*Cambiato*/
+  border:0px;
+  border-bottom: 1px solid black;
+  padding: 0.5%;
+  background-color: #f9f9f9;
 }
 
 .form-container {
@@ -22,6 +26,7 @@
   justify-content: center;
   flex-direction: column;
   padding: 2%;
+  gap: 10px;
   min-height: 250px;
   /*Cambiato*/
 }
@@ -58,13 +63,13 @@
 }
 
 .popUpbtn {
-  width: 20%;
-  /*Cambiato*/
-  max-width: 150px;
-  /*Aggiunto*/
+  width: 150px;
+  aspect-ratio: 5/1;
+  font-size: 90%;
   background-color: darkslateblue;
   color: white;
   border: 0px;
+  border-radius: 15px;
   cursor: pointer;
 }
 
@@ -91,4 +96,13 @@
 
 .labelPopUp {
   margin-right: 2%;
+  margin-bottom: 0;
+}
+
+input:focus {
+  outline: none; /* Rimuove il bordo luminoso */
+}
+
+label {
+  margin-bottom: 1%;
 }

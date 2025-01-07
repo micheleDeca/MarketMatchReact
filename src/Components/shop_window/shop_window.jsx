@@ -18,14 +18,13 @@ import BadgeContainer from "../CategoryLabelList/CategoryLabelList";
  */
 
 function ShopWindow(props) {
-  console.log(props.originalPrice);
 
   if (props.mode === "ConA") {
     return (
       <>
         <div className="ShopWindowBox">
           <div className="LeftShopWindow">
-            <div className="ShopWindowBox">
+            <div>
               <img
                 src={`http://4.232.65.20/assets/${props.ImageDescription}`}
                 alt={props.ImageDescription}

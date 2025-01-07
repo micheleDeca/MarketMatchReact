@@ -32,7 +32,13 @@
 
 .spaceProdotto{
     color: darkslateblue;
+    font-weight: bold;
     width: 80%;
+    white-space: nowrap;  
+}
+
+.spaceProdotto:hover{
+    text-decoration: underline;
 }
 
 .spaceProdotto2{
@@ -66,11 +72,4 @@
     .CarrelloProd{
         justify-content: center;
     }
-}
-
-@media (orientation: portrait) and (max-width: 358px){
-    .spaceProdotto{
-        font-size: 14px;
-    }
-
 }

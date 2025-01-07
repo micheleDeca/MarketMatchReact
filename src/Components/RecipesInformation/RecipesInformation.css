@@ -4,4 +4,11 @@
     justify-content: stretch;
     align-items:center;
     gap: 20px;
+    width: 100%;
+}
+
+@media (orientation: portrait) {
+    .RecipesInformationBox{
+        gap: 0px;
+    }
 }

@@ -5,6 +5,7 @@ import ShopWindow from "../../Components/shop_window/shop_window";
 import PopUpModify from "../../Components/PopUpModify/PopUpModify.jsx";
 import CounterAddGood from "../../Components/CounterAddGood/CounterAddGood.jsx";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { BASE_URL, IS_MOCKKED } from "../../config.js";
 import { useState, useEffect } from "react";
 import { getToken } from "../../LocalStorage/TokenStorage.jsx";
@@ -13,7 +14,7 @@ import { data, useLocation } from "react-router-dom";
 import LoadingPage from "../LoadingPage/LoadingPage.jsx";
 
 function Prodotto() {
-  const {databaseKey, userType}= useUserContext();
+  const { databaseKey, userType } = useUserContext();
   const [modify, setModify] = useState("");
   const location = useLocation();
   const { id } = location.state || {}; // Fallback se `state` è null
@@ -21,9 +22,10 @@ function Prodotto() {
   const token = getToken();
   const [loading, setLoading] = useState(true); // Stato per il caricamento
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if (!IS_MOCKKED && id != '4366c62e-d77b-4cdd-b27e-09a12656f4a9') {
+    if (!IS_MOCKKED && id != "4366c62e-d77b-4cdd-b27e-09a12656f4a9") {
       const getProduct = async () => {
         try {
           const response = await axios.post(
@@ -76,7 +78,7 @@ function Prodotto() {
   }, [prodottoInfo]);
 
   useEffect(() => {
-    if (!loading && id != '4366c62e-d77b-4cdd-b27e-09a12656f4a9') {
+    if (!loading && id != "4366c62e-d77b-4cdd-b27e-09a12656f4a9") {
       const updateProduct = async () => {
         try {
           const response = await axios.post(
@@ -100,7 +102,7 @@ function Prodotto() {
   }, [prodottoInfo]);
 
   useEffect(() => {
-    if (!loading && id != '4366c62e-d77b-4cdd-b27e-09a12656f4a9') {
+    if (!loading && id != "4366c62e-d77b-4cdd-b27e-09a12656f4a9") {
       const updateProductCategories = async () => {
         try {
           const response = await axios.post(
@@ -124,8 +126,7 @@ function Prodotto() {
   }, [prodottoInfo]);
 
   useEffect(() => {
-    console.log(databaseKey);
-    if (id == '4366c62e-d77b-4cdd-b27e-09a12656f4a9') {
+    if (id == "4366c62e-d77b-4cdd-b27e-09a12656f4a9") {
       setProdottoInfo({
         Quantità: 0,
         DescrizioneUnita: "Inserisci descrizione unità",
@@ -156,7 +157,7 @@ function Prodotto() {
           },
         }
       );
-      window.alert("Prodotto inserito con successo");
+      navigate("/prodotti", { state: { id: databaseKey } });
     } catch (error) {
       setError(error.message); // Gestisci l'errore
     }
@@ -187,29 +188,32 @@ function Prodotto() {
           {userType === "ConA" && (
             <div className="containerProdotto">
               <span className="spaceProdotto">
-                {`${
-                  prodottoInfo.NomeNegozio
-                } (${prodottoInfo.DistanzaKm.toFixed(2)} km)`}
+                <span onClick={() => navigate("/negozio", { state: { id: prodottoInfo.IdNegozio } })} style={{ cursor: "pointer"}}>
+                {`${prodottoInfo.NomeNegozio}`}
+                {` (${prodottoInfo.DistanzaKm.toFixed(2)} km)`}
+                </span>
               </span>
               <span className="spaceProdotto2"></span>
             </div>
           )}
-          {userType === "NegA" && id != '4366c62e-d77b-4cdd-b27e-09a12656f4a9' && (
-            <div className="containerProdotto">
-              <span className="spaceProdotto"></span>
-              <span className="spaceProdotto2">
-                <Button name="Elimina Prodotto" modify={setModify}/>
-              </span>
-            </div>
-          )}
-          {userType === "NegA" && id == '4366c62e-d77b-4cdd-b27e-09a12656f4a9' && (
-            <div className="containerProdotto">
-              <span className="spaceProdotto"></span>
-              <span className="spaceProdotto2">
-                <Button name="Salva" function={CreateProduct}/>
-              </span>
-            </div>
-          )}
+          {userType === "NegA" &&
+            id != "4366c62e-d77b-4cdd-b27e-09a12656f4a9" && (
+              <div className="containerProdotto">
+                <span className="spaceProdotto"></span>
+                <span className="spaceProdotto2">
+                  <Button name="Elimina Prodotto" modify={setModify} />
+                </span>
+              </div>
+            )}
+          {userType === "NegA" &&
+            id == "4366c62e-d77b-4cdd-b27e-09a12656f4a9" && (
+              <div className="containerProdotto">
+                <span className="spaceProdotto"></span>
+                <span className="spaceProdotto2">
+                  <Button name="Salva" function={CreateProduct} />
+                </span>
+              </div>
+            )}
           <ShopWindow
             Description={prodottoInfo.Descrizione}
             ImageDescription={prodottoInfo.Foto}
