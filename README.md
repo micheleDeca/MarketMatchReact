@@ -1,3 +1,15 @@
+## Progetto Frontend - MarketMatch (Gruppo 2)
+
+Questo repository contiene il **progetto frontend** del gruppo **MarketMatch**, sviluppato come parte del lavoro del **Gruppo 2**.  
+Il frontend è stato realizzato con l'obiettivo di fornire un'interfaccia utente intuitiva e funzionale per il sistema MarketMatch.
+
+### Membri del Gruppo 2:
+- **Antonio Bottalico**  
+- **Michele De Carolis**  
+- **Isabella Balestrucci**
+
+Il progetto rappresenta un lavoro collaborativo volto a soddisfare le specifiche richieste e fornire una soluzione frontend efficiente e scalabile.
+
 # React + Vite
 
 Questo template fornisce una configurazione minima per utilizzare React con Vite, includendo HMR e alcune regole ESLint.
