@@ -1,18 +1,30 @@
 import { Link } from "react-router-dom";
 import "./Login.css";
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
+import { userLogin } from "./Updater/UserLogin";
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
+    const navigate = useNavigate(); // Hook per navigazione
+
     const [loginData, setLoginData] = useState({
         email: "",
         password: "",
     });
 
+    const [isValidLogin, setIsValidLogin] = useState(false);
+
+    const handleGoToHome = () => {
+        navigate('/', { replace: true }); // Naviga verso la home
+        window.location.reload(); // Forza l'aggiornamento della pagina
+
+    };
+
+
     const handleLoginClick = () => {
         // Trova tutti gli input con attributo "required"
         const inputs = document.querySelectorAll(".InputLogin[required]");
         let isValid = true;
-
         // Controlla se tutti i campi richiesti sono compilati
         inputs.forEach((input) => {
             if (!input.value.trim()) {
@@ -29,10 +41,27 @@ function Login() {
                 email: inputs[0].value,
                 password: inputs[1].value,
             });
+
+            setIsValidLogin(true);
+
         } else {
             alert("Per favore, compila tutti i campi richiesti.");
         }
     };
+
+
+    useEffect(()=>{
+        if(isValidLogin){
+            userLogin({
+                userdata: loginData,
+                goToHome: handleGoToHome,
+            }
+
+            )
+        }
+
+
+    }, [isValidLogin])
 
     return (
         <>

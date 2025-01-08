@@ -20,8 +20,8 @@ function Register(props) {
         Provincia: "",
         cap: "",
         citta: "",
-        indirizzo: "", //opzionale
-        cellulare: "", //opzionale
+        indirizzo: null, //opzionale
+        cellulare: null, //opzionale
         privacy: false, //SENZA NO PROFILO
         statistiche: false, //SENZA NO PROFILO
         profilazione: false,
@@ -182,7 +182,9 @@ function Register(props) {
         }
     };
     const handleGoToHome = () => {
-        navigate('/');
+        navigate('/', { replace: true }); // Naviga verso la home
+        window.location.reload(); // Forza l'aggiornamento della pagina
+
     };
 
     const handleFetchCoordinates = async () => {
@@ -249,7 +251,7 @@ function Register(props) {
     }, [registerDataUser])
 
 
- 
+
     return (
         <>
             {props.tipo === "neg" ? (

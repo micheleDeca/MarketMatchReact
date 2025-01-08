@@ -4,7 +4,7 @@ import { getToken } from '../../../LocalStorage/TokenStorage';
 
 
 // Funzione per ottenere i prodotti (mock o database)
-export const insertDatabaseKeyUpdater = async (userType, databaseKey) => {
+export const insertDatabaseKeyUpdater = async (userType, databaseKey, goToHome) => {
 
     const token = getToken();
     const requestUrl = userType === "ConA"? "consumerUser/databaseKey" : (userType === "NegA"? "storeUser/databaseKey" : "");
@@ -26,6 +26,8 @@ export const insertDatabaseKeyUpdater = async (userType, databaseKey) => {
 
 
         const data = response.data;
+
+        goToHome();
         return data;
 
     } catch (error) {

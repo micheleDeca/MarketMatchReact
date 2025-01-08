@@ -3,7 +3,8 @@ import './NavBar.css';
 import navLogo from "../../assets/logo.png";
 import { useUserContext } from '../../Context/UserContext';
 import { Link, useLocation } from 'react-router-dom';
-
+import { removeToken } from '../../LocalStorage/TokenStorage';
+import { useNavigate } from 'react-router-dom';
 
 /**
  * 
@@ -23,6 +24,8 @@ import { Link, useLocation } from 'react-router-dom';
 
 const NavBar = () => {
     // Stato per controllare l'apertura della sidebar
+    const navigate = useNavigate(); // Hook per navigazione
+
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const [cartItems, setCartItems] = useState(5);
     const { userType } = useUserContext();   // Contesto dell'utente, determina userType
@@ -87,7 +90,12 @@ const NavBar = () => {
         },
     };
 
+    const handleGoToHomeSlogged = () => {
+        removeToken();
+        navigate('/', { replace: true }); // Naviga verso la home
+        window.location.reload(); // Forza l'aggiornamento della pagina
 
+    };
 
     return (
         <>
@@ -117,7 +125,7 @@ const NavBar = () => {
                 {isVisibleForUserType(["AmmA"]) && <a href="#consumatori" id="consumatoriNav" style={{ color: navColor }}>Consumatori</a>}
                 {isVisibleForUserType(["ConA", "NegA"]) && <Link to="/account" id="accountNav" style={{ color: navColor }}>Account</Link>}
                 {isVisibleForUserType(["AmmA"]) && <a href="#pagamenti" id="pagamentiNav" style={{ color: navColor }}>Pagamenti</a>}
-                {isVisibleForUserType(["NoAccesso"]) && <a href="#accedi" id="accediNav" style={{ color: navColor }}>Accedi/Registrati</a>}
+                {isVisibleForUserType(["NoAccesso"]) && <Link to="/login" id="accediNav" style={{ color: navColor }}>Accedi/Registrati</Link>}
                 <div className="cart-container">
                     {isVisibleForUserType(["ConA"]) && <Link to="/carrello" id="carrelloNav" style={{ color: navColor }} >
                         Carrello
@@ -125,7 +133,10 @@ const NavBar = () => {
                             <span hidden className="cart-quantity" style={{ color: navColor }}>({cartItems})</span>
                         )}
                     </Link>}
+
                 </div>
+                {isVisibleForUserType(["ConA", "NegA"]) && <a onClick={handleGoToHomeSlogged} id="accediNav" style={{ color: navColor }}>Logout</a>}
+
             </div>
 
             {/* Sidebar - visibile solo se isSidebarOpen è true */}

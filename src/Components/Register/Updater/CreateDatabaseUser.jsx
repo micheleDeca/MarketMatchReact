@@ -3,13 +3,16 @@ import { BASE_URL } from '../../../config';
 import { insertDatabaseKeyUpdater } from './InserDatabaseKey';
 
 export const createConsumerDatabase = async ({ props, goToHome }) => {
-  const userData = props;
+  const registerDataConsumer = props;
+  let consumerUuid = null;
+
+  console.log("arrivato",registerDataConsumer);
 
   try {
     const response = await axios.post(
       `${BASE_URL}/api/consumer/CreateConsumer`,
       {
-        consInfo: userData,
+        consInfo: registerDataConsumer,
       },
 
       {
@@ -18,6 +21,14 @@ export const createConsumerDatabase = async ({ props, goToHome }) => {
       }
 
     );
+
+    console.log("CONSUMATORE CREATO");
+    console.log(response.data.consumerUuid);
+    consumerUuid = response.data.consumerUuid;
+
+    if(consumerUuid){
+      await insertDatabaseKeyUpdater("ConA", consumerUuid, goToHome);
+    }
 
 
   } catch (error) {
@@ -52,7 +63,7 @@ export const createStoreDatabase = async ({ props, goToHome }) => {
     storeUuid = response.data.storeUuid;
 
     if(storeUuid){
-      await insertDatabaseKeyUpdater("NegA", storeUuid);
+      await insertDatabaseKeyUpdater("NegA", storeUuid , goToHome);
     }
 
 
