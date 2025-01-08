@@ -31,6 +31,7 @@ function Counter(props) {
         console.log(contatore);
         if ((contatore -1) === 0) {
             setshowPopupAccept(true);
+            return;
         }
         setOperation("decrement");
         setUpdateCounter(true);
