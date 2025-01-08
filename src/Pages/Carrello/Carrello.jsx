@@ -68,6 +68,7 @@ const Carrello = () => {
 
     //aggiornamento della pagina dopo la prenotazione
     const pageUpdater = () => {
+        console.log("sfc");
         setUpdatePage((prev) => !prev);
     };
 
@@ -149,6 +150,7 @@ const Carrello = () => {
     if (loading) return <div><LoadingPage /></div>;
     if (error) return <div>Errore: {error}</div>;
 
+    console.log(typeof updatePage); 
     return (
         <>
             <div className="cartTitle">

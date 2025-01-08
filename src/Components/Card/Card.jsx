@@ -76,8 +76,6 @@ const Card = (props) => {
                 handleAddClick();
             }
 
-            // Ritorna un oggetto con stores e products
-            return { stores, products };
         } catch (error) {
             console.error("Errore durante il recupero dei prodotti:", error);
             throw error; // Propaga l'errore
