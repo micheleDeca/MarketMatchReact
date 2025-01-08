@@ -63,6 +63,17 @@
     padding-left: 4px;
 }
 
+.map-indication-container{
+    width: 60%;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+.map-indication-container-wrapped{
+    display: flex;
+    justify-content: center;
+}
+
 @media (max-width: 855px){
     .store-info-reservation .luogoDataBox{
         flex-direction: row;
@@ -71,6 +82,9 @@
 
     .store-info-reservation .titleOra {
         padding-left: 0px;
+    }
+    .map-indication-container{
+        width: 70%; 
     }
     
 
@@ -81,7 +95,9 @@
         flex-direction: column;
         gap: 40px;
     }
- 
+    .map-indication-container{
+        width: 80%; 
+    }
     
 
 }

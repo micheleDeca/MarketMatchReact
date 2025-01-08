@@ -10,6 +10,7 @@ import { useUserContext } from '../../Context/UserContext';
 import { useLocation } from "react-router-dom";
 import LuogoDataRitiro from '../../Components/PrenotazioneCarrello/Luogo/LuogoDataRitiro';
 import CodeInput from '../../Components/CodeInput/CodeInput';
+import WireframeMap from '../../Components/WireframeMap/WireframeMap';
 
 const Reservation = () => {
     const [reservationData, setReservationData] = useState([]); // Dati della prenotazione
@@ -35,8 +36,8 @@ const Reservation = () => {
     const pageUpdater = () => {
         setUpdatePage((prev) => !prev);
     };
-    
-    
+
+
     useEffect(() => {
         let isMounted = true; // Flag per evitare aggiornamenti su componenti smontati
         const getReservation = async () => {
@@ -122,15 +123,15 @@ const Reservation = () => {
             <div className="user-reservation-state-info">
                 <div className="user-reservation-state">Stato: {getStylesByStatus(reservationData.status).text}</div>
                 <div className="user-reservation-date">{getStylesByStatus(reservationData.status).date + reservationData.infoDate}</div>
-                {reservationData.status=== "da_ritirare" && <div className="user-reservation-date">{getStylesByStatus(reservationData.status).date2 + reservationData.maxTimeExpedition}</div>}
+                {reservationData.status === "da_ritirare" && <div className="user-reservation-date">{getStylesByStatus(reservationData.status).date2 + reservationData.maxTimeExpedition}</div>}
 
             </div>
             <SliderContainer
                 reservationData={reservationData}
-                onPageUpdater={pageUpdater} 
+                onPageUpdater={pageUpdater}
                 pickupDate={dataRitiro}
                 reservationCode={reservationCode}
-                />
+            />
 
             {isConsumer && <div className="store-info-reservation">
                 <LuogoDataRitiro nameNeg={reservationData.storeName}
@@ -151,7 +152,18 @@ const Reservation = () => {
                     </div>
                 </div>
             </div>}
-
+            {reservationData.status != "annullato" && 
+            reservationData.status != "rifiutato" &&
+            isConsumer && 
+            <div className="map-indication-container-wrapped">
+                <div className="map-indication-container">
+                    <WireframeMap
+                        latitude={reservationData.storeLatitude}
+                        longitude={reservationData.storeLongitude}
+                        storeName={reservationData.storeName}
+                    />
+                </div>
+            </div>}
 
             {reservationData.status === "accettato" && isStore && <div className="dataLabel-reservation">
                 <DataRitiro onChange={handleDataRitiroChange} />
@@ -159,7 +171,7 @@ const Reservation = () => {
 
             {reservationData.status === "da_ritirare" && isStore && <div className="dataLabel-reservation">
                 <CodeInput onChange={handleCodeChange} />
-            </div>} 
+            </div>}
 
 
             <div className="svg-divider">
