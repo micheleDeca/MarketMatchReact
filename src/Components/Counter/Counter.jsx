@@ -11,12 +11,19 @@ import { BASE_URL } from "../../config";
 
 function Counter({ productId, initialQuantity, getCounter, onChangeQuantity, price }) {
     const { databaseKey } = useUserContext();
-    const [loading, setLoading] = useState(true); // Stato per il caricamento
+    const [loading, setLoading] = useState(false); // Stato per il caricamento
     const [error, setError] = useState(null); // Stato per gli errori
 
+    const [updateCounter, setUpdateCounter] = useState(false);
     const [contatore, setContatore] = useState(initialQuantity);
-    const incrementa = () => { setContatore((prev) => prev + 1); };
-    const decrementa = () => { setContatore((prev) => (prev > 0 ? prev - 1 : 0)); };
+    const incrementa = () => {
+        setContatore((prev) => prev + 1);
+        setUpdateCounter(true);
+    };
+    const decrementa = () => {
+        setContatore((prev) => (prev > 0 ? prev - 1 : 0));
+        setUpdateCounter(true);
+    };
 
 
     //Funzione per aggiornare la quantità nel db
@@ -51,40 +58,42 @@ function Counter({ productId, initialQuantity, getCounter, onChangeQuantity, pri
         }
     };
 
+
     useEffect(() => {
 
-        onChangeQuantity(contatore);
+        if (updateCounter) {
+            let isMounted = true; // Flag per evitare aggiornamenti su componenti smontati
+            console.log("sto caricando");
+            const modifyQuantity = async () => {
+                try {
+                    if (isMounted) {
+
+                        const result = await updateQuantity(); // Usa la funzione per l'aggiornamento della quantità
+                        console.log(result);
+                        onChangeQuantity(contatore);
+                        setUpdateCounter(false);
 
 
+                    }
+                } catch (err) {
+                    if (isMounted) {
+                        setError(err.message); // Gestisci l'errore
+                    }
+                }
+            };
 
+            modifyQuantity();
 
+            return () => {
+                isMounted = false;
+            };
+        }
 
-    }, [contatore]);
+    }, [contatore])
 
 
     const test = () => {
-        let isMounted = true; // Flag per evitare aggiornamenti su componenti smontati
-        const modifyQuantity = async () => {
-            try {
-                if (isMounted) {
-                    const result = await updateQuantity(); // Usa la funzione per l'aggiornamento della quantità
-                    console.log(result);
-                    setLoading(false); // Ferma il caricamento
-                }
-            } catch (err) {
-                if (isMounted) {
-                    setError(err.message); // Gestisci l'errore
-                    setLoading(false);
-                }
-            }
-        };
 
-        modifyQuantity();
-
-        // Cleanup: evita aggiornamenti su componenti smontati
-        return () => {
-            isMounted = false;
-        };
     }
 
     if (loading) return <div><LoadingPage /></div>;
@@ -93,9 +102,9 @@ function Counter({ productId, initialQuantity, getCounter, onChangeQuantity, pri
     return (
         <>
             <div className="CounterBox">
-                <img src={Sub} alt="sub" className="ImgCounter" onClick={() => { decrementa, test }} />
+                <img src={Sub} alt="sub" className="ImgCounter" onClick={decrementa} />
                 <p className="value">{contatore}</p>
-                <img src={Add} alt="add" className="ImgCounter" onClick={() => { decrementa, test }} />
+                <img src={Add} alt="add" className="ImgCounter" onClick={incrementa} />
             </div>
         </>
     );

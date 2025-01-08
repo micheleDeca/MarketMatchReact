@@ -63,6 +63,7 @@ const Carrello = () => {
     //aggiornamento dinamico della quantità
     const updateQuantity = (newQuantity) => {
         setQuantity(newQuantity);
+        console.log("quantita aggiornata");
     };
 
     //aggiornamento della pagina dopo la prenotazione
