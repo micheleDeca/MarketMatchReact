@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from 'react';
 import { createUser } from "./Updater/CreateUser";
 import { useNavigate } from 'react-router-dom';
-import SearchBar from "../SearchBar/SearchBar";
 import { getCoordinateStore } from "./Updater/GetCoordinateStore";
 
 function Register(props) {
@@ -20,8 +19,8 @@ function Register(props) {
         Provincia: "",
         cap: "",
         citta: "",
-        indirizzo: "", //opzionale
-        cellulare: "", //opzionale
+        indirizzo: null, //opzionale
+        cellulare: null, //opzionale
         privacy: false, //SENZA NO PROFILO
         statistiche: false, //SENZA NO PROFILO
         profilazione: false,
@@ -45,8 +44,8 @@ function Register(props) {
         cellulare: "",
         privacy: false, //SENZA NO PROFILO
         statistiche: false, //SENZA NO PROFILO
-        sconti: "",
-        prenotazione: "",
+        sconti: false,
+        prenotazione: false,
         categorie: ["Bio", "Vegano"],
         ready: false
     });
@@ -84,7 +83,12 @@ function Register(props) {
             inputs[9].classList.add("errorRegisterInputInequal");
             alert("Le password non corrispondono");
         }
-        else {
+        else if (inputs[8].value.length < 6) {
+                isValid2 = false;
+                inputs[8].classList.add("errorRegisterInputShort");
+                alert("La password deve essere di almeno 6 caratteri");
+        }
+        else{
             inputs[8].classList.remove("errorRegisterInputInequal");
             inputs[9].classList.remove("errorRegisterInputInequal");
         }
@@ -151,7 +155,12 @@ function Register(props) {
             inputs[11].classList.add("errorRegisterInputInequal");
             alert("Le password non corrispondono");
         }
-        else {
+        else if (inputs[10].value.length < 6) {
+            isValid2 = false;
+            inputs[10].classList.add("errorRegisterInputShort");
+            alert("La password deve essere di almeno 6 caratteri");
+        }
+        else{
             inputs[10].classList.remove("errorRegisterInputInequal");
             inputs[11].classList.remove("errorRegisterInputInequal");
         }
@@ -181,6 +190,7 @@ function Register(props) {
             alert("Per favore, compila tutti i campi richiesti.");
         }
     };
+
     const handleGoToHome = () => {
         navigate('/');
     };
@@ -272,10 +282,10 @@ function Register(props) {
                     </div>
                     <div className="rowLogin">
                         <input type="text" placeholder="Indirizzo" className="RegisterInput" required />
-                        <input type="text" placeholder="Email" className="RegisterInput" required />
+                        <input type="email" placeholder="Email" className="RegisterInput" required />
                     </div>
                     <div className="rowLogin">
-                        <input type="email" placeholder="Password" className="RegisterInput" required />
+                        <input type="password" placeholder="Password" className="RegisterInput" required />
                         <input type="password" placeholder="Conferma password" className="RegisterInput" required />
                     </div>
                     <p className="word">Consensi:</p>
