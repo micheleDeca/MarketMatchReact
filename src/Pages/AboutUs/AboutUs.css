@@ -1,0 +1,102 @@
+.about-us {
+    padding: 50px 20px;
+    background: #ffffff;
+    color: #333;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .about-title {
+    font-size: 2.8rem;
+    color: #03684D;
+    margin-bottom: 20px;
+    font-weight: 700;
+  }
+  
+  .about-tagline {
+    font-size: 1.3rem;
+    margin-bottom: 30px;
+    color: #757575;
+  }
+  
+  .about-content {
+    display: flex;
+     flex-direction: row;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 40px;
+  }
+  
+  .about-card {
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    flex: 1 1 calc(33% - 40px);
+     text-align: left;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .about-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .about-card-title {
+    font-size: 1.5rem;
+    color: #03684D;
+    margin-bottom: 10px;
+  }
+  
+  .about-card-content {
+    font-size: 1rem;
+    color: #616161;
+    line-height: 1.6;
+  }
+  
+  .about-highlights,
+  .about-vision,
+  .about-values {
+    margin-top: 40px;
+    text-align: left;
+  }
+  
+  .about-highlights ul,
+  .about-vision ul,
+  .about-values ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .about-highlights li,
+  .about-vision li,
+  .about-values li {
+    margin: 8px 0;
+    font-size: 1.1rem;
+    color: #616161;
+  }
+  
+  .about-highlights li::before,
+  .about-vision li::before,
+  .about-values li::before {
+    content: "✔";
+    color: #4caf50;
+    font-size: 1.2rem;
+    margin-right: 10px;
+  }
+  
+.about-content-container{
+    display: flex;
+    justify-content: center;
+}
+ 
+  @media (max-width: 850){
+    .about-content {
+        flex-direction: column;  
+      }
+    
+}

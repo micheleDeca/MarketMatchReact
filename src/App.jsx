@@ -44,6 +44,7 @@ const TestMichele = lazy(() => import('./Pages/Test/TestMichele/TestMichele'));
 const TestIsa = lazy(() => import('./Pages/Test/TestIsa/TestIsa'));
 const PageNotFound = lazy(() => import('./Pages/PageNotFound/PageNotFound'));
 const RetardPage = lazy(() => import( './Components/CardBrutto/RetardPage/RetardPage.jsx'));
+const AboutUs = lazy(() => import( './Pages/AboutUs/AboutUs.jsx'));
 
 import { getToken, saveToken } from './LocalStorage/TokenStorage.jsx';
 /*
@@ -87,7 +88,8 @@ const App = () => {
           <Route path='/carrello' element={<Carrello />} />
           <Route path='/punti' element={<Punti />} />
           <Route path='/retard' element={<RetardPage />} />
-        </Routes>
+          <Route path='/chiSiamo' element={<AboutUs />} />
+         </Routes>
       </Suspense>
       <Footer />
       <ScrollToTopButton />

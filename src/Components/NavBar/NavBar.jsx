@@ -116,7 +116,7 @@ const NavBar = () => {
                     {isVisibleForUserType(["ConA", "AmmA"]) && <Link to="/negozi"  id="negoziNav" style={{ color: navColor }}>Negozi</Link>}
                     {isVisibleForUserType(["NegA"]) && <Link to="/negozio"  id="negozioNav" style={{ color: navColor }}>Negozio</Link>}
                     {isVisibleForUserType(["ConA", "AmmA"]) && <Link to="/ricette" id="ricetteNav" style={{ color: navColor }}>Ricette</Link>}
-                    {isVisibleForUserType(["NoAccesso", "ConA", "AmmA", "NegA"]) && <a href="#chiSiamo" id="chiSiamoNav" style={{ color: navColor }}>Chi Siamo</a>}
+                    {isVisibleForUserType(["NoAccesso", "ConA", "AmmA", "NegA"]) && <Link to="/chiSiamo"  id="chiSiamoNav" style={{ color: navColor }}>Chi Siamo</Link>}
                 </div>
             </div>
 
@@ -148,7 +148,7 @@ const NavBar = () => {
                         {isVisibleForUserType(["ConA", "AmmA"]) && <Link to="/negozi" >Negozi</Link>}
                         {isVisibleForUserType(["NegA"]) && <Link to="/negozio" >Negozio</Link>}
                         {isVisibleForUserType(["ConA", "AmmA"]) && <Link to="ricette">Ricette</Link>}
-                        {isVisibleForUserType(["NoAccesso", "ConA", "AmmA", "NegA"]) && <a href="#chiSiamo">Chi Siamo</a>}
+                        {isVisibleForUserType(["NoAccesso", "ConA", "AmmA", "NegA"]) && <Link to="/chiSiamo">Chi Siamo</Link>}
                         {isVisibleForUserType(["ConA", "AmmA", "NegA"]) && <Link to="/prenotazioni">Prenotazioni</Link>}
                         {isVisibleForUserType(["ConA", "NegA"]) && <Link to="/account" >Account</Link>}
                         

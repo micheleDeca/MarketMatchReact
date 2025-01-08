@@ -46,45 +46,47 @@ const TestMichele = () => {
   };
 
   return (
-    <section className="about-us">
-    <div className="container">
-      <h1 className="about-title">Chi Siamo</h1>
-      <p className="about-tagline">
-        Inclusivi per natura, sostenibili per scelta. MarketMatch è la piattaforma che rivoluziona il modo in cui scopri e acquisti prodotti eco-sostenibili e specializzati.
-      </p>
-      <div className="about-content">
-        <div className="about-card">
-          <h2 className="about-card-title">La nostra missione</h2>
-          <p className="about-card-content">
-            Vogliamo semplificare la ricerca di prodotti biologici, vegani, senza glutine e tanto altro, rendendo il consumo consapevole accessibile a tutti. Il nostro obiettivo è unire persone, negozi locali e produttori, creando un ecosistema virtuoso.
-          </p>
-        </div>
-        <div className="about-card">
-          <h2 className="about-card-title">Come lo facciamo</h2>
-          <p className="about-card-content">
-            Grazie alla geolocalizzazione, a suggerimenti personalizzati basati sulle tue preferenze e a un sistema di ricompense green, rendiamo semplice fare scelte sostenibili, supportando al contempo l'economia locale.
-          </p>
-        </div>
-        <div className="about-card">
-          <h2 className="about-card-title">Cosa ci distingue</h2>
-          <p className="about-card-content">
-            MarketMatch combina tecnologia avanzata con valori etici, offrendo una piattaforma unica che promuove il benessere, la sostenibilità e l'inclusione. Siamo più di un servizio: siamo un partner per il tuo stile di vita consapevole.
-          </p>
-        </div>
+    <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
+      <h1>Geocoding con OpenCage</h1>
+      <div>
+        <input
+          type="text"
+          placeholder="Inserisci un indirizzo"
+          value={address}
+          onChange={(e) => setAddress(e.target.value)}
+          style={{
+            width: '300px',
+            padding: '10px',
+            marginRight: '10px',
+          }}
+        />
+        <button
+          onClick={fetchCoordinates}
+          style={{
+            padding: '10px 20px',
+            backgroundColor: '#007BFF',
+            color: '#FFF',
+            border: 'none',
+            cursor: 'pointer',
+          }}
+        >
+          Cerca
+        </button>
       </div>
-      <div className="about-highlight">
-        <h2>Cosa puoi aspettarti</h2>
-        <ul>
-          <li>🌍 Prodotti selezionati vicino a te</li>
-          <li>🌱 Ricompense per acquisti green</li>
-          <li>🛒 Prenotazioni semplici e veloci</li>
-          <li>💡 Suggerimenti personalizzati</li>
-        </ul>
-      </div>
+
+      {error && <p style={{ color: 'red', marginTop: '10px' }}>{error}</p>}
+
+      {coordinates && (
+        <div style={{ marginTop: '20px' }}>
+          <h3>Coordinate trovate:</h3>
+          <p>Latitudine: {coordinates.lat}</p>
+          <p>Longitudine: {coordinates.lon}</p>
+        </div>
+      )}
     </div>
-  </section>
   );
-}; 
+};
+
 export default TestMichele;
 
 
