@@ -1,3 +1,12 @@
+# Frontend - MarketMatch (Gruppo 2)
+
+Questo repository contiene il **frontend** del gruppo **MarketMatch**
+
+### Membri del Gruppo 2:
+- **Antonio Bottalico**  
+- **Michele De Carolis**  
+- **Isabella Balestrucci**
+
 # React + Vite
 
 Questo template fornisce una configurazione minima per utilizzare React con Vite, includendo HMR e alcune regole ESLint.

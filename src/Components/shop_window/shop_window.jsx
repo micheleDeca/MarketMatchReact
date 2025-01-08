@@ -19,7 +19,7 @@ import BadgeContainer from "../CategoryLabelList/CategoryLabelList";
 
 function ShopWindow(props) {
 
-  if (props.mode === "ConA") {
+  if (props.mode === "ConA" || props.mode === "NoAccesso") {
     return (
       <>
         <div className="ShopWindowBox">

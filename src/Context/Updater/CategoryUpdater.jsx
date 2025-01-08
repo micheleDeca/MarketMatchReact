@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { useCategoryContext } from '../CategoryContex';
 import axios from 'axios'; // Importa Axios
 import { BASE_URL,IS_MOCKKED } from '../../config';
-import { getToken } from '../../LocalStorage/TokenStorage';
 
 
 
@@ -12,12 +11,10 @@ const CategoryUpdater = () => {
     useEffect(() => {
         const fetchCategories = async () => {
            // const token = localStorage.getItem('authToken'); // Recupera il token dal localStorage
-            const token = getToken();
 
             console.log("richiesta effettuata");
             const response = await axios.get(`${BASE_URL}/api/category/getCategories`, {
                 headers: {
-                        'Authorization': `Bearer ${token}`,
                         
                     },
                 });
