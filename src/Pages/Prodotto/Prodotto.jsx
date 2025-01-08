@@ -3,15 +3,16 @@ import Button from "../../Components/Button/Button";
 import Caratteristiche from "../../Components/Caratteristiche/Caratteristiche";
 import ShopWindow from "../../Components/shop_window/shop_window";
 import PopUpModify from "../../Components/PopUpModify/PopUpModify.jsx";
-import CounterAddGood from "../../Components/CounterAddGood/CounterAddGood.jsx";
 import axios from "axios";
+import LoadingPage from "../LoadingPage/LoadingPage.jsx";
+import AddGood from "../../Components/AddGood/AddGood.jsx";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL, IS_MOCKKED } from "../../config.js";
 import { useState, useEffect } from "react";
 import { getToken } from "../../LocalStorage/TokenStorage.jsx";
 import { useUserContext } from "../../Context/UserContext";
 import { data, useLocation } from "react-router-dom";
-import LoadingPage from "../LoadingPage/LoadingPage.jsx";
+
 
 function Prodotto() {
   const { databaseKey, userType } = useUserContext();
@@ -188,9 +189,16 @@ function Prodotto() {
           {userType === "ConA" && (
             <div className="containerProdotto">
               <span className="spaceProdotto">
-                <span onClick={() => navigate("/negozio", { state: { id: prodottoInfo.IdNegozio } })} style={{ cursor: "pointer"}}>
-                {`${prodottoInfo.NomeNegozio}`}
-                {` (${prodottoInfo.DistanzaKm.toFixed(2)} km)`}
+                <span
+                  onClick={() =>
+                    navigate("/negozio", {
+                      state: { id: prodottoInfo.IdNegozio },
+                    })
+                  }
+                  style={{ cursor: "pointer" }}
+                >
+                  {`${prodottoInfo.NomeNegozio}`}
+                  {` (${prodottoInfo.DistanzaKm.toFixed(2)} km)`}
                 </span>
               </span>
               <span className="spaceProdotto2"></span>
@@ -225,13 +233,13 @@ function Prodotto() {
             badges={prodottoInfo.Categorie}
             mode={userType}
           />
-          {/*
-        {userType === "ConA" && (
-          <div className="CarrelloProd">
-            <CounterAddGood />
-          </div>
-        )}
-          */}
+
+          {userType === "ConA" && (
+            <div className="CarrelloProd">
+              <AddGood token={token} databaseKey={databaseKey} prodotto={id}/>
+            </div>
+          )}
+
           <Caratteristiche
             peso={"Venduto in: " + prodottoInfo.PesoDimensioniUnitaria}
             quantita={prodottoInfo.Quantità}
