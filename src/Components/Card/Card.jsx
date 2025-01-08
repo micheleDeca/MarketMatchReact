@@ -10,6 +10,10 @@ import CookingTimeIcon from '../Card/assets/tempoCottura.svg';
 import PreparationTimeIcon from '../Card/assets/tempoPreparazione.svg';
 import { useCategoryContext } from "../../Context/CategoryContex";
 import { useNavigate } from "react-router-dom";
+import { getToken } from '../../LocalStorage/TokenStorage';
+import { useUserContext } from '../../Context/UserContext';
+import axios from 'axios';
+import { BASE_URL } from '../../config';
 
 /**
  * 
@@ -39,9 +43,46 @@ Tipologia Card (type)
 
 const Card = (props) => {
     const navigate = useNavigate();
+    const { databaseKey } = useUserContext();
 
     const isProduct = props.type === "product";
     const { category: categoryList } = useCategoryContext();
+
+    const insertProductInCart = async () => {
+        const token = getToken();
+
+        console.log(databaseKey);
+        if (!token || !databaseKey) {
+            throw new Error("Token o databaseKey mancanti");
+        }
+
+        try {
+            const response = await axios.post(
+                `${BASE_URL}/api/cart/insertProducts`,
+                { idUser: databaseKey,
+                    idProdotto: props.id
+                 }, // Corpo della richiesta
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`, // Token di autenticazione
+                    },
+                }
+            );
+
+            const result = response.data;
+            console.log(result);
+
+            if(result.esito === true){
+                handleAddClick();
+            }
+
+            // Ritorna un oggetto con stores e products
+            return { stores, products };
+        } catch (error) {
+            console.error("Errore durante il recupero dei prodotti:", error);
+            throw error; // Propaga l'errore
+        }
+    };
 
     const handleAddClick = () => {
 
@@ -149,7 +190,7 @@ const Card = (props) => {
                             <span className='icon-recipe' data-tooltip-id={`cookTime-tooltip`} data-tooltip-content="Tempo di cottura"><img src={CookingTimeIcon} /></span><span className='text-icon-recipe' >: {props.cookTime}</span>
                         </div>
                     </div>)}
-                    {props.button ? (<button className="card-button" onClick={handleAddClick}>{props.button}</button>) : ""}
+                    {props.button ? (<button className="card-button" onClick={insertProductInCart}>{props.button}</button>) : ""}
 
                 </div>
             </div>

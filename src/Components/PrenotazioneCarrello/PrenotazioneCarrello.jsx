@@ -15,6 +15,9 @@ export default function PrenotazioneCarrello(value) {
         id: prodotto.id,
         quantity: prodotto.quantity
     }))
+    const id = products.map((prodotto) => ({
+        id: prodotto.id
+    })).map(item => item.id)
    
     
     return (
@@ -36,8 +39,8 @@ export default function PrenotazioneCarrello(value) {
                 <div className="totalBox">
                     <h1>TOTALE: {value.luogoDataInfo.totalPrice} €</h1>
                     <div className="prenoteButton">
-                        <ButtonSave name={"PRENOTA ordine"} type="prenotation" idNegozio={value.luogoDataInfo.uuid}
-                            prodotti={idQuantity} />
+                        <ButtonSave name="PRENOTA ordine" type="prenotation" idNegozio={value.luogoDataInfo.uuid}
+                            prodottiId={id} prodottiIdQuantity={idQuantity} importo={value.luogoDataInfo.totalPrice} setUpdatePage={value.updatePage}/>
                     </div>
                 </div>
             </div>

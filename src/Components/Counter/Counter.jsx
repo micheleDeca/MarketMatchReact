@@ -1,5 +1,5 @@
 import "./Counter.css";
-import {useState, useEffect} from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Add from "./add.png";
 import Sub from "./sub.png";
 import { getToken } from "../../LocalStorage/TokenStorage";
@@ -9,14 +9,15 @@ import axios from "axios";
 import { BASE_URL } from "../../config";
 
 
-function Counter({productId, initialQuantity, getCounter, onChangeQuantity}) {
+function Counter({ productId, initialQuantity, getCounter, onChangeQuantity, price }) {
     const { databaseKey } = useUserContext();
     const [loading, setLoading] = useState(true); // Stato per il caricamento
     const [error, setError] = useState(null); // Stato per gli errori
 
-    const [contatore, setContatore] = useState(0);
-    const incrementa = () => setContatore(contatore + 1);
-    const decrementa = () => setContatore(contatore > 0 ? contatore - 1 : 0);
+    const [contatore, setContatore] = useState(initialQuantity);
+    const incrementa = () => { setContatore((prev) => prev + 1); };
+    const decrementa = () => { setContatore((prev) => (prev > 0 ? prev - 1 : 0)); };
+
 
     //Funzione per aggiornare la quantità nel db
     const updateQuantity = async () => {
@@ -25,14 +26,16 @@ function Counter({productId, initialQuantity, getCounter, onChangeQuantity}) {
         if (!token || !databaseKey) {
             throw new Error("Token o databaseKey mancanti");
         }
-        
+
         try {
             const response = await axios.post(
                 `${BASE_URL}/api/cart/setQuantity`,
-                { idUser: databaseKey,
+                {
+                    idUser: databaseKey,
                     idProduct: productId,
-                    newQuantity: contatore
-                 }, // Corpo della richiesta
+                    newQuantity: contatore,
+                    price: price
+                }, // Corpo della richiesta
                 {
                     headers: {
                         Authorization: `Bearer ${token}`, // Token di autenticazione
@@ -47,21 +50,25 @@ function Counter({productId, initialQuantity, getCounter, onChangeQuantity}) {
             throw error; // Propaga l'errore
         }
     };
-    
-    useEffect(() =>{
-        setContatore(initialQuantity);
-     }, []);
 
-     useEffect(() =>{
-        getCounter(contatore);
+    useEffect(() => {
+
         onChangeQuantity(contatore);
-        
+
+
+
+
+
+    }, [contatore]);
+
+
+    const test = () => {
         let isMounted = true; // Flag per evitare aggiornamenti su componenti smontati
         const modifyQuantity = async () => {
             try {
-                const result = await updateQuantity(); // Usa la funzione per l'aggiornamento della quantità
-                console.log(result);
                 if (isMounted) {
+                    const result = await updateQuantity(); // Usa la funzione per l'aggiornamento della quantità
+                    console.log(result);
                     setLoading(false); // Ferma il caricamento
                 }
             } catch (err) {
@@ -78,10 +85,7 @@ function Counter({productId, initialQuantity, getCounter, onChangeQuantity}) {
         return () => {
             isMounted = false;
         };
-
-
-     }, [contatore]);
-     
+    }
 
     if (loading) return <div><LoadingPage /></div>;
     if (error) return <div>Errore: {error}</div>;
@@ -89,9 +93,9 @@ function Counter({productId, initialQuantity, getCounter, onChangeQuantity}) {
     return (
         <>
             <div className="CounterBox">
-                <img src={Sub} alt="sub" className="ImgCounter" onClick={decrementa}/>
+                <img src={Sub} alt="sub" className="ImgCounter" onClick={() => { decrementa, test }} />
                 <p className="value">{contatore}</p>
-                <img src={Add} alt="add" className="ImgCounter" onClick={incrementa}/>
+                <img src={Add} alt="add" className="ImgCounter" onClick={() => { decrementa, test }} />
             </div>
         </>
     );

@@ -11,3 +11,21 @@
 .buttonSave:hover {
     transform: scale(0.99);
   }
+
+.notification-popup {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #03684D;
+    /* Verde per successo */
+    color: white;
+    font-weight: bold;
+    padding: 10px 20px;
+    margin-top: 50px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    opacity: 1;
+    animation: fadeOut 3s forwards;
+    /* Animazione di dissolvenza */
+}

@@ -11,9 +11,11 @@ const Carrello = () => {
 
     const [products, setProducts] = useState([]); // Stato per i prodotti nel carrello
     const [stores, setStores] = useState([]); // Stato per i prodotti nel carrello
+    const [totale, setTotale] = useState("0.00"); // Stato per il totale provvisorio del carrello
     const [loading, setLoading] = useState(true); // Stato per il caricamento
     const [error, setError] = useState(null); // Stato per gli errori
     const [quantity, setQuantity] = useState(null); // Stato per le quantità
+    const [updatePage, setUpdatePage] = useState(false); // Stato per l'aggiornamento della pagina dopo la prenotazione
 
     /*const products = [
         {
@@ -58,9 +60,15 @@ const Carrello = () => {
 
     const { databaseKey } = useUserContext();
 
+    //aggiornamento dinamico della quantità
     const updateQuantity = (newQuantity) => {
-        setQuantity(newQuantity);  
-      };
+        setQuantity(newQuantity);
+    };
+
+    //aggiornamento della pagina dopo la prenotazione
+    const pageUpdater = () => {
+        setUpdatePage((prev) => !prev);
+    };
 
     const fetchProductInCart = async () => {
         const token = getToken();
@@ -82,6 +90,7 @@ const Carrello = () => {
             );
 
             const fetchedProducts = response.data;
+            const total = fetchedProducts[0].totaleProvvisorio;
 
             // Estrai stores
             const stores = fetchedProducts.flatMap((element) =>
@@ -97,7 +106,7 @@ const Carrello = () => {
             );
 
             // Ritorna un oggetto con stores e products
-            return { stores, products };
+            return { stores, products, total };
         } catch (error) {
             console.error("Errore durante il recupero dei prodotti:", error);
             throw error; // Propaga l'errore
@@ -111,12 +120,11 @@ const Carrello = () => {
 
         const getProducts = async () => {
             try {
-                const { stores, products } = await fetchProductInCart(); // Usa la funzione per il fetch dei prodotti
-                console.log("stores", stores);
-                console.log("products",products);
+                const { stores, products, total } = await fetchProductInCart(); // Usa la funzione per il fetch dei prodotti
                 if (isMounted) {
                     setProducts(products); // Aggiorna lo stato
                     setStores(stores); // Aggiorna lo stato
+                    setTotale(total);
                     setLoading(false); // Ferma il caricamento
                 }
             } catch (err) {
@@ -135,7 +143,7 @@ const Carrello = () => {
         };
 
 
-    }, [quantity]);
+    }, [quantity, updatePage]);
 
     if (loading) return <div><LoadingPage /></div>;
     if (error) return <div>Errore: {error}</div>;
@@ -149,15 +157,18 @@ const Carrello = () => {
                 <div className="prenotationsBox">
                     {stores.map((store) => (
                         <PrenotazioneCarrello
-                            key={store.uuid} 
+                            key={store.uuid}
                             nameNeg={store.name}
                             products={products.filter((product) => product.id === store.uuid).flatMap((product) => product.products)}
                             luogoDataInfo={store}
                             onChangeQuantity={updateQuantity}
+                            updatePage={pageUpdater}
                         />
                     ))}
                 </div>
-
+                <div  className = "totale">
+                <h2>{"TOTALE PROVVISORIO: " + totale + " €"}</h2>
+                </div>
             </div>
         </>
     )

@@ -123,7 +123,7 @@ const CardLong = (props) => {
                     </div>
                     {(props.getCounter != null) && <div className="count-container-card-long">
                         <Counter productId={props.id} initialQuantity={props.quantity} getCounter={props.getCounter}
-                        onChangeQuantity={props.onChangeQuantity} />
+                        onChangeQuantity={props.onChangeQuantity} price={props.currentPrice} />
                     </div>}
 
                 </div>
