@@ -94,7 +94,7 @@
     justify-content: center;
 }
  
-  @media (max-width: 850){
+  @media (max-width: 850px){
     .about-content {
         flex-direction: column;  
       }
