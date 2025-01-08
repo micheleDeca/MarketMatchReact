@@ -71,6 +71,8 @@ const UserUpdater = () => {
         console.error("Errore durante il recupero dei dettagli dell'utente:", error);
         setUserType("NoAccesso"); // Imposta come non loggato in caso di errore
       }
+
+      console.log(getToken());
     };
 
     fetchUserDetails();

@@ -2,8 +2,13 @@ import "./Register.css";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from 'react';
 import { createUser } from "./Updater/CreateUser";
+import { useNavigate } from 'react-router-dom';
+import SearchBar from "../SearchBar/SearchBar";
+import { getCoordinateStore } from "./Updater/GetCoordinateStore";
 
 function Register(props) {
+    const navigate = useNavigate(); // Hook per navigazione
+
     const [registerDataUser, setregisterDataUser] = useState({
         nome: "",
         cognome: "",
@@ -21,6 +26,7 @@ function Register(props) {
         statistiche: false, //SENZA NO PROFILO
         profilazione: false,
         newsLetter: false,
+        categorie: ["Bio", "Vegano"],
         ready: false
     });
 
@@ -41,6 +47,7 @@ function Register(props) {
         statistiche: false, //SENZA NO PROFILO
         sconti: "",
         prenotazione: "",
+        categorie: ["Bio", "Vegano"],
         ready: false
     });
 
@@ -83,7 +90,9 @@ function Register(props) {
         }
 
         if (isValid && isValid2) {
-            setregisterDataShop({
+
+            setregisterDataShop((prevState) => ({
+                ...prevState,
                 ragioneSociale: inputs[0].value,
                 pIva: inputs[1].value,
                 Regione: inputs[2].value,
@@ -101,7 +110,7 @@ function Register(props) {
                 sconti: checkboxes[2].checked,
                 prenotazione: checkboxes[3].checked,
                 ready: true
-            });
+            }));
             console.log(registerDataShop);
 
         } else if (!isValid) {
@@ -148,7 +157,8 @@ function Register(props) {
         }
 
         if (isValid && isValid2) {
-            setregisterDataUser({
+            setregisterDataUser((prevState) => ({
+                ...prevState,
                 nome: inputs[0].value,
                 cognome: inputs[1].value,
                 Regione: inputs[2].value,
@@ -165,35 +175,81 @@ function Register(props) {
                 profilazione: checkboxes[2].checked,
                 newsLetter: checkboxes[3].checked,
                 ready: true
-            });
+            }));
             console.log(registerDataUser);
         } else if (!isValid) {
             alert("Per favore, compila tutti i campi richiesti.");
         }
     };
+    const handleGoToHome = () => {
+        navigate('/');
+    };
+
+    const handleFetchCoordinates = async () => {
+        const storeAddres = registerDataShop.indirizzo + ", " + registerDataShop.citta
+
+        try {
+            console.log("Fetching coordinates...");
+            const coords = await getCoordinateStore(storeAddres); // Esegui la funzione
+            console.log("Coordinates fetched:", coords);
+
+            // Aggiorna lo stato con le coordinate
+            setregisterDataShop((prev) => ({
+                ...prev,
+                latitudine: coords.lat,
+                longitudine: coords.lon,
+            }));
+
+        } catch (err) {
+            console.error("Error fetching coordinates:", err);
+        }
+    };
 
     useEffect(() => {
-        if(registerDataShop.ready){
-            createUser({
-                username: registerDataShop.email,
-                email: registerDataShop.email,
-                password: registerDataShop.password
-            });
+        if (registerDataShop.ready) {
+            if (!registerDataShop.latitudine) {
+                handleFetchCoordinates();
+            }
         }
 
     }, [registerDataShop])
 
     useEffect(() => {
-        if(registerDataUser.ready){
+
+        if (registerDataShop.latitudine) {
+            // Chiama createUser dopo che le coordinate sono state salvate
             createUser({
-                username: registerDataUser.email,
-                email: registerDataUser.email,
-                password: registerDataUser.password
+                props: {
+                    username: registerDataShop.email,
+                    email: registerDataShop.email,
+                    password: registerDataShop.password,
+                },
+                goToHome: handleGoToHome,
+                userdata: registerDataShop,
+                type: "shop"
+            });
+        }
+
+    }, [registerDataShop.latitudine])
+
+    useEffect(() => {
+        if (registerDataUser.ready) {
+            createUser({
+                props: {
+                    username: registerDataUser.email,
+                    email: registerDataUser.email,
+                    password: registerDataUser.password
+                },
+                goToHome: handleGoToHome,
+                userdata: registerDataUser,
+                type: "consumer"
             });
         }
 
     }, [registerDataUser])
 
+
+ 
     return (
         <>
             {props.tipo === "neg" ? (
@@ -247,6 +303,7 @@ function Register(props) {
                     <p className="word">Hai già un account?
                         <Link to="/login" className="link"> Accedi qui!</Link>
                     </p>
+
                 </div>
             ) : (
                 <div className="RegisterBox">

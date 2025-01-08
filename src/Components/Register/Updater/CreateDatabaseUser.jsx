@@ -1,41 +1,64 @@
-useEffect(() => {
-  const CreateCons = async () => {
-    try {
-      const response = await axios.post(
-        `${BASE_URL}/api/consumer/CreateConsumer`,
-        {
-          consInfo: registerDataUser,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`, // Token di autenticazione
-          },
-        }
-      );
-    } catch (error) {
-      setError(error.message); // Gestisci l'errore
-    }
-  };
-  CreateCons();
-}, [registerDataUser]);
+import axios from 'axios';
+import { BASE_URL } from '../../../config';
+import { insertDatabaseKeyUpdater } from './InserDatabaseKey';
 
-useEffect(() => {
-  const CreateShop = async () => {
-    try {
-      const response = await axios.post(
-        `${BASE_URL}/api/store/CreateStore`,
-        {
-          negInfo: registerDataShop,
+export const createConsumerDatabase = async ({ props, goToHome }) => {
+  const userData = props;
+
+  try {
+    const response = await axios.post(
+      `${BASE_URL}/api/consumer/CreateConsumer`,
+      {
+        consInfo: userData,
+      },
+
+      {
+        headers: {
         },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`, // Token di autenticazione
-          },
-        }
-      );
-    } catch (error) {
-      setError(error.message); // Gestisci l'errore
+      }
+
+    );
+
+
+  } catch (error) {
+    alert(error.message); // Gestisci l'errore
+  }
+
+};
+
+
+export const createStoreDatabase = async ({ props, goToHome }) => {
+  const registerDataShop = props;
+  let storeUuid = null;
+
+  console.log("arrivato",registerDataShop);
+  try {
+    const response = await axios.post(
+      `${BASE_URL}/api/store/CreateStore`,
+
+      {
+        negInfo: registerDataShop,
+      },
+
+      {
+        headers: {
+        },
+      }
+
+    );
+
+    console.log("STORE CREATO");
+    console.log(response.data.storeUuid);
+    storeUuid = response.data.storeUuid;
+
+    if(storeUuid){
+      await insertDatabaseKeyUpdater("NegA", storeUuid);
     }
-  };
-  CreateShop();
-}, [registerDataShop]);
+
+
+  } catch (error) {
+    alert(error.message); // Gestisci l'errore
+  }
+
+};
+
