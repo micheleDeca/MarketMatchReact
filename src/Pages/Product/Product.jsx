@@ -196,7 +196,7 @@ const Product = () => {
             </div>
             <div className="content-container">
                 <div className="container-product">
-                    <ProductContainer card={products} button={"Prenota"} type={"product"} />
+                    <ProductContainer card={products} button={"Aggiungi al carrello"} type={"product"} />
                 </div>
                 <div className="pagination-container">
                     <Pagination
