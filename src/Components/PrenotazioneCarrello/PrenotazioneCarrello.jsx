@@ -26,7 +26,7 @@ export default function PrenotazioneCarrello(value) {
                 <div className="contentBox">
                     <div className="productList">
                         <CardLongList title={value.nameNeg} products={products}
-                            getCounter={getCounter} type={"product"} onChangeQuantity={value.onChangeQuantity} />
+                            getCounter={getCounter} type={"product"} onChangeQuantity={value.onChangeQuantity} setUpdatePage={value.updatePage}/>
                     </div>
 
                     <div className="dateBox">

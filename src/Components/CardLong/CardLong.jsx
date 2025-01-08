@@ -86,6 +86,7 @@ const CardLong = (props) => {
         navigate(linkType, { state: { id: props.id } });
     };
 
+    console.log(typeof updatePage); 
 
     return (
         <div className="card-long">
@@ -122,8 +123,8 @@ const CardLong = (props) => {
                         )}
                     </div>
                     {(props.getCounter != null) && <div className="count-container-card-long">
-                        <Counter productId={props.id} initialQuantity={props.quantity} getCounter={props.getCounter}
-                        onChangeQuantity={props.onChangeQuantity} price={props.currentPrice} />
+                        <Counter productId={props.id} initialQuantity={props.quantity}
+                        onChangeQuantity={props.onChangeQuantity} price={props.currentPrice} setUpdatePage={props.updatePage}/>
                     </div>}
 
                 </div>

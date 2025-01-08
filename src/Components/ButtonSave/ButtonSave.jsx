@@ -120,7 +120,7 @@ export default function ButtonSave(elements) {
 
             if(prenotation.successCode === "RESERVATION_CREATED"){
                 handleAddClick('Prenotazione avvenuta con successo');
-                await delay(3000);
+                await delay(2000);
                 deleteProducts();
             } else {
                 handleAddClick('Prenotazione non andata a buon fine');

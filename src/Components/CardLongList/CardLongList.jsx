@@ -27,6 +27,8 @@ const CardLongList = (props) => {
     setCurrentPage(1);
   }, [props.shops, props.products]);
 
+   
+
    return (
     <>
     <div className="product-long-list-container">
@@ -46,6 +48,7 @@ const CardLongList = (props) => {
             getCounter={props.getCounter}
             type={props.type}
             onChangeQuantity={props.onChangeQuantity}
+            updatePage={props.setUpdatePage}
             
           />
         ))}
