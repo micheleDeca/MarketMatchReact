@@ -74,6 +74,7 @@ function Negozio() {
           "09:30-12:30",
         ],
         Provincia: "BA",
+        Valutazione: 4,
       });
     }
   }, []);
@@ -218,7 +219,7 @@ function Negozio() {
         </div>
         <div className="boxNegozio">
           <div className="star">
-            <Stelle starNumber={1} />
+            <Stelle starNumber={negozioInfo.Valutazione} />
           </div>
           <ShopWindow
             ImageDescription={negozioInfo.Logo}

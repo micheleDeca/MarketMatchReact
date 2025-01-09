@@ -111,6 +111,60 @@ input:focus {
     color: darkred;
 }
 
+.rowCat{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    gap:5px;
+}
+
+.form-popup {
+    position: fixed;             /* Permette lo scrolling se il contenuto eccede */
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100vh; 
+    background-color: #f9f9f9;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.columnCat{
+    padding-top: 2%;
+    gap:20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    padding-bottom: 2%;
+}
+
+.buttonRegisterCat{
+    border: 2px solid black;
+    cursor:pointer;
+    font-weight: bold;
+    background-color: white;
+    color: black;
+    height: 50px;
+    border-radius: 5px;
+    padding: 5px;
+    width: 20%;
+    font-size: 100%;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.buttonRegisterCat:hover{
+    background-color: black;
+    color: white;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
 @media (orientation: portrait) {
     .RegisterBox{
         width: 90%;

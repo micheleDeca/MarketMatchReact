@@ -7,10 +7,7 @@ import { useNavigate } from 'react-router-dom';
 function Login() {
     const navigate = useNavigate(); // Hook per navigazione
 
-    const [loginData, setLoginData] = useState({
-        email: "",
-        password: "",
-    });
+    const [loginData, setLoginData] = useState({});
 
     const [isValidLogin, setIsValidLogin] = useState(false);
 
@@ -19,7 +16,6 @@ function Login() {
         window.location.reload(); // Forza l'aggiornamento della pagina
 
     };
-
 
     const handleLoginClick = () => {
         // Trova tutti gli input con attributo "required"
@@ -49,7 +45,11 @@ function Login() {
         }
     };
 
+    useEffect(() => {
+        console.log(loginData);
+    }, [loginData]);
 
+    
     useEffect(()=>{
         if(isValidLogin){
             userLogin({
@@ -73,6 +73,9 @@ function Login() {
                 <input type="button" value="Login" className="buttonLogin" onClick={handleLoginClick}/>
                 <p className="word">
                     Non hai un account? <Link to="/registerCons" className="link"> Registrati!</Link>
+                </p>
+                <p className="word">
+                    <Link to="/" className="link">Back</Link>
                 </p>
             </div>
         </>
