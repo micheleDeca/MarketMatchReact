@@ -8,6 +8,7 @@ import { Suspense, lazy } from 'react';
 import CategoryUpdater from './Context/Updater/CategoryUpdater.jsx';
 import LoadingPage from './Pages/LoadingPage/LoadingPage.jsx';
 import UserUpdater from './Context/Updater/UserUpdater.jsx';
+import { IS_MOCKKED } from './config';
 
 /*
  * React.lazy:  
@@ -57,7 +58,8 @@ import { getToken, saveToken } from './LocalStorage/TokenStorage.jsx';
 const App = () => {
   const tokenConsumer = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzM1OTA1OTMwLCJleHAiOjE3Mzg0OTc5MzB9.gesJC06LITDftvzQAC5PAywbr49pEy523sAgikMkBfk";
   const tokenStore = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzM1OTE5MzQxLCJleHAiOjE3Mzg1MTEzNDF9.BKPA6V5xJsj-peErhycpUe_2-ClygTdCuc04GhTaIMU"; 
-  saveToken(tokenConsumer,30); //NON FARLO ASSOLUTAMENTE COSì IN PRODUZIONE
+  if(IS_MOCKKED)
+    saveToken(tokenConsumer,30); //NON FARLO ASSOLUTAMENTE COSì IN PRODUZIONE
   // PER MODIFICARE UTENTE, recarsi in componente "UserUpdater", puoi cliccare control+click qui sott
   return (
     <div>

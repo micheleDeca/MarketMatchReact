@@ -74,6 +74,17 @@
     justify-content: center;
 }
 
+.total-text-container{
+    padding-top: 5px;
+    padding-bottom: 20px;
+    padding-left: 50px;
+}
+
+.total-text{
+    font-size: 35px;
+    font-weight: bold;
+}
+
 @media (max-width: 855px){
     .store-info-reservation .luogoDataBox{
         flex-direction: row;

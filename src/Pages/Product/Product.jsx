@@ -35,7 +35,8 @@ const Product = () => {
     const [totalItems, setTotalItems] = useState(0);
     const [loading, setLoading] = useState(true); // Stato per il caricamento
     const [error, setError] = useState(null); // Stato per gli errori
-
+    
+    const buttonText= userType === "ConA" ? "Aggiungi al carrello" : "";
     const productsPerPage = 15; // Numero di prodotti per pagina
 
     //IMPOSTARE come default sempre RILEVANZA
@@ -196,7 +197,7 @@ const Product = () => {
             </div>
             <div className="content-container">
                 <div className="container-product">
-                    <ProductContainer card={products} button={"Aggiungi al carrello"} type={"product"} />
+                    <ProductContainer card={products} button={buttonText} type={"product"} />
                 </div>
                 <div className="pagination-container">
                     <Pagination

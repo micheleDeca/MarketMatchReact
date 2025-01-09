@@ -183,7 +183,11 @@ const Reservation = () => {
                 title="Riepilogo Prenotazione"
                 products={products}
                 type={"product"} />
-        </div>
+            
+            <div className="total-text-container">
+            <div className="total-text">TOTALE: {parseFloat(reservationData.totaleProdotti).toFixed(2)} €</div>
+            </div>
+        </div> 
     )
 }
 

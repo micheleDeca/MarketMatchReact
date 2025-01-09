@@ -86,7 +86,6 @@ const CardLong = (props) => {
         navigate(linkType, { state: { id: props.id } });
     };
 
-    console.log(typeof updatePage); 
 
     return (
         <div className="card-long">

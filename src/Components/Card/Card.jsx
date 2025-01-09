@@ -14,6 +14,7 @@ import { getToken } from '../../LocalStorage/TokenStorage';
 import { useUserContext } from '../../Context/UserContext';
 import axios from 'axios';
 import { BASE_URL } from '../../config';
+import { insertUserProductView } from '../../Pages/Product/Updater/InsertUserProductView';
 
 /**
  * 
@@ -43,7 +44,7 @@ Tipologia Card (type)
 
 const Card = (props) => {
     const navigate = useNavigate();
-    const { databaseKey } = useUserContext();
+    const { userType, databaseKey } = useUserContext();
 
     const isProduct = props.type === "product";
     const { category: categoryList } = useCategoryContext();
@@ -59,9 +60,10 @@ const Card = (props) => {
         try {
             const response = await axios.post(
                 `${BASE_URL}/api/cart/insertProducts`,
-                { idUser: databaseKey,
+                {
+                    idUser: databaseKey,
                     idProdotto: props.id
-                 }, // Corpo della richiesta
+                }, // Corpo della richiesta
                 {
                     headers: {
                         Authorization: `Bearer ${token}`, // Token di autenticazione
@@ -72,7 +74,7 @@ const Card = (props) => {
             const result = response.data;
             console.log(result);
 
-            if(result.esito === true){
+            if (result.esito === true) {
                 handleAddClick();
             }
 
@@ -116,6 +118,11 @@ const Card = (props) => {
 
 
     const handleClickCard = () => {
+
+        if(userType === "ConA" && isProduct){
+            insertUserProductView(databaseKey,props.id);
+        }
+        
         let linkType = null;
         isProduct ? linkType = "/prodotto" : linkType = "/ricetta"
         navigate(linkType, { state: { id: props.id } });
@@ -143,7 +150,8 @@ const Card = (props) => {
 
             >
                 <div onClick={handleClickCard} className='cliccable-link'>
-                    <img className="card-image" src={props.image} />
+                    <div className="card-image-wrapper">
+                        <img className="card-image" src={props.image} /></div>
                 </div>
 
 
@@ -168,7 +176,15 @@ const Card = (props) => {
                     )}
 
                     <p className="card-detail">{props.detail}</p>
-                    {isProduct && <p className="card-detail">{props.distanceKm} Km</p>}
+                    {isProduct &&
+                        userType === "ConA" &&
+                        <p className="card-detail">{props.distanceKm} km</p>}
+                    {isProduct &&
+                        userType === "NegA" &&
+                        <p className="card-detail">Visite: {props.views} </p>}
+                    {isProduct &&
+                        userType === "NegA" &&
+                        <p className="card-detail">Prenotazioni: {props.reservations} </p>}
                     <p className="price-container-card">{props.originalPrice ? (
                         <>
                             <span className="current-price-card">{props.currentPrice}</span>
