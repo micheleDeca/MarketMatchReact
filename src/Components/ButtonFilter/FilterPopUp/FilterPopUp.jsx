@@ -78,8 +78,8 @@ export default function FilterPopUp(elements) {
         elements.onStateChange('maxDistance', parseFloat(value.toFixed(1))); // Passa chiave e valore per notificare il padre della modifica dell'input
     };
 
-    const priceTypes = ["ConA, Prod", "ConA, Ric", "Neg, Prod"];
-    const distanceTypes = ["ConA, Prod", "ConA, Neg"];
+    const priceTypes = ["ConA, Prod", "ConA, Ric", "Neg, Prod", "NoAccesso"];
+    const distanceTypes = ["ConA, Prod", "ConA, Neg", "NoAccesso"];
 
     const [selectedFilters, setSelectedFilters] = useState({
         ordinamento: "", // array per i filtri di ordinamento
