@@ -39,8 +39,6 @@ const Product = () => {
     const buttonText= userType === "ConA" ? "Aggiungi al carrello" : "";
     const productsPerPage = 15; // Numero di prodotti per pagina
 
-    //IMPOSTARE come default sempre RILEVANZA
-    //MOLTO IMPORTANTE @Isabella, quando si cambiano i filtri, impostare paginaCorrente = 1
     const [requestParams, setRequestParams] = useState({
         minPrezzo: null,
         maxPrezzo: null,
@@ -171,7 +169,7 @@ const Product = () => {
     if (userType === "NegA") {
         orderNames = ["Prezzo Crescente", "Prezzo Decrescente", "Quantità", "Nome", "Rilevanza"];
         filterNames = [...categoryList.map((cat) => cat.categoryName), "In promozione"];
-    } else if (userType === "ConA") {
+    } else if (userType === "ConA" || userType === "NoAccesso") {
         orderNames = ["Prezzo Crescente", "Prezzo Decrescente", "Quantità", "Nome", "Rilevanza"];
         filterNames = [...categoryList.map((cat) => cat.categoryName), "In promozione", "Più vicini a Te"];
     }
@@ -191,7 +189,8 @@ const Product = () => {
                     <SearchBar type="ricerca" onStateChange={handleSearchStateChange} />
                 </div>
                 <div className="filterButton">
-                    <ButtonFilter onStateChange={handleFilterStateChange} order={orderNames} filter={filterNames} type={userType === "NegA" ? "Neg, Prod" : "ConA, Prod"}
+                    <ButtonFilter onStateChange={handleFilterStateChange} order={orderNames} filter={filterNames} type={userType === "NegA" ? "Neg, Prod" : 
+                    (userType === "ConA" ? "ConA, Prod" : "NoAccesso")}
                     />
                 </div>
             </div>

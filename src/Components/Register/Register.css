@@ -127,6 +127,14 @@ input:focus {
     .rowCheck input[type="checkbox"] {
         height: 15px;
     }
+
+    .title{
+        font-size: x-large;
+    }
+
+    .link{
+        font-size: small;
+    }
 }
 
 @media (orientation: portrait) and (min-width: 481px) and (max-width: 1080px) {

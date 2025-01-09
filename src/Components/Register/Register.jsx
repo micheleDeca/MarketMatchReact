@@ -269,7 +269,7 @@ function Register(props) {
                     <p className="tipeRegister">
                         <Link to="/registerCons" className="link">Sono un consumatore</Link>
                     </p>
-                    <p className="title">Register</p>
+                    <p className="title">Register Negoziante</p>
                     <div className="rowLogin">
                         <input type="text" placeholder="Ragione sociale" className="RegisterInput" required />
                         <input type="text" placeholder="P.IVA" className="RegisterInput" required />
@@ -320,9 +320,9 @@ function Register(props) {
             ) : (
                 <div className="RegisterBox">
                     <p className="tipeRegister">
-                        <Link to="/registerNeg" className="link">Sono un Negoziante</Link>
+                        <Link to="/registerNeg" className="link">Sono un negoziante</Link>
                     </p>
-                    <p className="title">Register</p>
+                    <p className="title">Register Consumatore</p>
                     <div className="rowLogin">
                         <input type="text" placeholder="Nome" className="RegisterInput" required />
                         <input type="text" placeholder="Cognome" className="RegisterInput" required />

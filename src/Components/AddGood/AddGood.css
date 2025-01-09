@@ -5,4 +5,11 @@
     font-size: 90%;
     border: 0;
     max-width: 250px;
+    aspect-ratio: 7/1;
+    border-radius: 15px;
+    cursor: pointer;
 }
+
+.AddGoodButton:hover {
+    transform: scale(0.97);
+  }

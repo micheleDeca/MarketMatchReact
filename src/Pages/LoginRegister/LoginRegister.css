@@ -1,13 +1,18 @@
-.LoginRegisterBack{
-    margin:0;
+.LoginRegisterBack {
+    padding-top: 1%;
+    padding-bottom: 1%;
+    position: relative;             /* Permette lo scrolling se il contenuto eccede */
+    top: 0;
+    left: 0;
     width: 100%;
-    padding-top: 4%;
-    padding-bottom: 4%;
+    min-height: 100vh;              /* Altezza minima 100% del viewport */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-size: 100%;
-    background-image: url('https://www.colorrevelation.com/other-countries/wp-content/uploads/sites/6/2020/01/05-green-header_3514x2000-1740x1000.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url("https://images6.alphacoders.com/132/1323881.png");
 }
 

@@ -37,10 +37,6 @@
     white-space: nowrap;  
 }
 
-.spaceProdotto:hover{
-    text-decoration: underline;
-}
-
 .spaceProdotto2{
     width: 20%;
 }
@@ -59,6 +55,7 @@
 @media (orientation: portrait){
     .boxProdotto{
         align-items: center;
+        gap:40px;
     }
 
     .spaceProdotto{
