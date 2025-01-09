@@ -27,6 +27,8 @@ export const getToken = () => {
 // Funzione per rimuovere il token manualmente
 export const removeToken = () => {
     localStorage.removeItem('authToken');
+    sessionStorage.setItem('currentPage', 1);
+
 };
 
 
