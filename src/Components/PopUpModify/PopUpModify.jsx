@@ -18,36 +18,68 @@ function PopUpModify(props) {
       const orari = document.getElementsByClassName("input");
       const newOrari = [];
       for (let i = 0; i < orari.length; i++) {
-        newOrari.push(orari[i].value);
+        newOrari.push(
+          orari[i].value === "" || orari[i].value === null
+            ? "Inserire orario"
+            : orari[i].value
+        );
       }
       props.setNegozioInfo({ ...props.negozioInfo, OrarioNegozio: newOrari });
-    }
-    if (type === "Immagine") {
-      const immagine = document.getElementsByClassName("input")[0];
-      props.setNegozioInfo({ ...props.negozioInfo, Foto: immagine.value });
     }
     if (type === "Informazioni") {
       const informazioni = document.getElementsByClassName("input");
       props.setNegozioInfo({
         ...props.negozioInfo,
-        Regione: informazioni[0].value,
-        Provincia: informazioni[1].value,
-        Città: informazioni[2].value,
-        Cap: informazioni[3].value,
-        Indirizzo: informazioni[4].value,
-        Cellulare: informazioni[5].value,
-        Mail: informazioni[6].value,
+        Regione:
+          informazioni[0].value === "" || informazioni[0].value === null
+            ? "Inserire regione"
+            : informazioni[0].value,
+        Provincia:
+          informazioni[1].value === "" || informazioni[1].value === null
+            ? "Inserire provincia"
+            : informazioni[1].value,
+        Città:
+          informazioni[2].value === "" || informazioni[2].value === null
+            ? "Inserire città"
+            : informazioni[2].value,
+        Cap:
+          informazioni[3].value === "" || informazioni[3].value === null
+            ? "Inserire CAP"
+            : informazioni[3].value,
+        Indirizzo:
+          informazioni[4].value === "" || informazioni[4].value === null
+            ? "Inserire indirizzo"
+            : informazioni[4].value,
+        Cellulare:
+          informazioni[5].value === "" || informazioni[5].value === null
+            ? "Inserire cellulare"
+            : informazioni[5].value,
+        Mail:
+          informazioni[6].value === "" || informazioni[6].value === null
+            ? "Inserire email"
+            : informazioni[6].value,
       });
     }
     if (type === "Nome") {
       const nome = document.getElementsByClassName("input")[0];
-      props.setNegozioInfo({ ...props.negozioInfo, Nome: nome.value, RagioneSociale: nome.value });
+      const valoreNome =
+        nome.value === "" || nome.value === null ? "Inserire nome" : nome.value;
+      props.setNegozioInfo({
+        ...props.negozioInfo,
+        Nome: valoreNome,
+        RagioneSociale: valoreNome,
+      });
     }
     if (type === "Descrizione") {
       const descrizione = document.getElementsByClassName("input")[0];
+      const valoreDescrizione =
+        descrizione.value === "" || descrizione.value === null
+          ? "Inserire descrizione"
+          : descrizione.value;
+
       props.setNegozioInfo({
         ...props.negozioInfo,
-        Descrizione: descrizione.value,
+        Descrizione: valoreDescrizione,
       });
     }
     if (type === "Categorie") {
@@ -57,6 +89,10 @@ function PopUpModify(props) {
         if (categorie[i].checked) {
           newCategorie.push(categorie[i].value);
         }
+      }
+      // Se non ci sono categorie selezionate, aggiungi il valore di default
+      if (newCategorie.length === 0) {
+        newCategorie.push("Inserisci categoria");
       }
       props.setNegozioInfo({ ...props.negozioInfo, Categorie: newCategorie });
     }
@@ -69,27 +105,45 @@ function PopUpModify(props) {
           originalPrice: null,
           Offerta: false,
         });
-      }
-      else if (prezzo[1].value !== "" && prezzo[0].value !== "") {
+      } else if (prezzo[1].value !== "" && prezzo[0].value !== "") {
         props.setNegozioInfo({
           ...props.negozioInfo,
           currentPrice: parseFloat(prezzo[1].value).toFixed(2),
           originalPrice: parseFloat(prezzo[0].value).toFixed(2),
           Offerta: true,
         });
-      }
-      else{
-        window.alert("Inserire il prezzo normale e il prezzo in offerta o solo il prezzo normale!");
+      } else {
+        window.alert(
+          "Inserire il prezzo normale e il prezzo in offerta o solo il prezzo normale!"
+        );
       }
     }
     if (type === "Caratteristiche") {
       const caratteristiche = document.getElementsByTagName("input");
+
+      const pesoDimensioniUnitaria =
+        caratteristiche[0].value === "" || caratteristiche[0].value === null
+          ? "Inserire peso o dimensioni"
+          : caratteristiche[0].value;
+
+      const descrizioneUnita =
+        caratteristiche[1].value === "" || caratteristiche[1].value === null
+          ? "Inserire descrizione unità"
+          : caratteristiche[1].value;
+
+      const quantità =
+        caratteristiche[2].value === "" || caratteristiche[2].value === null
+          ? 0
+          : parseInt(caratteristiche[2].value);
+
+      const disponibile = caratteristiche[3].checked;
+
       props.setNegozioInfo({
         ...props.negozioInfo,
-        PesoDimensioniUnitaria: caratteristiche[0].value,
-        DescrizioneUnita: caratteristiche[1].value,
-        Quantità: parseInt(caratteristiche[2].value),
-        Disponibile: caratteristiche[3].checked,
+        PesoDimensioniUnitaria: pesoDimensioniUnitaria,
+        DescrizioneUnita: descrizioneUnita,
+        Quantità: quantità,
+        Disponibile: disponibile,
       });
     }
     closeForm();
@@ -390,7 +444,9 @@ function PopUpModify(props) {
                     type="checkbox"
                     name="option"
                     value="Sostenibile"
-                    defaultChecked={props.negozioInfo.Categorie.includes("Sostenibile")}
+                    defaultChecked={props.negozioInfo.Categorie.includes(
+                      "Sostenibile"
+                    )}
                   />
                 </div>
               </div>
@@ -415,9 +471,11 @@ function PopUpModify(props) {
                 <input
                   type="text"
                   className="input"
-                  defaultValue={props.negozioInfo.originalPrice 
-                    ? props.negozioInfo.originalPrice
-                    : props.negozioInfo.currentPrice}
+                  defaultValue={
+                    props.negozioInfo.originalPrice
+                      ? props.negozioInfo.originalPrice
+                      : props.negozioInfo.currentPrice
+                  }
                 />
               </div>
               <div className="ColumnPopUp">
@@ -427,9 +485,11 @@ function PopUpModify(props) {
                 <input
                   type="text"
                   className="input"
-                  defaultValue={props.negozioInfo.originalPrice 
-                    ? props.negozioInfo.currentPrice
-                    : ""}
+                  defaultValue={
+                    props.negozioInfo.originalPrice
+                      ? props.negozioInfo.currentPrice
+                      : ""
+                  }
                 />
               </div>
               <div className="popUpRight">

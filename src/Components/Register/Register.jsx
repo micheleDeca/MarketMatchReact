@@ -245,7 +245,7 @@ function Register(props) {
             <input type="checkbox" name="Option1" value="1" />
           </div>
           <div className="rowCat">
-            <label>Senza lattosio</label>
+            <label>Senza Lattosio</label>
             <input type="checkbox" name="Option2" value="2" />
           </div>
           <div className="rowCat">
