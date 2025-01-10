@@ -26,17 +26,14 @@ function Ricetta() {
     if (!IS_MOCKKED) {
       const getRecipe = async () => {
         try {
-          const response = await axios.post(
-            `${BASE_URL}/api/recipe/getRecipe`,
-            {
-              recipeId: id,
+          const response = await axios.get(`${BASE_URL}/api/recipe/getRecipe`, {
+            params: {
+              recipeId: id, // Pass recipeId as a query parameter
             },
-            {
-              headers: {
-                Authorization: `Bearer ${token}`, // Token di autenticazione
-              },
-            }
-          );
+            headers: {
+              Authorization: `Bearer ${token}`, // Token di autenticazione
+            },
+          });
           setRicettaInfo(response.data);
           setLoading(false);
         } catch (error) {

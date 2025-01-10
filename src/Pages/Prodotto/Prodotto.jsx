@@ -13,7 +13,6 @@ import { getToken } from "../../LocalStorage/TokenStorage.jsx";
 import { useUserContext } from "../../Context/UserContext";
 import { data, useLocation } from "react-router-dom";
 
-
 function Prodotto() {
   const { databaseKey, userType } = useUserContext();
   const [modify, setModify] = useState("");
@@ -29,16 +28,13 @@ function Prodotto() {
     if (!IS_MOCKKED && id != "4366c62e-d77b-4cdd-b27e-09a12656f4a9") {
       const getProduct = async () => {
         try {
-          const response = await axios.post(
+          const response = await axios.get(
             `${BASE_URL}/api/product/getProduct`,
             {
-              productId: id,
-              userLatitude: 41.1090642,
-              userLongitude: 16.8719847,
-            },
-            {
-              headers: {
-                Authorization: `Bearer ${token}`, // Token di autenticazione
+              params: {
+                productId: id,
+                userLatitude: 41.1090642,
+                userLongitude: 16.8719847,
               },
             }
           );
@@ -82,7 +78,7 @@ function Prodotto() {
     if (!loading && id != "4366c62e-d77b-4cdd-b27e-09a12656f4a9") {
       const updateProduct = async () => {
         try {
-          const response = await axios.post(
+          const response = await axios.patch(
             `${BASE_URL}/api/product/UpdateProduct`,
             {
               productId: id,
@@ -106,7 +102,7 @@ function Prodotto() {
     if (!loading && id != "4366c62e-d77b-4cdd-b27e-09a12656f4a9") {
       const updateProductCategories = async () => {
         try {
-          const response = await axios.post(
+          const response = await axios.put(
             `${BASE_URL}/api/product/UpdateProductCategories`,
             {
               productId: id,
@@ -236,7 +232,7 @@ function Prodotto() {
 
           {userType === "ConA" && (
             <div className="CarrelloProd">
-              <AddGood token={token} databaseKey={databaseKey} prodotto={id}/>
+              <AddGood token={token} databaseKey={databaseKey} prodotto={id} />
             </div>
           )}
 

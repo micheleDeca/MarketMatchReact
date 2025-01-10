@@ -13,7 +13,7 @@ import { useLocation } from "react-router-dom";
 import LoadingPage from "../LoadingPage/LoadingPage.jsx";
 
 function Negozio() {
-  const {databaseKey, userType}= useUserContext();
+  const { databaseKey, userType } = useUserContext();
   const [modify, setModify] = useState("");
   const location = useLocation();
   const { id } = location.state || {}; // Fallback se `state` è null
@@ -29,19 +29,16 @@ function Negozio() {
     if (!IS_MOCKKED) {
       const getShop = async () => {
         try {
-          const response = await axios.post(
-            `${BASE_URL}/api/store/getShop`,
-            {
-              negozioUuid: id || databaseKey,
-              userLatitude: 41.1090642,
-              userLongitude: 16.8719847,
+          const response = await axios.get(`${BASE_URL}/api/store/getShop`, {
+            params: {
+              negozioUuid: id || databaseKey, // Pass negozioUuid as a query parameter
+              userLatitude: 41.1090642, // Pass userLatitude as a query parameter
+              userLongitude: 16.8719847, // Pass userLongitude as a query parameter
             },
-            {
-              headers: {
-                Authorization: `Bearer ${token}`, // Token di autenticazione
-              },
-            }
-          );
+            headers: {
+              Authorization: `Bearer ${token}`, // Token di autenticazione
+            },
+          });
           setNegozioInfo(response.data);
         } catch (error) {
           setError(error.message); // Gestisci l'errore
@@ -78,21 +75,17 @@ function Negozio() {
       });
     }
   }, []);
-  {/*
-  useEffect(() => {
-    console.log("AAAA", negozioInfo);
-  }, [negozioInfo]);
-  */}
+
   useEffect(() => {
     if (!IS_MOCKKED) {
       const getProductShop = async () => {
         try {
-          const response = await axios.post(
+          const response = await axios.get(
             `${BASE_URL}/api/store/getShopProducts`,
             {
-              negozioUuid: id || databaseKey,
-            },
-            {
+              params: {
+                negozioUuid: id || databaseKey, // Pass the negozioUuid as a query parameter
+              },
               headers: {
                 Authorization: `Bearer ${token}`, // Token di autenticazione
               },
@@ -132,11 +125,7 @@ function Negozio() {
       ]);
     }
   }, []);
-  {/*
-  useEffect(() => {
-    console.log("BBBB", prodottiInfo);
-  }, [prodottiInfo]);
-  */}
+
   useEffect(() => {
     if (prodottiInfo) {
       const timer = setTimeout(() => {
@@ -152,7 +141,7 @@ function Negozio() {
     if (!loading) {
       const updateStore = async () => {
         try {
-          const response = await axios.post(
+          const response = await axios.patch(
             `${BASE_URL}/api/store/UpdateStore`,
             {
               negozioUuid: id || databaseKey,
@@ -176,7 +165,7 @@ function Negozio() {
     if (!loading) {
       const updateStoreCategories = async () => {
         try {
-          const response = await axios.post(
+          const response = await axios.put(
             `${BASE_URL}/api/store/UpdateStoreCategories`,
             {
               negozioUuid: id || databaseKey,
