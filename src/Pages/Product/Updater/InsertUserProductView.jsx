@@ -20,7 +20,6 @@ export const insertUserProductView = async (consUuid, prodUuid) => {
                 }
             );
 
-            return response.data.totalItems.low;
         } catch (error) {
             console.error('Errore durante il recupero dei prodotti:', error);
             throw error;
