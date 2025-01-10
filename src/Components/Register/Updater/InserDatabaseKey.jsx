@@ -9,7 +9,7 @@ export const insertDatabaseKeyUpdater = async (userType, databaseKey, goToHome) 
     const token = getToken();
     const requestUrl = userType === "ConA"? "consumerUser/databaseKey" : (userType === "NegA"? "storeUser/databaseKey" : "");
     try {
-        const response = await axios.put(
+        const response = await axios.patch(
             `${BASE_URL}/api/` + requestUrl,
             {
                 "databaseKey": databaseKey

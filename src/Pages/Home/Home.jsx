@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './Home.css';
 import ProductList from '../../Components/ProductList/ProductList';
 import CategoryCardList from '../../Components/CategoryCardList/CategoryCardList';
@@ -10,8 +10,8 @@ import FeaturesComponent from './FeaturesComponent/FeaturesComponent';
 import PositionComponent from './PositionComponent/PositionComponent';
 import HighlightShops from './HighlightShops/HighlightShops';
 import FeaturesComponentShop from './FeaturesComponentShop/FeaturesComponentShop';
-
- 
+import { getReccomanderProductFetch } from './Updater/GetRecommanderProduct';
+import { getPositionProduct } from './Updater/GetPositionProduct';
 const Home = (props) => {
 
   const products = [
@@ -31,28 +31,78 @@ const Home = (props) => {
     { name: "Senza Lattosio", logo: "🥤", color: "#D6F5FF" },
     { name: "Senza Glutine", logo: "🍞", color: "#FFF5D6" },
     { name: "Biologico", logo: "🍎", color: "#FFDFDF" },
-    { name: "Vegenariano", logo: "🥦", color: "#DFFFD6" },
+    { name: "Vegetariano", logo: "🥦", color: "#DFFFD6" },
   ];
 
 
-  const { userType } = useUserContext();
+  const { databaseKey, userType } = useUserContext();
   const { category, setCategory } = useCategoryContext();
-  /*
-  useEffect(() => {
-        props.setNavColor("white");
 
-        // Simula una chiamata API per caricare i dati dell'utente
-        axios.get('/api/user/home').then(response => {
-            setUserData(response.data);
-            setLoading(false);
-        }).catch(error => {
-            console.error("Errore nel caricamento dei dati:", error);
-            setLoading(false);
-        });
-    }, []); */
-    console.log("Categoria",category);
-   console.log("Tipo Utente",userType);
-   
+ 
+  const [recommenderProduct, setRecommenderProduct] = useState([]);
+  const [positionProduct, setPositionProduct] = useState([]);
+
+  const [userPosition, setUserPosition] = useState([]); // Stato per la posizione dell'utente
+
+    // Funzione che verrà passata al componente figlio per aggiornare la posizione
+    const handlePositionUpdate = (position) => {
+        setUserPosition(position); // Aggiorna la posizione nel componente padre
+    };
+
+  console.log("Categoria", category);
+  console.log("Tipo Utente", userType);
+
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []); // Aggiungi dipendenze che richiedono il reset dello scroll
+  
+  useEffect(() => {
+    if (userType == "ConA") {
+      let isMounted = true; // Flag per evitare aggiornamenti su componenti smontati
+
+      const getProductsRecommander = async () => {
+        try {
+          const productsData = await getReccomanderProductFetch({
+            userUuid: databaseKey,
+            userLatitude: userPosition.latitude,
+            userLongitude: userPosition.longitude,
+          }); // Usa la funzione dal modulo
+
+          const productsDataPos = await getPositionProduct({
+            userLatitude: userPosition.latitude,
+            userLongitude: userPosition.longitude,
+          }); // Usa la funzione dal modulo
+
+          if (isMounted) {
+            setRecommenderProduct(productsData); 
+            setPositionProduct(productsDataPos); 
+
+           }
+        } catch (err) {
+          console.log(err.message); // Gestisci l'errore
+        }
+      };
+
+      getProductsRecommander();
+
+      // Cleanup: evita aggiornamenti su componenti smontati
+      return () => {
+        isMounted = false;
+      };
+
+
+    }
+
+  }, [userPosition])
+
+  useEffect(()=>{
+    console.log("I prodotti sono arrivati nella home");
+    console.log(recommenderProduct);
+  },[recommenderProduct])
+
+ 
+
   return (
     <>
       <div className="background"></div>
@@ -61,18 +111,18 @@ const Home = (props) => {
           <>
             <CategoryCardList title="LE NOSTRE MIGLIORI CATEGORIE" categories={categories} />
             <WelcomeBanner />
-            <ProductList title="SCOPRI I NOSTRI PRODOTTI" products={products} buttonName={"Scopri"} type={"product"}/>
+            <ProductList title="SCOPRI I NOSTRI PRODOTTI" products={products} buttonName={"Scopri"} type={"product"} />
             <FeaturesComponent />
-            <ProductList title="VICINO A TE" products={products} buttonName={"Scopri"} type={"product"}/>
+            <ProductList title="VICINO A TE" products={products} buttonName={"Scopri"} type={"product"} />
           </>
 
         ) : userType == "ConA" ? (
           <>
             <CategoryCardList title="LE TUE CATEGORIE PREFERITE" categories={categories} />
-            <PositionComponent />
-            <ProductList title="SCOPRI I NOSTRI PRODOTTI" products={products} buttonName={"Prenota"} type={"product"}/>
+            <PositionComponent onPositionUpdate ={handlePositionUpdate}/>
+            <ProductList title="NOI TI CONOSCIAMO PIÚ DI QUANTO TU CREDA 😏" products={recommenderProduct} buttonName={"Aggiungi al carrello"} type={"product"} />
             <FeaturesComponent />
-            <ProductList title="PRODOTTI VICINO A TE" products={products} buttonName={"Prenota"} type={"product"}/>
+            <ProductList title="PRODOTTI VICINO A TE" products={positionProduct} buttonName={"Aggiungi al carrello"} type={"product"} />
             <HighlightShops />
             <ProductList title="RICETTE PER I TUOI GUSTI (sviluppare)" products={products} type={"recipe"} />
             <ProductList title="NEGOZI VICINO A TE (sviluppare)" products={products} buttonName={"mario"} />
@@ -83,9 +133,9 @@ const Home = (props) => {
         ) : userType == "NegA" ? (
           <>
             <CategoryCardList title="CATEGORIE NEGOZIO" categories={categories} />
-            <ProductList title="PRODOTTI IN VENDITA" products={products} type={"product"}/>
+            <ProductList title="PRODOTTI IN VENDITA" products={products} type={"product"} />
             <FeaturesComponentShop />
-            <ProductList title="PRODOTTI IN PROMOZIONE (verificare come)" products={products} buttonName={"Modifica"} type={"product"}/>
+            <ProductList title="PRODOTTI IN PROMOZIONE (verificare come)" products={products} buttonName={"Modifica"} type={"product"} />
             <ProductList title="LE TUE ULTIME PRENTOAZIONI (sviluppare)" products={products} buttonName={"Modifica"} />
             <ProductList title="STATISTICHE? (sviluppare)" products={products} buttonName={"mario"} />
           </>

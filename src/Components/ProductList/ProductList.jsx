@@ -1,60 +1,59 @@
-import React, { useState, useEffect} from 'react';
-
+import React, { useState, useEffect } from 'react';
 import ProductCard from '../Card/Card';
-import { Swiper, SwiperSlide } from 'swiper/react'; // Import Swiper components
+import { Swiper, SwiperSlide } from 'swiper/react';
 import '../../../node_modules/swiper/swiper-bundle.min.css';
-import '../../../node_modules/swiper/modules/pagination.min.css'; // Importa i CSS per la paginazione
+import '../../../node_modules/swiper/modules/pagination.min.css';
 import './ProductList.css';
-
-/**
- * 
- * @prop {string} title - Il titolo della sezione dei prodotti. (es. "I nostri prodotti")
- * @prop {Array<Object>} products - Un array di oggetti rappresentanti i prodotti. Ogni prodotto deve avere:
- *    - {number|string} id - Identificatore unico del prodotto. (es. 1 o "1")
- *    - {string} name - Nome del prodotto. (es. "Prodotto 1")
- *    - {string} price - Prezzo del prodotto in formato stringa. (es. "10")
- *    - {string} image - URL dell'immagine del prodotto. (es. "https://example.com/prodotto.jpg")
- *    - {string} detail - Descrizione del prodotto. (es. "Descrizione prodotto")
- * 
- * Comportamento:
- * - Utilizza lo stato `isMobile` per determinare il layout (Swiper per dispositivi mobili o lista per desktop).
- * - Se `isMobile` è `true`, i prodotti vengono mostrati tramite uno slider con supporto per la paginazione.
- * - Se `isMobile` è `false`, i prodotti vengono mostrati in una lista.
- * 
- * Esempio di utilizzo:
- * const products = [
- *   { id: 1, name: "Prodotto 1", price: "10", image: "https://example.com/prodotto1.jpg", detail: "Descrizione prodotto 1" },
- *   { id: 2, name: "Prodotto 2", price: "20", image: "https://example.com/prodotto2.jpg", detail: "Descrizione prodotto 2" }
- * ];
- * 
- * <ProductList title="I nostri prodotti" products={products} />
- */
-
-import { Pagination } from 'swiper/modules'; // Importa il modulo Pagination
+import { Pagination } from 'swiper/modules';
+import LoadingPage from '../../Pages/LoadingPage/LoadingPage';
 
 const ProductList = (props) => {
-    
-
+    const [officialProducts, setOfficialProducts] = useState({});
+    const [loading, setLoading] = useState(true); // Imposta inizialmente lo stato del loading a true
+    const [error, setError] = useState(null); // Stato per gli errori
     const mobileSize = 1000;
-    const [isMobile, setIsMobile] = useState(window.innerWidth <= mobileSize); // Imposta lo stato iniziale in base alla larghezza attuale
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= mobileSize);
 
-
-    useEffect(() => {       //consente di eseguire del codice aggiuntivo dopo che il componente è stato montato nel DOM.
+    useEffect(() => {
         const handleResize = () => {
-            setIsMobile(window.innerWidth <= mobileSize);   // controlla la larghezza della finestra con window.innerWidth.
+            setIsMobile(window.innerWidth <= mobileSize);
         };
 
-        window.addEventListener('resize', handleResize); // Aggiungi listener per il resize della finestra.
+        window.addEventListener('resize', handleResize);
         return () => {
-            window.removeEventListener('resize', handleResize); // Rimuovi il listener quando il componente si smonta (quando <WelcomeBanner /> non è più visibile o usato nella pagina.)
+            window.removeEventListener('resize', handleResize);
         };
     }, []);
 
-    /*
-    Le parentesi quadre vuote come secondo argomento di useEffect indicano che il codice all'interno 
-    di useEffect viene eseguito solo una volta, quando il componente è montato.
-    Non viene rieseguito a meno che il componente non venga smontato e rimontato.
-   */
+    useEffect(() => {
+        if (props.products === null) {
+            console.log("sto caricando");
+            setLoading(true); // Se i prodotti sono null, mostra il caricamento
+        } else if (props.products.length > 0) {
+            console.log("ho smesso 1");
+
+            setOfficialProducts(props.products); // Altrimenti, carica i prodotti
+            console.log("ho smesso 2");
+
+            setLoading(false);
+            setError(null);
+        }
+
+        setOfficialProducts(props.products); // Altrimenti, carica i prodotti
+
+    }, [props.products]); // Usa useEffect per monitorare quando `props.products` cambia
+
+
+     useEffect(()=>{
+        console.log("I prodotti sono arrivati nella compoente ");
+      },[props.products])
+      useEffect(()=>{
+        console.log("non va");
+        console.log(officialProducts);
+      },[officialProducts])
+
+    if (loading) return <div><LoadingPage /></div>;
+    if (error) return <div>Errore: {error}</div>;
 
     return (
         <div className="home-section">
@@ -66,57 +65,71 @@ const ProductList = (props) => {
             </div>
             {isMobile ? (
                 <Swiper
-                    modules={[Pagination]} // Attiva il modulo Pagination
+                    modules={[Pagination]}
                     spaceBetween={15}
                     slidesPerView={2}
                     pagination={{
-                        clickable: true, // Attiva i pallini
-                                dynamicBullets: true, // Mostra solo alcuni pallini dinamicamente
-
+                        clickable: true,
+                        dynamicBullets: true,
                     }}
                     breakpoints={{
                         650: { slidesPerView: 3 },
                         900: { slidesPerView: 4 },
-                      }}
-                     
+                    }}
                 >
-                    {props.products.map((product) => (
+                    {officialProducts.map((product) => (
                         <SwiperSlide key={product.id}>
                             <ProductCard
-                            
+                                key={product.id}
                                 straight="true"
                                 id={product.id}
-                                name={product.name}
-                                detail={product.detail}
-                                currentPrice={product.currentPrice}
-                                originalPrice={product.originalPrice}
-                                image={product.image}
                                 button={props.buttonName}
                                 type={props.type}
+                                name={product.name}
+                                detail={product.detail}
+                                currentPrice={(product.currentPrice) ? product.currentPrice + "€" : ""}
+                                originalPrice={(product.originalPrice) ? product.originalPrice + "€" : ""}
+                                image={"http://4.232.65.20/assets/" + product.image}
+                                categories={product.categories}
+                                difficulty={product.difficulty}
+                                prepTime={product.prepTime}
+                                cookTime={product.cookTime}
+                                cost={product.cost}
+                                distanceKm={product.distanceKm}
+                                reservations={product.reservations}
+                                views={product.views}
                             />
                         </SwiperSlide>
                     ))}
                 </Swiper>
             ) : (
                 <div className="product-list">
-                    {props.products.map((product) => (
+                    {officialProducts.map((product) => (
                         <ProductCard
                             key={product.id}
-                            straight="false"   /*false impaginato in riga */
+                            straight="false"
                             id={product.id}
-                            name={product.name}
-                            detail={product.detail}
-                            currentPrice={product.currentPrice}
-                            originalPrice={product.originalPrice}
-                            image={product.image}
                             button={props.buttonName}
                             type={props.type}
-
-                            />
+                            name={product.name}
+                            detail={product.detail}
+                            currentPrice={(product.currentPrice) ? product.currentPrice + "€" : ""}
+                            originalPrice={(product.originalPrice) ? product.originalPrice + "€" : ""}
+                            image={"http://4.232.65.20/assets/" + product.image}
+                            categories={product.categories}
+                            difficulty={product.difficulty}
+                            prepTime={product.prepTime}
+                            cookTime={product.cookTime}
+                            cost={product.cost}
+                            distanceKm={product.distanceKm}
+                            reservations={product.reservations}
+                            views={product.views}
+                        />
                     ))}
                 </div>
             )}
         </div>
     );
 };
+
 export default ProductList;

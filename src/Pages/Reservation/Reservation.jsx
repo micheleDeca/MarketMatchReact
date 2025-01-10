@@ -31,7 +31,7 @@ const Reservation = () => {
     const isConsumer = userType === "ConA";
     const isStore = userType === "NegA";
     const location = useLocation();
-    const { id } = location.state || {}; // Fallback se `state` è null
+    const { id } = location.state || {}; 
 
     const pageUpdater = () => {
         setUpdatePage((prev) => !prev);

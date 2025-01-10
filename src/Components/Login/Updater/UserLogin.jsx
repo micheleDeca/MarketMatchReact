@@ -4,8 +4,7 @@ import { getToken, saveToken } from '../../../LocalStorage/TokenStorage.jsx';
 
 export const userLogin = async ({ userdata, goToHome }) => {
   
-    console.log("arrivato in login");
-  try {
+   try {
 
      
     const response = await axios.post(
@@ -21,7 +20,7 @@ export const userLogin = async ({ userdata, goToHome }) => {
 
     const data = response.data;
     console.log(data);
-    saveToken(data.jwt, 30); // Salva il token (non farlo così in produzione)
+    saveToken(data.jwt, 30); 
     console.log(getToken());
     goToHome();
 

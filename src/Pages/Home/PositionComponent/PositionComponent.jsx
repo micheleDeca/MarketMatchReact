@@ -4,11 +4,16 @@ import "./PositionComponent.css";
 import Lottie from "react-lottie-player";
 import leafAnimation from "./assets/positionAnimation.json"; // Animazione decorativa JSON
 
-const PositionComponent = () => {
+const PositionComponent = ({onPositionUpdate}) => {
     const mobileSize = 1050;
-    const [location, setLocation] = useState(null); // Stato per salvare la posizione
+    const [location, setLocation] = useState(""); // Stato per salvare la posizione
     const [isMobile, setIsMobile] = useState(window.innerWidth <= mobileSize); // Stato per la larghezza della finestra
     const [error, setError] = useState(""); // Stato per eventuali errori
+
+
+    const getPositionBr = () =>{
+        return setLocation();
+    };
 
     /** Funzione per ottenere la posizione dell'utente
       Utilizza l'API Geolocation del browser per rilevare latitudine e longitudine*/
@@ -24,6 +29,8 @@ const PositionComponent = () => {
             (position) => {
                 const { latitude, longitude } = position.coords; // Estrae latitudine e longitudine dall'oggetto position.coords
                 setLocation({ latitude, longitude });
+                onPositionUpdate({ latitude, longitude }); // Passa la posizione al padre
+
                 setError(""); // Resetta eventuali errori
             },
             (err) => {

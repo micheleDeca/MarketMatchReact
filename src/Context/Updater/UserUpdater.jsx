@@ -72,7 +72,6 @@ const UserUpdater = () => {
         setUserType("NoAccesso"); // Imposta come non loggato in caso di errore
       }
 
-      console.log(getToken());
     };
 
     fetchUserDetails();
