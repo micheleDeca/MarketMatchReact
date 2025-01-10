@@ -94,7 +94,7 @@ const Home = (props) => {
 
     }
 
-  }, [userPosition])
+  }, [userPosition,userType])
 
   useEffect(()=>{
     console.log("I prodotti sono arrivati nella home");
