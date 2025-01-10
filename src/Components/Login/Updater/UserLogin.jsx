@@ -3,8 +3,8 @@ import { BASE_URL } from '../../../config';
 import { getToken, saveToken } from '../../../LocalStorage/TokenStorage.jsx';
 
 export const userLogin = async ({ userdata, goToHome }) => {
-
-
+  
+    console.log("arrivato in login");
   try {
 
      
@@ -32,7 +32,7 @@ export const userLogin = async ({ userdata, goToHome }) => {
 
   } catch (error) {
     console.error('Errore operazione:', error);
-    alert('Errore operazione:', error.message);
+    alert('Credenziali errate', error.message);
     throw error;
   }
 };

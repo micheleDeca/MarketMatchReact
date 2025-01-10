@@ -52,6 +52,7 @@ function Login() {
     
     useEffect(()=>{
         if(isValidLogin){
+            setIsValidLogin(false);
             userLogin({
                 userdata: loginData,
                 goToHome: handleGoToHome,
