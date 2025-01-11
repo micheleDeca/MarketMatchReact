@@ -2,22 +2,27 @@ import "./orari_negozio.css";
 import ZigZag from "../zig-zag/zig-zag";
 
 /**
- * A component to display and manage store hours and additional store information.
+ * Componente React per visualizzare e modificare gli orari di un negozio e le sue informazioni.
+ * Il comportamento del componente varia in base alla modalità specificata tramite la prop `mode`.
  *
- * @component
- * @param {Object} props - The props object for the Orari component.
- * @param {string} props.mode - Determines the display mode ("neg" for editable mode, otherwise read-only mode).
- * @param {string} props.lunedi - The opening hours for Monday.
- * @param {string} props.martedi - The opening hours for Tuesday.
- * @param {string} props.mercoledi - The opening hours for Wednesday.
- * @param {string} props.giovedi - The opening hours for Thursday.
- * @param {string} props.venerdi - The opening hours for Friday.
- * @param {string} props.sabato - The opening hours for Saturday.
- * @param {string} props.domenica - The opening hours for Sunday.
- * @param {string} props.posizione - The store location information.
- * @param {string} props.contatti - The store contact information.
+ * @param {Object} props - Le proprietà passate al componente.
+ * @param {string} props.mode - La modalità del componente. Valori possibili:
+ *   - "NegA": Mostra gli orari e le informazioni del negozio con la possibilità di modificarli.
+ *   - "ConA": Mostra gli orari e le informazioni del negozio in sola lettura.
+ * @param {function} [props.modify] - Funzione di callback da eseguire quando si vuole modificare le informazioni
+ *   (solo per la modalità "NegA").
+ * @param {string} props.lunedi - Orari per il lunedì.
+ * @param {string} props.martedi - Orari per il martedì.
+ * @param {string} props.mercoledi - Orari per il mercoledì.
+ * @param {string} props.giovedi - Orari per il giovedì.
+ * @param {string} props.venerdi - Orari per il venerdì.
+ * @param {string} props.sabato - Orari per il sabato.
+ * @param {string} props.domenica - Orari per la domenica.
+ * @param {string} props.posizione - La posizione del negozio.
+ * @param {string} props.contatti - I contatti del negozio.
  *
- * @returns {JSX.Element} A component that displays store hours and information.
+ * @returns {JSX.Element} Un componente React che visualizza gli orari e le informazioni del negozio,
+ *   con o senza opzioni di modifica a seconda della modalità.
  */
 
 function Orari(props) {
@@ -88,7 +93,7 @@ function Orari(props) {
         </div>
       </>
     );
-  } else if (props.mode === "ConA"){
+  } else if (props.mode === "ConA") {
     return (
       <>
         <div className="OrariNegozioBox">
