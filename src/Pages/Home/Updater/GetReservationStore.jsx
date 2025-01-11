@@ -16,9 +16,9 @@ const products = [
   { id: 10, name: "Prodotto 10", currentPrice: "10.00€", image: "https://app.naturasi.it/media/catalog/product/cache/264x264/_/1/_1705579086_000100022608_1.jpg", detail: "Un prodotto pensato per offrirti il massimo comfort." },
 ];
 // Funzione per ottenere i prodotti (mock o database)
-export const getPositionProduct = async (props) => {
+export const getStoreReservation = async (props) => {
   const requestParam = props;
-
+ 
 
   if (IS_MOCKKED) {
     // Simula un ritardo per i dati mock
@@ -29,25 +29,26 @@ export const getPositionProduct = async (props) => {
       }, 100); // Ritardo simulato di 100ms
     });
   } else {
- 
+    const token = getToken();
+
     try {
-      const response = await axios.get(
-        `${BASE_URL}/api/product/getProductListPosition`,
-         
+      const response = await axios.post(
+        `${BASE_URL}/api/reservation/store`,
+        {
+          uuidStore: requestParam.storeUuid,
+          recipesPerPage: 6
+        },
         {
           headers: {
-            productLimit: 11,
-            userLatitude: requestParam.userLatitude,
-            userLongitude: requestParam.userLongitude,
+            Authorization: `Bearer ${token}`, // Token di autenticazione
           },
         }
       );
 
 
-      const filteredData = response.data.filter((item) => item.name);
-      return filteredData;
+       return response.data;
     } catch (error) {
-      console.error('Errore durante il recupero dei prodotti:', error);
+      console.error('Errore durante il recupero delle prenotazioni:', error);
       throw error;
     }
   }

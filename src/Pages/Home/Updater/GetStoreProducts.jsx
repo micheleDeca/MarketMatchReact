@@ -16,7 +16,7 @@ const products = [
   { id: 10, name: "Prodotto 10", currentPrice: "10.00€", image: "https://app.naturasi.it/media/catalog/product/cache/264x264/_/1/_1705579086_000100022608_1.jpg", detail: "Un prodotto pensato per offrirti il massimo comfort." },
 ];
 // Funzione per ottenere i prodotti (mock o database)
-export const getPositionProduct = async (props) => {
+export const getStoreProduct = async (props) => {
   const requestParam = props;
 
 
@@ -29,16 +29,18 @@ export const getPositionProduct = async (props) => {
       }, 100); // Ritardo simulato di 100ms
     });
   } else {
- 
+    const token = getToken();
+
     try {
-      const response = await axios.get(
-        `${BASE_URL}/api/product/getProductListPosition`,
-         
+      const response = await axios.post(
+        `${BASE_URL}/api/product/filtered`,
+        {
+          filterPrezzoOfferta: requestParam.filterOffer,
+          uuidNegozio: requestParam.storeUuid,
+        },
         {
           headers: {
-            productLimit: 11,
-            userLatitude: requestParam.userLatitude,
-            userLongitude: requestParam.userLongitude,
+            Authorization: `Bearer ${token}`, // Token di autenticazione
           },
         }
       );

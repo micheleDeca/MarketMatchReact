@@ -56,7 +56,7 @@ const OperationLongContainer = ({operations, type}) => {
     return (
         <div>
 
-            <div className="operations">
+            <div className="operations-productList-wrapper">
 
                 {operations.map((operation) => (
                     <OperationLong

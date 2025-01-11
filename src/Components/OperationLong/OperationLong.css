@@ -8,7 +8,9 @@
     font-size: 14px; /* Dimensione del testo */
     color: #333; /* Colore principale del testo */
 }
-
+.reservation-wrapper-home .reservation-long { 
+    padding: 10px 2px; /* Spaziatura interna */ 
+}
 .reservation-icon-long {
     width: 20px; /* Dimensione dell'icona */
     height: 20px;
@@ -103,6 +105,7 @@
 .pulse {
     animation: pulse-animation 1.5s infinite;
 }
+ 
 
 /* Definizione dell'animazione */
 @keyframes pulse-animation {

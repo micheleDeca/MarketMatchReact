@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 import { Pagination } from 'swiper/modules';
 import LoadingPage from '../../Pages/LoadingPage/LoadingPage';
+import OperationLong from '../OperationLong/OperationLong';
 
 const ProductList = (props) => {
     const [officialProducts, setOfficialProducts] = useState({});
@@ -31,7 +32,7 @@ const ProductList = (props) => {
     useEffect(() => {
         if (props.products === null) {
             setLoading(true); // Se i prodotti sono null, mostra il caricamento
-        } else if (props.products.length > 0) {
+        } else if (props.products != null) {
             setOfficialProducts(props.products); // Altrimenti, carica i prodotti
 
             setLoading(false);
@@ -43,11 +44,11 @@ const ProductList = (props) => {
     }, [props.products]); // Usa useEffect per monitorare quando `props.products` cambia
 
     const handleClickTitle = () => {
-     
-            let linkType = null;
-            linkType =  props.type === "product" ? "/prodotti" : (props.type === "store" ? "/negozi" : "/ricette");
-            navigate(linkType);
-        };
+
+        let linkType = null;
+        linkType = props.type === "product" ? "/prodotti" : (props.type === "store" ? "/negozi" : "/ricette");
+        navigate(linkType);
+    };
 
     if (loading) return <div><LoadingPage /></div>;
     if (error) return <div>Errore: {error}</div>;
@@ -60,6 +61,7 @@ const ProductList = (props) => {
                     <line x1="0" y1="1" x2="100%" y2="1" stroke="#CAC4D0" />
                 </svg>
             </div>
+            {props.type != "reservation" && <div>
             {isMobile ? (
                 <Swiper
                     modules={[Pagination]}
@@ -128,6 +130,26 @@ const ProductList = (props) => {
                     ))}
                 </div>
             )}
+            </div>}
+
+            {props.type === "reservation" && <div className="operations">
+
+                {officialProducts.map((operation) => (
+                    <OperationLong
+                        key={operation.id}
+                        status={operation.status} //Prenotazione
+                        id={operation.id} //Prenotazione e Motivo accredito punti
+                        operationDate={operation.reservationDate} //Prenotazione e punti
+                        infoDate={operation.infoDate} //Prenotazione
+                        shopId={operation.storeName} //Prenotazione
+                        customerId={operation.customerFirstName + " " + operation.customerLastName} //Prenotazione
+                        value={operation.pointValue} //punti
+                        pointType={operation.pointType} //punti  plus, minus
+                        type={props.type} //reservation, point
+                    />
+                ))}
+
+            </div>}
         </div>
     );
 };

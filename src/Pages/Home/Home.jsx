@@ -14,6 +14,11 @@ import { getReccomanderProductFetch } from './Updater/GetRecommanderProduct';
 import { getPositionProduct } from './Updater/GetPositionProduct';
 import { getRecipes } from './Updater/GetRecipes';
 import { getPositionStore } from './Updater/GetPositionStore';
+import { getViwedProduct } from './Updater/GetViewedProduct';
+import { getStoreProduct } from './Updater/GetStoreProducts';
+import { getStoreReservation } from './Updater/GetReservationStore';
+
+
 const Home = (props) => {
 
   const products = [
@@ -40,19 +45,20 @@ const Home = (props) => {
   const { databaseKey, userType } = useUserContext();
   const { category, setCategory } = useCategoryContext();
 
- 
+
   const [recommenderProduct, setRecommenderProduct] = useState([]);
   const [positionProduct, setPositionProduct] = useState([]);
+  const [reservationStore, setReservationStore] = useState([]);
   const [recipe, setRecipe] = useState([]);
   const [store, setStore] = useState([]);
 
 
   const [userPosition, setUserPosition] = useState([]); // Stato per la posizione dell'utente
 
-    // Funzione che verrà passata al componente figlio per aggiornare la posizione
-    const handlePositionUpdate = (position) => {
-        setUserPosition(position); // Aggiorna la posizione nel componente padre
-    };
+  // Funzione che verrà passata al componente figlio per aggiornare la posizione
+  const handlePositionUpdate = (position) => {
+    setUserPosition(position); // Aggiorna la posizione nel componente padre
+  };
 
   console.log("Categoria", category);
   console.log("Tipo Utente", userType);
@@ -61,39 +67,43 @@ const Home = (props) => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []); // Aggiungi dipendenze che richiedono il reset dello scroll
-  
+
   useEffect(() => {
     if (userType == "ConA") {
       let isMounted = true; // Flag per evitare aggiornamenti su componenti smontati
 
       const getProductsRecommander = async () => {
-        
-          const productsData = await getReccomanderProductFetch({
+
+        const [
+          productsData,
+          productsDataPos,
+          recipesData,
+          storeData
+        ] = await Promise.all([
+          getReccomanderProductFetch({
             userUuid: databaseKey,
             userLatitude: userPosition.latitude,
             userLongitude: userPosition.longitude,
-          }); 
-
-          const productsDataPos = await getPositionProduct({
+          }),
+          getPositionProduct({
             userLatitude: userPosition.latitude,
             userLongitude: userPosition.longitude,
-          });  
-          
-          const recipesData = await getRecipes(); 
-
-          const storeData = await getPositionStore({
+          }),
+          getRecipes(),
+          getPositionStore({
             userLatitude: userPosition.latitude,
             userLongitude: userPosition.longitude,
-          });  
+          })
+        ]);
 
-          if (isMounted) {
-            setRecommenderProduct(productsData); 
-            setPositionProduct(productsDataPos); 
-            setRecipe(recipesData); 
-            setStore(storeData)
+        if (isMounted) {
+          setRecommenderProduct(productsData);
+          setPositionProduct(productsDataPos);
+          setRecipe(recipesData);
+          setStore(storeData)
 
-           }
-        
+        }
+
       };
 
       getProductsRecommander();
@@ -106,9 +116,98 @@ const Home = (props) => {
 
     }
 
-  }, [userPosition,userType])
+  }, [userPosition, userType])
 
- 
+  useEffect(() => {
+    if (userType == "NoAccesso"  ) {
+      let isMounted = true; // Flag per evitare aggiornamenti su componenti smontati
+
+      const getProductsRecommander = async () => {
+
+        const [
+           productsDataPos,
+           productsData
+        ] = await Promise.all([
+           
+          getPositionProduct({
+            userLatitude: userPosition.latitude,
+            userLongitude: userPosition.longitude,
+          }),
+          getViwedProduct(),
+          
+           
+        ]);
+
+        if (isMounted) {
+          setRecommenderProduct(productsData);
+          setPositionProduct(productsDataPos);
+           
+
+        }
+
+      };
+
+      getProductsRecommander();
+
+      // Cleanup: evita aggiornamenti su componenti smontati
+      return () => {
+        isMounted = false;
+      };
+
+
+    }
+
+  }, [userPosition, userType])
+
+  useEffect(() => {
+    if (userType == "NegA"  ) {
+      let isMounted = true; // Flag per evitare aggiornamenti su componenti smontati
+
+      const getProductsRecommander = async () => {
+
+        const [
+           productsData,
+           productsDataOffer,
+           reservation
+        ] = await Promise.all([
+           
+          getStoreProduct({
+            filterOffer: null,
+            storeUuid: databaseKey, 
+          }),
+          getStoreProduct({
+            filterOffer: true,
+            storeUuid: databaseKey, 
+          }),
+          getStoreReservation({
+            storeUuid: databaseKey, 
+          }),
+          
+           
+        ]);
+
+        if (isMounted) {
+          setRecommenderProduct(productsData);
+          setPositionProduct(productsDataOffer);
+          setReservationStore(reservation);
+
+
+        }
+
+      };
+
+      getProductsRecommander();
+
+      // Cleanup: evita aggiornamenti su componenti smontati
+      return () => {
+        isMounted = false;
+      };
+
+
+    }
+
+  }, [userPosition, userType])
+
 
   return (
     <>
@@ -117,22 +216,22 @@ const Home = (props) => {
         userType === "NoAccesso" ? (
           <>
             <CategoryCardList title="LE NOSTRE MIGLIORI CATEGORIE" categories={categories} />
-            <PositionComponent onPositionUpdate ={handlePositionUpdate}/>
-            <ProductList title="SCOPRI I NOSTRI PRODOTTI" products={products} buttonName={"Scopri"} type={"product"} />
+            <PositionComponent onPositionUpdate={handlePositionUpdate} />
+            <ProductList title="SCOPRI I NOSTRI PRODOTTI" products={recommenderProduct} type={"product"} />
             <FeaturesComponent />
-            <ProductList title="VICINO A TE" products={products} buttonName={"Scopri"} type={"product"} />
+            <ProductList title="VICINO A TE" products={positionProduct}   type={"product"} />
           </>
 
         ) : userType == "ConA" ? (
           <>
             <CategoryCardList title="LE TUE CATEGORIE PREFERITE" categories={categories} />
-            <PositionComponent onPositionUpdate ={handlePositionUpdate}/>
+            <PositionComponent onPositionUpdate={handlePositionUpdate} />
             <ProductList title="NOI TI CONOSCIAMO PIÚ DI QUANTO TU CREDA 😏" products={recommenderProduct} buttonName={"Aggiungi al carrello"} type={"product"} />
             <FeaturesComponent />
             <ProductList title="PRODOTTI VICINO A TE" products={positionProduct} buttonName={"Aggiungi al carrello"} type={"product"} />
             <HighlightShops />
             <ProductList title="RICETTE PER I TUOI GUSTI" products={recipe} type={"recipe"} />
-            <ProductList title="NEGOZI VICINO A TE" products={store} type={"store"}/>
+            <ProductList title="NEGOZI VICINO A TE" products={store} type={"store"} />
           </>
         ) : userType == "AmmA" ? (
           <>
@@ -140,12 +239,11 @@ const Home = (props) => {
         ) : userType == "NegA" ? (
           <>
             <CategoryCardList title="CATEGORIE NEGOZIO" categories={categories} />
-            <ProductList title="PRODOTTI IN VENDITA" products={products} type={"product"} />
+            <ProductList title="PRODOTTI IN VENDITA" products={recommenderProduct} type={"product"} />
             <FeaturesComponentShop />
-            <ProductList title="PRODOTTI IN PROMOZIONE (verificare come)" products={products} buttonName={"Modifica"} type={"product"} />
-            <ProductList title="LE TUE ULTIME PRENTOAZIONI (sviluppare)" products={products} buttonName={"Modifica"} />
-            <ProductList title="STATISTICHE? (sviluppare)" products={products} buttonName={"mario"} />
-          </>
+            <ProductList title="PRODOTTI IN PROMOZIONE (verificare come)" products={positionProduct} buttonName={"Modifica"} type={"product"} />
+            <div className="reservation-wrapper-home"><ProductList title="ULTIME PRENTOAZIONI" products={reservationStore} type={"reservation"} /></div>
+           </>
         ) : (
           <>
           </>

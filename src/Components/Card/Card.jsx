@@ -48,6 +48,7 @@ const Card = (props) => {
 
     const isProduct = props.type === "product";
     const isStore = props.type === "store";
+    
     const { category: categoryList } = useCategoryContext();
 
     const insertProductInCart = async () => {
@@ -150,10 +151,10 @@ const Card = (props) => {
 
 
             >
-                <div onClick={handleClickCard} className='cliccable-link'>
+                {props.type != "reservation" && <div onClick={handleClickCard} className='cliccable-link'>
                     <div className="card-image-wrapper">
                         <img className="card-image" src={props.image} /></div>
-                </div>
+                </div>}
 
 
                 <div className="card-info">
@@ -178,7 +179,7 @@ const Card = (props) => {
 
                     <p className="card-detail">{props.detail}</p>
                     {(isProduct || isStore) &&
-                        userType === "ConA" &&
+                        (userType === "ConA" || userType === "NoAccesso") &&
                         <p className="card-detail">{props.distanceKm} km</p>}
                     {isStore &&
                         userType === "ConA" &&
@@ -198,7 +199,7 @@ const Card = (props) => {
                         <span className="normal-price-card">{props.currentPrice}</span>
                     )}</p>
 
-                    {!isProduct && !isStore && (<div className='recipe-icon-container'>
+                    {!isProduct && !isStore && props.type != "reservation" &&(<div className='recipe-icon-container'>
                         <div className="card-recipe-icon-text">
                             <span className='icon-recipe' data-tooltip-id={`cost-tooltip`} data-tooltip-content="Costo"><img src={CostIcon} /></span><span className='text-icon-recipe' >: {props.cost}</span>
                             <span className='icon-recipe' data-tooltip-id={`difficulty-tooltip`} data-tooltip-content="Difficoltà"><img src={DifficultyIcon} /></span><span className='text-icon-recipe' >: {props.difficulty}</span>

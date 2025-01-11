@@ -16,9 +16,7 @@ const products = [
   { id: 10, name: "Prodotto 10", currentPrice: "10.00€", image: "https://app.naturasi.it/media/catalog/product/cache/264x264/_/1/_1705579086_000100022608_1.jpg", detail: "Un prodotto pensato per offrirti il massimo comfort." },
 ];
 // Funzione per ottenere i prodotti (mock o database)
-export const getPositionProduct = async (props) => {
-  const requestParam = props;
-
+export const getViwedProduct = async () => {
 
   if (IS_MOCKKED) {
     // Simula un ritardo per i dati mock
@@ -32,13 +30,11 @@ export const getPositionProduct = async (props) => {
  
     try {
       const response = await axios.get(
-        `${BASE_URL}/api/product/getProductListPosition`,
+        `${BASE_URL}/api/product/getMostViewedProduct`,
          
         {
-          headers: {
-            productLimit: 11,
-            userLatitude: requestParam.userLatitude,
-            userLongitude: requestParam.userLongitude,
+          headers: { 
+            productLimit: 13
           },
         }
       );
