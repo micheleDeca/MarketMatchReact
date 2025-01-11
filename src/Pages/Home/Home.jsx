@@ -117,7 +117,7 @@ const Home = (props) => {
         userType === "NoAccesso" ? (
           <>
             <CategoryCardList title="LE NOSTRE MIGLIORI CATEGORIE" categories={categories} />
-            <WelcomeBanner />
+            <PositionComponent onPositionUpdate ={handlePositionUpdate}/>
             <ProductList title="SCOPRI I NOSTRI PRODOTTI" products={products} buttonName={"Scopri"} type={"product"} />
             <FeaturesComponent />
             <ProductList title="VICINO A TE" products={products} buttonName={"Scopri"} type={"product"} />
