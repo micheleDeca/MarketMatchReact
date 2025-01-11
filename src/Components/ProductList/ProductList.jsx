@@ -4,6 +4,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import '../../../node_modules/swiper/swiper-bundle.min.css';
 import '../../../node_modules/swiper/modules/pagination.min.css';
 import './ProductList.css';
+import { useNavigate } from "react-router-dom";
+
 import { Pagination } from 'swiper/modules';
 import LoadingPage from '../../Pages/LoadingPage/LoadingPage';
 
@@ -13,6 +15,7 @@ const ProductList = (props) => {
     const [error, setError] = useState(null); // Stato per gli errori
     const mobileSize = 1000;
     const [isMobile, setIsMobile] = useState(window.innerWidth <= mobileSize);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const handleResize = () => {
@@ -27,13 +30,9 @@ const ProductList = (props) => {
 
     useEffect(() => {
         if (props.products === null) {
-            console.log("sto caricando");
             setLoading(true); // Se i prodotti sono null, mostra il caricamento
         } else if (props.products.length > 0) {
-            console.log("ho smesso 1");
-
             setOfficialProducts(props.products); // Altrimenti, carica i prodotti
-            console.log("ho smesso 2");
 
             setLoading(false);
             setError(null);
@@ -43,21 +42,19 @@ const ProductList = (props) => {
 
     }, [props.products]); // Usa useEffect per monitorare quando `props.products` cambia
 
-
-     useEffect(()=>{
-        console.log("I prodotti sono arrivati nella compoente ");
-      },[props.products])
-      useEffect(()=>{
-        console.log("non va");
-        console.log(officialProducts);
-      },[officialProducts])
+    const handleClickTitle = () => {
+     
+            let linkType = null;
+            linkType =  props.type === "product" ? "/prodotti" : (props.type === "store" ? "/negozi" : "/ricette");
+            navigate(linkType);
+        };
 
     if (loading) return <div><LoadingPage /></div>;
     if (error) return <div>Errore: {error}</div>;
 
     return (
         <div className="home-section">
-            <a className="section-title-product">{props.title} {String.fromCharCode(0x25B6)}</a>
+            <a className="section-title-product" onClick={handleClickTitle}>{props.title} {String.fromCharCode(0x25B6)}</a>
             <div className="svg-divider">
                 <svg width="100%" height="2" xmlns="http://www.w3.org/2000/svg">
                     <line x1="0" y1="1" x2="100%" y2="1" stroke="#CAC4D0" />
@@ -98,6 +95,7 @@ const ProductList = (props) => {
                                 distanceKm={product.distanceKm}
                                 reservations={product.reservations}
                                 views={product.views}
+                                addresDetail={product.address + " " + product.city}
                             />
                         </SwiperSlide>
                     ))}
@@ -124,6 +122,8 @@ const ProductList = (props) => {
                             distanceKm={product.distanceKm}
                             reservations={product.reservations}
                             views={product.views}
+                            addresDetail={product.address + " " + product.city}
+
                         />
                     ))}
                 </div>

@@ -47,6 +47,7 @@ const Card = (props) => {
     const { userType, databaseKey } = useUserContext();
 
     const isProduct = props.type === "product";
+    const isStore = props.type === "store";
     const { category: categoryList } = useCategoryContext();
 
     const insertProductInCart = async () => {
@@ -122,9 +123,9 @@ const Card = (props) => {
         if(userType === "ConA" && isProduct){
             insertUserProductView(databaseKey,props.id);
         }
-        
+         
         let linkType = null;
-        isProduct ? linkType = "/prodotto" : linkType = "/ricetta"
+        linkType =  isProduct ? "/prodotto" : (isStore? "/negozio" : "/ricetta");
         navigate(linkType, { state: { id: props.id } });
     };
 
@@ -176,9 +177,12 @@ const Card = (props) => {
                     )}
 
                     <p className="card-detail">{props.detail}</p>
-                    {isProduct &&
+                    {(isProduct || isStore) &&
                         userType === "ConA" &&
                         <p className="card-detail">{props.distanceKm} km</p>}
+                    {isStore &&
+                        userType === "ConA" &&
+                        <p className="card-detail">{props.addresDetail}</p>}
                     {isProduct &&
                         userType === "NegA" &&
                         <p className="card-detail">Visite: {props.views} </p>}
@@ -194,7 +198,7 @@ const Card = (props) => {
                         <span className="normal-price-card">{props.currentPrice}</span>
                     )}</p>
 
-                    {!isProduct && (<div className='recipe-icon-container'>
+                    {!isProduct && !isStore && (<div className='recipe-icon-container'>
                         <div className="card-recipe-icon-text">
                             <span className='icon-recipe' data-tooltip-id={`cost-tooltip`} data-tooltip-content="Costo"><img src={CostIcon} /></span><span className='text-icon-recipe' >: {props.cost}</span>
                             <span className='icon-recipe' data-tooltip-id={`difficulty-tooltip`} data-tooltip-content="Difficoltà"><img src={DifficultyIcon} /></span><span className='text-icon-recipe' >: {props.difficulty}</span>

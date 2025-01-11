@@ -12,6 +12,8 @@ import HighlightShops from './HighlightShops/HighlightShops';
 import FeaturesComponentShop from './FeaturesComponentShop/FeaturesComponentShop';
 import { getReccomanderProductFetch } from './Updater/GetRecommanderProduct';
 import { getPositionProduct } from './Updater/GetPositionProduct';
+import { getRecipes } from './Updater/GetRecipes';
+import { getPositionStore } from './Updater/GetPositionStore';
 const Home = (props) => {
 
   const products = [
@@ -41,6 +43,9 @@ const Home = (props) => {
  
   const [recommenderProduct, setRecommenderProduct] = useState([]);
   const [positionProduct, setPositionProduct] = useState([]);
+  const [recipe, setRecipe] = useState([]);
+  const [store, setStore] = useState([]);
+
 
   const [userPosition, setUserPosition] = useState([]); // Stato per la posizione dell'utente
 
@@ -62,26 +67,33 @@ const Home = (props) => {
       let isMounted = true; // Flag per evitare aggiornamenti su componenti smontati
 
       const getProductsRecommander = async () => {
-        try {
+        
           const productsData = await getReccomanderProductFetch({
             userUuid: databaseKey,
             userLatitude: userPosition.latitude,
             userLongitude: userPosition.longitude,
-          }); // Usa la funzione dal modulo
+          }); 
 
           const productsDataPos = await getPositionProduct({
             userLatitude: userPosition.latitude,
             userLongitude: userPosition.longitude,
-          }); // Usa la funzione dal modulo
+          });  
+          
+          const recipesData = await getRecipes(); 
+
+          const storeData = await getPositionStore({
+            userLatitude: userPosition.latitude,
+            userLongitude: userPosition.longitude,
+          });  
 
           if (isMounted) {
             setRecommenderProduct(productsData); 
             setPositionProduct(productsDataPos); 
+            setRecipe(recipesData); 
+            setStore(storeData)
 
            }
-        } catch (err) {
-          console.log(err.message); // Gestisci l'errore
-        }
+        
       };
 
       getProductsRecommander();
@@ -95,11 +107,6 @@ const Home = (props) => {
     }
 
   }, [userPosition,userType])
-
-  useEffect(()=>{
-    console.log("I prodotti sono arrivati nella home");
-    console.log(recommenderProduct);
-  },[recommenderProduct])
 
  
 
@@ -124,8 +131,8 @@ const Home = (props) => {
             <FeaturesComponent />
             <ProductList title="PRODOTTI VICINO A TE" products={positionProduct} buttonName={"Aggiungi al carrello"} type={"product"} />
             <HighlightShops />
-            <ProductList title="RICETTE PER I TUOI GUSTI (sviluppare)" products={products} type={"recipe"} />
-            <ProductList title="NEGOZI VICINO A TE (sviluppare)" products={products} buttonName={"mario"} />
+            <ProductList title="RICETTE PER I TUOI GUSTI" products={recipe} type={"recipe"} />
+            <ProductList title="NEGOZI VICINO A TE" products={store} type={"store"}/>
           </>
         ) : userType == "AmmA" ? (
           <>
