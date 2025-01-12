@@ -12,7 +12,7 @@ import ButtonFilter from '../../../Components/ButtonFilter/ButtonFilter'
 import FilterElement from '../../../Components/ButtonFilter/FilterPopUp/FilterElement/FilterElement'
 import FilterPopUp from '../../../Components/ButtonFilter/FilterPopUp/FilterPopUp'
 import PrenotazioneCarrello from '../../../Components/PrenotazioneCarrello/PrenotazioneCarrello'
-import LuogoDataRitiro from '../../../Components/PrenotazioneCarrello/Luogo/LuogoDataRitiro'
+import LuogoDataRitiro from '../../../Components/PrenotazioneCarrello/LuogoDataRitiro/LuogoDataRitiro'
 
 
 

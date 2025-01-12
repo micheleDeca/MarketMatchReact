@@ -3,10 +3,40 @@ import "./SearchBar.css";
 import SearchIcon from './search.svg';
 
 /**
- * A component that displays a search bar with a menu icon and a search icon.
+ * SearchBar is a reusable component for searching or entering an address to fetch geographic coordinates.
+ * It supports two modes: "search" for general searches and "posizione" for fetching coordinates based on an address.
  *
  * @component
- * @returns {JSX.Element} A search bar component with input and accompanying icons.
+ * @param {Object} props - The props object for the SearchBar component.
+ * @param {string} props.type - Determines the mode of the search bar:
+ *   - `"search"`: For generic text searches.
+ *   - `"posizione"`: For fetching geographic coordinates based on an address.
+ * @param {string} [props.placeholder="Cerca..."] - The placeholder text for the input field.
+ * @param {function} props.onStateChange - Callback function to pass updated state values to the parent component.
+ *   - Arguments passed: (`key`, `value`) where `key` is the state name and `value` is the updated value.
+ *
+ * @returns {JSX.Element} A search bar component with optional geolocation functionality.
+ *
+ * @example
+ * // Example usage of the SearchBar component
+ * import SearchBar from './SearchBar';
+ *
+ * function App() {
+ *   const handleStateChange = (key, value) => {
+ *     console.log(`State changed: ${key} = ${value}`);
+ *   };
+ *
+ *   return (
+ *     <div>
+ *       <h1>Search Bar Example</h1>
+ *       <SearchBar
+ *         type="posizione"
+ *         placeholder="Inserisci indirizzo..."
+ *         onStateChange={handleStateChange}
+ *       />
+ *     </div>
+ *   );
+ * }
  */
 
 function SearchBar(props) {
