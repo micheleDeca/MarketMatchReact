@@ -11,7 +11,7 @@ import '../../../../node_modules/swiper/swiper-bundle.min.css';
 export default function FilterPopUp(elements) {
 
 
-    const isWideRange = elements.type == "Neg, Prod" || elements.type == "ConA, Prod";  //range per il prezzo
+    const isWideRange = elements.type == "Neg, Prod" || elements.type == "ConA, Prod" || "NoAccesso";  //range per il prezzo
 
     // Funzione per chiudere la popup
     const closePopup = () => {

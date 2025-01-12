@@ -182,7 +182,8 @@
   .orderTitle h2,
   .filterTitle h2,
   .distanceTitle h2,
-  .priceTitle h2 {
+  .priceTitle h2,
+  .diffTitle h2 {
     font-size: large;
   }
 }

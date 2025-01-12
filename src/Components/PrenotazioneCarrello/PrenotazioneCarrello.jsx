@@ -24,12 +24,12 @@ export default function PrenotazioneCarrello(value) {
         <>
             <div className="prenotationBox">
                 <div className="contentBox">
-                    <div className="productList">
+                    <div className={products.length === 1 ? "productList2" : "productList"} >
                         <CardLongList title={value.nameNeg} products={products}
                             getCounter={getCounter} type={"product"} onChangeQuantity={value.onChangeQuantity} setUpdatePage={value.updatePage}/>
                     </div>
 
-                    <div className="dateBox">
+                    <div className={products.length === 1 ? "dateBox2" : "dateBox"}>
                         <LuogoDataRitiro nameNeg={value.nameNeg} provincia={value.luogoDataInfo.province} citta={value.luogoDataInfo.city}
                             cap={value.luogoDataInfo.cap} indirizzo={value.luogoDataInfo.address}
                             contatti={value.luogoDataInfo.cell}

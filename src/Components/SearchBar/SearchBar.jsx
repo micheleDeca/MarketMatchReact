@@ -129,8 +129,8 @@ function SearchBar(props) {
           {coordinates && (
             <div style={{ marginTop: '20px' }}>
               <h3>Coordinate trovate:</h3>
-              <p>Latitudine: {coordinates.lat}</p>
-              <p>Longitudine: {coordinates.lon}</p>
+              <p>Latitudine: {coordinates.lat.toFixed(2)}</p>
+              <p>Longitudine: {coordinates.lon.toFixed(2)}</p>
             </div>
           )}
         </>

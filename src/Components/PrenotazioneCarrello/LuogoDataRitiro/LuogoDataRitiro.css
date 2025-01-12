@@ -62,3 +62,12 @@
     }
 
 }
+
+@media (max-width: 650px) and (min-width: 600px){
+   .infoOra h3, .infoLuogo h3{
+    font-size: small;
+   }
+
+   
+
+}
