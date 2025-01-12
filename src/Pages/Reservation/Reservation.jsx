@@ -8,7 +8,7 @@ import { fetchReservationUpdater } from './Updater/ReservationUpdater';
 import LoadingPage from '../LoadingPage/LoadingPage';
 import { useUserContext } from '../../Context/UserContext';
 import { useLocation } from "react-router-dom";
-import LuogoDataRitiro from '../../Components/PrenotazioneCarrello/Luogo/LuogoDataRitiro';
+import LuogoDataRitiro from '../../Components/PrenotazioneCarrello/LuogoDataRitiro/LuogoDataRitiro';
 import CodeInput from '../../Components/CodeInput/CodeInput';
 import WireframeMap from '../../Components/WireframeMap/WireframeMap';
 

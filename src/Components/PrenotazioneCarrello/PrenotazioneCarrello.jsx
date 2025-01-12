@@ -1,7 +1,7 @@
 
 import ButtonSave from "../ButtonSave/ButtonSave";
 import CardLongList from "../CardLongList/CardLongList";
-import LuogoDataRitiro from "./Luogo/LuogoDataRitiro";
+import LuogoDataRitiro from "./LuogoDataRitiro/LuogoDataRitiro";
 import './PrenotazioneCarrello.css'
 
 export default function PrenotazioneCarrello(value) {
