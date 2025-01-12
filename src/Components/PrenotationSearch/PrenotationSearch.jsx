@@ -3,17 +3,20 @@ import PrenStatusFilter from "../Prenotation_status_filter/Prenotation_status_fi
 import SearchBar from "../SearchBar/SearchBar";
 
 /**
- * A component that combines a reservation status filter and a search bar.
+ * PrenotationSearch component renders a search interface for managing prenotations.
+ * It includes a status filter component and a search bar to filter and search prenotations.
  *
- * @component
- * @param {Object} props - The props object for the PrenotationSearch component.
- * @param {string} props.first - Label for the first filter option in PrenStatusFilter.
- * @param {string} props.second - Label for the second filter option in PrenStatusFilter.
- * @param {string} props.third - Label for the third filter option in PrenStatusFilter.
- * @param {string} props.fourth - Label for the fourth filter option in PrenStatusFilter.
- * @param {string} props.fifth - Label for the fifth filter option in PrenStatusFilter.
- *
- * @returns {JSX.Element} A component containing a reservation status filter and a search bar.
+ * @param {Object} props - Component properties.
+ * @param {function} props.onStateChange - Function to handle changes in the status filter.
+ * @param {function} props.onSearchChange - Function to handle changes in the search bar input.
+ * @param {boolean} props.first - Status filter for the first option.
+ * @param {boolean} props.second - Status filter for the second option.
+ * @param {boolean} props.third - Status filter for the third option.
+ * @param {boolean} props.fourth - Status filter for the fourth option.
+ * @param {boolean} props.fifth - Status filter for the fifth option.
+ * @param {boolean} props.sixth - Status filter for the sixth option.
+ * @param {boolean} props.seventh - Status filter for the seventh option.
+ * @returns {JSX.Element} The rendered PrenotationSearch component.
  */
 
 function PrenotationSearch(props) {

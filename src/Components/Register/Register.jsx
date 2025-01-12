@@ -5,6 +5,16 @@ import { createUser } from "./Updater/CreateUser";
 import { useNavigate } from "react-router-dom";
 import { getCoordinateStore } from "./Updater/GetCoordinateStore";
 
+/**
+ * Register component that handles the registration of either a shop (neg) or consumer.
+ * It validates the form fields, handles user data, and calls API to create the user.
+ * Also fetches store coordinates based on the address input.
+ * 
+ * @param {Object} props - Component properties.
+ * @param {string} props.tipo - Specifies whether the user is a "neg" (shop owner) or "cons" (consumer).
+ * @returns {JSX.Element} The rendered register form.
+ */
+
 function Register(props) {
   const navigate = useNavigate(); // Hook per navigazione
 

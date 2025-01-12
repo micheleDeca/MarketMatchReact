@@ -3,18 +3,49 @@ import ZigZag from "../zig-zag/zig-zag";
 import BadgeContainer from "../CategoryLabelList/CategoryLabelList";
 
 /**
- * A component that displays a shop window with product details and optional edit functionality.
+ * ShopWindow is a reusable component for displaying a product or item in different modes.
+ * It provides a styled layout for images, descriptions, prices, and badges,
+ * and supports an editable mode with action buttons using the ZigZag component.
  *
  * @component
  * @param {Object} props - The props object for the ShopWindow component.
- * @param {string} props.mode - The display mode ("amm" for admin mode, others for user view).
- * @param {string} props.ImageDescription - The alt text for the product image.
- * @param {string} props.Name - The name of the product or shop item.
- * @param {string} props.Description - A description of the product or shop item.
- * @param {string} [props.Prezzo] - The price of the product, displayed if `tipo` is "prodotto".
- * @param {string} props.tipo - Specifies the type of item ("prodotto" for products).
+ * @param {string} props.mode - The display mode for the component:
+ *   - `"ConA"` or `"NoAccesso"`: Standard display mode.
+ *   - `"NegA"`: Editable mode with action buttons for modifications.
+ * @param {string} props.ImageDescription - The description and image filename to display.
+ * @param {string} props.Name - The name of the product or item.
+ * @param {Array<string>} props.badges - A list of badges/categories associated with the product.
+ * @param {string} props.Description - The description of the product or item.
+ * @param {string} props.tipo - The type of the item (e.g., `"prodotto"` for products).
+ * @param {number} [props.currentPrice] - The current price of the product (if applicable).
+ * @param {number} [props.originalPrice] - The original price of the product (if applicable, for discounted items).
+ * @param {function} [props.modify] - An optional callback function for handling modifications (used in `"NegA"` mode).
  *
- * @returns {JSX.Element} A component displaying a shop window, with editing options in admin mode.
+ * @returns {JSX.Element} A styled component displaying the item's details, with optional edit functionality.
+ *
+ * @example
+ * // Example usage of the ShopWindow component
+ * import ShopWindow from "./ShopWindow";
+ *
+ * function App() {
+ *   const modifyHandler = (field) => {
+ *     console.log(`Modify action triggered for: ${field}`);
+ *   };
+ *
+ *   return (
+ *     <ShopWindow
+ *       mode="NegA"
+ *       ImageDescription="example-image.jpg"
+ *       Name="Product Name"
+ *       badges={["Category1", "Category2"]}
+ *       Description="This is a description of the product."
+ *       tipo="prodotto"
+ *       currentPrice={19.99}
+ *       originalPrice={24.99}
+ *       modify={modifyHandler}
+ *     />
+ *   );
+ * }
  */
 
 function ShopWindow(props) {
