@@ -51,7 +51,7 @@ function Counter(props) {
         }
 
         try {
-            const response = await axios.post(
+            const response = await axios.put(
                 `${BASE_URL}/api/cart/deleteProducts`,
                 {
                     idUser: databaseKey,
@@ -88,12 +88,8 @@ function Counter(props) {
     const updateQuantity = async () => {
         const token = getToken();
 
-        if (!token || !databaseKey) {
-            throw new Error("Token o databaseKey mancanti");
-        }
-
         try {
-            const response = await axios.post(
+            const response = await axios.patch(
                 `${BASE_URL}/api/cart/setQuantity`,
                 {
                     idUser: databaseKey,

@@ -75,11 +75,6 @@ const Carrello = () => {
     const fetchProductInCart = async () => {
         const token = getToken();
 
-        console.log(databaseKey);
-        if (!token || !databaseKey) {
-            throw new Error("Token o databaseKey mancanti");
-        }
-
         try {
             const response = await axios.post(
                 `${BASE_URL}/api/cart/products`,

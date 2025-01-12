@@ -59,13 +59,8 @@ export default function ButtonSave(elements) {
     const deleteProducts = async () => {
         const token = getToken();
 
-        console.log(databaseKey);
-        if (!token || !databaseKey) {
-            throw new Error("Token o databaseKey mancanti");
-        }
-
         try {
-            const response = await axios.post(
+            const response = await axios.put(
                 `${BASE_URL}/api/cart/deleteProducts`,
                 {
                     idUser: databaseKey,
@@ -93,11 +88,6 @@ export default function ButtonSave(elements) {
     // funzione per creare la prenotazione 
     const prenoteOrder = async () => {
         const token = getToken();
-
-        console.log(databaseKey);
-        if (!token || !databaseKey) {
-            throw new Error("Token o databaseKey mancanti");
-        }
 
         try {
             const response = await axios.post(
