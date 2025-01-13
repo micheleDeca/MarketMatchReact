@@ -1,88 +1,13 @@
 import React, { useState, useEffect } from "react";
 import MapComponent from "../../../Components/MapComponent/MapComponent";
 import "./TestMichele.css";
- 
- 
+import axios from "axios";
+
 const TestMichele = () => {
-  const [address, setAddress] = useState('');
-  const [coordinates, setCoordinates] = useState(null);
-  const [error, setError] = useState(null);
-
-  const API_KEY = 'e6d205d5e58f4ed2ab5ffc26451f06d2'; // Sostituisci con la tua chiave API OpenCage
-
-  const fetchCoordinates = async () => {
-    if (!address) {
-      setError('Inserisci un indirizzo valido');
-      return;
-    }
-
-    try {
-      setError(null);
-      const response = await fetch(
-        `https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(
-          address
-        )}&key=${API_KEY}`
-      );
-
-      if (!response.ok) {
-        throw new Error('Errore nella richiesta API');
-      }
-
-      const data = await response.json();
-
-      if (data.results.length > 0) {
-        setCoordinates({
-          lat: data.results[0].geometry.lat,
-          lon: data.results[0].geometry.lng,
-        });
-      } else {
-        setError('Nessun risultato trovato');
-        setCoordinates(null);
-      }
-    } catch (err) {
-      setError(err.message);
-      setCoordinates(null);
-    }
-  };
+   
 
   return (
-    <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
-      <h1>Geocoding con OpenCage</h1>
-      <div>
-        <input
-          type="text"
-          placeholder="Inserisci un indirizzo"
-          value={address}
-          onChange={(e) => setAddress(e.target.value)}
-          style={{
-            width: '300px',
-            padding: '10px',
-            marginRight: '10px',
-          }}
-        />
-        <button
-          onClick={fetchCoordinates}
-          style={{
-            padding: '10px 20px',
-            backgroundColor: '#007BFF',
-            color: '#FFF',
-            border: 'none',
-            cursor: 'pointer',
-          }}
-        >
-          Cerca
-        </button>
-      </div>
-
-      {error && <p style={{ color: 'red', marginTop: '10px' }}>{error}</p>}
-
-      {coordinates && (
-        <div style={{ marginTop: '20px' }}>
-          <h3>Coordinate trovate:</h3>
-          <p>Latitudine: {coordinates.lat}</p>
-          <p>Longitudine: {coordinates.lon}</p>
-        </div>
-      )}
+    <div>
     </div>
   );
 };
